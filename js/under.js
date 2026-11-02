@@ -21,12 +21,12 @@ export function buildUnder(renderer, TIER) {
     side: THREE.DoubleSide, depthWrite: false, transparent: true, fog: false, uniforms: { uTime: { value: 0 } },
     vertexShader: `varying vec3 vW; void main(){ vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; gl_Position=projectionMatrix*viewMatrix*w; }`,
     fragmentShader: `uniform float uTime; varying vec3 vW;
-      void main(){ vec3 V=vW-cameraPosition; float dist=length(V); V/=dist; vec2 p=vW.xz; float t=uTime;
-        vec2 g=vec2(sin(p.x*.9+t*1.2)+sin(p.x*.5-p.y*.8+t*.9)*.8+sin(p.x*2.3+p.y*1.7-t*1.6)*.3, cos(p.y*1.1-t)+cos(p.x*.7+p.y*.6+t*1.1)*.7+cos(p.y*2.6-p.x*1.4+t*1.8)*.3)*.09;
+      void main(){ vec3 V=vW-cameraPosition; float dist=length(V); V/=dist; vec2 p=vW.xz; float t=uTime*.45; // slow, calm surface seen from below
+        vec2 g=vec2(sin(p.x*.9+t*1.2)+sin(p.x*.5-p.y*.8+t*.9)*.8+sin(p.x*2.3+p.y*1.7-t*1.6)*.3, cos(p.y*1.1-t)+cos(p.x*.7+p.y*.6+t*1.1)*.7+cos(p.y*2.6-p.x*1.4+t*1.8)*.3)*.05;
         float cosA=V.y+g.x*.6+g.y*.4;
         float win=smoothstep(.62,.72,cosA);
         vec3 c=mix(vec3(.05,.3,.34),vec3(.75,.95,.98)*1.6,win);
-        c+=vec3(.6,.9,1.)*pow(max(sin(p.x*1.3+g.x*12.+t)*sin(p.y*1.1+g.y*12.-t*.8),0.),6.)*.5*win;
+        c+=vec3(.6,.9,1.)*pow(max(sin(p.x*1.3+g.x*7.+t)*sin(p.y*1.1+g.y*7.-t*.8),0.),4.)*.35*win;
         float f=exp(-dist*.035);
         c=mix(vec3(.025,.2,.25),c,f);
         gl_FragColor=vec4(c,1.); }`

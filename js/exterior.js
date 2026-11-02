@@ -85,11 +85,13 @@ export function buildExterior(renderer) {
       float vnoise(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
       void main(){
         vec3 V=cameraPosition-vW; float dist=length(V); V/=dist;
-        vec2 p=vW.xz; float t=uTime; vec2 dh=vec2(0.);
+        vec2 p=vW.xz; float t=uTime*.55; vec2 dh=vec2(0.); // slow, calm sea
         float fade=exp(-dist/700.);
-        #define W(dx,dy,f,a) { vec2 dd=normalize(vec2(dx,dy)); float ph=dot(dd,p)*f+t*sqrt(9.8*f); dh+=dd*a*f*cos(ph); }
-        W(1.,.2,.045,.55) W(.7,.7,.08,.28) W(.2,1.,.15,.13) W(-.6,.8,.29,.06) W(.9,-.4,.53,.03)
-        float hf=fade; W(.3,-1.,1.1,.012*hf) W(-1.,.3,1.9,.007*hf) W(.8,.9,3.1,.004*hf)
+        float fw=length(fwidth(p))+1e-4; // pixel footprint: drop waves too fine for the pixel (no shimmer/aliasing)
+        #define W(dx,dy,f,a) { vec2 dd=normalize(vec2(dx,dy)); float ph=dot(dd,p)*f+t*sqrt(9.8*f); dh+=dd*a*f*cos(ph)*smoothstep(1.2,.25,f*fw); }
+        // long gentle swells, low amplitude
+        W(1.,.2,.03,.5) W(.7,.7,.05,.26) W(.2,1.,.09,.12) W(-.6,.8,.16,.05) W(.9,-.4,.28,.022)
+        float hf=exp(-dist/250.); W(.3,-1.,.55,.008*hf) W(-1.,.3,.9,.004*hf)
         vec3 N=normalize(vec3(-dh.x,1.,-dh.y));
         float d=vW.x-shoreX(vW.z);
         vec3 deep=vec3(.004,.07,.15), mid=vec3(.008,.22,.32), shal=vec3(.05,.55,.55), sandb=vec3(.42,.62,.50);
@@ -98,16 +100,16 @@ export function buildExterior(renderer) {
         base=mix(base,sandb,exp(-max(d,0.)/7.)*.6);
         // net pens: greener water and the moving dark shapes of the stock below
         for(int i=0;i<6;i++){ vec2 r=p-uCages[i]; float dc=length(r); float inside=smoothstep(uCageR,uCageR-.8,dc);
-          float a=atan(r.y,r.x)+t*.12*(i%2==0?1.:-1.);
-          float sh=smoothstep(.72,.86,vnoise(vec2(a*30.,dc*3.4+float(i)*7.)))*smoothstep(1.5,4.,dc);
+          float a=atan(r.y,r.x)+uTime*.05*(i%2==0?1.:-1.);
+          float sh=smoothstep(.66,.9,vnoise(vec2(a*16.,dc*2.2+float(i)*7.)))*smoothstep(1.5,4.,dc);
           base=mix(base,mix(vec3(.02,.22,.24),vec3(.012,.11,.12),sh*.55),inside*.9); }
         float fr=.02+.98*pow(1.-max(dot(N,V),0.),5.);
         vec3 R=reflect(-V,N); R.y=abs(R.y);
         vec3 col=base*(.45+.55*max(dot(N,uSun),0.));
         col=mix(col,skyCol(R,0.)*.85,fr*.55);
-        float sp=pow(max(dot(R,uSun),0.),350.);
-        col+=vec3(1.,.95,.85)*(sp*7.+pow(max(dot(R,uSun),0.),60.)*.12);
-        float foam=(1.-smoothstep(0.,5.,d))*smoothstep(-1.5,.3,d)*(.55+.45*sin(d*2.2-t*1.4+sin(vW.z*.08)*2.))*(.6+.4*vnoise(p*.6));
+        float sp=pow(max(dot(R,uSun),0.),220.);
+        col+=vec3(1.,.95,.85)*(sp*2.6+pow(max(dot(R,uSun),0.),40.)*.10);
+        float foam=(1.-smoothstep(0.,5.,d))*smoothstep(-1.5,.3,d)*(.55+.45*sin(d*2.2-uTime*.6+sin(vW.z*.08)*2.))*(.6+.4*vnoise(p*.6));
         col=mix(col,vec3(.92,.93,.9),foam*.75);
         col=mix(col,uHaze,1.-exp(-dist*.00028));
         gl_FragColor=vec4(col,1.);
