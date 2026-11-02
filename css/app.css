@@ -23,7 +23,7 @@ header.top{position:fixed;top:20px;left:var(--pad);right:var(--pad);height:68px;
 html[dir=rtl] .brand b{font-family:'Noto Naskh Arabic';font-size:22px}
 .brand span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 nav{display:flex;gap:34px;font-size:14px;color:var(--muted);letter-spacing:.04em}
-nav a{cursor:pointer;padding-bottom:4px;border-bottom:1.5px solid transparent}
+nav a{cursor:pointer;color:inherit;text-decoration:none;padding-bottom:4px;border-bottom:1.5px solid transparent}
 nav a.on{color:var(--blue);font-weight:600;border-bottom-color:var(--gold)}
 .tools{display:flex;align-items:center;gap:14px}
 .lang{display:flex;border:1px solid var(--gold2);border-radius:20px;overflow:hidden;font-size:13px}
@@ -34,7 +34,7 @@ html[dir=rtl] .tag,html[dir=rtl] .kick{letter-spacing:0}
 
 .crumb{position:fixed;top:104px;left:var(--pad);display:flex;align-items:center;gap:10px;padding:9px 18px;border-radius:30px;font-family:'Cormorant Garamond';font-size:18px;color:var(--blue);z-index:15;white-space:nowrap}
 html[dir=rtl] .crumb{left:auto;right:var(--pad);font-family:'Noto Naskh Arabic';font-size:16px}
-.crumb a{cursor:pointer}
+.crumb a{cursor:pointer;color:inherit;text-decoration:none}
 .crumb i{color:var(--gold);font-style:normal}
 .crumb .on{background:var(--blue);color:var(--ivory);padding:1px 13px;border-radius:14px}
 
@@ -108,7 +108,7 @@ html[dir=rtl] .depth{left:auto;right:var(--pad)}
 .dg i{position:absolute;left:-5px;top:0;width:14px;height:14px;border-radius:50%;background:var(--blue);border:2px solid var(--ivory);box-shadow:0 0 0 3px rgba(179,146,87,.45)}
 .hint{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);font-size:14px;color:var(--blue);padding:10px 20px;border-radius:22px;z-index:12;visibility:hidden;opacity:0}
 
-.card{position:fixed;top:104px;right:var(--pad);max-height:calc(100vh - 140px);width:500px;padding:26px 28px;z-index:14;visibility:hidden;opacity:0;overflow:hidden;display:flex;flex-direction:column}
+.card{position:fixed;top:104px;right:var(--pad);max-height:calc(100vh - 140px);width:500px;padding:26px 28px;z-index:14;visibility:hidden;opacity:0;overflow:auto;display:flex;flex-direction:column}
 html[dir=rtl] .card{right:auto;left:var(--pad)}
 .card .names{display:flex;justify-content:space-between;align-items:flex-start;margin:10px 0 4px}
 .fc-en{font-size:52px;font-weight:500}
@@ -116,8 +116,8 @@ html[dir=rtl] .fc-en{font-size:46px}
 .lat{font-size:13px;color:var(--muted);margin-top:4px}
 .fc-ar{font-size:40px;color:var(--blue);line-height:1.1}
 .chips{display:flex;gap:6px;margin:14px 0}
-.chips span{flex:1;text-align:center;font-size:11.5px;padding:6px 0;border-radius:14px;background:var(--sand);color:var(--muted)}
-.chips span.on{background:var(--blue);color:#fff}
+.chips button{flex:1;text-align:center;font-size:11.5px;padding:6px 0;border-radius:14px;background:var(--sand);color:var(--muted);transition:background .25s,color .25s}
+.chips button.on{background:var(--blue);color:#fff}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cell{background:rgba(255,255,255,.75);border:1px solid var(--sand2);border-radius:10px;padding:9px 12px}
 .cell.wide{grid-column:span 2}
@@ -136,8 +136,9 @@ html[dir=rtl] .fc-en{font-size:46px}
 .card .btns{margin-top:6px;padding-top:14px}
 
 .levels{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:11px 22px;border-radius:30px;font-size:13px;color:var(--muted);z-index:15;white-space:nowrap}
-.dots{display:flex;gap:7px}.dots s{width:8px;height:8px;border-radius:50%;background:var(--sand2);text-decoration:none}
-.dots s.d{background:var(--gold2)}.dots s.on{background:var(--blue);box-shadow:0 0 0 3px rgba(179,146,87,.35)}
+.dots{display:flex;gap:0;margin:-6px -3px}.dots button{width:15px;height:20px;display:flex;align-items:center;justify-content:center}
+.dots button:before{content:'';width:8px;height:8px;border-radius:50%;background:var(--sand2)}
+.dots button.d:before{background:var(--gold2)}.dots button.on:before{background:var(--blue);box-shadow:0 0 0 3px rgba(179,146,87,.35)}
 .levels b{color:var(--blue);font-weight:600}
 .concept{position:fixed;bottom:28px;left:var(--pad);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);padding:9px 15px;border-radius:20px;z-index:15}
 html[dir=rtl] .concept{left:auto;right:var(--pad);letter-spacing:0}
@@ -170,14 +171,88 @@ html[dir=rtl] .hs .hl b{font-family:'Noto Naskh Arabic';font-size:17px}
 #cursor svg{position:relative;z-index:2}
 #cursor .ripple{position:absolute;left:5px;top:3px;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:2px solid var(--gold);opacity:0}
 
+/* links / controls added for free navigation */
+.lc-step{cursor:pointer}
+.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;font-size:22px;line-height:1;color:var(--blue);display:flex;align-items:center;justify-content:center;border:1px solid var(--sand2);background:rgba(255,255,255,.6);z-index:2}
+html[dir=rtl] .x{right:auto;left:12px}
+#species .row-sb:first-of-type,#trace .row-sb:first-of-type{margin-inline-end:44px}
+.sp-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sp-list button{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;min-height:44px;border-radius:12px;border:1px solid var(--sand2);background:rgba(255,255,255,.7);text-align:start}
+.sp-list button b{font-family:'Cormorant Garamond';font-size:20px;font-weight:600;color:var(--blue)}
+html[dir=rtl] .sp-list button b{font-family:'Noto Naskh Arabic';font-size:16px}
+.sp-list button span{font-size:15px;color:var(--gold)}
+.sp-list button.on{background:var(--blue);border-color:var(--blue)}.sp-list button.on b,.sp-list button.on span{color:#fff}
+.sp-detail{margin-top:14px;padding:14px 16px;border:1px solid var(--sand2);border-radius:12px;background:rgba(255,255,255,.55)}
+.sp-detail b{font-size:24px;color:var(--blue)}
+.sp-detail p{font-size:13.5px;line-height:1.5;color:#4a463f;margin-top:6px}
+.tr-list{display:flex;flex-direction:column;position:relative;margin-top:4px}
+.tr-list:before{content:'';position:absolute;top:22px;bottom:22px;inset-inline-start:15px;width:1px;background:var(--gold2)}
+.tr-list button{display:flex;gap:14px;align-items:flex-start;padding:9px 6px;min-height:44px;text-align:start;border-radius:10px;position:relative}
+.tr-list button i{flex:none;width:20px;height:20px;margin:2px 0 0;border-radius:50%;background:#fff;border:1.5px solid var(--gold2)}
+.tr-list button.on i{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 4px rgba(179,146,87,.35)}
+.tr-list b{display:block;font-family:'Cormorant Garamond';font-size:19px;font-weight:600;color:var(--blue)}
+html[dir=rtl] .tr-list b{font-family:'Noto Naskh Arabic';font-size:16px}
+.tr-list span{display:block;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.btn.soon{opacity:.92}
+.soon-tag{font-style:normal;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold2);border-radius:10px;padding:2px 7px;margin-inline-start:2px;font-weight:600}
+html[dir=rtl] .soon-tag{letter-spacing:0}
+.menu-btn{display:none;width:44px;height:44px;border-radius:50%;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid var(--gold2)}
+.menu-btn i{display:block;width:16px;height:1.5px;background:var(--blue);transition:transform .3s,opacity .3s}
+header.top.open .menu-btn i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}header.top.open .menu-btn i:nth-child(2){opacity:0}header.top.open .menu-btn i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+a:focus-visible,button:focus-visible,.lc-step:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (min-width:761px){ .panel{max-height:calc(100vh - 240px);overflow:auto} }
+/* 1280x720 and other short laptop screens: compact intro so the buttons and fine print clear the concept pill */
+@media (min-width:761px) and (max-height:900px){
+  #intro{top:150px;padding:24px 28px}
+  #intro h1{font-size:40px;margin:10px 0 12px}
+  #intro .lead{font-size:14px;line-height:1.5}
+  #intro .stats{margin:14px 0}#intro .stats div{padding:10px 12px}#intro .stats b{font-size:32px}
+  #intro .btns{margin-top:14px}#intro .fine{margin-top:10px}
+  .panel{top:150px;max-height:calc(100vh - 170px);padding:22px 26px}
+  #intro{max-height:calc(100vh - 230px)}
+  .panel .h2{font-size:32px;margin:6px 0 12px}
+  .param{padding:9px 12px}.param b{font-size:26px}
+  .photo{margin-top:10px;padding:10px 14px}
+  .rec td{padding:6px 0}.rec td.serif{font-size:19px}
+  .wb{margin-top:10px}.wb img{width:72px;height:60px}
+  .fine{margin-top:10px}
+  #tank{top:150px}
+  /* lifecycle bar moves to the lower left so it never collides with it or with the right-hand panel */
+  section.lifecycle{top:auto;bottom:86px;left:var(--pad);margin-left:0;width:min(560px,calc(100vw - 500px));padding:16px 20px 12px}
+  html[dir=rtl] section.lifecycle{left:auto;right:var(--pad)}
+  .lc-line{left:12%;right:12%;top:33px}
+}
+/* touch: every control at least 44 px */
+@media (pointer:coarse){
+  .btn{min-height:44px}
+  .lang button{min-height:44px;min-width:44px}
+  .crumb a{display:inline-flex;align-items:center;min-height:44px;margin:-10px 0}
+  .chips button{min-height:44px}
+  .slider{height:44px;touch-action:none}.slider .track{top:20px}.slider .knob{top:12px}
+  .hs .hl{min-height:44px;display:flex;flex-direction:column;justify-content:center}
+  .lc-step{min-height:44px}
+  .x{width:44px;height:44px;top:8px;right:8px}
+  .dots button{width:44px;height:44px}
+  .fishtag .hl{min-height:44px}
+}
+
 /* responsive: tablet & phone */
-@media (max-width:1300px){ nav{display:none} .card{width:440px} .panel{width:400px} .lifecycle{width:600px;margin-left:-300px} }
+@media (max-width:1300px){
+  .menu-btn{display:flex}
+  nav{display:none;position:absolute;top:calc(100% + 8px);right:0;flex-direction:column;gap:0;padding:8px;min-width:230px;background:rgba(251,248,242,.97);border:1px solid rgba(255,255,255,.8);border-radius:14px;box-shadow:0 18px 50px rgba(14,59,92,.18)}
+  html[dir=rtl] nav{right:auto;left:0}
+  header.top.open nav{display:flex}
+  nav a{padding:12px 14px;min-height:44px;display:flex;align-items:center;border-bottom:0;border-radius:10px}
+  nav a.on{background:var(--sand)}
+ .card{width:440px} .panel{width:400px} .lifecycle{width:600px;margin-left:-300px} }
 @media (max-width:760px){
   :root{--pad:12px}
   header.top{top:10px;height:56px;padding:0 12px}
   .brand span,.concept-tag{display:none}
-  .brand b{font-size:22px}
-  .crumb{top:76px;font-size:15px;padding:6px 12px;max-width:calc(100% - 24px);overflow:hidden}
+  .brand{gap:10px;min-width:0} .brand b{font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .crumb{top:70px;height:44px;font-size:15px;padding:0 12px;max-width:calc(100% - 140px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+  .crumb::-webkit-scrollbar{display:none}
+  .crumb a{margin:0;flex:none} .crumb i{flex:none}
   .panel,.panel.right,html[dir=rtl] .panel{left:8px!important;right:8px!important;top:auto;bottom:8px;width:auto;padding:18px 18px;border-radius:20px 20px 16px 16px;max-height:58vh;overflow:auto}
   #intro h1{font-size:34px;margin:8px 0 10px}
   .h2{font-size:30px}
@@ -187,8 +262,8 @@ html[dir=rtl] .hs .hl b{font-family:'Noto Naskh Arabic';font-size:17px}
   .lc-step b{font-size:14px}.lc-step small{display:none}
   .card,html[dir=rtl] .card{left:8px;right:8px;top:auto;bottom:8px;width:auto;max-height:66vh;overflow:auto;padding:18px}
   .fc-en{font-size:38px}
-  .levels{display:none} .concept{bottom:auto;top:76px;left:auto;right:12px;font-size:9px;padding:6px 10px}
-  .concept span{display:none}
+  .levels{display:none} .concept{bottom:auto;top:80px;left:auto;right:12px;font-size:9px;padding:6px 10px} html[dir=rtl] .concept{right:auto;left:12px}
+  .concept span{display:none} .concept{font-size:0} .concept em{font-size:9px}
   .hs .hl{padding:5px 9px}.hs .hl b{font-size:15px}.hs .hl span{display:none}
   .end-title{font-size:44px}
   .depth{top:130px;transform:none;width:70px;padding:10px}.dg{height:80px}

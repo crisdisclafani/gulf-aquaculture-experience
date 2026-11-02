@@ -24,11 +24,12 @@
     <div><b data-t="brand">Egg to Harvest</b><span data-t="brandSub">Sheikh Khalifa Marine Research Centre · Interactive journey</span></div>
   </div>
   <nav id="nav">
-    <a data-nav="campus" data-t="navCampus">Campus</a><a data-nav="facilities" data-t="navFac">Facilities</a><a data-nav="cages" data-t="navCages">Sea cages</a><a data-nav="species" data-t="navSpecies">Species</a><a data-nav="trace" data-t="navTrace">Traceability</a>
+    <a href="#campus" data-nav="campus" data-t="navCampus">Campus</a><a href="#facilities" data-nav="facilities" data-t="navFac">Facilities</a><a href="#cages" data-nav="cages" data-t="navCages">Sea cages</a><a href="#species" data-nav="species" data-t="navSpecies">Species</a><a href="#traceability" data-nav="trace" data-t="navTrace">Traceability</a>
   </nav>
   <div class="tools">
     <span class="tag concept-tag" data-t="conceptTag">Concept demo</span>
     <div class="lang" id="langToggle"><button data-l="en" class="on">EN</button><button data-l="ar" class="ar">عربي</button></div>
+    <button id="menuBtn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><i></i><i></i><i></i></button>
   </div>
 </header>
 
@@ -106,6 +107,39 @@
   <div class="btns"><button class="btn p" id="btnDive" data-t="dive">Dive into the cage</button></div>
 </section>
 
+
+<!-- Species (from the film) -->
+<section id="species" class="panel glass right">
+  <button class="x" data-close aria-label="Close" data-t-aria="close">×</button>
+  <div class="row-sb"><div class="kick" data-t="spKick">Species · named in the film</div><span class="tag" data-t="fromVideo">From source video</span></div>
+  <h2 class="h1 h2" data-th="spTitle">Species<br><em>from egg to harvest</em></h2>
+  <div class="sp-list" id="spList">
+    <button data-sp="hamour" class="on"><b data-t="hamour">Hamour</b><span class="arn">هامور</span></button>
+    <button data-sp="shaari"><b data-t="shaari">Shaari</b><span class="arn">شعري</span></button>
+    <button data-sp="hamrah"><b data-t="hamrah">Hamrah</b><span class="arn">حمرة</span></button>
+    <button data-sp="ummdrais"><b data-t="ummdrais">Umm Drais</b><span class="arn">أم الدرايس</span></button>
+    <button data-sp="seabream"><b data-t="seabream">Seabream</b><span class="arn">دنيس</span></button>
+  </div>
+  <div class="sp-detail"><div class="row-sb"><b id="spName" class="serif">Hamour</b><span id="spPhTag" class="tag" data-t="placeholder" style="display:none">Placeholder</span></div><p id="spDetail"></p></div>
+  <div class="btns"><button class="btn p" id="spGo">Open the fish card ›</button></div>
+  <p class="fine" data-t="spFine">Species names as given in the film. Cards and 3D scenes for the other species are placeholders.</p>
+</section>
+
+<!-- Traceability (lifecycle from the film) -->
+<section id="trace" class="panel glass right">
+  <button class="x" data-close aria-label="Close" data-t-aria="close">×</button>
+  <div class="row-sb"><div class="kick" data-t="traceT">Traceability · egg to harvest</div><span class="tag" data-t="illusPh">Illustrative · placeholders</span></div>
+  <h2 class="h1 h2" data-th="trTitle">Traceability<br><em>one batch, every stage</em></h2>
+  <div class="tr-list" id="trList">
+    <button data-tr="0"><i></i><div><b data-t="lc0">Broodstock</b><span data-t="tr0"></span></div></button>
+    <button data-tr="1"><i></i><div><b data-t="lc1">Hatchery</b><span data-t="tr1"></span></div></button>
+    <button data-tr="2"><i></i><div><b data-t="lc2">Nursery</b><span data-t="tr2"></span></div></button>
+    <button data-tr="3"><i></i><div><b data-t="lc3">Sea cage</b><span data-t="tr3"></span></div></button>
+    <button data-tr="4"><i></i><div><b data-t="tHarv">Harvest</b><span data-t="tr4"></span></div></button>
+  </div>
+  <p class="fine" data-t="trFine">16 labs · 26 RAS · up to 95% water saving, as stated in the film. Batch IDs, dates and counts beyond tank L3T6 are placeholders.</p>
+</section>
+
 <!-- Level 5-6: underwater HUD -->
 <div id="depth" class="glass depth"><span data-t="depth">Depth</span><b id="depthVal">0.0</b><em>m</em><div class="dg"><i id="depthBar"></i></div></div>
 <div id="tapHint" class="hint glass" data-t="tapHint">Tap a fish to discover it</div>
@@ -117,7 +151,7 @@
     <div><h2 class="h1 fc-en" data-t="hamour">Hamour</h2><div class="lat"><i>Epinephelus coioides</i> · <span data-t="grouper">Orange-spotted grouper</span></div></div>
     <div class="fc-ar arn" data-t="fcAlt">هامور</div>
   </div>
-  <div class="chips"><span data-t="lc0">Broodstock</span><span data-t="lc1">Hatchery</span><span data-t="lc2">Nursery</span><span class="on" data-t="lc3">Sea cage</span></div>
+  <div class="chips"><button data-t="lc0" aria-pressed="false">Broodstock</button><button data-t="lc1" aria-pressed="false">Hatchery</button><button data-t="lc2" aria-pressed="false">Nursery</button><button class="on" data-t="lc3" aria-pressed="true">Sea cage</button></div>
   <div class="grid">
     <div class="cell wide"><span data-t="habitat">Habitat</span><p data-t="habitatV">[Native range and environment — from CMS]</p></div>
     <div class="cell"><span data-t="size">Size</span><p>[—] cm · [—] kg</p></div>
@@ -137,7 +171,7 @@
     </div>
     <small class="origin" data-t="origin">Origin: [hatchery / tank ID] · Batch [—]</small>
   </div>
-  <div class="btns"><button class="btn p" id="btnAR"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1l6 3.5v7L8 15l-6-3.5v-7z M2 4.5L8 8l6-3.5M8 8v7" fill="none" stroke="#fff" stroke-width="1.2"/></svg><span data-t="ar">View in AR</span></button><button class="btn o" id="btnNext" data-t="nextFish">Next fish ›</button><button class="btn o" id="btnLangCard"><span class="ar">عربي</span></button></div>
+  <div class="btns"><button class="btn o soon" id="btnAR" aria-disabled="true"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1l6 3.5v7L8 15l-6-3.5v-7z M2 4.5L8 8l6-3.5M8 8v7" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span data-t="ar">View in AR</span><em class="soon-tag" data-t="soon">Coming soon</em></button><button class="btn o" id="btnNext" data-t="nextFish">Next fish ›</button><button class="btn o" id="btnLangCard"><span class="ar">عربي</span></button></div>
   <p class="fine" data-t="arNote">Arabic copy is a first draft, to be reviewed by a native copywriter.</p>
 </section>
 

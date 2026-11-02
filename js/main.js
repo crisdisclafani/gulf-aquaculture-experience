@@ -8,7 +8,7 @@ import { buildHatch, HERO_TANK } from './hatch.js';
 import { buildUnder } from './under.js';
 import { STR } from './i18n.js';
 
-const $ = s => document.querySelector(s);
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 gsap.ticker.remove(gsap.updateRoot); gsap.ticker.lagSmoothing(0); gsap.updateRoot(0); // pin GSAP's clock to the app clock (T) so timing never depends on load time
 let T = 0; // app clock (seconds) — drives GSAP, shaders, fish: identical in live and capture modes
@@ -44,15 +44,19 @@ function startOrbit() { if (DEMO || CAPTURE || mode !== 'rig') return; mode = 'o
 function stopOrbit() { if (mode === 'orbit') { rig.pos.copy(camera.position).add(W.offset); rig.tgt.copy(controls.target).add(W.offset); } controls.enabled = false; }
 const lookTmp = V(0, 0, 0);
 function applyCamera(dt) {
-  if (mode === 'orbit') { controls.update(); return; }
+  if (mode === 'orbit') { controls.dampingFactor = 1 - Math.pow(.92, Math.min(dt, .1) * 60); controls.update(); return; } // damping tuned at 60 fps, now per-second
   if (mode === 'follow') updateFollow(dt);
   if (mode === 'drift') { const a = drift.a0 + (T - drift.t0) * .016; rig.pos.set(HERO_CAGE.x + Math.cos(a) * drift.r, drift.y + Math.sin((T - drift.t0) * .2) * .08, HERO_CAGE.z + Math.sin(a) * drift.r); rig.tgt.set(HERO_CAGE.x + Math.cos(a + 1.9) * 4, drift.y - .6, HERO_CAGE.z + Math.sin(a + 1.9) * 4); }
   const sw = rig.sway * (W === EXT ? extSway : .05); // very light hand-held drift; almost none over the water
   camera.position.copy(rig.pos).sub(W.offset).add(lookTmp.set(Math.sin(T * .21) * sw, Math.sin(T * .17 + 1) * sw * .5, Math.cos(T * .19) * sw));
   camera.lookAt(lookTmp.copy(rig.tgt).sub(W.offset));
-  if (Math.abs(camera.fov - rig.fov) > .01) { camera.fov = rig.fov; camera.updateProjectionMatrix(); }
+  // portrait phones: widen the aerial views so the campus still fits across the narrow screen (landscape unchanged)
+  let fov = rig.fov;
+  if (W === EXT && camera.aspect < .8) fov = Math.min(72, Math.max(fov, 2 * Math.atan(Math.tan(fov * Math.PI / 360) * .8 / camera.aspect) * 180 / Math.PI));
+  if (Math.abs(camera.fov - fov) > .01) { camera.fov = fov; camera.updateProjectionMatrix(); }
 }
 const drift = { a0: 0, t0: 0, r: 8, y: -4.5 };
+function setDrift() { const C = HERO_CAGE; drift.a0 = Math.atan2(rig.pos.z - C.z, rig.pos.x - C.x); drift.t0 = T; drift.r = Math.hypot(rig.pos.x - C.x, rig.pos.z - C.z); drift.y = rig.pos.y; mode = 'drift'; }
 let extSway = 2.2; // campus aerial drift (m); set low over the sea cages
 
 // ---------------- i18n ----------------
@@ -62,9 +66,11 @@ function applyLang(l) {
   lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-t]').forEach(e => e.textContent = t(e.dataset.t));
   document.querySelectorAll('[data-th]').forEach(e => e.innerHTML = t(e.dataset.th));
+  document.querySelectorAll('[data-t-aria]').forEach(e => e.setAttribute('aria-label', t(e.dataset.tAria)));
+  $('#menuBtn').setAttribute('aria-label', t('menu'));
   document.querySelectorAll('#langToggle button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
   $('#btnLangCard').innerHTML = l === 'ar' ? '<span>EN</span>' : '<span class="ar">عربي</span>';
-  buildHotspots(currentHS); renderCrumb(); renderLevel(); setPP(pp, true);
+  buildHotspots(currentHS); renderCrumb(); renderLevel(); setPP(pp, true); selectSpecies(spSel, true);
 }
 
 // ---------------- hotspots ----------------
@@ -75,7 +81,8 @@ function buildHotspots(list) {
   HS = list.map(h => {
     const el = document.createElement('div'); el.className = 'hs'; el.dataset.id = h.id;
     el.innerHTML = `<i></i><span class="ln"></span><div class="hl"><b>${t(h.key)}</b><span>${t(h.sub)}</span></div>`;
-    el.addEventListener('click', e => { e.stopPropagation(); onHotspot(h.id); });
+    el.setAttribute('role', 'button'); el.tabIndex = 0;
+    el.addEventListener('click', e => { e.stopPropagation(); ui(() => onHotspot(h.id))(); }); el.addEventListener('keydown', e => (e.key === 'Enter' || e.key === ' ') && el.click());
     el.style.visibility = 'hidden'; hsLayer.appendChild(el);
     return { ...h, el, a: 0 };
   });
@@ -85,22 +92,46 @@ let selHS = null, hsVisible = false;
 function showHotspots(on, stagger = .12) { hsVisible = on; HS.forEach((h, i) => gsap.to(h, { a: on ? 1 : 0, duration: on ? .6 : .3, delay: on ? i * stagger : 0, ease: 'power2.out' })); }
 function selectHS(id) { selHS = id; HS.forEach(h => h.el.classList.toggle('sel', h.id === id)); }
 const pv = V(0, 0, 0);
+// UI rects that hide a hotspot underneath (a hotspot under a panel can't be seen or tapped, so it steps aside)
+const OCC_SEL = '.panel,.card,header.top,.crumb,.concept,section.lifecycle';
+let occ = [], occN = 0;
+function occluders() {
+  if (occN++ % 4) return occ; // refresh every 4th frame: cheap, and never more than a few frames stale
+  occ = [];
+  for (const e of document.querySelectorAll(OCC_SEL)) { const c = getComputedStyle(e); if (c.visibility === 'visible' && +c.opacity > .3 && c.display !== 'none') occ.push(e.getBoundingClientRect()); }
+  return occ;
+}
+const covered = (x0, y0, x1, y1, R) => R.some(r => x1 > r.left - 6 && x0 < r.right + 6 && y1 > r.top - 6 && y0 < r.bottom + 6);
 function projectHotspots() {
+  const R = occluders(), placed = [];
   for (const h of HS) {
     pv.copy(h.pos).project(camera);
     const vis = pv.z < 1 && h.a > .001 && Math.abs(pv.x) < 1.1 && Math.abs(pv.y) < 1.1;
     if (!vis) { h.el.style.visibility = 'hidden'; continue; }
     const x = (pv.x * .5 + .5) * innerWidth, y = (-pv.y * .5 + .5) * innerHeight;
-    const left = x > innerWidth * .7; h.el.classList.toggle('l', left);
+    // label on its natural side unless that side runs into a panel, the screen edge or another hotspot; hidden only if a panel blocks both sides
+    const w = h.el.offsetWidth, hh = h.el.offsetHeight, y0 = y - 10, pref = x > innerWidth * .7;
+    let left = pref, best = 9;
+    for (const l of [pref, !pref]) {
+      const x0 = l ? x - w + 10 : x - 10, x1 = x0 + w;
+      if (covered(x0, y0, x1, y0 + hh, R)) continue;
+      const sc = (Math.max(0, -x0) + Math.max(0, x1 - innerWidth)) / 30 + (covered(x0, y0, x1, y0 + hh, placed) ? 1 : 0);
+      if (sc < best) { best = sc; left = l; }
+    }
+    if (best === 9) { h.el.style.visibility = 'hidden'; continue; }
+    const x0 = left ? x - w + 10 : x - 10; placed.push({ left: x0 + 6, right: x0 + w - 6, top: y0 + 6, bottom: y0 + hh - 6 });
+    h.el.classList.toggle('l', left);
     h.el.style.visibility = 'visible'; h.el.style.opacity = h.a;
-    h.el.style.transform = `translate(${left ? x - h.el.offsetWidth + 10 : x - 10}px,${y - 10}px) scale(${.85 + .15 * h.a})`;
+    h.el.style.transform = `translate(${left ? x - w + 10 : x - 10}px,${y0}px) scale(${.85 + .15 * h.a})`;
   }
   // fish tag follows the selected fish
   if (UND.state.sel >= 0 && W === UND) {
     const fp = UND.school.p[UND.state.sel]; pv.copy(fp).project(camera);
     const x = (pv.x * .5 + .5) * innerWidth; pv.copy(fp).addScaledVector(camera.up, -UND.school.s[UND.state.sel] * .62).project(camera);
-    const y = (-pv.y * .5 + .5) * innerHeight;
-    $('#fishTag').style.transform = `translate(${x - 60}px,${y + 8}px)`;
+    const y = (-pv.y * .5 + .5) * innerHeight, ft = $('#fishTag'), fw2 = ft.offsetWidth, fh = ft.offsetHeight;
+    let ty = y + 8; const tx = Math.max(8, Math.min(innerWidth - fw2 - 8, x - 60));
+    if (covered(tx, ty, tx + fw2, ty + fh, R)) { pv.copy(fp).addScaledVector(camera.up, UND.school.s[UND.state.sel] * .62).project(camera); ty = (-pv.y * .5 + .5) * innerHeight - fh - 8; } // card in the way: tag above the fish
+    ty = Math.max(innerWidth <= 760 ? 124 : 8, Math.min(innerHeight - fh - 8, ty)); ft.style.transform = `translate(${tx}px,${ty}px)`;
   }
 }
 
@@ -111,13 +142,15 @@ function renderCrumb() {
   const el = $('#crumb'); el.innerHTML = '';
   crumb.forEach((c, i) => {
     if (i) { const s = document.createElement('i'); s.textContent = lang === 'ar' ? '‹' : '›'; el.appendChild(s); }
-    const a = document.createElement('a'); a.textContent = t(c.k); if (i === crumb.length - 1) a.className = 'on';
-    if (c.fn && i < crumb.length - 1) a.onclick = () => c.fn(); el.appendChild(a);
+    const a = document.createElement('a'); a.href = '#'; a.textContent = t(c.k); a.dataset.k = c.k; if (i === crumb.length - 1) { a.className = 'on'; a.setAttribute('aria-current', 'page'); }
+    const fn = c.fn || CRUMB_FN[c.k]; a.onclick = e => { e.preventDefault(); ui(fn)(); }; el.appendChild(a);
   });
+  el.scrollLeft = lang === 'ar' ? -el.scrollWidth : el.scrollWidth; // mobile: the current step stays in view
 }
 function setLevel(n, k) { level = n; levelKey = k; renderLevel(); }
 function renderLevel() {
-  $('#dots').innerHTML = Array.from({ length: 7 }, (_, i) => `<s class="${i + 1 < level ? 'd' : i + 1 === level ? 'on' : ''}"></s>`).join('');
+  $('#dots').innerHTML = Array.from({ length: 7 }, (_, i) => `<button data-lv="${i + 1}" aria-label="${t('lvl')} ${i + 1} · ${t('lv' + (i + 1))}" title="${t('lv' + (i + 1))}" class="${i + 1 < level ? 'd' : i + 1 === level ? 'on' : ''}"></button>`).join('');
+  $$('#dots button').forEach(b => b.onclick = ui(LEVEL_FN[b.dataset.lv]));
   $('#levelTxt').innerHTML = `${t('lvl')} <b>${level}</b> ${t('of')} 7 · ${t(levelKey)}`;
 }
 function setNav(k) { document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.nav === k)); }
@@ -150,13 +183,15 @@ function setPP(v, silent) {
 const state = { where: 'campus', cagesMode: false };
 function crumbCampus() { return { k: 'crCampus', fn: goCampus }; }
 function goCampus() {
-  hideAll(); state.cagesMode = false; selectHS(null);
-  const go = () => { useWorld(EXT); extSway = 2.2; place(V(-330, 210, 330), V(-40, 0, -20), 40); fly([V(-290, 175, 270)], [V(-35, 0, -25)], 10, 'sine.out'); showHotspots(true); };
+  hideAll(); resetFish(); state.cagesMode = false; selectHS(null);
+  const go = () => { useWorld(EXT); extSway = 2.2; const tall = innerWidth < innerHeight * .8; // portrait phone: steeper view so the buildings spread down the screen
+    if (tall) { place(V(-190, 330, 210), V(-50, 0, -40), 40); fly([V(-165, 300, 170)], [V(-50, 0, -45)], 10, 'sine.out'); }
+    else { place(V(-330, 210, 330), V(-40, 0, -20), 40); fly([V(-290, 175, 270)], [V(-35, 0, -25)], 10, 'sine.out'); } showHotspots(true); };
   if (W !== EXT || state.where !== 'campus') veilSwap(go); else go();
-  state.where = 'campus'; setCrumb([{ k: 'crCampus' }]); setLevel(1, 'lv1'); setNav('campus'); show('#intro', { y: 18 }, .6);
+  state.where = 'campus'; state.introHidden = false; setCrumb([{ k: 'crCampus' }]); setLevel(1, 'lv1'); setNav('campus'); show('#intro', { y: 18 }, .6);
 }
 function enterBroodstock() {
-  hideAll(); selectHS('brood'); state.where = 'brood';
+  hideAll(); resetFish(); selectHS('brood'); state.where = 'brood';
   setCrumb([crumbCampus(), { k: 'crFac' }, { k: 'crBrood' }]); setLevel(2, 'lv2'); setNav('facilities');
   const inside = () => {
     useWorld(BRD); setPP(0);
@@ -171,8 +206,8 @@ function enterBroodstock() {
   } else veilSwap(inside);
 }
 function goHatchery() {
-  hideAll(); state.where = 'hatch';
-  setCrumb([crumbCampus(), { k: 'crFac' }, { k: 'crHatch' }, { k: 'crL3T6' }]); setNav('trace');
+  hideAll(); resetFish(); state.where = 'hatch';
+  setCrumb([crumbCampus(), { k: 'crFac' }, { k: 'crHatch' }, { k: 'crL3T6' }]); setNav('facilities');
   veilSwap(() => {
     useWorld(HAT); setLevel(4, 'lv4');
     place(V(13, 1.9, -1.5), V(4, 1.1, 2.0), 44);
@@ -192,7 +227,7 @@ function larvaeCloseUp() {
   fly([V(3.8, 1.95, 1.2), V(3.2, 1.45, 2.7)], [V(2.6, .8, 3.4), V(2.85, .55, 3.75)], 3.4, 'power2.inOut', { fov: 36, sway: .25 });
 }
 function goSeaCages() {
-  hideAll(); state.where = 'cages'; state.cagesMode = true;
+  hideAll(); resetFish(); state.where = 'cages'; state.cagesMode = true;
   setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }]); setNav('cages');
   veilSwap(() => {
     useWorld(EXT); setLevel(5, 'lv5'); extSway = .25;
@@ -202,15 +237,25 @@ function goSeaCages() {
     gsap.delayedCall(4.2, () => { showHotspots(true); selectHS('c03'); show('#cages', { x: lang === 'ar' ? -40 : 40 }); });
   });
 }
-function diveCage() {
-  hideAll(); showHotspots(false); state.where = 'under';
-  setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }, { k: 'crUnder' }]); setLevel(6, 'lv6'); setNav('species');
-  if (W !== EXT) { useWorld(EXT); }
+function diveCage(then) {
+  if (typeof then !== 'function') then = null;
+  if (W === UND) return underDrift(then);
+  if (W !== EXT || !state.cagesMode) { // from campus / inside a building: cut to the cage first, then dive
+    hideAll(); resetFish(); showHotspots(false); state.where = 'under';
+    setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }, { k: 'crUnder' }]); setLevel(6, 'lv6'); setNav('cages');
+    veilSwap(() => { state.cagesMode = true; useWorld(EXT); extSway = .25; place(V(HERO_CAGE.x - 5, 20, HERO_CAGE.z + 32), V(HERO_CAGE.x, -1, HERO_CAGE.z), 46); dive(then); });
+    return;
+  }
+  dive(then);
+}
+function dive(then) {
+  hideAll(); resetFish(); showHotspots(false); state.where = 'under';
+  setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }, { k: 'crUnder' }]); setLevel(6, 'lv6'); setNav('cages');
   const C = HERO_CAGE; let crossed = false;
   fly([V(C.x - 3, 9, C.z + 15), V(C.x - 2, 1.2, C.z + 8.5), V(C.x - 2.5, -1.6, C.z + 7.5), V(C.x - 4, -4.4, C.z + 7)],
       [V(C.x, -1, C.z), V(C.x - .5, -2, C.z + 2), V(C.x + 1, -4.5, C.z), V(C.x + 3, -5, C.z - 2)], 5.4, 'power1.inOut',
       { fov: 50, sway: .5, onUpdate() { if (!crossed && rig.pos.y < 0) { crossed = true; useWorld(UND); UND.burst(rig.pos.clone().sub(C).add(V(0, -.8, -1.2)), T); bokeh.enabled = false; show('#depth', { x: lang === 'ar' ? 20 : -20 }); } },
-        onComplete() { drift.a0 = Math.atan2(rig.pos.z - C.z, rig.pos.x - C.x); drift.t0 = T; drift.r = Math.hypot(rig.pos.x - C.x, rig.pos.z - C.z); drift.y = rig.pos.y; mode = 'drift'; show('#tapHint', { y: 10 }, .6); } });
+        onComplete() { setDrift(); show('#tapHint', { y: 10 }, .6); if (then) gsap.delayedCall(.4, then); } });
 }
 // ---- fish selection: ring, slow motion, follow camera with depth of field, fish card ----
 const fol = { k: 0, pos: V(0, 0, 0), tgt: V(0, 0, 0), side: 1 };
@@ -230,21 +275,24 @@ function selectFish(i) {
   bokeh.enabled = true;
   show('#fishTag', { y: 8 }, .3);
   setLevel(7, 'lv7'); setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }, { k: 'crHamour' }]);
-  if (first) show('#card', { x: lang === 'ar' ? -70 : 70 }, 1.2);
+  if (first || !shown.has('#card')) show('#card', { x: lang === 'ar' ? -70 : 70 }, first ? 1.2 : .3);
+  setNav('cages');
 }
 const tv = V(0, 0, 0), fw = V(0, 0, 0), sd = V(0, 0, 0), up = V(0, 1, 0), wantP = V(0, 0, 0), wantT = V(0, 0, 0), camR = V(0, 0, 0);
 function updateFollow(dt) {
-  const S = UND.state, p = UND.school.p[S.sel], v = UND.school.v[S.sel];
+  const S = UND.state, p = UND.school.p[S.sel], v = UND.school.v[S.sel]; if (!p) { mode = 'rig'; return; }
   fw.copy(v).setY(v.y * .3).normalize(); sd.crossVectors(up, fw).normalize();
-  const side = lang === 'ar' ? -1 : 1; fol.side += (side - fol.side) * Math.min(1, dt * 2);
+  const side = lang === 'ar' ? -1 : 1; fol.side += (side - fol.side) * (1 - Math.pow(14 / 15, dt * 30));
   wantP.copy(p).addScaledVector(fw, -.9).addScaledVector(sd, 1.85).addScaledVector(up, .28).add(HERO_CAGE);
   camR.copy(sd); // fish placed off-centre, away from the card
   wantT.copy(p).addScaledVector(fw, .25).add(HERO_CAGE);
-  const ofs = tv.subVectors(wantP, wantT).normalize().cross(up).normalize().multiplyScalar(-.62 * fol.side);
-  wantT.add(ofs);
+  const mob = innerWidth <= 760; // phone: the card is a bottom sheet, so frame the fish high and centred instead of to one side
+  const ofs = tv.subVectors(wantP, wantT).normalize().cross(up).normalize().multiplyScalar(mob ? 0 : -.62 * fol.side);
+  wantT.add(ofs); if (mob) wantT.addScaledVector(up, -.46);
   const a = 1 - Math.exp(-dt * 2.2);
   fol.pos.lerp(wantP, a); fol.tgt.lerp(wantT, a);
-  rig.pos.lerpVectors(rig.pos, fol.pos, fol.k < 1 ? fol.k * .2 + .02 : 1); rig.tgt.lerpVectors(rig.tgt, fol.tgt, fol.k < 1 ? fol.k * .2 + .02 : 1);
+  const kf = fol.k < 1 ? 1 - Math.pow(1 - (fol.k * .2 + .02), dt * 30) : 1; // same per-second response at any frame rate (identical at the 30 fps capture step)
+  rig.pos.lerp(fol.pos, kf); rig.tgt.lerp(fol.tgt, kf);
   rig.fov += (38 - rig.fov) * a * .5; rig.sway = .15;
   const dist = camera.position.distanceTo(p);
   bokeh.uniforms.focus.value = dist; bokeh.uniforms.aperture.value = .0042 * fol.k; bokeh.uniforms.maxblur.value = .0075;
@@ -276,13 +324,74 @@ function onHotspot(id) {
   else if (id === 'c03') diveCage();
   else if (id === 'l3t6') larvaeCloseUp();
 }
-$('#btnStart').onclick = () => enterBroodstock();
-$('#btnFree').onclick = () => { hide('#intro'); toast('toastFree'); };
-$('#btnToHatch').onclick = goHatchery; $('#btnLarvae').onclick = larvaeCloseUp; $('#btnToCages').onclick = goSeaCages; $('#btnDive').onclick = diveCage;
-$('#btnNext').onclick = nextFish; $('#btnAR').onclick = () => toast('toastAR');
-$('#btnLangCard').onclick = () => setLang(lang === 'ar' ? 'en' : 'ar');
-document.querySelectorAll('#langToggle button').forEach(b => b.onclick = () => setLang(b.dataset.l));
-document.querySelectorAll('#nav a').forEach(a => a.onclick = () => ({ campus: goCampus, facilities: enterBroodstock, cages: goSeaCages, species: () => W === UND ? nextFish() : diveCage(), trace: goHatchery })[a.dataset.nav]());
+// every control goes through ui(): closes the mobile menu and the end card, then navigates
+function ui(fn) { return e => { if (e && e.preventDefault && e.currentTarget && e.currentTarget.tagName === 'A') e.preventDefault(); closeMenu(); if (!DEMO && getComputedStyle($('#endcard')).visibility === 'visible') gsap.to('#endcard', { autoAlpha: 0, duration: .4 }); fn && fn(); }; }
+const CRUMB_FN = { crCampus: goCampus, crFac: enterBroodstock, crBrood: enterBroodstock, crHatch: goHatchery, crL3T6: () => (W === HAT ? larvaeCloseUp() : goHatchery()),
+  crCages: goSeaCages, crC03: () => (W === UND && UND.state.sel >= 0 ? underDrift() : goSeaCages()), crUnder: () => underDrift(), crHamour: goFishCard };
+const LEVEL_FN = { 1: goCampus, 2: enterBroodstock, 3: enterBroodstock, 4: goHatchery, 5: goSeaCages, 6: () => (W === UND ? underDrift() : diveCage()), 7: goFishCard };
+function resetFish() {
+  const S = UND.state; if (S.sel < 0) return;
+  if (mode === 'follow') mode = 'rig'; // freeze the camera where it is; the next fly() takes over
+  S.sel = -1; gsap.killTweensOf(fol); hide('#fishTag'); gsap.to(S, { timeScale: 1, duration: 1.2 });
+  gsap.to(UND.ringM.uniforms.uA, { value: 0, duration: .5, onComplete: () => { UND.ring.visible = false; } });
+  gsap.to(bokeh.uniforms.aperture, { value: 0, duration: .8, onComplete: () => { bokeh.enabled = false; } });
+}
+function underDrift(then) { // back to the free underwater view (from the fish card)
+  if (W !== UND) return diveCage(then);
+  hideAll(); resetFish(); state.where = 'under';
+  setCrumb([crumbCampus(), { k: 'crCages' }, { k: 'crC03' }, { k: 'crUnder' }]); setLevel(6, 'lv6'); setNav('cages'); show('#depth', { x: lang === 'ar' ? 20 : -20 });
+  const C = HERO_CAGE;
+  fly([V(C.x - 4, -4.4, C.z + 7)], [V(C.x + 3, -5, C.z - 2)], 2.4, 'power2.inOut', { fov: 50, sway: .5, onComplete() { setDrift(); show('#tapHint', { y: 10 }, .3); if (typeof then === 'function') gsap.delayedCall(.3, then); } });
+}
+function pickHero() { let i = heroFish(); if (i < 0) i = pickFishNear(innerWidth * .5, innerHeight * .5); return i < 0 ? 0 : i; }
+function goFishCard() { // open the Hamour fish card from anywhere
+  if (W === UND && mode !== 'rig') { hide('#species'); hide('#trace'); show('#depth'); selectFish(UND.state.sel >= 0 ? UND.state.sel : pickHero()); return; }
+  diveCage(() => selectFish(pickHero()));
+}
+// Species & Traceability panels (facts from the film only; everything else labelled placeholder)
+const SP = { hamour: { d: 'spHamour', go: 'spGoHamour', fn: goFishCard }, seabream: { d: 'spSeabream', go: 'spGoSeabream', fn: goHatchery },
+  shaari: { d: 'spPh' }, hamrah: { d: 'spPh' }, ummdrais: { d: 'spPh' } };
+let spSel = 'hamour';
+function selectSpecies(k, silent) {
+  spSel = k; $$('#spList button').forEach(b => { const on = b.dataset.sp === k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  const d = SP[k]; $('#spName').textContent = t(k === 'ummdrais' ? 'ummdrais' : k); $('#spDetail').textContent = t(d.d);
+  $('#spGo').style.display = d.fn ? '' : 'none'; if (d.fn) $('#spGo').textContent = t(d.go); $('#spPhTag').style.display = d.fn ? 'none' : '';
+}
+function openPanel(id, nav) { hideAll(); show(id, { x: lang === 'ar' ? -40 : 40 }); setNav(nav); state.panel = id; }
+function restorePanel() {
+  hide('#species'); hide('#trace'); state.panel = null;
+  const w = state.where, from = { x: lang === 'ar' ? -40 : 40 };
+  if (w === 'campus') { if (!state.introHidden) show('#intro'); setNav('campus'); }
+  else if (w === 'brood') { show('#brood', from); setNav('facilities'); }
+  else if (w === 'hatch') { show('#lifecycle', { y: -14 }); show('#tank', from); setNav('facilities'); }
+  else if (w === 'cages') { show('#cages', from); setNav('cages'); }
+  else if (w === 'under') { show('#depth'); if (UND.state.sel >= 0) { show('#card', from); show('#fishTag'); } else show('#tapHint'); setNav('cages'); }
+}
+const TR_FN = [enterBroodstock, goHatchery, () => toast('toastNursery', 4), goSeaCages, () => toast('toastHarvest', 4)];
+const LC_FN = [enterBroodstock, () => (state.where === 'hatch' ? larvaeCloseUp() : goHatchery()), () => toast('toastNursery', 4), goSeaCages];
+function setStage(j) { // fish card stage tabs: highlight the stage and its point on the traceability line
+  $$('#card .chips button').forEach((b, i) => { b.classList.toggle('on', i === j); b.setAttribute('aria-pressed', i === j); });
+  $$('#card .tl i').forEach((d, i) => { d.classList.toggle('d', i < j); d.classList.toggle('on', i === j); });
+}
+// mobile / tablet menu
+function closeMenu() { $('header.top').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false'); }
+$('#menuBtn').onclick = () => { const o = !$('header.top').classList.contains('open'); $('header.top').classList.toggle('open', o); $('#menuBtn').setAttribute('aria-expanded', o); };
+
+$('#btnStart').onclick = ui(() => enterBroodstock());
+$('#btnFree').onclick = ui(() => { hide('#intro'); state.introHidden = true; toast('toastFree'); });
+$('#btnToHatch').onclick = ui(goHatchery); $('#btnLarvae').onclick = ui(larvaeCloseUp); $('#btnToCages').onclick = ui(goSeaCages); $('#btnDive').onclick = ui(() => diveCage());
+$('#btnNext').onclick = ui(nextFish); $('#btnAR').onclick = ui(() => toast('toastAR', 4.5));
+$('#btnLangCard').onclick = ui(() => setLang(lang === 'ar' ? 'en' : 'ar'));
+$$('#langToggle button').forEach(b => b.onclick = ui(() => setLang(b.dataset.l)));
+const NAV_FN = { campus: goCampus, facilities: enterBroodstock, cages: goSeaCages, species: () => openPanel('#species', 'species'), trace: () => openPanel('#trace', 'trace') };
+$$('#nav a').forEach(a => a.onclick = ui(NAV_FN[a.dataset.nav]));
+$$('#spList button').forEach(b => b.onclick = ui(() => selectSpecies(b.dataset.sp)));
+$('#spGo').onclick = ui(() => { hide('#species'); state.panel = null; SP[spSel].fn(); });
+$$('#trList button').forEach(b => b.onclick = ui(() => { $$('#trList button').forEach(x => x.classList.toggle('on', x === b)); const i = +b.dataset.tr; if (i === 2 || i === 4) TR_FN[i](); else { hide('#trace'); state.panel = null; TR_FN[i](); } }));
+$$('.x[data-close]').forEach(b => b.onclick = ui(restorePanel));
+$$('.lc-step').forEach(s => { s.setAttribute('role', 'button'); s.tabIndex = 0; s.onclick = ui(LC_FN[+s.dataset.s]); s.onkeydown = e => (e.key === 'Enter' || e.key === ' ') && s.onclick(e); });
+$$('#card .chips button').forEach((b, i) => b.onclick = ui(() => setStage(i)));
+$('#fishTag').onclick = ui(() => { if (shown.has('#card')) hide('#card'); else show('#card', { x: lang === 'ar' ? -70 : 70 }); });
 { let down = null; renderer.domElement.addEventListener('pointerdown', e => down = [e.clientX, e.clientY]);
   renderer.domElement.addEventListener('pointerup', e => { if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return; if (W === UND) { const i = pickFishNear(e.clientX, e.clientY); if (i >= 0) selectFish(i); } }); }
 controls.addEventListener('start', () => {});
@@ -368,8 +477,10 @@ async function boot() {
     window.__T = () => T;
     step(0); render(); window.__ready = true;
   } else {
-    let last = performance.now();
-    const loop = now => { const rd = (now - last) / 1000; last = now; adapt(rd); step(Math.min(rd, 1 / 20)); render(); requestAnimationFrame(loop); };
+    // one clock (T) drives camera, water and UI; the raw rAF delta is clamped and smoothed so frame-time jitter
+    // (very common on phones: 16/17/33 ms alternation, thermal throttling) does not turn into camera/water judder
+    let last = performance.now(), sdt = 1 / 60;
+    const loop = now => { const rd = (now - last) / 1000; last = now; adapt(rd); const c = Math.min(Math.max(rd, 1 / 240), 1 / 20); sdt += (c - sdt) * .2; step(sdt); render(); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
 }

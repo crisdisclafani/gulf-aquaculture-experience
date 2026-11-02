@@ -53,3 +53,38 @@ export const STR = {
     toastLabs: '16 مختبراً كما ورد في الفيلم', toastRas: '26 نظام RAS · توفير حتى 95% من المياه', toastAR: 'معاينة الواقع المعزز · عنصر مؤقت', toastFree: 'اسحب للدوران · مرّر للتكبير',
   }
 };
+// UI additions: menu, Species & Traceability panels, AR "coming soon"
+Object.assign(STR.en, {
+  menu: 'Menu', close: 'Close', soon: 'Coming soon',
+  toastAR: 'AR view · coming soon — it needs the client\'s 3D fish model',
+  spKick: 'Species · named in the film', spTitle: 'Species<br><em>from egg to harvest</em>',
+  shaari: 'Shaari', hamrah: 'Hamrah', ummdrais: 'Umm Drais',
+  spHamour: 'Grown out in the open-sea cages. Explore cage C-03 underwater and open its fish card.',
+  spSeabream: 'Tank L3T6 (from the film): 750,000 eggs stocked on 18/07/2026 · 580,000 hatched · 170,000 unhatched.',
+  spPh: 'Named in the film. Detail card, photos and data to come from the client — placeholder.',
+  spGoHamour: 'Open the fish card ›', spGoSeabream: 'Open tank L3T6 ›', placeholder: 'Placeholder',
+  spFine: 'Species names as given in the film. Cards and 3D scenes for the other species are placeholders.',
+  trTitle: 'Traceability<br><em>one batch, every stage</em>',
+  tr0: 'Broodstock conditioned on 5 variables: temperature, salinity, photoperiod, oxygen, pH.',
+  tr1: 'Tank L3T6 · 750,000 stocked · 580,000 hatched · 18/07/2026.',
+  tr2: 'Nursery stage — data placeholder.', tr3: 'Grow-out in sea cage C-03.', tr4: 'Harvest — data placeholder.',
+  trFine: '16 labs · 26 RAS · up to 95% water saving, as stated in the film. Batch IDs, dates and counts beyond tank L3T6 are placeholders.',
+  toastNursery: 'Nursery · no 3D scene yet — placeholder', toastHarvest: 'Harvest · no 3D scene yet — placeholder'
+});
+Object.assign(STR.ar, {
+  menu: 'القائمة', close: 'إغلاق', soon: 'قريباً',
+  toastAR: 'عرض الواقع المعزز · قريباً — يتطلب نموذج السمكة ثلاثي الأبعاد من العميل',
+  spKick: 'الأنواع · كما وردت في الفيلم', spTitle: 'الأنواع<br><em>من البيضة إلى الحصاد</em>',
+  shaari: 'شعري', hamrah: 'حمرة', ummdrais: 'أم الدرايس',
+  spHamour: 'يُسمَّن في الأقفاص البحرية المفتوحة. استكشف القفص C-03 تحت الماء وافتح بطاقة السمكة.',
+  spSeabream: 'الحوض L3T6 (من الفيلم): 750,000 بيضة بتاريخ 18/07/2026 · 580,000 فاقسة · 170,000 غير فاقسة.',
+  spPh: 'ورد في الفيلم. البطاقة والصور والبيانات تُقدَّم لاحقاً من العميل — عنصر مؤقت.',
+  spGoHamour: 'افتح بطاقة السمكة ‹', spGoSeabream: 'افتح الحوض L3T6 ‹', placeholder: 'عنصر مؤقت',
+  spFine: 'أسماء الأنواع كما وردت في الفيلم. بطاقات ومشاهد الأنواع الأخرى عناصر مؤقتة.',
+  trTitle: 'التتبع<br><em>دفعة واحدة، كل مرحلة</em>',
+  tr0: 'تهيئة الأمهات عبر 5 متغيرات: الحرارة، الملوحة، الفترة الضوئية، الأكسجين، الأس الهيدروجيني.',
+  tr1: 'الحوض L3T6 · 750,000 بيضة · 580,000 فاقسة · 18/07/2026.',
+  tr2: 'مرحلة الحضانة — بيانات مؤقتة.', tr3: 'التسمين في القفص البحري C-03.', tr4: 'الحصاد — بيانات مؤقتة.',
+  trFine: '16 مختبراً · 26 نظام RAS · توفير حتى 95% من المياه كما ورد في الفيلم. أرقام الدفعات والتواريخ الأخرى عناصر مؤقتة.',
+  toastNursery: 'الحضانة · لا يوجد مشهد ثلاثي الأبعاد بعد — عنصر مؤقت', toastHarvest: 'الحصاد · لا يوجد مشهد ثلاثي الأبعاد بعد — عنصر مؤقت'
+});

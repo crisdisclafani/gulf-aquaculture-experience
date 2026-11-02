@@ -76,22 +76,22 @@ export function buildExterior(renderer) {
   // ---------- sea ----------
   const cageU = CAGES.map(([x, z]) => new THREE.Vector2(x, z));
   const water = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uSun: { value: SUN }, uCages: { value: cageU }, uCageR: { value: CAGE_R - .4 }, uHaze: { value: HAZE } },
+    uniforms: { uTime: { value: 0 }, uPh: { value: new Array(7).fill(0) }, uO: { value: new THREE.Vector2() }, uFoam: { value: 0 }, uSun: { value: SUN }, uCages: { value: cageU }, uCageR: { value: CAGE_R - .4 }, uHaze: { value: HAZE } },
     vertexShader: `varying vec3 vW; void main(){ vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; gl_Position=projectionMatrix*viewMatrix*w; }`,
     fragmentShader: SKY_GLSL + `
-      uniform float uTime; uniform vec2 uCages[6]; uniform float uCageR; uniform vec3 uHaze; varying vec3 vW;
+      uniform float uTime; uniform float uPh[7]; uniform vec2 uO; uniform float uFoam; uniform vec2 uCages[6]; uniform float uCageR; uniform vec3 uHaze; varying vec3 vW;
       float shoreX(float z){ return 70.+18.*sin(z/140.)+8.*sin(z/53.+1.); }
       float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
       float vnoise(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
       void main(){
         vec3 V=cameraPosition-vW; float dist=length(V); V/=dist;
-        vec2 p=vW.xz; float t=uTime*.55; vec2 dh=vec2(0.); // slow, calm sea
+        vec2 p=vW.xz; vec2 q=p-uO; vec2 dh=vec2(0.); // q: camera-relative (small numbers), phases wrapped on the CPU // slow, calm sea
         float fade=exp(-dist/700.);
         float fw=length(fwidth(p))+1e-4; // pixel footprint: drop waves too fine for the pixel (no shimmer/aliasing)
-        #define W(dx,dy,f,a) { vec2 dd=normalize(vec2(dx,dy)); float ph=dot(dd,p)*f+t*sqrt(9.8*f); dh+=dd*a*f*cos(ph)*smoothstep(1.2,.25,f*fw); }
+        #define W(dx,dy,f,a,k) { vec2 dd=normalize(vec2(dx,dy)); float ph=dot(dd,q)*f+uPh[k]; dh+=dd*a*f*cos(ph)*smoothstep(1.2,.25,f*fw); }
         // long gentle swells, low amplitude
-        W(1.,.2,.03,.5) W(.7,.7,.05,.26) W(.2,1.,.09,.12) W(-.6,.8,.16,.05) W(.9,-.4,.28,.022)
-        float hf=exp(-dist/250.); W(.3,-1.,.55,.008*hf) W(-1.,.3,.9,.004*hf)
+        W(1.,.2,.03,.5,0) W(.7,.7,.05,.26,1) W(.2,1.,.09,.12,2) W(-.6,.8,.16,.05,3) W(.9,-.4,.28,.022,4)
+        float hf=exp(-dist/250.); W(.3,-1.,.55,.008*hf,5) W(-1.,.3,.9,.004*hf,6)
         vec3 N=normalize(vec3(-dh.x,1.,-dh.y));
         float d=vW.x-shoreX(vW.z);
         vec3 deep=vec3(.004,.07,.15), mid=vec3(.008,.22,.32), shal=vec3(.05,.55,.55), sandb=vec3(.42,.62,.50);
@@ -109,7 +109,7 @@ export function buildExterior(renderer) {
         col=mix(col,skyCol(R,0.)*.85,fr*.55);
         float sp=pow(max(dot(R,uSun),0.),220.);
         col+=vec3(1.,.95,.85)*(sp*2.6+pow(max(dot(R,uSun),0.),40.)*.10);
-        float foam=(1.-smoothstep(0.,5.,d))*smoothstep(-1.5,.3,d)*(.55+.45*sin(d*2.2-uTime*.6+sin(vW.z*.08)*2.))*(.6+.4*vnoise(p*.6));
+        float foam=(1.-smoothstep(0.,5.,d))*smoothstep(-1.5,.3,d)*(.55+.45*sin(d*2.2-uFoam+sin(vW.z*.08)*2.))*(.6+.4*vnoise(p*.6));
         col=mix(col,vec3(.92,.93,.9),foam*.75);
         col=mix(col,uHaze,1.-exp(-dist*.00028));
         gl_FragColor=vec4(col,1.);
@@ -245,6 +245,14 @@ export function buildExterior(renderer) {
   ];
   const cageHotspots = [{ id: 'c03', pos: HERO_CAGE.clone().setY(6), key: 'hsC03', sub: 'hsC03S' }];
 
-  function update(dt, t) { water.uniforms.uTime.value = t; }
+  const WAVES = [[1, .2, .03], [.7, .7, .05], [.2, 1, .09], [-.6, .8, .16], [.9, -.4, .28], [.3, -1, .55], [-1, .3, .9]].map(([x, y, f]) => { const l = Math.hypot(x, y); return [x / l, y / l, f, Math.sqrt(9.8 * f)]; });
+  const TAU = Math.PI * 2;
+  function update(dt, t, cam) {
+    const U = water.uniforms; U.uTime.value = t;
+    // wave phases computed in double precision and wrapped to [0, 2pi): no float32 / mobile-GPU precision loss as time and distance grow
+    const ox = cam ? cam.position.x : 0, oz = cam ? cam.position.z : 0; U.uO.value.set(ox, oz);
+    WAVES.forEach(([x, y, f, w], k) => { U.uPh.value[k] = ((x * ox + y * oz) * f + t * .55 * w) % TAU; });
+    U.uFoam.value = (t * .6) % TAU;
+  }
   return { scene, update, hotspots, cageHotspots, exposure: 1.0, bloom: .18, bloomThreshold: .95, near: .5, far: 7000, sun };
 }

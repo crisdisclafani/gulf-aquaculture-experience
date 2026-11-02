@@ -12,8 +12,8 @@ export const MOBILE = Math.min(innerWidth, innerHeight) < 700;
 // quality tier: 2 = desktop, 1 = mobile / low; adaptive pixel ratio on top
 export const TIER = Q.get('q') ? +Q.get('q') : (MOBILE ? 1 : 2);
 
-export const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance', preserveDrawingBuffer: CAPTURE });
-const MAXPR = CAPTURE ? 1 : Math.min(devicePixelRatio, TIER > 1 ? 1.5 : 2);
+export const renderer = new THREE.WebGLRenderer({ antialias: false, precision: 'highp', powerPreference: 'high-performance', preserveDrawingBuffer: CAPTURE });
+const MAXPR = CAPTURE ? 1 : Math.min(devicePixelRatio, 1.5);
 let pr = MAXPR;
 renderer.setPixelRatio(pr);
 renderer.setSize(innerWidth, innerHeight);
@@ -46,22 +46,29 @@ export function setWorld(w) {
   camera.near = w.near ?? 0.1; camera.far = w.far ?? 7000; camera.updateProjectionMatrix();
 }
 
+let rw = 0, rh = 0, rp = 0;
 export function resize() {
+  if (innerWidth === rw && innerHeight === rh && pr === rp) return; // nothing changed: never reallocate (a realloc is a visible hitch)
+  rw = innerWidth; rh = innerHeight; rp = pr;
   camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
   renderer.setPixelRatio(pr); renderer.setSize(innerWidth, innerHeight);
   composer.setPixelRatio(pr); composer.setSize(innerWidth, innerHeight);
 }
-addEventListener('resize', resize);
-composer.setPixelRatio(pr); composer.setSize(innerWidth, innerHeight);
+let rq = 0; addEventListener('resize', () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(resize); }); // coalesce (iOS fires many while the toolbar animates)
+resize();
 
-// Adaptive quality: lower the internal resolution (and bloom) when the device struggles, raise it again when there is headroom.
-let acc = 0, n = 0;
+// Adaptive quality, decided ONCE: after a warm-up, measure the median frame time over 3 s windows and lower the internal
+// resolution at most twice if the device is slow. It never goes back up and never toggles bloom, so there is no
+// periodic resolution / brightness "pop" (the old governor re-decided every 2 s and oscillated on phones).
+let warm = 0, acc = 0, win = [], drops = 0, locked = false;
 export function adapt(realDt) {
-  if (CAPTURE) return;
-  acc += realDt; n++;
-  if (acc < 2) return;
-  const avg = acc / n; acc = 0; n = 0;
-  if (avg > 1 / 38 && pr > 0.6) { pr = Math.max(0.6, pr - 0.15); resize(); if (pr < 0.8) bloom.enabled = false; }
-  else if (avg < 1 / 57 && pr < MAXPR) { pr = Math.min(MAXPR, pr + 0.1); resize(); bloom.enabled = true; }
+  if (CAPTURE || locked) return;
+  if (realDt > .25 || document.hidden) return; // tab switch or a one-off hitch: ignore
+  warm += realDt; if (warm < 2.5) return;      // shader compile / first transition
+  win.push(realDt); acc += realDt; if (acc < 3) return;
+  win.sort((x, y) => x - y); const med = win[win.length >> 1]; win = []; acc = 0;
+  if (med > 1 / 40 && drops < 2 && pr > .75) { pr = Math.max(.75, +(pr * .75).toFixed(3)); drops++; resize(); }
+  else locked = true;
+  if (drops >= 2) locked = true;
 }
 export function render() { composer.render(); }
