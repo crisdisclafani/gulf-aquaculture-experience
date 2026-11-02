@@ -36,15 +36,16 @@ export function buildUnder(renderer, TIER) {
   const R = 13;
   const dark = new THREE.MeshStandardMaterial({ color: '#cfd8d6', roughness: .6 });
   for (const r of [R, R + .7]) { const t = new THREE.Mesh(new THREE.TorusGeometry(r, .32, 10, 96).rotateX(Math.PI / 2), dark); t.position.y = -.05; scene.add(t); }
-  const netTex = canvasTex(128, 128, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(25,45,45,1)'; g.lineWidth = 4; g.beginPath(); g.moveTo(0, h / 2); g.lineTo(w / 2, 0); g.lineTo(w, h / 2); g.lineTo(w / 2, h); g.closePath(); g.stroke(); });
-  netTex.repeat.set(160, 30);
-  const netM = new THREE.MeshStandardMaterial({ map: netTex, transparent: true, alphaTest: .3, side: THREE.DoubleSide, roughness: .9, color: '#8fa7a2' });
+  // pen net: soft, alpha-blended and mipmapped (no alpha-test popping / moire crawl when the camera drifts)
+  const netTex = canvasTex(256, 256, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(25,45,45,1)'; g.lineWidth = 7; g.lineJoin = 'round'; g.beginPath(); g.moveTo(0, h / 2); g.lineTo(w / 2, 0); g.lineTo(w, h / 2); g.lineTo(w / 2, h); g.closePath(); g.stroke(); });
+  netTex.repeat.set(160, 30); netTex.anisotropy = 16;
+  const netM = new THREE.MeshStandardMaterial({ map: netTex, transparent: true, opacity: .55, depthWrite: false, side: THREE.DoubleSide, roughness: .9, color: '#8fa7a2' });
   const net = new THREE.Mesh(new THREE.CylinderGeometry(R + .3, R + .3, 16, 96, 1, true), netM); net.position.y = -8; scene.add(net);
   const cone = new THREE.Mesh(new THREE.ConeGeometry(R + .3, 4, 96, 1, true).rotateX(Math.PI), netM.clone()); cone.material.map = netTex.clone(); cone.material.map.repeat.set(160, 8); cone.position.y = -18; scene.add(cone);
   const ropeM = new THREE.MeshStandardMaterial({ color: '#d9e2df', roughness: .8 });
   for (let k = 0; k < 12; k++) { const a = k / 12 * Math.PI * 2, rp = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, 16, 5), ropeM); rp.position.set(Math.cos(a) * (R + .25), -8, Math.sin(a) * (R + .25)); scene.add(rp); }
   // light shafts (camera-facing quads)
-  const shafts = [], sm = shaftMaterial('#bff3ff', .16); sm.uniforms.uPlane.value = 1;
+  const shafts = [], sm = shaftMaterial('#bff3ff', .16); sm.uniforms.uPlane.value = 1; sm.uniforms.uCalm.value = 1; // slow, soft streaks underwater
   for (let i = 0; i < 16; i++) { const m = new THREE.Mesh(new THREE.PlaneGeometry(1.2 + Math.random() * 2.2, 26), sm); m.position.set((Math.random() - .5) * 26, -12, (Math.random() - .5) * 26); m.userData.tilt = .12 + Math.random() * .08; m.userData.ph = Math.random() * 6; scene.add(m); shafts.push(m); }
   const snow = driftPoints(TIER > 1 ? 2600 : 1200, new THREE.Vector3(26, 18, 26), pointsMaterial({ color: '#e3fbff', size: 1.4, opacity: .5 })); scene.add(snow);
 
@@ -78,7 +79,7 @@ export function buildUnder(renderer, TIER) {
     const fdt = dt * state.timeScale; fishTime += fdt;
     school.avoid = cam.position; school.exempt = state.sel; school.step(Math.min(fdt, 1 / 20)); school.write();
     mat.userData.uTime.value = fishTime; surfM.uniforms.uTime.value = t; sm.uniforms.uTime.value = t; snow.material.uniforms.uTime.value = t; snow.material.uniforms.uCam.value.copy(cam.position); ringM.uniforms.uTime.value = t;
-    for (const s of shafts) { s.rotation.set(0, Math.atan2(cam.position.x - s.position.x, cam.position.z - s.position.z), 0); s.rotateX(s.userData.tilt); s.scale.x = .8 + .25 * Math.sin(t * .4 + s.userData.ph); }
+    for (const s of shafts) { s.rotation.set(0, Math.atan2(cam.position.x - s.position.x, cam.position.z - s.position.z), 0); s.rotateX(s.userData.tilt); s.scale.x = .85 + .08 * Math.sin(t * .15 + s.userData.ph); }
     if (state.sel >= 0) { const p = school.p[state.sel]; ring.position.copy(p); ring.quaternion.copy(cam.quaternion); ring.scale.setScalar(school.s[state.sel] * 1.02); }
     const bt = t - burstT;
     for (let i = 0; i < NB; i++) { const b = BB[i]; if (bt < 0 || bt > 4) { dm.scale.setScalar(0); } else { dm.position.copy(burstO).add(b.o).add(new THREE.Vector3(Math.sin(t * 4 + b.ph) * .05, bt * b.v * (1 + bt * .3), 0)); dm.scale.setScalar(b.s * (1 - bt / 4.4)); } dm.updateMatrix(); bub.setMatrixAt(i, dm.matrix); }

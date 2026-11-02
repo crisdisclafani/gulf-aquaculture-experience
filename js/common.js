@@ -36,12 +36,12 @@ export function noiseTex(size = 256, amp = 40, base = 128) {
 export function shaftMaterial(color, strength = .15) {
   return new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
-    uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color(color) }, uStrength: { value: strength }, uPlane: { value: 0 } },
+    uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color(color) }, uStrength: { value: strength }, uPlane: { value: 0 }, uCalm: { value: 0 } },
     vertexShader: `varying vec2 vUv; varying vec3 vN; varying vec3 vV; void main(){ vUv=uv; vec4 wp=modelMatrix*vec4(position,1.); vN=normalize(mat3(modelMatrix)*normal); vV=normalize(cameraPosition-wp.xyz); gl_Position=projectionMatrix*viewMatrix*wp; }`,
-    fragmentShader: `uniform float uTime; uniform vec3 uColor; uniform float uStrength; uniform float uPlane; varying vec2 vUv; varying vec3 vN; varying vec3 vV;
+    fragmentShader: `uniform float uTime; uniform vec3 uColor; uniform float uStrength; uniform float uPlane; uniform float uCalm; varying vec2 vUv; varying vec3 vN; varying vec3 vV;
       void main(){ float edge=pow(abs(dot(normalize(vN),normalize(vV))),1.6);
         float v=smoothstep(0.,.35,vUv.y)*smoothstep(1.,.93,vUv.y)*mix(1.,pow(sin(vUv.x*3.1416),2.),uPlane); edge=mix(edge,1.,uPlane);
-        float streak=.65+.35*sin(vUv.x*40.+uTime*.6)*sin(vUv.x*17.-uTime*.4);
+        float streak=mix(.65+.35*sin(vUv.x*40.+uTime*.6)*sin(vUv.x*17.-uTime*.4), .8+.2*sin(vUv.x*9.+uTime*.12)*sin(vUv.x*5.-uTime*.08), uCalm);
         gl_FragColor=vec4(uColor*uStrength*edge*v*streak*(.4+.6*vUv.y),1.); }`
   });
 }

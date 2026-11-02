@@ -100,7 +100,7 @@ export function buildExterior(renderer) {
         base=mix(base,sandb,exp(-max(d,0.)/7.)*.6);
         // net pens: greener water and the moving dark shapes of the stock below
         for(int i=0;i<6;i++){ vec2 r=p-uCages[i]; float dc=length(r); float inside=smoothstep(uCageR,uCageR-.8,dc);
-          float a=atan(r.y,r.x)+uTime*.05*(i%2==0?1.:-1.);
+          float a=atan(r.y,r.x)+uTime*.02*(i%2==0?1.:-1.);
           float sh=smoothstep(.66,.9,vnoise(vec2(a*16.,dc*2.2+float(i)*7.)))*smoothstep(1.5,4.,dc);
           base=mix(base,mix(vec3(.02,.22,.24),vec3(.012,.11,.12),sh*.55),inside*.9); }
         float fr=.02+.98*pow(1.-max(dot(N,V),0.),5.);
@@ -209,15 +209,15 @@ export function buildExterior(renderer) {
   for (const m of [shrubs, crowns, trunks]) { m.castShadow = m.receiveShadow = true; scene.add(m); }
 
   // ---------- sea cages: HDPE double collar, handrail, net above water, square service platform, orange buoys ----------
-  const hdpe = new THREE.MeshStandardMaterial({ color: '#f3f3ef', roughness: .45 });
+  const hdpe = new THREE.MeshStandardMaterial({ color: '#e6e7e2', roughness: .7 }); // matte HDPE: no sparkling highlights on thin rails
   const collar = new THREE.MeshStandardMaterial({ color: '#2f6f80', roughness: .5 });
   const buoyM = new THREE.MeshStandardMaterial({ color: '#f07a24', roughness: .45 });
-  const netTex = canvasTex(64, 64, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(30,45,45,.9)'; g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(w, h); g.moveTo(w, 0); g.lineTo(0, h); g.stroke(); });
-  netTex.repeat.set(220, 6);
-  const netMat = new THREE.MeshStandardMaterial({ map: netTex, transparent: true, alphaTest: .25, side: THREE.DoubleSide, roughness: .9 });
+  const netTex = canvasTex(256, 256, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(30,45,45,1)'; g.lineWidth = 8; g.lineCap = 'round'; g.beginPath(); g.moveTo(0, 0); g.lineTo(w, h); g.moveTo(w, 0); g.lineTo(0, h); g.stroke(); });
+  netTex.repeat.set(220, 6); netTex.anisotropy = 16;
+  const netMat = new THREE.MeshStandardMaterial({ map: netTex, transparent: true, opacity: .6, depthWrite: false, side: THREE.DoubleSide, roughness: .9 }); // alpha-blended through mipmaps: no alpha-test crawl
   const cageGroup = new THREE.Group(); scene.add(cageGroup);
-  const tA = new THREE.TorusGeometry(CAGE_R, .32, 10, 96).rotateX(Math.PI / 2), tB = new THREE.TorusGeometry(CAGE_R + .7, .32, 10, 96).rotateX(Math.PI / 2), tC = new THREE.TorusGeometry(CAGE_R + .35, .07, 6, 96).rotateX(Math.PI / 2), tD = new THREE.TorusGeometry(CAGE_R - .45, .13, 8, 96).rotateX(Math.PI / 2);
-  const postG = new THREE.CylinderGeometry(.06, .06, 1.1, 5), netG = new THREE.CylinderGeometry(CAGE_R + .3, CAGE_R + .3, 1.1, 96, 1, true);
+  const tA = new THREE.TorusGeometry(CAGE_R, .32, 10, 96).rotateX(Math.PI / 2), tB = new THREE.TorusGeometry(CAGE_R + .7, .32, 10, 96).rotateX(Math.PI / 2), tC = new THREE.TorusGeometry(CAGE_R + .35, .09, 8, 128).rotateX(Math.PI / 2), tD = new THREE.TorusGeometry(CAGE_R - .45, .13, 8, 96).rotateX(Math.PI / 2);
+  const postG = new THREE.CylinderGeometry(.08, .08, 1.1, 8), netG = new THREE.CylinderGeometry(CAGE_R + .3, CAGE_R + .3, 1.1, 96, 1, true);
   const cageMeshes = [];
   for (const [cx, cz] of CAGES) {
     const g = new THREE.Group(); g.position.set(cx, 0, cz);
@@ -225,7 +225,7 @@ export function buildExterior(renderer) {
     const m3 = new THREE.Mesh(tC, hdpe); m3.position.y = 1.2; const m4 = new THREE.Mesh(tD, collar); m4.position.y = .22;
     const net = new THREE.Mesh(netG, netMat); net.position.y = .65;
     g.add(m1, m2, m3, m4, net);
-    for (let k = 0; k < 36; k++) { const a = k / 36 * Math.PI * 2, p = new THREE.Mesh(postG, hdpe); p.position.set(Math.cos(a) * (CAGE_R + .35), .7, Math.sin(a) * (CAGE_R + .35)); g.add(p); }
+    for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2, p = new THREE.Mesh(postG, hdpe); p.position.set(Math.cos(a) * (CAGE_R + .35), .7, Math.sin(a) * (CAGE_R + .35)); g.add(p); }
     for (let k = 0; k < 4; k++) { const a = k / 4 * Math.PI * 2 + .4, b = new THREE.Mesh(new THREE.SphereGeometry(.65, 16, 12), buoyM); b.position.set(Math.cos(a) * (CAGE_R + 6), .2, Math.sin(a) * (CAGE_R + 6)); g.add(b); }
     cageGroup.add(g); cageMeshes.push(g);
   }

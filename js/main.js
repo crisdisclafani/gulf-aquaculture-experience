@@ -46,7 +46,7 @@ const lookTmp = V(0, 0, 0);
 function applyCamera(dt) {
   if (mode === 'orbit') { controls.update(); return; }
   if (mode === 'follow') updateFollow(dt);
-  if (mode === 'drift') { const a = drift.a0 + (T - drift.t0) * .035; rig.pos.set(HERO_CAGE.x + Math.cos(a) * drift.r, drift.y + Math.sin(T * .3) * .25, HERO_CAGE.z + Math.sin(a) * drift.r); rig.tgt.set(HERO_CAGE.x + Math.cos(a + 1.9) * 4, drift.y - .6, HERO_CAGE.z + Math.sin(a + 1.9) * 4); }
+  if (mode === 'drift') { const a = drift.a0 + (T - drift.t0) * .016; rig.pos.set(HERO_CAGE.x + Math.cos(a) * drift.r, drift.y + Math.sin((T - drift.t0) * .2) * .08, HERO_CAGE.z + Math.sin(a) * drift.r); rig.tgt.set(HERO_CAGE.x + Math.cos(a + 1.9) * 4, drift.y - .6, HERO_CAGE.z + Math.sin(a + 1.9) * 4); }
   const sw = rig.sway * (W === EXT ? extSway : .05); // very light hand-held drift; almost none over the water
   camera.position.copy(rig.pos).sub(W.offset).add(lookTmp.set(Math.sin(T * .21) * sw, Math.sin(T * .17 + 1) * sw * .5, Math.cos(T * .19) * sw));
   camera.lookAt(lookTmp.copy(rig.tgt).sub(W.offset));
