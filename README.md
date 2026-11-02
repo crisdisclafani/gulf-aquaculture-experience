@@ -1,6 +1,6 @@
 # Gulf Aquaculture — An Interactive Journey from Egg to Harvest
 
-**Concept demo** by Cris and Cris di Galia Cristina.
+**Concept demo** by Kriswa International.
 
 A real-time 3D web experience (Three.js + WebGL) that follows the journey at the Sheikh Khalifa Marine Research Centre, Umm Al Quwain: campus → broodstock hall → hatchery (Tank L3T6 digital record) → sea cages → underwater fish card (EN / العربية).
 
