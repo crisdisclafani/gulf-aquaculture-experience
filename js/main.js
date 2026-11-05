@@ -1,7 +1,7 @@
 import './seed.js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { renderer, camera, composer, bokeh, setWorld, render, adapt, DEMO, CAPTURE, TIER, MOBILE } from './core.js';
+import { renderer, camera, composer, bokeh, setWorld, render, adapt, DEMO, CAPTURE, TIER, MOBILE, Q } from './core.js';
 import { buildExterior, HERO_CAGE, G } from './exterior.js';
 import { buildBrood } from './brood.js';
 import { buildHatch, HERO_TANK } from './hatch.js';
@@ -471,6 +471,10 @@ async function boot() {
   $('#loading').style.display = 'none';
   goCampus(); gsap.to(veil, { opacity: 0, duration: 1.4, ease: 'power2.out', delay: .1 });
   if (DEMO) runDemo();
+  // deep links for the website embed: ?scene=campus|brood|hatch|cages|under|fish, or postMessage {ga:'scene', id}
+  const SCENES = { campus: goCampus, brood: enterBroodstock, hatch: goHatchery, cages: goSeaCages, under: diveCage, fish: goFishCard };
+  if (!DEMO && !CAPTURE && SCENES[Q.get('scene')]) gsap.delayedCall(1.8, ui(SCENES[Q.get('scene')]));
+  addEventListener('message', e => { const d = e.data; if (!DEMO && e.source === parent && d && d.ga === 'scene' && SCENES[d.id]) ui(SCENES[d.id])(); });
   if (CAPTURE) {
     window.__frame = dt => { step(dt ?? 1 / 30); render(); };
     window.__advance = (n, dt = 1 / 30) => { for (let i = 0; i < n; i++) step(dt); };

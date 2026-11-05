@@ -1,8 +1,5 @@
-/* =========================================================================
-   SITE DATA — in the CMS these become editable menus, taxonomies and
-   content entries. Audience codes: o = Aquaculture farms & operators,
-   g = Government authorities & investors, r = Universities & research.
-   ========================================================================= */
+/* SITE DATA — in the CMS: menus, taxonomies and content entries.
+   Audience codes: o = Commercial operators · g = Government & investors · r = Universities & R&D */
 const NAV = [
  {
   "id": "about",
@@ -10,7 +7,7 @@ const NAV = [
   "ar": "من نحن",
   "tpl": "T2",
   "page": "about.html",
-  "intro": "Identity, credibility and ambitions of Gulf Aquaculture.",
+  "intro": "Our story, vision, principles and the people behind the progress.",
   "items": [
    [
     "Our Story",
@@ -50,7 +47,7 @@ const NAV = [
   "ar": "العمليات والمرافق",
   "tpl": "T3",
   "page": "operations.html",
-  "intro": "Land-based hatcheries, research facilities and offshore marine farming.",
+  "intro": "Hatcheries on land, research at SKMRC and marine farming at sea.",
   "items": [
    [
     "Sheikh Khalifa Marine Research Centre (SKMRC)",
@@ -76,6 +73,11 @@ const NAV = [
     "Infrastructure & Technology",
     "ogr",
     "operations.html#infrastructure"
+   ],
+   [
+    "Regional Footprint",
+    "g",
+    "operations.html#footprint"
    ]
   ]
  },
@@ -85,7 +87,7 @@ const NAV = [
   "ar": "الأنواع",
   "tpl": "T5",
   "page": "species.html",
-  "intro": "Locally adapted species — biology, farming performance and fry availability.",
+  "intro": "Local species in local waters — biology, farming and fry availability.",
   "items": [
    [
     "Orange-Spotted Grouper (Hamoor)",
@@ -125,7 +127,7 @@ const NAV = [
   "ar": "العلوم والتكنولوجيا",
   "tpl": "T4",
   "page": "science.html",
-  "intro": "The science behind every stage of production.",
+  "intro": "The science behind every phase of production.",
   "items": [
    [
     "Marine Biology & Biotechnology",
@@ -175,7 +177,7 @@ const NAV = [
   "ar": "البحث والابتكار",
   "tpl": "T6",
   "page": "research.html",
-  "intro": "SKMRC as a platform for regional and international collaboration.",
+  "intro": "SKMRC: 14 laboratories and a Marine Innovation Park open to collaboration.",
   "items": [
    [
     "Sheikh Khalifa Marine Research Centre",
@@ -220,7 +222,7 @@ const NAV = [
   "ar": "الاستدامة والأمن الغذائي",
   "tpl": "T7",
   "page": "sustainability.html",
-  "intro": "Aquaculture's strategic role for the UAE and the region.",
+  "intro": "Aquaculture for the Gulf's ecosystems, food security and future generations.",
   "items": [
    [
     "UAE Food Security",
@@ -305,27 +307,22 @@ const NAV = [
   "ar": "تواصل معنا",
   "tpl": "T9",
   "page": "contact.html",
-  "intro": "Separate enquiry pathways, routed to the right team.",
+  "intro": "One form, routed to the right team.",
   "items": [
    [
-    "Commercial Aquaculture Enquiries",
-    "o",
-    "contact.html#commercial"
-   ],
-   [
-    "Fry Orders & Availability",
+    "Fry Supply & Availability",
     "o",
     "contact.html#fry"
    ],
    [
-    "Government & Institutional Partnerships",
-    "g",
-    "contact.html#gov"
+    "Commercial & Technical Partnership",
+    "o",
+    "contact.html#commercial"
    ],
    [
-    "Research & Academic Collaboration",
-    "r",
-    "contact.html#research"
+    "Government & Institutional Programmes",
+    "g",
+    "contact.html#gov"
    ],
    [
     "Investment & Strategic Partnerships",
@@ -333,7 +330,17 @@ const NAV = [
     "contact.html#invest"
    ],
    [
-    "General Enquiries",
+    "Research Collaboration & SKMRC Labs",
+    "r",
+    "contact.html#research"
+   ],
+   [
+    "Visiting Researchers & Students",
+    "r",
+    "contact.html#visit"
+   ],
+   [
+    "Media & General Enquiries",
     "",
     "contact.html#general"
    ]
@@ -342,13 +349,13 @@ const NAV = [
 ];
 const AUDIENCES = {
  "o": {
-  "name": "Aquaculture Farms & Operators",
-  "short": "Operators",
-  "ar": "المزارع والمشغلون",
+  "name": "Commercial Operators",
+  "ar": "المشغلون التجاريون",
+  "sub": "Aquaculture farms · fry stock",
   "blurb": "Production capacity, species availability, fry quality, biosecurity, technical capabilities and commercial enquiries.",
   "links": [
    [
-    "Species & fry availability",
+    "Fry availability",
     "species.html"
    ],
    [
@@ -374,9 +381,9 @@ const AUDIENCES = {
   ]
  },
  "g": {
-  "name": "Government Authorities & Investors",
-  "short": "Gov & Investors",
+  "name": "Government & Investors",
   "ar": "الجهات الحكومية والمستثمرون",
+  "sub": "Food security · strategic partnerships",
   "blurb": "Food security, regional production capacity, infrastructure, sustainability and strategic importance.",
   "links": [
    [
@@ -388,15 +395,15 @@ const AUDIENCES = {
     "sustainability.html#stats"
    ],
    [
+    "Regional footprint",
+    "operations.html#footprint"
+   ],
+   [
     "Infrastructure",
     "operations.html#infrastructure"
    ],
    [
-    "Sustainability",
-    "sustainability.html"
-   ],
-   [
-    "Institutional partnerships",
+    "Institutional programmes",
     "contact.html#gov"
    ],
    [
@@ -406,9 +413,9 @@ const AUDIENCES = {
   ]
  },
  "r": {
-  "name": "Universities & Research Institutions",
-  "short": "Research",
-  "ar": "الجامعات ومؤسسات البحث",
+  "name": "Universities & R&D",
+  "ar": "الجامعات والبحث والتطوير",
+  "sub": "Research · 14 labs at SKMRC",
   "blurb": "Scientific expertise, laboratory capabilities, research programmes and opportunities for collaboration.",
   "links": [
    [
@@ -428,11 +435,20 @@ const AUDIENCES = {
     "news.html#research"
    ],
    [
+    "Visiting researchers",
+    "contact.html#visit"
+   ],
+   [
     "Propose a collaboration",
     "contact.html#research"
    ]
   ]
  }
+};
+const TEAMS = {
+ "o": "Commercial team",
+ "g": "Partnerships office",
+ "r": "Research office · SKMRC"
 };
 const SPECIES = [
  {
@@ -441,6 +457,8 @@ const SPECIES = [
   "local": "Hamoor",
   "ar": "هامور",
   "sci": "Epinephelus coioides",
+  "img": "grouper.jpg",
+  "blurb": "A high-value, slow-growing species prized in regional cuisine.",
   "href": "species-orange-spotted-grouper.html"
  },
  {
@@ -449,6 +467,8 @@ const SPECIES = [
   "local": "Hamra",
   "ar": "حمرة",
   "sci": "Lutjanus malabaricus",
+  "img": "",
+  "blurb": "A hardy and fast-growing species ideal for sea-cage culture.",
   "href": "species-malabar-red-snapper.html"
  },
  {
@@ -457,6 +477,8 @@ const SPECIES = [
   "local": "Shiqra",
   "ar": "شقرة",
   "sci": "Lutjanus argentimaculatus",
+  "img": "",
+  "blurb": "",
   "href": "species-mangrove-red-snapper.html"
  },
  {
@@ -465,68 +487,132 @@ const SPECIES = [
   "local": "—",
   "ar": "",
   "sci": "Sparidae · species to be confirmed",
+  "img": "",
+  "blurb": "",
   "href": "species-seabream.html"
  }
 ];
-const STAGES = [
+const PHASES = [
  {
-  "t": "Broodstock Management",
+  "t": "Broodstock",
+  "short": "Genetic integrity",
+  "icon": "fish",
   "aud": "or",
+  "xp": "brood",
   "href": "science.html#broodstock",
-  "d": "Selected, conditioned brood fish of locally adapted species are maintained under controlled temperature and photoperiod to trigger natural spawning and preserve genetic quality.",
-  "fac": "Balghailam Island broodstock facilities · SKMRC",
-  "tech": "Photoperiod & thermal control, RAS, genetic management",
-  "ph": "Animated broodstock tanks; fish health and genetic-selection overlays."
+  "where": "SKMRC · Balghailam Island",
+  "d": "Genetically diverse broodstock of native Gulf species, conditioned for local waters. Climate-controlled rooms support consistent spawning — including off-season cycles.",
+  "items": [
+   "Climate-controlled tanks for genetic integrity",
+   "Four 20 m³ broodstock tanks at Balghailam Island",
+   "At SKMRC: Seabream, Hamour, Shaari, Mangrove Snapper, Mullet, Cobia and Naisrah"
+  ]
  },
  {
-  "t": "Spawning & Larval Development",
-  "aud": "ro",
+  "t": "Hatchery Phase",
+  "short": "Live feed · larval checks",
+  "icon": "eggs",
+  "aud": "or",
+  "xp": "hatch",
   "href": "science.html#larval-development",
-  "d": "Eggs are collected, incubated and hatched; larvae are reared through the most delicate early stages in precisely controlled conditions.",
-  "fac": "Balghailam larval rearing · SKMRC laboratories",
-  "tech": "Incubation systems, microscopy, water-quality monitoring",
-  "ph": "Microscopic visualisation: egg → embryo → first-feeding larva (AI-assisted, labelled as visualisation)."
+  "where": "SKMRC hatchery · Balghailam larval rearing",
+  "d": "Teams begin early — checking water parameters, preparing live-feed cultures and monitoring larval development. Methodical work that creates the foundation for healthy fish.",
+  "items": [
+   "Live feed preparation: rotifers, copepods and algae",
+   "Daily larval checks and water-quality monitoring",
+   "Annual capacity of 20+ million larvae at SKMRC"
+  ]
  },
  {
-  "t": "Live Feed & Hatchery Production",
+  "t": "Nursery Phase",
+  "short": "Gentle weaning & scaling",
+  "icon": "tank",
   "aud": "o",
-  "href": "science.html#live-feed",
-  "d": "Microalgae, rotifers and Artemia are cultured on site to provide the right nutrition at each larval stage.",
-  "fac": "Live-feed production units",
-  "tech": "Microalgae culture, rotifer & Artemia systems, nutritional enrichment",
-  "ph": "Animated live-feed chain: microalgae → rotifers → Artemia → larvae."
- },
- {
-  "t": "Nursery & Fry Conditioning",
-  "aud": "o",
+  "xp": "hatch",
   "href": "science.html#biosecurity",
-  "d": "Juveniles are weaned onto formulated feed, graded and health-checked under strict biosecurity before transfer to sea cages or delivery to clients.",
-  "fac": "Nursery operations · Balghailam & SKMRC",
-  "tech": "Grading, weaning protocols, biosecurity & fish-health screening",
-  "ph": "Nursery tanks time-lapse; fry quality & specification callouts."
+  "where": "Nursery operations",
+  "d": "Fry are weaned gently and scaled up in nursery tanks, then prepared for sea cages with minimal handling and high health standards throughout.",
+  "items": [
+   "RAS + flow-through hybrid systems",
+   "Twenty-four 10 m³ tanks prepare juveniles for sea cages",
+   "Target production of 20 million fry in 2026"
+  ]
  },
  {
-  "t": "Marine Farming & Grow-Out",
+  "t": "Sea Cage Grow-Out",
+  "short": "Natural light & flow",
+  "icon": "cage",
   "aud": "og",
+  "xp": "cages",
   "href": "operations.html#delma",
-  "d": "Fish are grown to market size in offshore sea cages at Delma Island and Khorfakkan, operated under contract with the Environment Agency – Abu Dhabi.",
-  "fac": "Delma Island · Khorfakkan sea cages",
-  "tech": "Sea-cage infrastructure, environmental monitoring, operational management",
-  "ph": "Underwater sea-cage environment with aerial transition (drone footage + AI visualisation)."
+  "where": "Offshore sea cages",
+  "d": "Juveniles move to sea cages early, maturing in conditions that mimic their natural habitat — reducing energy use and working in harmony with the Gulf.",
+  "items": [
+   "Natural light and flow",
+   "Low stocking densities",
+   "Minimal environmental footprint"
+  ]
+ },
+ {
+  "t": "Distribution",
+  "short": "Grading · packaging",
+  "icon": "box",
+  "aud": "og",
+  "xp": "fish",
+  "href": "contact.html#fry",
+  "where": "To regional clients",
+  "d": "Fish are graded and packed for regional clients. The SFS Trace system follows every fish from broodstock to harvest, for full lifecycle transparency.",
+  "items": [
+   "Grading and packaging",
+   "Other value-added services",
+   "Full traceability with SFS Trace"
+  ]
  }
+];
+const STATIONS = [
+ [
+  "campus",
+  "Campus",
+  "SKMRC park"
+ ],
+ [
+  "brood",
+  "Broodstock",
+  "Conditioning hall"
+ ],
+ [
+  "hatch",
+  "Hatchery",
+  "Larval rearing"
+ ],
+ [
+  "cages",
+  "Sea cages",
+  "Offshore farm"
+ ],
+ [
+  "under",
+  "Underwater",
+  "Hamour bank"
+ ],
+ [
+  "fish",
+  "Fish card",
+  "Traceability"
+ ]
 ];
 const FACILITIES = [
  [
   "A",
   "Sheikh Khalifa Marine Research Centre",
-  "Hatchery, nursery, laboratories, Marine Innovation Park, research facilities.",
+  "Operated by GA since Nov 2025 · ~18,000 m² of hatchery space · 14 laboratories · Marine Innovation Park.",
   "rg",
   "operations.html#skmrc"
  ],
  [
   "B",
   "Balghailam Island Hatchery",
-  "Broodstock, larval rearing, nursery, laboratory and water-quality infrastructure.",
+  "6,000 m² hatchery for Grouper and Red Snapper — broodstock, larval rearing, live feed and nursery.",
   "o",
   "operations.html#balghailam"
  ],
@@ -540,108 +626,69 @@ const FACILITIES = [
  [
   "D",
   "Khorfakkan – Marine Fish Farming",
-  "Large-scale sea-cage operation on the UAE's east coast.",
+  "Sea-cage operation on the UAE's east coast.",
   "og",
   "operations.html#khorfakkan"
  ],
  [
   "E",
   "Infrastructure & Technology",
-  "RAS, water intake & filtration, monitoring, biosecurity, live feed, environmental management.",
+  "RAS & flow-through, UV sterilisation, real-time water-quality sensors, SFS Trace.",
   "ogr",
   "operations.html#infrastructure"
  ]
 ];
 const SCIENCE_DESC = [
  "Applied biology and biotechnology underpinning species development.",
- "Conditioning, selection and genetic management of brood fish.",
+ "Conditioning and genetic management of brood fish.",
  "Controlled rearing through the critical early life stages.",
- "Microalgae, rotifers and Artemia produced on site.",
- "Pathogen screening and microbial management.",
- "Continuous monitoring across hatchery and sea cages.",
- "Protocols that protect stock — and clients' farms.",
- "RAS and resource-efficient production systems."
+ "Rotifers, copepods and algae produced on site.",
+ "Microbial cultivation, CFU counts, antibiograms.",
+ "Real-time sensors across hatchery and sea cages.",
+ "Closed-loop systems, filtration and strict protocols.",
+ "RAS + flow-through hybrids, 95% water recycled."
 ];
-const RESEARCH_DESC = [
- "Laboratories and research facilities",
- "Space for innovation and applied projects",
- "Current programmes and objectives",
- "Universities and research institutions",
- "Papers, reports and findings"
-];
-const SUST_HOME = [
+const CHECKS = [
  [
-  "UAE Food Security",
-  "Strengthening national seafood supply through local production.",
-  "g",
-  "sustainability.html#food-security"
- ],
- [
-  "Reducing Dependence on Imported Fry",
-  "Locally produced, locally adapted fry for regional farms.",
-  "go",
-  "sustainability.html#imported-fry"
- ],
- [
-  "Local Species & Environmental Adaptation",
-  "Species suited to Gulf temperatures and salinity.",
-  "og",
-  "sustainability.html#local-species"
- ],
- [
-  "Marine Ecosystem Protection",
-  "Monitoring and responsible practices at sea.",
-  "gr",
-  "sustainability.html#ecosystem"
- ],
- [
-  "Responsible Production",
-  "Biosecurity, welfare and environmental standards.",
-  "go",
-  "sustainability.html#responsible-production"
- ],
- [
-  "Regional Aquaculture Development",
-  "Building the Gulf's aquaculture sector.",
-  "g",
-  "sustainability.html#regional-development"
- ]
-];
-const ENQUIRIES = [
- [
-  "commercial",
-  "Commercial Aquaculture Enquiries",
-  "Farms & operators",
+  "fry",
+  "Fry supply & availability",
+  "Hamour, Red Snapper, Shari — batches and sizes",
   "o"
  ],
  [
-  "fry",
-  "Fry Orders & Availability",
-  "Species, quantity, size",
+  "commercial",
+  "Commercial & technical partnership",
+  "Farm projects, technical support, offtake",
   "o"
  ],
  [
   "gov",
-  "Government & Institutional Partnerships",
-  "Authorities & public bodies",
+  "Government & institutional programmes",
+  "Food security, concessions, public bodies",
+  "g"
+ ],
+ [
+  "invest",
+  "Investment & strategic partnerships",
+  "Investors and strategic partners",
   "g"
  ],
  [
   "research",
-  "Research & Academic Collaboration",
-  "Universities & institutes",
+  "Research collaboration & SKMRC labs",
+  "Joint programmes, laboratory access",
   "r"
  ],
  [
-  "invest",
-  "Investment & Strategic Partnerships",
-  "Investors & strategic partners",
-  "g"
+  "visit",
+  "Visiting researchers & students",
+  "Placements, theses, study visits",
+  "r"
  ],
  [
   "general",
-  "General Enquiries",
-  "Media, careers, other",
+  "Media & general enquiries",
+  "Press, careers, other",
   "n"
  ]
 ];
@@ -659,34 +706,34 @@ const POSTS = [
   "date": "00 Month 2026"
  },
  {
-  "t": "Placeholder — New partnership for regional aquaculture development",
+  "t": "Placeholder — BAP certification for both GA assets",
   "cat": "partnerships",
   "aud": "g",
-  "date": "00 Month 2026"
+  "date": "Mar 2026"
  },
  {
-  "t": "Placeholder — Gulf aquaculture market outlook",
+  "t": "Placeholder — Gulf seafood demand outlook to 2030",
   "cat": "industry",
   "aud": "og",
   "date": "00 Month 2026"
  },
  {
-  "t": "Placeholder — Gulf Aquaculture at an international aquaculture conference",
+  "t": "Placeholder — GA at an international aquaculture conference",
   "cat": "events",
   "aud": "ogr",
   "date": "00 Month 2026"
  },
  {
-  "t": "Placeholder — Inside the Khorfakkan sea cages (video)",
+  "t": "Placeholder — Inside the sea cages (video)",
   "cat": "media",
   "aud": "og",
   "date": "00 Month 2026"
  },
  {
-  "t": "Placeholder — Biosecurity protocols upgraded at Balghailam",
+  "t": "Placeholder — First place at the Sheikh Mansour Agriculture Award",
   "cat": "company",
-  "aud": "o",
-  "date": "00 Month 2026"
+  "aud": "g",
+  "date": "Feb 2025"
  },
  {
   "t": "Placeholder — Visiting researchers programme: call for applications",
@@ -701,18 +748,18 @@ const POSTS = [
   "date": "00 Month 2026"
  }
 ];
-/* Draft Arabic labels — RTL demo only, native review required */
+/* Draft Arabic labels — native review required */
 const I18N = {
  "en": {
-  "iam": "I am —",
   "enquire": "Enquire",
-  "explore": "Explore the production cycle",
-  "heroTitle": "Transforming Marine Aquaculture Through <em>Science, Technology</em> and Sustainable Production"
+  "heroTitle": "Transforming<br>Aquaculture",
+  "heroSub": "in the Middle East",
+  "access": "Access by profile"
  },
  "ar": {
-  "iam": "أنا —",
   "enquire": "استفسار",
-  "explore": "استكشف دورة الإنتاج",
-  "heroTitle": "تحويل الاستزراع البحري من خلال <em>العلم والتكنولوجيا</em> والإنتاج المستدام"
+  "heroTitle": "تحويل<br>الاستزراع المائي",
+  "heroSub": "في الشرق الأوسط",
+  "access": "الدخول حسب الفئة"
  }
 };
