@@ -319,3 +319,7 @@ strong{font-weight:500;color:var(--ink)}
   .people,.feat,.growth,.who,.row2,.tline,.org{grid-template-columns:1fr}
   .pillars li{grid-template-columns:44px 1fr}
 }
+
+.brand img{height:46px;width:auto}
+.ftr .brand img{height:54px}
+@media (max-width:560px){.brand img{height:38px}}
