@@ -117,42 +117,46 @@ const ICONS = {
   cage:'<ellipse cx="12" cy="10" rx="9" ry="3.5"/><path d="M3 10v5c0 2 4 3.5 9 3.5s9-1.5 9-3.5v-5"/><path d="M8 13.2v5M12 13.5v5M16 13.2v5"/>',
   box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/>'
 };
+const PH_COLORS=["#388B8A","#D97724","#E59B38","#0F3352","#B85E14"];
 function renderRing(){
   const host=$("#ring"); if(!host) return;
-  const C=300, R=232, n=PHASES.length, ang=i=>(-90+i*360/n)*Math.PI/180;
+  const C=300, RM=205, BAND=58, n=PHASES.length, step=2*Math.PI/n, gap=.035;
+  const ang=i=>-Math.PI/2 + i*step;                       // segment i starts at the top, clockwise
   const pt=(a,r)=>[C+r*Math.cos(a), C+r*Math.sin(a)];
   const arc=(a0,a1,r)=>{ const [x0,y0]=pt(a0,r),[x1,y1]=pt(a1,r); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
-  const step=2*Math.PI/n, gap=.2;
   let segs="";
   PHASES.forEach((p,i)=>{
-    const a=ang(i), [x,y]=pt(a,R), [lx,ly]=pt(a,R+60), cos=Math.cos(a);
-    const anchor = cos>.35?"start":cos<-.35?"end":"middle";
-    const dy = Math.sin(a)<-.8 ? -18 : Math.sin(a)>.8 ? 22 : 0;
-    segs += `<g class="seg" data-i="${i}" tabindex="0" role="button" aria-label="Phase ${i+1}: ${p.t}">
-      <path class="hit" d="${arc(a-step/2+.05,a+step/2-.05,R)}"/>
-      <path class="arc" d="${arc(a+gap,a+step-gap,R)}"/>
-      <g class="node"><circle class="bg" cx="${x}" cy="${y}" r="34"/>
-        <g class="ic" transform="translate(${x-14.4} ${y-14.4}) scale(1.2)">${ICONS[p.icon]}</g></g>
-      <text class="lbl" x="${lx}" y="${ly+dy}" text-anchor="${anchor}">${p.t}</text>
-      <text class="sublbl" x="${lx}" y="${ly+dy+24}" text-anchor="${anchor}">${p.short}</text>
+    const a0=ang(i)+gap, a1=ang(i+1)-gap, mid=(ang(i)+ang(i+1))/2;
+    const [ix,iy]=pt(mid,RM), [lx,ly]=pt(mid,RM+BAND/2+34), cos=Math.cos(mid), sin=Math.sin(mid);
+    const anchor = cos>.3?"start":cos<-.3?"end":"middle";
+    const dy = sin<-.7 ? -14 : sin>.7 ? 22 : 4;
+    const ox=(Math.cos(mid)*9).toFixed(1), oy=(Math.sin(mid)*9).toFixed(1);
+    segs += `<g class="seg" data-i="${i}" tabindex="0" role="button" aria-label="Phase ${i+1}: ${p.t}" style="--pc:${PH_COLORS[i]};--ox:${ox}px;--oy:${oy}px">
+      <g class="pop"><path class="band" d="${arc(a0,a1,RM)}" stroke="${PH_COLORS[i]}"/>
+        <g class="ic" transform="translate(${ix-13.2} ${iy-13.2}) scale(1.1)">${ICONS[p.icon]}</g></g>
+      <text class="lbl" x="${lx}" y="${ly+dy}" text-anchor="${anchor}"><tspan class="n">0${i+1}</tspan> ${p.t}</text>
+      <text class="sublbl" x="${lx}" y="${ly+dy+21}" text-anchor="${anchor}">${p.short}</text>
     </g>`;
   });
-  host.innerHTML = `<svg viewBox="-150 -40 900 680" role="group" aria-label="Five-phase production cycle">
-    <defs>
-      <linearGradient id="gOrange" x1="0" x2="1"><stop offset="0" stop-color="#C4662A"/><stop offset="1" stop-color="#E2A13C"/></linearGradient>
-      <clipPath id="cageClip"><circle cx="${C}" cy="${C}" r="150"/></clipPath>
-      <path id="innerPath" d="M ${C} ${C} m -186 0 a 186 186 0 1 1 372 0 a 186 186 0 1 1 -372 0"/>
-    </defs>
-    <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="rgba(15,51,82,.08)" stroke-width="1"/>
-    <image href="assets/img/cage-circle.jpg" x="${C-170}" y="${C-170}" width="340" height="340" clip-path="url(#cageClip)" preserveAspectRatio="xMidYMid slice"/>
-    <circle class="core-ring" cx="${C}" cy="${C}" r="162"/>
-    <g class="spin"><text class="inner-txt"><textPath href="#innerPath">Continuous lab oversight ◆ Microbial monitoring ◆ Real-time data &amp; traceability ◆ Continuous lab oversight ◆ </textPath></text></g>
+  host.innerHTML = `<svg viewBox="-170 -40 940 680" role="group" aria-label="Five-phase production cycle">
+    <defs><path id="innerPath" d="M ${C} ${C} m -150 0 a 150 150 0 1 1 300 0 a 150 150 0 1 1 -300 0"/>
+      <filter id="hubShadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0F3352" flood-opacity=".18"/></filter></defs>
+    <circle cx="${C}" cy="${C}" r="${RM}" fill="none" stroke="#EDE6DB" stroke-width="${BAND}"/>
     ${segs}
+    <g class="spin"><text class="inner-txt"><textPath href="#innerPath">Continuous lab oversight ◆ Microbial monitoring ◆ Real-time data &amp; traceability ◆ </textPath></text></g>
+    <circle cx="${C}" cy="${C}" r="128" fill="#fff" stroke="rgba(200,116,42,.35)" filter="url(#hubShadow)"/>
+    <text class="hub-k" id="hubK" x="${C}" y="${C-36}" text-anchor="middle">Phase 01 / 05</text>
+    <text class="hub-t" id="hubT" x="${C}" y="${C+6}" text-anchor="middle">Broodstock</text>
+    <text class="hub-s" id="hubS" x="${C}" y="${C+34}" text-anchor="middle"></text>
+    <circle id="hubDot" cx="${C}" cy="${C+62}" r="6" fill="${PH_COLORS[0]}"/>
   </svg>`;
   let cur=0, timer=null, playing=!reduced;
   const show=i=>{
-    cur=(i+n)%n; const p=PHASES[cur];
+    cur=(i+n)%n; const p=PHASES[cur], col=PH_COLORS[cur];
     $$("#ring .seg").forEach(s=>s.classList.toggle("on",+s.dataset.i===cur));
+    $("#hubK").textContent=`Phase ${String(cur+1).padStart(2,"0")} / ${String(n).padStart(2,"0")}`;
+    $("#hubT").textContent=p.t; $("#hubS").textContent=p.short; $("#hubDot").setAttribute("fill",col);
+    $("#phaseCard").style.setProperty("--pc",col);
     $("#phaseCard").innerHTML = `<div class="fade">
       <span class="count">Phase ${String(cur+1).padStart(2,"0")} / ${String(n).padStart(2,"0")}</span>
       <h3>${p.t}</h3><div class="where">${p.where}</div>
@@ -162,8 +166,7 @@ function renderRing(){
       <div class="hero-actions"><a class="btn btn-ink" href="${p.href}">Learn more <span class="arrow">→</span></a>
       <button class="btn btn-ghost" type="button" data-xp="${p.xp}">See it in 3D</button></div></div>`;
   };
-  const next=()=>show(cur+1);
-  const play=on=>{ playing=on; clearInterval(timer); if(on) timer=setInterval(next,6000); const pb=$("#phPlay"); if(pb) pb.textContent= on?"❚❚ Pause tour":"▶ Auto tour"; };
+  const play=on=>{ playing=on; clearInterval(timer); if(on) timer=setInterval(()=>show(cur+1),6000); const pb=$("#phPlay"); if(pb) pb.textContent= on?"❚❚ Pause tour":"▶ Auto tour"; };
   $$("#ring .seg").forEach(s=>{
     s.addEventListener("click",()=>{ play(false); show(+s.dataset.i); });
     s.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); play(false); show(+s.dataset.i); } });
@@ -172,8 +175,7 @@ function renderRing(){
   $("#phNext").addEventListener("click",()=>{ play(false); show(cur+1); });
   $("#phPlay").addEventListener("click",()=>play(!playing));
   host.addEventListener("keydown",e=>{ if(e.key==="ArrowRight"){play(false);show(cur+1);} if(e.key==="ArrowLeft"){play(false);show(cur-1);} });
-  show(0);
-  // start auto tour only when visible
+  show(0); play(false); playing=!reduced;
   if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ play(playing); io.disconnect(); } },{threshold:.4}); io.observe(host); }
 }
 
