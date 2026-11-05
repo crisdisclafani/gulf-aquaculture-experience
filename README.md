@@ -8,6 +8,8 @@ A real-time 3D web experience (Three.js + WebGL) that follows the journey at the
 
 **Website concept (multi-page, static HTML):** https://crisdisclafani.github.io/gulf-aquaculture-experience/website/ — source in [`website/`](website/)
 
+**Website built from the Company Profile (v3):** https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/ — source in [`profile-site/`](profile-site/)
+
 ## How to use
 - Open the page and navigate freely: click hotspots, drag to orbit, scroll to zoom, use the top menu and the EN/عربي toggle.
 - `?demo=1` plays the scripted guided tour (about 80 s).
