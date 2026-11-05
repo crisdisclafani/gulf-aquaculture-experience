@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>SKMRC Campus · Interactive 3D tour (concept demo)</title>
+<style>
+@font-face{font-family:Cormorant;src:url(../fonts/Cormorant.ttf)}
+@font-face{font-family:Inter;src:url(../fonts/Inter.ttf)}
+:root{--navy:#0E2E46;--orange:#C8742A;--amber:#E2A13C;--grad:linear-gradient(90deg,#C0622A,#E3A43E)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#cfdde4;font-family:Inter,system-ui,sans-serif;color:#fff}
+canvas#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.panel{background:rgba(10,30,46,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);border-radius:14px}
+#top{position:fixed;top:max(14px,env(safe-area-inset-top));left:16px;right:16px;display:flex;align-items:center;gap:12px;pointer-events:none;z-index:5}
+#top .brand{pointer-events:auto;padding:10px 16px;display:flex;flex-direction:column}
+#top .brand b{font-family:Cormorant,serif;font-weight:600;font-size:1.35rem;line-height:1}
+#top .brand small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-top:3px}
+#top .sp{flex:1}
+#top .tag{pointer-events:auto;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;color:rgba(255,255,255,.8)}
+#auto{pointer-events:auto;padding:11px 16px;font-size:.78rem;font-weight:600;background:var(--grad);border-radius:40px}
+#card{position:fixed;left:16px;bottom:96px;width:min(420px,calc(100% - 32px));padding:20px 22px 18px;z-index:5}
+#card.in{animation:up .6s cubic-bezier(.22,.61,.36,1)}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+#k{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+#t{font-family:Cormorant,serif;font-weight:600;font-size:2rem;line-height:1.05;margin:6px 0 8px}
+#d{font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
+#card .nav{display:flex;gap:8px;margin-top:14px}
+#card .nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
+#card .nav button:hover{border-color:var(--amber)}
+#card .hint{font-size:.7rem;color:rgba(255,255,255,.6);align-self:center;margin-left:6px}
+#steps{position:fixed;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));display:flex;gap:6px;padding:8px;z-index:5;overflow-x:auto;scrollbar-width:none}
+#steps::-webkit-scrollbar{display:none}
+#steps button{flex:1;min-width:92px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:7px 10px;border-radius:9px;text-align:left;color:rgba(255,255,255,.62);transition:background .25s,color .25s}
+#steps button b{font-family:Cormorant,serif;font-size:1.05rem;color:var(--amber);line-height:1}
+#steps button span{font-size:.66rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#steps button:hover{background:rgba(255,255,255,.08);color:#fff}
+#steps button.on{background:rgba(226,161,60,.22);color:#fff}
+#mini{position:fixed;right:16px;bottom:96px;width:230px;height:178px;border-radius:12px;border:1px solid rgba(255,255,255,.3);cursor:crosshair;z-index:5;box-shadow:0 10px 30px -12px rgba(0,0,0,.5)}
+#miniLbl{position:fixed;right:22px;bottom:280px;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);z-index:5}
+#labels{position:fixed;inset:0;pointer-events:none;z-index:4}
+.lbl{position:absolute;left:0;top:0;display:flex;align-items:center;gap:6px;transform-origin:0 0;margin:-14px 0 0 -7px;pointer-events:auto;transition:opacity .3s}
+.lbl i{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(226,161,60,.55);flex-shrink:0}
+.lbl span{font-size:.7rem;font-weight:600;padding:5px 9px;border-radius:20px;background:rgba(10,30,46,.78);white-space:nowrap}
+.lbl:hover span,.lbl.on span{background:var(--orange)}
+.lbl.on i{animation:pulse 1.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px rgba(226,161,60,0)}}
+#intro{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(180deg,rgba(10,30,46,.15),rgba(10,30,46,.75));transition:opacity .8s,visibility .8s}
+#intro.gone{opacity:0;visibility:hidden}
+#intro .box{max-width:620px;text-align:center}
+#intro small{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+#intro h1{font-family:Cormorant,serif;font-weight:600;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1;margin:12px 0 14px;text-shadow:0 2px 20px rgba(0,0,0,.35)}
+#intro p{font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.4)}
+#intro .acts{display:flex;gap:10px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+#intro .acts button{padding:14px 24px;border-radius:40px;font-weight:600;font-size:.86rem}
+#start{background:var(--grad)}
+#free{border:1px solid rgba(255,255,255,.6)}
+#loading{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#0E2E46;color:#fff;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;transition:opacity .6s,visibility .6s}
+#loading.gone{opacity:0;visibility:hidden}
+.note{position:fixed;right:16px;top:74px;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.5);z-index:5}
+@media (max-width:760px){
+  #mini,#miniLbl{display:none}
+  #card{bottom:86px;padding:14px 16px}
+  #t{font-size:1.5rem} #d{font-size:.8rem}
+  #top .tag{display:none}
+  #steps button{min-width:64px} #steps button span{display:none}
+}
+</style>
+<script type="importmap">{"imports":{"three":"../vendor/three.module.js","three/addons/":"../vendor/addons/"}}</script>
+</head>
+<body>
+<canvas id="c" aria-label="Interactive 3D model of the SKMRC campus"></canvas>
+<div id="labels" aria-label="Buildings"></div>
+<header id="top"><div class="brand panel"><b>SKMRC Campus</b><small>Interactive 3D tour</small></div><span class="sp"></span><span class="tag panel">Concept · layout indicative</span><button id="auto" type="button" aria-pressed="false">▶ Guided tour</button></header>
+<p class="note">Drag to orbit · scroll to zoom · click a building</p>
+<section id="card" class="panel in" aria-live="polite"><div id="k">Concept demo</div><div id="t">SKMRC campus</div><div id="d">From the shell-roofed visitor centre to the hatchery halls and the sea cages offshore.</div>
+  <div class="nav"><button id="prev" type="button" aria-label="Previous stop">←</button><button id="next" type="button" aria-label="Next stop">→</button><span class="hint">← → keys</span></div></section>
+<nav id="steps" class="panel" aria-label="Tour stops"></nav>
+<span id="miniLbl">Map · 1 entrance · 2 hatchery</span>
+<canvas id="mini" width="460" height="356" aria-label="Site map — click to fly there"></canvas>
+<div id="intro"><div class="box"><small>Sheikh Khalifa Marine Research Centre</small><h1>From the shell<br>to the sea</h1>
+  <p>An interactive walk-through built from the two architectural renders: start at the shell-roofed visitor centre, follow the boulevard to the hatchery halls, and fly out to the sea cages.</p>
+  <div class="acts"><button id="start" type="button">Start the guided tour</button><button id="free" type="button">Explore freely</button></div></div></div>
+<div id="loading">Building the campus…</div>
+<script type="module" src="campus.js"></script>
+</body>
+</html>
