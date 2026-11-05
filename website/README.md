@@ -2,6 +2,7 @@
 
 Design aligned with the GA Company Profile. Open `index.html`.
 
+- **Cinematic opening** (`assets/js/intro.js`) — real-time canvas visualisation: brand opening, then the five stages of the brief (broodstock tank → microscope → live feed → nursery tank → underwater sea cage), linked by the orange-ring iris transition; each stage clickable with processes / technologies / facilities.
 - **Access by profile** — three buttons under the menu (Commercial Operators · Government & Investors · Universities & R&D): highlight that profile's pages everywhere and open a pathway bar.
 - **Phases circle** — interactive 5-phase cycle (Broodstock → Hatchery → Nursery → Sea Cage Grow-Out → Distribution).
 - **Interactive experience** — the "Egg to Harvest" 3D journey (`../index.html`) embedded, with station buttons (deep links `?scene=campus|brood|hatch|cages|under|fish`).

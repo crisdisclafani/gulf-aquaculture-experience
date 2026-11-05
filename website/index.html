@@ -39,26 +39,27 @@
 </aside>
 <main id="main">
 
-<!-- T1 HERO — Company Profile cover -->
-<section class="hero" data-cms="home.hero">
-  <span class="arcs a1"></span><span class="arcs a2"></span>
-  <div class="wrap">
-    <div class="rv in">
-      <span class="eyebrow">Local Species in Local Waters</span>
-      <h1 data-i18n="heroTitle">Transforming<br>Aquaculture</h1>
-      <p class="sub" data-i18n="heroSub">in the Middle East</p>
-      <p class="lead" data-cms="home.hero.lead">We exist to make aquaculture work — for our ecosystems, for food security, and for future generations. Simpler, smarter, and grounded in nature.</p>
-      <div class="hero-actions">
-        <a href="#experience" class="btn btn-orange">Explore the experience <span class="arrow">→</span></a>
-        <a href="#cycle" class="btn btn-ghost" style="color:var(--navy)">The 5-phase cycle</a>
-      </div>
-    </div>
-    <div class="hero-media rv in">
-      <div class="photo" role="img" aria-label="Sea cage at dawn (client photo)"></div>
-      <div class="ph-label"><b>Video placeholder</b>Full-screen intro film: hatchery → sea cages → laboratories.</div>
-      <p class="quote script-wrap"><span class="script">This isn't just a job. It's a responsibility to the Gulf.</span></p>
-    </div>
+<!-- T1 HERO — cinematic opening: five stages of the production cycle (assets/js/intro.js) -->
+<section class="cine" id="cine" tabindex="-1" aria-label="Introduction — the five stages of the production cycle" data-cms="home.hero">
+  <canvas id="cineCanvas" aria-hidden="true"></canvas>
+  <div class="cine-shade"></div>
+  <div class="cine-head wrap">
+    <span class="eyebrow">Local Species in Local Waters</span>
+    <h1 data-i18n="heroTitle">Transforming<br>Aquaculture</h1>
+    <p class="sub" data-i18n="heroSub">in the Middle East</p>
   </div>
+  <div class="cine-stage wrap" aria-live="polite">
+    <span class="cine-k" id="cineK"></span>
+    <h2 id="cineT"></h2>
+    <p id="cineD"></p>
+    <button type="button" class="btn btn-orange" id="cineExplore">Explore this stage <span class="arrow">→</span></button>
+  </div>
+  <nav class="cine-rail wrap" aria-label="The five stages of the production cycle">
+    <button type="button" style="--c:#3FA7A4"><i class="bar"><b></b></i><span class="n">01</span><span class="l">Broodstock Management</span></button><button type="button" style="--c:#E07B2E"><i class="bar"><b></b></i><span class="n">02</span><span class="l">Spawning & Larval Development</span></button><button type="button" style="--c:#E5A33B"><i class="bar"><b></b></i><span class="n">03</span><span class="l">Live Feed & Hatchery Production</span></button><button type="button" style="--c:#5FA8C9"><i class="bar"><b></b></i><span class="n">04</span><span class="l">Nursery & Fry Conditioning</span></button><button type="button" style="--c:#F0B45A"><i class="bar"><b></b></i><span class="n">05</span><span class="l">Marine Farming & Grow-Out Operations</span></button>
+  </nav>
+  <div class="cine-tools"><span class="vis">Illustrative visualisation</span><button type="button" id="cinePlay" aria-label="Pause animation" aria-pressed="false">❚❚</button></div>
+  <a href="#stats" class="cine-cue" aria-label="Scroll to content"><span></span></a>
+  <aside class="cine-panel" id="cinePanel" hidden aria-label="Stage details"></aside>
 </section>
 
 <!-- KEY FIGURES (Company Profile) -->
@@ -269,5 +270,6 @@
 <div class="toast" id="toast" role="status"></div>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/intro.js"></script>
 </body>
 </html>

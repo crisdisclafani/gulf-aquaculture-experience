@@ -601,6 +601,139 @@ const STATIONS = [
   "Traceability"
  ]
 ];
+const CINE = [
+ {
+  "t": "Broodstock Management",
+  "where": "Hatchery · Balghailam Island & SKMRC",
+  "color": "#3FA7A4",
+  "href": "science.html#broodstock",
+  "xp": "brood",
+  "enq": [
+   "contact.html#fry",
+   "Fry availability"
+  ],
+  "d": "Genetically diverse brood fish of native Gulf species — Hamour, Red Snapper, Shaari — conditioned in climate-controlled tanks for consistent spawning, including off-season cycles.",
+  "proc": [
+   "Selection and conditioning of native brood fish",
+   "Controlled spawning, including off-season cycles",
+   "Genetic integrity across generations"
+  ],
+  "tech": [
+   "Climate-controlled broodstock rooms",
+   "Photoperiod and temperature control",
+   "SFS Trace traceability from broodstock onwards"
+  ],
+  "fac": [
+   "Balghailam Island — four 20 m³ broodstock tanks",
+   "SKMRC — Seabream, Hamour, Shaari, Mangrove Snapper, Mullet, Cobia, Naisrah"
+  ]
+ },
+ {
+  "t": "Spawning & Larval Development",
+  "where": "Laboratory · SKMRC",
+  "color": "#E07B2E",
+  "href": "science.html#larval-development",
+  "xp": "hatch",
+  "enq": [
+   "contact.html#research",
+   "Research collaboration"
+  ],
+  "d": "Eggs are collected and incubated; larvae are reared through their most delicate days and checked daily under the microscope, in a biosecure environment.",
+  "proc": [
+   "Egg collection and incubation",
+   "Daily larval checks",
+   "Water-quality and microbial monitoring"
+  ],
+  "tech": [
+   "Larval rearing systems",
+   "Microbiology: cultivation, CFU counts, wet mounts, antibiograms",
+   "Automated filtration and UV sterilisation"
+  ],
+  "fac": [
+   "Balghailam Island — eight 10 m³ larval rearing tanks",
+   "SKMRC — 20+ million larvae per year",
+   "14 laboratories at SKMRC"
+  ]
+ },
+ {
+  "t": "Live Feed & Hatchery Production",
+  "where": "Live-feed & algae rooms · Hatchery",
+  "color": "#E5A33B",
+  "href": "science.html#live-feed",
+  "xp": "hatch",
+  "enq": [
+   "contact.html#commercial",
+   "Technical partnership"
+  ],
+  "d": "Microalgae, rotifers, copepods and Artemia are cultured on site — natural feed matched to every larval stage, for high survival and early growth.",
+  "proc": [
+   "Microalgae cultivation",
+   "Rotifer and copepod production",
+   "Artemia and nutritional enrichment"
+  ],
+  "tech": [
+   "Eight outdoor Nannochloropsis algae tanks",
+   "Three 2 m³ rotifer and copepod tanks",
+   "Dedicated live-feed and algae rooms"
+  ],
+  "fac": [
+   "Balghailam Island hatchery",
+   "SKMRC hatchery — two production streams"
+  ]
+ },
+ {
+  "t": "Nursery & Fry Conditioning",
+  "where": "Nursery hall · Balghailam Island",
+  "color": "#5FA8C9",
+  "href": "science.html#biosecurity",
+  "xp": "hatch",
+  "enq": [
+   "contact.html#fry",
+   "Order fry"
+  ],
+  "d": "Fry are weaned gently, graded and health-checked in circular nursery tanks, then prepared for life at sea with minimal handling.",
+  "proc": [
+   "Gentle weaning onto formulated feed",
+   "Grading and health checks",
+   "Preparation for sea-cage transfer"
+  ],
+  "tech": [
+   "RAS + flow-through hybrid systems",
+   "Biosecure facility zoning",
+   "Real-time water-quality sensors"
+  ],
+  "fac": [
+   "Twenty-four 10 m³ nursery tanks",
+   "Target: 20 million fry in 2026"
+  ]
+ },
+ {
+  "t": "Marine Farming & Grow-Out Operations",
+  "where": "Offshore sea cages · Delma Island & Khorfakkan",
+  "color": "#F0B45A",
+  "href": "operations.html#delma",
+  "xp": "under",
+  "enq": [
+   "contact.html#invest",
+   "Partner with us"
+  ],
+  "d": "Juveniles move to sea cages early, growing in natural light and flow at low stocking densities — monitored, researched and traceable from broodstock to harvest.",
+  "proc": [
+   "Early transfer to sea cages",
+   "Low stocking densities",
+   "Environmental monitoring and research"
+  ],
+  "tech": [
+   "Sea-cage infrastructure",
+   "SFS Trace — full lifecycle traceability",
+   "Environmental monitoring"
+  ],
+  "fac": [
+   "Delma Island — under contract with the Environment Agency – Abu Dhabi",
+   "Khorfakkan — UAE east coast"
+  ]
+ }
+];
 const FACILITIES = [
  [
   "A",
