@@ -320,6 +320,6 @@ strong{font-weight:500;color:var(--ink)}
   .pillars li{grid-template-columns:44px 1fr}
 }
 
-.brand img{height:46px;width:auto}
-.ftr .brand img{height:54px}
-@media (max-width:560px){.brand img{height:38px}}
+.brand img{height:32px;width:auto;max-width:150px}
+.ftr .brand img{height:38px}
+@media (max-width:560px){.brand img{height:28px}}
