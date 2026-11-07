@@ -365,7 +365,7 @@ strong{font-weight:500;color:var(--ink)}
 .fg-rule .b{width:15px;height:15px;background:#6AA9A6}
 .fg-col p{font-size:.95rem;line-height:1.6;padding-right:28px;color:rgba(255,255,255,.92)}
 @media (max-width:1000px){.fg-grid{grid-template-columns:1fr 1fr;row-gap:44px}.fg-col .fg-rule::before{left:0!important;right:0!important}.fg-col:nth-child(odd) .fg-rule::before{left:-24px!important}}
-@media (max-width:600px){.fg-head{grid-template-columns:1fr}.fg-thumb{width:140px}.fg-grid{grid-template-columns:1fr}.fg-col p{padding-right:0}.fg-col h4{min-height:0}.fg-bg{opacity:.35;-webkit-mask-image:linear-gradient(180deg,transparent 40%,#000 85%);mask-image:linear-gradient(180deg,transparent 40%,#000 85%);background-size:90% auto}}
+@media (max-width:600px){.fg-head{grid-template-columns:1fr}.fg-thumb{width:100%;aspect-ratio:1;height:auto}.fg-grid{grid-template-columns:1fr}.fg-col p{padding-right:0}.fg-col h4{min-height:0}.fg-bg{opacity:.35;-webkit-mask-image:linear-gradient(180deg,transparent 40%,#000 85%);mask-image:linear-gradient(180deg,transparent 40%,#000 85%);background-size:90% auto}}
 
 /* ===== We welcome conversations (p.21) ===== */
 .welcome{position:relative;overflow:hidden;background:#fff;padding:clamp(70px,8vw,110px) 0 clamp(120px,14vw,220px)}
