@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108n">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108o">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108n"></script>
+<script src="assets/js/site.js?v=20261108o"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -194,21 +194,45 @@ QA=[("What inspired you to launch Gulf Aquaculture?","I've always believed that 
     ("What does success look like for Gulf Aquaculture?","For us, success isn't measured by how fast we grow, but by how well we grow. If we can reliably produce fry of local species to support the region's aquaculture industry, raise healthy fish, protect the marine environment, and earn the trust of partners and regulators — that's a strong foundation. Over time, we hope our model can inspire others to approach aquaculture in a more local and sustainable way."),
     ("How do you approach uncertainty in a developing sector like this?","Carefully. We know this industry is still taking shape in the region, so staying grounded is key. We start small, validate every step, and let production data and environmental conditions guide our decisions. It's about being proactive without being reckless — and keeping long-term resilience at the center of what we do.")]
 qa='<div class="qa rv">'+"".join(f'<details{" open" if i==0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i,(q,a) in enumerate(QA))+"</div>"
-about=opener("01","Our story","From Vision<br>to Operation","Gulf Aquaculture began with a simple idea: what if aquaculture were designed for this region, not imported from elsewhere?","vessel.jpg","This isn't just a job. It's a responsibility to the Gulf.")
-about+=f'''<section class="sec"><div class="wrap"><span class="label rv">Milestones</span><h2 class="rv" style="margin-top:12px">Validated step by step.</h2>{tl}</div></section>
-<section class="sec paper"><div class="wrap cols">
-  <div class="rv"><span class="label">Our mission</span><p class="quote" style="margin:16px 0 40px">To advance sustainable aquaculture by proving it can work in harmony with the Gulf's ecosystems and communities.</p>
-    <span class="label">Our vision</span><p class="lead" style="margin-top:12px">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p></div>
-  <div class="rv"><span class="label">What we stand for · Our principles</span><ol class="principles" style="margin-top:16px">
-    <li>Grow responsibly, not rapidly</li><li>Invest only what we need to learn</li><li>Focus on animal welfare and ecosystem integrity</li><li>Build trust through transparency</li><li>Share knowledge and invite collaboration</li></ol></div>
+TLX=[("2023","t","Formed in 2023 as a joint venture between Emirates Consortium and Hibiscus Capital Investment, Gulf Aquaculture [GA] began with a simple idea: what if aquaculture were designed for this region, not imported from elsewhere?"),
+     ("2024","o","By 2024, we achieved our first sale of Hamour fry to the local market.<br><br>Proof of our concept was achieved through operation of our Balghailam Island hatchery."),
+     ("2026","a","In 2026 GA secured exclusive management of the largest hatchery and nursery facility in the UAE and the wider Gulf region, under a 15-year lease.<br><br>At the time of printing the company is on track to ship 20+ million fry to regional clients.")]
+AW='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9.5 9l1.7 1.7L14.8 7.2"/><path d="M8.5 14l-2 7 3-1.5L12 22l2.5-2.5 3 1.5-2-7"/></svg>'
+about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a href="#story">Our story</a><a href="#mission">Mission &amp; vision</a><a href="#principles">Principles</a><a href="#role">Our regional role</a><a href="#achievements">Achievements</a><a href="#interview">Leadership interview</a><a href="people.html">Our team →</a></div></nav>
+<section class="ab-top" id="story"><span class="arc ab-arc" aria-hidden="true"></span><div class="wrap ab-grid">
+ <div class="ab-story">
+  <p class="ab-kicker rv in">Our story</p>
+  <h1 class="rv in">From Vision<br>to Operation</h1>
+  <ol class="ab-tl">{"".join(f'<li class="rv ab-{c}"><span class="ab-year">{y}</span><span class="ab-dia" aria-hidden="true"><i></i><b></b><i></i></span><p>{t}</p></li>' for y,c,t in TLX)}</ol>
+ </div>
+ <div class="ab-mission" id="mission">
+  <p class="ab-kicker ab-kicker-a rv">Our mission</p>
+  <p class="ab-script rv">To advance sustainable aquaculture by proving it can work in harmony with the Gulf’s ecosystems and communities.</p>
+  <img class="ab-razali rv" src="assets/img/mohamed-razali-gulf-aquaculture-founder-with-fish.webp" width="373" height="787" alt="Mohamed Razali, founder and General Manager of Gulf Aquaculture, holding a fish" loading="lazy">
+ </div>
+ <div class="ab-card rv" id="principles">
+  <h2>What We<br>Stand For</h2>
+  <p class="ab-kicker">Our principles</p>
+  <ol class="ab-pr"><li>Grow responsibly, not rapidly</li><li>Invest only what we need to learn</li><li>Focus on animal welfare and ecosystem integrity</li><li>Build trust through transparency</li><li>Share knowledge and invite collaboration</li></ol>
+  <p class="ab-kicker" style="margin-top:28px">Our vision</p>
+  <p class="ab-vision">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p>
+ </div>
 </div></section>
-<section class="sec navy"><div class="wrap cols" style="align-items:center">
-  <h2 class="rv">Our role is to serve the sea and the people who depend on it.</h2>
-  <div class="rv nums" style="grid-template-columns:1fr 1fr;border:0">
-    <div class="num"><b><span data-count="50">0</span><small>% less</small></b><span>Wild Gulf fish stocks since 1990</span><p>We supply seedstock from land-based hatcheries, easing pressure on wild populations.</p></div>
-    <div class="num"><b><span data-count="95">0</span><small>%</small></b><span>Of water recycled in our hatchery</span><p>Lower environmental footprint and energy use, aligned with national sustainability goals.</p></div>
-  </div></div></section>
-<section class="iv" id="interview">
+<section class="ab-band" id="role"><div class="wrap">
+ <div class="ab-awards" id="achievements">
+  <div class="rv">{AW}<p><b>Feb 2025</b>Awarded 1st place at the Sheikh Mansour Agriculture Award</p></div>
+  <div class="rv">{AW}<p><b>Mar 2026</b>GA received BAP certification for its two assets.</p></div>
+ </div>
+ <div class="ab-band-grid">
+  <h2 class="ab-role rv">Our role is to serve the sea and the people who depend on it.</h2>
+  <div class="ab-stats">
+   <div class="rv"><p class="ab-big"><span data-count="50">0</span>% less</p><h3>Wild Gulf fish stocks since 1990</h3><p>We supply seedstock from land-based hatcheries, easing pressure on wild populations.</p></div>
+   <div class="rv"><p class="ab-big"><span data-count="95">0</span>%</p><h3>Of water recycled in our hatchery system</h3><p>Lower environmental footprint and energy use, aligned with national sustainability goals.</p></div>
+  </div>
+ </div>
+</div></section>
+'''
+about+=f'''<section class="iv" id="interview">
  <div class="iv-left"><span class="arc iv-arc" aria-hidden="true"></span>
   <h2 class="iv-title rv">A Thoughtful<br>Approach to<br>Growth</h2>
   <p class="iv-kicker rv">A conversation with Mohamed Razali, General Manager</p>
