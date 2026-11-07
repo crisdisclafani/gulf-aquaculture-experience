@@ -898,3 +898,4 @@ strong{font-weight:500;color:var(--ink)}
 .hq .quote{font-family:var(--sans);font-weight:500;text-transform:uppercase;letter-spacing:.05em;font-size:clamp(1.25rem,2.2vw,1.9rem);line-height:1.35;color:#F6CF6B}
 .hq .quote cite{color:rgba(255,255,255,.75);margin-top:18px}
 .hq p{color:rgba(255,255,255,.85)}
+.ftr-rule,.ftr-rule .d,.ftr-rule .s,.ftr-rule .b{animation:none!important}.ftr-rule .d{transform:rotate(45deg)}
