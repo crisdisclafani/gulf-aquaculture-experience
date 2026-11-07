@@ -13,3 +13,6 @@ The home iframe must stay `src="3d/"` with background `url(3d/assets/poster.webp
 ## Species
 Species data and pages live in `species_data.py` (`SPECIES` list). Add a species by adding a dict; a page `species-<k>.html` is generated automatically.
 Each species page has a video section. By default it uses `DEFAULT_VIDEO`; to give a species its own video, put the mp4 in `video/`, a poster in `img/`, and add `video=("file.mp4","poster.webp")` to that species.
+
+## Facilities
+Facility pages (`asset-<k>.html`) are generated from `facilities_data.py` (`FACILITIES`). `assets.html` is the overview that links to them. Add Delma or Khorfakkan by adding a dict.

@@ -52,7 +52,7 @@ MAP_BAND='''<section class="mapband" aria-label="Regional footprint">
 </section>'''
 
 def page(fn,title,desc,body):
-    menu=f'<li><a href="index.html"{" aria-current=\"page\"" if fn=="index.html" else ""}>Home</a></li>'+"".join(f'<li><a href="{h}"{" aria-current=\"page\"" if (h==fn or (h=="species.html" and fn.startswith("species-"))) else ""}>{t}</a></li>' for h,t,_ in PAGES if h!="contact.html")
+    menu=f'<li><a href="index.html"{" aria-current=\"page\"" if fn=="index.html" else ""}>Home</a></li>'+"".join(f'<li><a href="{h}"{" aria-current=\"page\"" if (h==fn or (h=="species.html" and fn.startswith("species-")) or (h=="assets.html" and fn.startswith("asset-"))) else ""}>{t}</a></li>' for h,t,_ in PAGES if h!="contact.html")
     mnav="".join(f'<a href="{h}"><span>{n}</span>{t}</a>' for h,t,n in PAGES)
     foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES)
     out=f'''<!DOCTYPE html>
@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108j">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108k">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108j"></script>
+<script src="assets/js/site.js?v=20261108k"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -270,13 +270,10 @@ sk=f'''<div class="cols" style="margin-bottom:50px"><div><span class="label">She
        ("Sustainable Feed Systems",dia(["Live feed: rotifers, Artemia, copepods","7 species of live algae, year-round"])),
        ("Laboratories &amp; Diagnostics","<p>Microbial testing capabilities include:</p>"+dia(["Viruses","Bacteria","Parasites","Water quality parameters"])),
        ("Phase 01 · Phase 02","<p>Each production stream combines broodstock, hatchery, nursery and weaning areas with office, plant and generator rooms.</p>")])}'''
-assets=opener("03","Assets under management","Two assets.<br>One model.","Balghailam Island and the Sheikh Khalifa Marine Research Centre — compact, biosecure and replicable.","aerial.jpg","Systems that support people.")
-assets+=f'''<section class="sec"><div class="wrap">
-  <div class="tabs" role="tablist" aria-label="Assets"><button role="tab" id="t1" aria-controls="p1" aria-selected="true" data-hash="balghailam">Balghailam Island</button><button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1" data-hash="skmrc">Sheikh Khalifa Marine Research Centre</button></div>
-  <div class="tabpanel" id="p1" role="tabpanel" aria-labelledby="t1">{bal}</div>
-  <div class="tabpanel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>{sk}</div>
-</div></section>'''
+from facilities_data import facilities_index, facility_pages
+assets=facilities_index(opener,dia)
 page("assets.html","Assets — Gulf Aquaculture","Balghailam Island hatchery and the Sheikh Khalifa Marine Research Centre.",assets)
+facility_pages(page,dia)
 
 # ========================================================= SPECIES
 FISH='<svg class="fish" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M14 45C44 10 110 6 152 45 110 84 44 80 14 45Z" stroke="#E2A13C" stroke-width="1.2"/><path d="M152 45l40-28v56l-40-28Z" stroke="#E2A13C" stroke-width="1.2"/><circle cx="42" cy="40" r="3" fill="#E2A13C"/></svg>'
