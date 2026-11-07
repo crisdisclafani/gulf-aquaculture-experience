@@ -59,6 +59,17 @@
   .aq-chips { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 5; display: flex; gap: 8px; padding: 0 20px; overflow-x: auto; scrollbar-width: none;
     opacity: 0; transform: translateY(20px); transition: opacity 1s .6s, transform 1s .6s, right .5s; }
   .aq-chips::-webkit-scrollbar { display: none; }
+  .aq-chips { scroll-behavior: smooth; }
+  .aq-chips.fade-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent); }
+  .aq-chips.fade-l { -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px); mask-image: linear-gradient(90deg, transparent, #000 56px); }
+  .aq-chips.fade-l.fade-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
+  .aq-chip b { font-weight: inherit; white-space: nowrap; overflow: hidden; max-width: 320px; transition: max-width .45s ease, opacity .3s; }
+  @media (min-width: 761px) {
+    .panel-open .aq-chip { padding-right: 6px; gap: 0; }
+    .panel-open .aq-chip b { max-width: 0; opacity: 0; }
+    .panel-open .aq-chip.active, .panel-open .aq-chip:hover { padding-right: 14px; gap: 8px; }
+    .panel-open .aq-chip.active b, .panel-open .aq-chip:hover b { max-width: 320px; opacity: 1; }
+  }
   .aq-chip:first-child { margin-left: auto; } .aq-chip:last-child { margin-right: auto; }
   .ready .aq-chips { opacity: 1; transform: none; }
   .aq-chip { flex: none; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 6px; border-radius: 999px;
@@ -398,7 +409,7 @@
   #aqua-app .aq-p-stats b.xl { font-size: 15.5px !important; line-height: 1.15; }
   @media (max-width: 760px) { #aqua-app .aq-p-stats b.l { font-size: 15px !important; } #aqua-app .aq-p-stats b.xl { font-size: 13px !important; } }
 </style>
-<link rel="preload" href="app.js?v=mw6kyosc" as="script">
+<link rel="preload" href="app.js?v=mw6l8518" as="script">
 </head>
 <body>
 <div id="aqua-app" tabindex="0" style="outline:none">
@@ -434,6 +445,6 @@
   <div class="aq-intro" style="display:none"><div><h1></h1><p></p></div></div>
   <div class="aq-loader"></div>
 </div>
-<script defer src="app.js?v=mw6kyosc"></script>
+<script defer src="app.js?v=mw6l8518"></script>
 </body>
 </html>
