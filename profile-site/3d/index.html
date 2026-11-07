@@ -50,6 +50,7 @@
   .ready .aq-ctrl { opacity: 1; }
   .aq-btn-snd .x { display: none; } .aq-btn-snd.muted .x { display: inline; } .aq-btn-snd.muted .w1, .aq-btn-snd.muted .w2 { display: none; } .aq-btn-snd:not(.snd-on):not(.muted) .w2 { opacity: .35; }
   .aq-btn-snd.snd-on .w2 { animation: aqSnd 2.4s ease-in-out infinite; } @keyframes aqSnd { 50% { opacity: .35; } }
+  .aq-btn-snd.snd-wait { animation: aqSndWait 1.6s ease-in-out infinite; } @keyframes aqSndWait { 50% { box-shadow: 0 0 0 6px rgba(232,140,48,.35); } }
   .aq-btn { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18);
     background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 13px; font-weight: 500; transition: .25s; }
   .aq-btn:hover { border-color: var(--acc); }
@@ -397,7 +398,7 @@
   #aqua-app .aq-p-stats b.xl { font-size: 15.5px !important; line-height: 1.15; }
   @media (max-width: 760px) { #aqua-app .aq-p-stats b.l { font-size: 15px !important; } #aqua-app .aq-p-stats b.xl { font-size: 13px !important; } }
 </style>
-<link rel="preload" href="app.js?v=mw6kntdb" as="script">
+<link rel="preload" href="app.js?v=mw6kyosc" as="script">
 </head>
 <body>
 <div id="aqua-app" tabindex="0" style="outline:none">
@@ -433,6 +434,6 @@
   <div class="aq-intro" style="display:none"><div><h1></h1><p></p></div></div>
   <div class="aq-loader"></div>
 </div>
-<script defer src="app.js?v=mw6kntdb"></script>
+<script defer src="app.js?v=mw6kyosc"></script>
 </body>
 </html>
