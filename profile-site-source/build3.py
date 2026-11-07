@@ -50,7 +50,7 @@ MAP_BAND='''<section class="mapband" aria-label="Regional footprint">
 </section>'''
 
 def page(fn,title,desc,body):
-    menu=f'<li><a href="index.html"{" aria-current=\"page\"" if fn=="index.html" else ""}>Home</a></li>'+"".join(f'<li><a href="{h}"{" aria-current=\"page\"" if h==fn else ""}>{t}</a></li>' for h,t,_ in PAGES if h!="contact.html")
+    menu=f'<li><a href="index.html"{" aria-current=\"page\"" if fn=="index.html" else ""}>Home</a></li>'+"".join(f'<li><a href="{h}"{" aria-current=\"page\"" if (h==fn or (h=="species.html" and fn.startswith("species-"))) else ""}>{t}</a></li>' for h,t,_ in PAGES if h!="contact.html")
     mnav="".join(f'<a href="{h}"><span>{n}</span>{t}</a>' for h,t,n in PAGES)
     foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES)
     out=f'''<!DOCTYPE html>
@@ -60,7 +60,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108c">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108d">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -85,7 +85,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108c"></script>
+<script src="assets/js/site.js?v=20261108d"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -146,7 +146,7 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
     <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles, legal structure and a conversation with our General Manager.</p><span class="more">Our story</span></a>
     <a class="chap" href="operations.html"><span class="n">02</span><h3>Where innovation meets simplicity</h3><p>Five phases, continuous lab oversight and full traceability.</p><span class="more">Operations</span></a>
     <a class="chap" href="assets.html"><span class="n">03</span><h3>Assets under management</h3><p>Balghailam Island and the Sheikh Khalifa Marine Research Centre.</p><span class="more">Assets</span></a>
-    <a class="chap" href="species.html"><span class="n">04</span><h3>Local species, local knowledge</h3><p>Grouper, Red Snapper and Shari — native, resilient, well-adapted.</p><span class="more">Species</span></a>
+    <a class="chap" href="species.html"><span class="n">04</span><h3>Local species, local knowledge</h3><p>Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais — native, resilient, well-adapted.</p><span class="more">Species</span></a>
     <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
     <a class="chap" href="people.html"><span class="n">06</span><h3>The people behind the progress</h3><p>A better future is grown, not guessed.</p><span class="more">People</span></a>
   </div>
@@ -262,14 +262,8 @@ page("assets.html","Assets — Gulf Aquaculture","Balghailam Island hatchery and
 
 # ========================================================= SPECIES
 FISH='<svg class="fish" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M14 45C44 10 110 6 152 45 110 84 44 80 14 45Z" stroke="#E2A13C" stroke-width="1.2"/><path d="M152 45l40-28v56l-40-28Z" stroke="#E2A13C" stroke-width="1.2"/><circle cx="42" cy="40" r="3" fill="#E2A13C"/></svg>'
-SPX=[("grouper","Grouper","Hamour","A high-value, slow-growing species prized in regional cuisine."),
-     ("shari","Shari","","A premium reef fish valued for its delicate flavour, strong market demand, and adaptability to warm-water aquaculture."),
-     ("red-snapper","Red Snapper","","A hardy and fast-growing species ideal for sea cage culture.")]
-sp=opener("04","Native Gulf species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","grouper.jpg","")
-sp+='<section class="sec spx"><div class="wrap"><p class="spx-kicker rv">Our core species:</p><div class="spx-grid">'+"".join(
-  f'<article class="spc rv"><figure class="spc-img"><img src="assets/img/gulf-aquaculture-species-{k}.webp" alt="{n} held in two hands" loading="lazy"></figure>'
-  f'<h3 class="spc-name">{n}</h3>{f"<span class=spc-local>{loc}</span>" if loc else ""}<p>{d}</p>'
-  f'<a class="spc-link" href="contact.html#partner">Fry availability <span aria-hidden="true">→</span></a></article>' for k,n,loc,d in SPX)+'</div></div></section>'
+from species_data import SPECIES, species_index, species_pages
+sp=species_index(opener,dia)
 sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Aerial view of sea cages and a work vessel">
   <p class="spk-belief">At Gulf Aquaculture, we believe meaningful sustainability starts with knowing what thrives here — not just what sells. Our approach is rooted in science, shaped by local conditions, and designed to benefit both ecosystems and economies.</p>
   <p class="spk-claim">We don’t adapt species to our systems. We build systems around our species.</p></div>
@@ -281,7 +275,8 @@ sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Ae
    <p>Rather than replicate global models, we’ve designed our hatchery and nursery systems to reflect what’s needed — and nothing more. This minimalist approach results in:</p>{dia(["Lower energy use","Higher survival rates","No antibiotic use","Meaningful reductions in environmental impact"])}
    <a class="btn btn-or" href="contact.html#partner" style="margin-top:30px">Fry orders &amp; availability <span aria-hidden="true">→</span></a></div>
  </div></section>'''
-page("species.html","Species — Gulf Aquaculture","Native Gulf species: Grouper (Hamour), Red Snapper and Shari.",sp)
+page("species.html","Species — Gulf Aquaculture","Native Gulf species: Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais.",sp)
+species_pages(page)
 
 # ========================================================= GROWTH
 GR=[("Vertical Expansion","We're building more of the value chain — including transport, genetics, and off-take partnerships — to increase resilience and deliver long-term value."),
