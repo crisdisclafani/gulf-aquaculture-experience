@@ -738,7 +738,7 @@ strong{font-weight:500;color:var(--ink)}
 .hi-left{position:relative;min-height:760px;padding:clamp(40px,5vw,70px) 0 0;display:flex;flex-direction:column}
 .hi-photo{position:absolute;left:0;right:0;top:clamp(120px,14vw,190px);bottom:0;background:url(../img/gulf-aquaculture-offshore-sea-cages-uae.webp) center/cover}
 .hi-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,22,40,.55) 75%,rgba(4,22,40,.9))}
-.hi-box{position:relative;z-index:2;margin-left:max(24px,calc((100vw - 1200px)/2));width:min(560px,82%);background:var(--grad);color:#fff;padding:clamp(28px,3.4vw,48px);box-shadow:0 30px 50px -30px rgba(44,27,12,.6)}
+.hi-box{position:relative;z-index:2;margin:0 8%;width:auto;background:var(--grad);color:#fff;padding:clamp(28px,3.4vw,48px);box-shadow:0 30px 50px -30px rgba(44,27,12,.6)}
 .hi-box p{font-size:clamp(1.05rem,1.55vw,1.4rem);line-height:1.6;color:#fff}
 .hi-vision{position:relative;z-index:2;margin-top:auto;padding:0 clamp(24px,5vw,70px) clamp(40px,5vw,70px);text-align:right;color:#fff}
 .hi-kicker{font-family:var(--sans);font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(1rem,1.4vw,1.2rem);color:var(--amber);margin-bottom:8px}
@@ -763,7 +763,7 @@ strong{font-weight:500;color:var(--ink)}
 .hi-person img{position:absolute;left:clamp(40px,12vw,170px);bottom:0;height:100%;width:auto}
 .hi-note{position:absolute;left:clamp(150px,22vw,320px);top:16%;font-size:clamp(1.2rem,1.7vw,1.5rem)}
 @media (max-width:1100px){.hi{grid-template-columns:1fr}.hi-left{min-height:640px}.hi-photo{top:120px}.hi-right{padding-left:24px;padding-right:24px}.hi-kicker-l{margin-top:0}}
-@media (max-width:760px){.hi-cols{grid-template-columns:1fr}.hi-rule{flex-direction:row;height:16px}.hi-rule::before,.hi-rule::after{width:auto;height:1.5px}.hi-box{width:auto;margin-right:24px}.hi-left{min-height:0}.hi-photo{position:relative;top:0;height:320px;order:2;margin-top:-40px}.hi-vision{order:3;background:#0B2742;padding-top:30px;text-align:left}.hi-script{margin-left:0}.hi-person{height:340px}.hi-note{left:auto;right:0;top:8%}}
+@media (max-width:760px){.hi-cols{grid-template-columns:1fr}.hi-rule{flex-direction:row;height:16px}.hi-rule::before,.hi-rule::after{width:auto;height:1.5px}.hi-box{margin:0 24px}.hi-left{min-height:0}.hi-photo{position:relative;top:0;height:320px;order:2;margin-top:-40px}.hi-vision{order:3;background:#0B2742;padding-top:30px;text-align:left}.hi-script{margin-left:0}.hi-person{height:340px}.hi-note{left:auto;right:0;top:8%}}
 /* ---------- Home cover in the profile cover tints ---------- */
 .cover{background:linear-gradient(180deg,#E4E4E2 0%,#F3F3F1 55%,#EDEDEB 100%)}
 .cover-text{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0))}
