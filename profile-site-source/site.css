@@ -793,3 +793,30 @@ strong{font-weight:500;color:var(--ink)}
 .hi .arc,.cover ~ section .arc{animation:arcDrift 14s ease-in-out infinite alternate}
 @keyframes arcDrift{from{transform:rotate(0) translate(0,0)}to{transform:rotate(14deg) translate(-18px,12px)}}
 @media (prefers-reduced-motion:reduce){.cv-rings,.cv-rings g,.hi .arc,.cover ~ section .arc{animation:none!important}}
+/* moving diamonds on the vertical rule */
+.hi-rule{position:relative;gap:0}
+.hi-rule::before,.hi-rule::after{display:none}
+.hi-rule{width:20px}
+.hi-rule{background:linear-gradient(var(--orange),var(--orange)) center/1.5px 100% no-repeat}
+.hi-track{position:absolute;left:50%;top:0;display:flex;flex-direction:column;align-items:center;gap:8px;transform:translateX(-50%);animation:railMove 7s ease-in-out infinite alternate}
+.hi-track i{width:7px;height:7px;background:var(--orange);transform:rotate(45deg);animation:dPulse 1.8s ease-in-out infinite}
+.hi-track i:last-child{animation-delay:.9s}
+.hi-track b{width:14px;height:14px;background:var(--teal);transform:rotate(45deg);animation:dSpin 4s linear infinite;box-shadow:0 0 0 0 rgba(10,127,143,.5)}
+@keyframes railMove{from{top:6%}to{top:calc(94% - 46px)}}
+@keyframes dPulse{0%,100%{transform:rotate(45deg) scale(1);opacity:.6}50%{transform:rotate(45deg) scale(1.5);opacity:1}}
+@keyframes dSpin{from{transform:rotate(45deg)}to{transform:rotate(405deg)}}
+/* staggered pillars 1-4 */
+.hi-anim .ab-pr li{opacity:0;transform:translateX(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.hi-anim.in .ab-pr li{opacity:1;transform:none}
+.hi-anim.in .ab-pr li:nth-child(1){transition-delay:.25s}.hi-anim.in .ab-pr li:nth-child(2){transition-delay:.45s}
+.hi-anim.in .ab-pr li:nth-child(3){transition-delay:.65s}.hi-anim.in .ab-pr li:nth-child(4){transition-delay:.85s}
+.hi-anim .ab-pr li::before{display:inline-block;transition:transform .4s var(--ease),color .3s}
+.hi-anim.in .ab-pr li::before{animation:numPop .7s var(--ease) both}
+.hi-anim.in .ab-pr li:nth-child(1)::before{animation-delay:.35s}.hi-anim.in .ab-pr li:nth-child(2)::before{animation-delay:.55s}
+.hi-anim.in .ab-pr li:nth-child(3)::before{animation-delay:.75s}.hi-anim.in .ab-pr li:nth-child(4)::before{animation-delay:.95s}
+.hi-anim .ab-pr li:hover::before{transform:scale(1.35) rotate(-8deg);color:var(--teal)}
+.hi-anim .ab-pr li{border-left:2px solid transparent;transition-property:opacity,transform,border-color,padding}
+.hi-anim .ab-pr li:hover{border-color:var(--amber)}
+@keyframes numPop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.4)}100%{transform:scale(1);opacity:1}}
+@media (max-width:760px){.hi-rule{width:auto;height:20px;background:linear-gradient(var(--orange),var(--orange)) center/100% 1.5px no-repeat}.hi-track{top:50%;left:0;flex-direction:row;transform:translateY(-50%);animation:railMoveH 7s ease-in-out infinite alternate}@keyframes railMoveH{from{left:4%}to{left:calc(96% - 46px)}}}
+@media (prefers-reduced-motion:reduce){.hi-track,.hi-track i,.hi-track b{animation:none!important}.hi-anim .ab-pr li{opacity:1;transform:none}}

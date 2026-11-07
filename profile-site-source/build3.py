@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108s">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108t">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108s"></script>
+<script src="assets/js/site.js?v=20261108t"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -133,13 +133,13 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
    <div class="hi-region rv"><h2 class="hi-kicker hi-kicker-l">A region hungry<br>for change</h2>
     <p>Demand for seafood in the UAE is growing at 8% annually, expected to reach 900,000 tonnes by 2030. Yet our local fisheries are in decline, and most aquaculture projects face challenges tied to over-engineered systems and species not suited to Gulf waters.</p>
     <p>Despite significant investment, aquaculture in the UAE has yet to reach its potential. At Gulf Aquaculture, we saw this not as a failure — but an opportunity to rethink, simplify, and rebuild from first principles.</p></div>
-   <div class="hi-rule" aria-hidden="true"><i></i><b></b><i></i></div>
-   <div class="hi-diff rv"><h2>We’re Doing<br>Things<br>Differently</h2><p class="hi-lead">We believe success starts small.</p>
+   <div class="hi-rule" aria-hidden="true"><span class="hi-track"><i></i><b></b><i></i></span></div>
+   <div class="hi-diff rv hi-anim"><h2>We’re Doing<br>Things<br>Differently</h2><p class="hi-lead">We believe success starts small.</p>
     <p class="hi-sub">Our method is rooted in four pillars:</p>
     <ol class="ab-pr"><li>Prioritise native species like grouper and red snapper</li><li>Keep upland infrastructure minimal — just hatchery and nursery</li><li>Move juveniles to sea cages early, reducing energy use</li><li>Grow gradually through proof of concept, validation, and iteration</li></ol>
     <p class="hi-call">We call this:<br><a href="species.html">Local Species in Local Waters.</a></p></div>
   </div>
-  <div class="hi-person"><span class="hi-circle" aria-hidden="true"></span><img src="assets/img/gulf-aquaculture-team-member-responsibility-to-the-gulf.webp" width="416" height="840" alt="Gulf Aquaculture team member" loading="lazy">
+  <div class="hi-person"><span class="hi-circle" aria-hidden="true"></span><img src="assets/img/gulf-aquaculture-research-team-member-abu-dhabi.webp" width="507" height="1021" alt="Gulf Aquaculture team member in Abu Dhabi" loading="lazy">
    <p class="note hi-note rv"><span>This isn’t just a job.</span><br><span>It’s a responsibility</span><br><span>to the Gulf.</span></p></div>
  </div>
 </section>
