@@ -2,7 +2,7 @@ FACILITIES = [
  dict(k="balghailam", name="Balghailam Island", title="Assets Under Management —<br>Balghailam Island",
   short="Our proof-of-concept hatchery: compact, biosecure and replicable — 6,000 m² of hatchery space.",
   intro="Instead of scaling vertically or chasing complexity, we’ve built a system aligned with nature — focused on fish health, biosecurity, and operational reliability. Compact, efficient, and replicable — our facility is a model for sustainable marine hatcheries in the region.",
-  hero="aerial.jpg", photo="gulf-aquaculture-balghailam-team.webp", photo_alt="The Gulf Aquaculture team at Balghailam Island",
+  hero="aerial.jpg", photo="gulf-aquaculture-balghailam-team-hd.webp", photo_alt="The Gulf Aquaculture team at Balghailam Island",
   stats=["6,000 m² of hatchery space","Dedicated rooms for live feed and algae production","Integrated RAS &amp; flow-through systems",
          "Automated filtration, UV sterilisation, and real-time water quality sensors","Biosecure broodstock housing and spawning zones",
          "Modular nursery capacity for phased growth","Fully equipped lab for water quality and microbiology"],
