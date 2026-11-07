@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108k">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108l">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108k"></script>
+<script src="assets/js/site.js?v=20261108l"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -226,24 +226,31 @@ about+=f'''<section class="sec"><div class="wrap"><span class="label rv">Milesto
 page("about.html","Our Story — Gulf Aquaculture","Gulf Aquaculture: story, mission, vision, principles, legal structure and interview.",about)
 
 # ========================================================= OPERATIONS
-FEAT=[("Hatchery &amp; Nursery","Controlled environments for larvae and fry.",'<path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M9 20v-6h6v6"/>'),
-      ("Live Feed Systems","Rotifers, copepods, algae production.",'<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><circle cx="12" cy="16" r="3"/>'),
+FEAT=[("Hatchery &amp; Nursery","Controlled environments for larvae and fry.",'<circle cx="8" cy="15" r="3"/><circle cx="14" cy="15" r="3"/><circle cx="20" cy="15" r="2.6"/><circle cx="11" cy="10" r="3"/><circle cx="17" cy="10" r="3"/><circle cx="14" cy="5.5" r="2.6"/>'),
+      ("Live Feed Systems","Rotifers, copepods, algae production.",'<path d="M9 12c3-4 8-5 12-1-4 4-9 3-12 1z"/><path d="M21 11l2-3v7z"/><circle cx="4" cy="10" r="1.3"/><circle cx="6" cy="14" r="1"/><circle cx="3" cy="16" r=".8"/>'),
       ("Biosecurity","Closed-loop systems, advanced filtration, and strict protocols.",'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'),
       ("Laboratories","Water quality and microbiology testing.",'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/>'),
       ("Traceability","SFS Trace system ensures full lifecycle transparency.",'<path d="M4 12h4l2-5 4 10 2-5h4"/>')]
-ops=opener("02","Our operations","Where Innovation<br>Meets Simplicity","We designed our facilities to do one thing well: raise healthy fish in sustainable, replicable systems.","cages.jpg","Good water quality isn't an output. It's a daily practice.")
-ops+='<section class="sec"><div class="wrap"><div class="feat rv">'+"".join(f'<div><svg viewBox="0 0 24 24">{i}</svg><h4>{t}</h4><p>{d}</p></div>' for t,d,i in FEAT)+'</div></div></section>'
-ops+='''<section class="sec navy" id="cycle"><div class="wrap">
-  <div class="cols" style="margin-bottom:40px"><div class="rv"><span class="label" style="color:var(--amber)">From broodstock to distribution</span><h2 style="margin-top:12px">Every stage reflects a clear purpose — and a shared responsibility to the Gulf.</h2></div>
-  <p class="rv">Select a phase around the cage. Throughout, our laboratory teams track microbial health, monitor water quality, and ensure every fish can be traced from broodstock to harvest.</p></div>
-  <div class="ops"><div class="ring rv" id="ring"></div>
-    <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div>
+ops=f'''<section class="opx paper"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
+ <div class="opx-left">
+  <h1 class="rv in">Where<br>Innovation<br>Meets Simplicity</h1>
+  <p class="opx-kicker rv in">Our operations</p>
+  <p class="lead rv in">We designed our facilities to do one thing well: raise healthy fish in sustainable, replicable systems.</p>
+  <figure class="opx-photo rv"><img src="assets/img/gulf-aquaculture-lab-technician.webp" width="1008" height="676" alt="Laboratory technician testing water samples" loading="lazy">
+   <p class="note opx-note"><span>Good water quality</span><br><span>isn’t an output. It’s a</span><br><span>daily practice.</span></p></figure>
+ </div>
+ <ol class="opx-feat">{"".join(f'<li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true">{i}</svg><h3>{t}:</h3><p>{d}</p></li>' for t,d,i in FEAT)}</ol>
 </div></section>
-<section class="sec paper"><div class="wrap cols">
+<section class="opb" id="cycle"><div class="wrap">
+ <div class="opb-text">
   <div class="rv"><p>Each stage of our operation reflects a clear purpose and a shared responsibility to the Gulf. In the hatchery, our teams begin early — checking water parameters, preparing live feed cultures, and monitoring larval development. This work is methodical and essential, creating the foundation for healthy fish and healthy ecosystems.</p>
-  <p>As fry grow, they are transitioned to nursery tanks and eventually to sea cages, where they continue to mature in conditions that mimic their natural habitat. This low-impact approach is not only efficient — it respects the Gulf's unique marine environment by working in harmony with it, rather than forcing artificial outcomes.</p></div>
+   <p>As fry grow, they are transitioned to nursery tanks and eventually to sea cages, where they continue to mature in conditions that mimic their natural habitat. This low-impact approach is not only efficient — it respects the Gulf’s unique marine environment by working in harmony with it, rather than forcing artificial outcomes.</p></div>
   <div class="rv"><p>Behind the scenes, our laboratory teams track microbial health, monitor water quality, and ensure every fish can be traced from broodstock to harvest. Our systems reduce energy usage, recycle water, and eliminate the need for unnecessary antibiotics. Every step is intentional, designed to reduce stress on fish — and on the environment.</p>
-  <p class="note" style="margin-top:30px"><span>Our systems are modular and repeatable — ready to be replicated across future sites.</span></p></div>
+   <p class="note opb-note"><span>Our systems are modular and</span><br><span>repeatable — ready to be replicated</span><br><span>across future sites.</span></p></div>
+ </div>
+ <div class="opb-cycle"><p class="opb-hint rv">Select a phase around the cage — from broodstock to distribution, under continuous lab oversight.</p>
+  <div class="ops"><div class="ring rv" id="ring"></div>
+   <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div></div>
 </div></section>'''
 page("operations.html","Operations — Gulf Aquaculture","Where innovation meets simplicity: hatchery, nursery, live feed, biosecurity, laboratories and traceability.",ops)
 
