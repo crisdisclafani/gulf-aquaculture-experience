@@ -84,3 +84,46 @@ if(f){ const h=location.hash.slice(1); const pre=$(`.who input[value="${h}"]`); 
     const errs=[]; if(!$$(".who input:checked").length) errs.push("tell us who you are"); if(!$("#n").value.trim()) errs.push("add your name"); if(!$("#e").value.includes("@")) errs.push("add a valid email"); if(!$("#c").checked) errs.push("accept the privacy note");
     m.style.display="block"; m.innerHTML = errs.length ? `Please ${errs.join(", ")}.` : "<b>Thank you.</b> This is a demo — the form is not connected yet. In the live site your message reaches info@gulfaquaculture.com."; }); }
 })();
+/* legal structure: wires, focus, dialog */
+(function(){
+  const org=document.querySelector(".lg-org"); if(!org) return;
+  const svg=org.querySelector(".lg-wires"), NS="http://www.w3.org/2000/svg";
+  const edges=JSON.parse(document.getElementById("lg-edges").textContent);
+  const box=id=>document.getElementById("lg-"+id).querySelector(".lg-box");
+  function draw(){
+    svg.innerHTML=""; if(getComputedStyle(svg).display==="none") return;
+    const o=org.getBoundingClientRect();
+    edges.forEach(([p,c,lab,route])=>{
+      const a=box(p).getBoundingClientRect(), b=box(c).getBoundingClientRect();
+      const P={l:a.left-o.left,r:a.right-o.left,t:a.top-o.top,b:a.bottom-o.top,cx:(a.left+a.right)/2-o.left,cy:(a.top+a.bottom)/2-o.top};
+      const C={l:b.left-o.left,r:b.right-o.left,t:b.top-o.top,b:b.bottom-o.top,cx:(b.left+b.right)/2-o.left,cy:(b.top+b.bottom)/2-o.top};
+      let d,lx,ly,anchor="start";
+      if(route==="down"){ const x=Math.abs(P.cx-C.cx)<4?C.cx:C.cx; const sy=P.b+16; d=`M${x} ${sy}V${C.t}`; lx=x+8; ly=(sy+C.t)/2+4; }
+      else if(route==="downside"){ const toLeft=C.cx<P.cx; const x=toLeft?(p==="bdf"?P.cx:P.l+28):P.cx; const ex=toLeft?C.r:C.l;
+        if(p==="bdf"){ d=`M${x} ${P.b}V${C.cy}H${C.l}`; lx=x+8; ly=P.b+40; }
+        else { d=`M${x} ${P.b+16}V${C.cy}H${ex}`; lx=x+8; ly=C.cy-8; } }
+      else { const toRight=C.cx>P.cx; const sx=toRight?P.r:P.l; const ex=C.cx+(toRight?-34:34);
+        d=`M${sx} ${P.cy}H${ex}V${C.t}`; lx=(sx+ex)/2; ly=P.cy-10; anchor="middle"; }
+      const path=document.createElementNS(NS,"path"); path.setAttribute("d",d); path.dataset.p=p; path.dataset.c=c; svg.appendChild(path);
+      [true,false].forEach(bg=>{ const t=document.createElementNS(NS,"text"); t.setAttribute("x",lx); t.setAttribute("y",ly); t.setAttribute("text-anchor",anchor); t.textContent=lab; t.dataset.p=p; t.dataset.c=c; if(bg) t.classList.add("bg"); svg.appendChild(t); });
+    });
+  }
+  draw(); addEventListener("resize",()=>requestAnimationFrame(draw)); if(document.fonts) document.fonts.ready.then(draw); setTimeout(draw,800);
+  // related nodes = all ancestors + descendants
+  const up={},down={}; edges.forEach(([p,c])=>{(up[c]=up[c]||[]).push(p);(down[p]=down[p]||[]).push(c);});
+  const walk=(id,g,acc)=>{(g[id]||[]).forEach(n=>{ if(!acc.has(n)){acc.add(n);walk(n,g,acc);} });return acc;};
+  const nodes=[...org.querySelectorAll(".lg-node")];
+  function focus(id){ const rel=new Set([id,...walk(id,up,new Set()),...walk(id,down,new Set())]);
+    org.classList.add("focus"); nodes.forEach(n=>n.classList.toggle("on",rel.has(n.dataset.id)));
+    svg.querySelectorAll("[data-p]").forEach(e=>e.classList.toggle("on",rel.has(e.dataset.p)&&rel.has(e.dataset.c)&&(e.dataset.p===id||e.dataset.c===id||walk(id,up,new Set()).has(e.dataset.c)||walk(id,down,new Set()).has(e.dataset.p)))); }
+  function clear(){ org.classList.remove("focus"); nodes.forEach(n=>n.classList.remove("on")); svg.querySelectorAll(".on").forEach(e=>e.classList.remove("on")); }
+  nodes.forEach(n=>{ n.addEventListener("mouseenter",()=>focus(n.dataset.id)); n.addEventListener("focus",()=>focus(n.dataset.id));
+    n.addEventListener("mouseleave",clear); n.addEventListener("blur",clear); });
+  const dlg=document.getElementById("lgd");
+  nodes.forEach(n=>n.addEventListener("click",()=>{ dlg.querySelector("#lgdK").textContent=n.dataset.tag; dlg.querySelector("#lgdN").textContent=n.dataset.name; dlg.querySelector("#lgdT").textContent=n.dataset.desc;
+    const a=dlg.querySelector("#lgdA"); if(n.dataset.href){ a.href=n.dataset.href; a.innerHTML=n.dataset.link+' <span aria-hidden="true">→</span>'; a.style.display="inline-flex"; } else a.style.display="none";
+    dlg.classList.add("open"); dlg.querySelector(".x").focus(); }));
+  const close=()=>dlg.classList.remove("open");
+  dlg.querySelector(".x").addEventListener("click",close); dlg.addEventListener("click",e=>{ if(e.target===dlg) close(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
+})();
