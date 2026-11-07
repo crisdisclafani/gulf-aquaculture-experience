@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108e">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108f">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108e"></script>
+<script src="assets/js/site.js?v=20261108f"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -127,6 +127,11 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
   <p>Despite significant investment, aquaculture in the UAE has yet to reach its potential. At Gulf Aquaculture, we saw this not as a failure — but an opportunity to rethink, simplify, and rebuild from first principles.</p></div>
 </div></section>
 
+<section class="yt-band" aria-label="Gulf Aquaculture video">
+  <div class="wrap yt-inner"><div class="rv"><span class="label">See us at work</span><h2>Aquaculture, grown in the Gulf.</h2><p>Watch Gulf Aquaculture at work — our people, our sites and our species.</p></div>
+  <button type="button" class="yt-open rv" data-yt="QwZ2BvfbzRg" data-start="13" aria-haspopup="dialog"><span class="yt-btn" aria-hidden="true"><span></span></span><span class="yt-txt">Watch the video</span></button></div>
+</section>
+<div class="yt-modal" id="ytm" role="dialog" aria-modal="true" aria-label="Gulf Aquaculture video"><div class="yt-frame"></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
 <section class="sec paper" id="approach"><span class="arc" style="width:700px;height:700px;left:-380px;bottom:-420px"></span><div class="wrap cols">
   <div class="rv"><span class="label">We're doing things differently</span><h2 style="margin:14px 0 22px">We believe success starts small.</h2><p>Our method is rooted in four pillars.</p>
     <p class="note" style="margin-top:30px;color:var(--ink);font-size:1.35rem">We call this: <span style="color:#fff">Local Species in Local Waters.</span></p></div>

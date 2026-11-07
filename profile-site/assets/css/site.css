@@ -555,3 +555,24 @@ strong{font-weight:500;color:var(--ink)}
 @keyframes playPulse{0%{box-shadow:0 0 0 0 rgba(226,161,60,.55)}80%,100%{box-shadow:0 0 0 26px rgba(226,161,60,0)}}
 .sp-player figcaption{position:absolute;left:16px;bottom:12px;z-index:3;font-size:.72rem;letter-spacing:.06em;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 @media (prefers-reduced-motion:reduce){.sp-play{animation:none}}
+/* ---------- Home: lightweight YouTube band (facade, iframe only on click) ---------- */
+.yt-band{position:relative;min-height:min(70svh,620px);display:flex;align-items:flex-end;overflow:hidden;background:#0b1a24 url(../img/gulf-aquaculture-cages-aerial.webp) center 35%/cover;color:#fff;transition:background-size 1.2s var(--ease)}
+.yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s var(--ease)}
+.yt-band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,12,4,.85) 0%,rgba(20,12,4,.25) 55%,rgba(20,12,4,.1) 100%)}
+.yt-band:hover .yt-thumb{transform:scale(1)}
+.yt-inner{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end;justify-content:space-between;padding:clamp(40px,6vw,80px) 0}
+.yt-inner .label{color:var(--amber)}
+.yt-inner h2{color:#fff;margin:10px 0 10px}
+.yt-inner p{color:rgba(255,255,255,.82);max-width:44ch}
+.yt-open{display:flex;align-items:center;gap:18px;color:#fff;background:none;border:0;font:inherit;cursor:pointer}
+.yt-btn{width:92px;height:92px;border-radius:50%;background:var(--grad);display:grid;place-items:center;animation:playPulse 2.4s ease-out infinite;transition:transform .3s var(--ease)}
+.yt-btn span{border-left:24px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:7px}
+.yt-open:hover .yt-btn{transform:scale(1.08)}
+.yt-txt{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.yt-open:focus-visible{outline:2px solid #fff;outline-offset:6px}
+.yt-modal{position:fixed;inset:0;z-index:95;background:rgba(10,6,2,.88);display:none;align-items:center;justify-content:center;padding:20px}
+.yt-modal.open{display:flex}
+.yt-frame{width:min(1100px,100%);aspect-ratio:16/9;background:#000;box-shadow:0 40px 80px -30px #000}
+.yt-frame iframe{width:100%;height:100%;border:0;display:block}
+.yt-x{position:absolute;top:14px;right:20px;width:48px;height:48px;font-size:2.2rem;color:#fff}
+@media (max-width:600px){.yt-btn{width:72px;height:72px}.yt-band{min-height:460px}}

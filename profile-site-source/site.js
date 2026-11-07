@@ -139,3 +139,17 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
     b.addEventListener("click",()=>{ fig.classList.add("playing"); v.muted=false; v.controls=true; v.currentTime=0; v.play().catch(()=>{}); });
   });
 })();
+/* YouTube facade: nothing from YouTube loads until the user clicks */
+(function(){
+  const btn=document.querySelector(".yt-open"), m=document.getElementById("ytm"); if(!btn||!m) return;
+  const frame=m.querySelector(".yt-frame"); let warmed=false;
+  const warm=()=>{ if(warmed) return; warmed=true; ["https://www.youtube-nocookie.com","https://i.ytimg.com"].forEach(h=>{ const l=document.createElement("link"); l.rel="preconnect"; l.href=h; document.head.appendChild(l); }); };
+  btn.addEventListener("pointerenter",warm); btn.addEventListener("focus",warm);
+  const close=()=>{ m.classList.remove("open"); frame.innerHTML=""; btn.focus(); };
+  btn.addEventListener("click",()=>{
+    frame.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&start=${btn.dataset.start||0}&rel=0&playsinline=1" title="Gulf Aquaculture video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    m.classList.add("open"); m.querySelector(".yt-x").focus(); });
+  m.querySelector(".yt-x").addEventListener("click",close);
+  m.addEventListener("click",e=>{ if(e.target===m) close(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&m.classList.contains("open")) close(); });
+})();
