@@ -127,3 +127,15 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   dlg.querySelector(".x").addEventListener("click",close); dlg.addEventListener("click",e=>{ if(e.target===dlg) close(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
 })();
+/* species video: muted preview when visible, click for sound + controls */
+(function(){
+  document.querySelectorAll(".sp-player").forEach(fig=>{
+    const v=fig.querySelector("video"), b=fig.querySelector(".sp-play");
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if("IntersectionObserver" in window && !reduce){
+      new IntersectionObserver(es=>es.forEach(e=>{ if(fig.classList.contains("playing")) return;
+        if(e.isIntersecting){ v.preload="auto"; v.play().catch(()=>{}); } else v.pause(); }),{threshold:.4}).observe(fig);
+    }
+    b.addEventListener("click",()=>{ fig.classList.add("playing"); v.muted=false; v.controls=true; v.currentTime=0; v.play().catch(()=>{}); });
+  });
+})();

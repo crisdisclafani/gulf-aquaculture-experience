@@ -1,3 +1,5 @@
+# Video per species: add "video": ("file.mp4","poster.webp") to a species to override the default.
+DEFAULT_VIDEO=("gulf-aquaculture-video-hamour.mp4","gulf-aquaculture-video-hamour-poster.webp")
 TBS='<span class="tbs">To be supplied by Gulf Aquaculture</span>'
 SPECIES=[
  dict(k="hamour",local="Hamour",en="Orange-spotted Grouper",sci="Epinephelus coioides",status="In production",img="gulf-aquaculture-fish-hamour.webp",hands="gulf-aquaculture-species-grouper.webp",
@@ -79,6 +81,8 @@ def species_pages(page):
         names = [f'<b>{d["local"]}</b> — local name', f'{d["en"]} — common name',
                  (f'<i>{d["sci"]}</i> — scientific name' if d["sci"] else f'Scientific name: {TBS}')]
         hands = (f'<figure class="spec rv sp-hands"><img src="assets/img/{d["hands"]}" alt="{d["local"]} held in two hands" loading="lazy"><figcaption>From our hatchery</figcaption></figure>' if d["hands"] else "")
+        vid, vposter = d.get("video", DEFAULT_VIDEO)
+        vcap = "" if "video" in d else "Placeholder video — species-specific footage to follow."
         sci = f'<i>{d["sci"]}</i>' if d["sci"] else "Scientific name to be confirmed"
         body = f'''<section class="sph paper"><span class="arc" style="width:820px;height:820px;right:-300px;top:-420px"></span><div class="wrap sph-grid">
  <div class="rv in"><a class="sph-back" href="species.html"><span aria-hidden="true">←</span> All species</a>
@@ -88,6 +92,10 @@ def species_pages(page):
   <a class="btn btn-or" href="contact.html?species={q}#partner" style="margin-top:26px">Enquire about {d["local"]} fry <span aria-hidden="true">→</span></a></div>
  <div class="sph-media rv in"><span class="sph-band" aria-hidden="true"></span>{fishimg(d, "sph-fish")}</div>
 </div></section>
+<section class="sp-video"><div class="wrap"><div class="sp-video-head rv"><span class="label">Species in motion</span><h2>{d["local"]}, from hatchery to sea</h2></div>
+<figure class="sp-player rv"><video class="sp-vid" src="assets/video/{vid}" poster="assets/img/{vposter}" muted loop playsinline preload="none" aria-label="Video: {d["local"]} ({d["en"]})"></video>
+<button type="button" class="sp-play" aria-label="Play video with sound"><span aria-hidden="true"></span></button>
+<figcaption>{vcap}</figcaption></figure></div></section>
 <section class="sec"><div class="wrap"><div class="spec-grid">
  {spec("Scientific &amp; common names", names)}
  {spec("Biological characteristics", d["bio"])}
