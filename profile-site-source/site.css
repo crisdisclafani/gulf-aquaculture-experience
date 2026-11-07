@@ -733,3 +733,34 @@ strong{font-weight:500;color:var(--ink)}
 .ab-stats p:last-child{color:rgba(255,255,255,.88);font-size:.9rem}
 @media (max-width:1100px){.ab-grid{grid-template-columns:1fr 1fr}.ab-story{grid-column:1/-1}.ab-card{margin:0 0 40px}.ab-awards{margin-left:0;padding-right:0}}
 @media (max-width:760px){.ab-sub{top:64px}.ab-grid{grid-template-columns:1fr}.ab-tl{grid-template-columns:1fr;gap:6px}.ab-tl::before{display:none}.ab-dia{margin:10px 0 12px}.ab-tl li{padding-left:16px;border-left:1px solid var(--orange)}.ab-mission{align-items:flex-start;text-align:left}.ab-razali{margin:24px 0 0}.ab-band-grid,.ab-stats{grid-template-columns:1fr}.ab-awards{flex-direction:column}}
+/* ---------- Home intro (profile p.2-3) ---------- */
+.hi{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);position:relative;overflow:hidden}
+.hi-left{position:relative;min-height:760px;padding:clamp(40px,5vw,70px) 0 0;display:flex;flex-direction:column}
+.hi-photo{position:absolute;left:0;right:0;top:clamp(120px,14vw,190px);bottom:0;background:url(../img/gulf-aquaculture-offshore-sea-cages-uae.webp) center/cover}
+.hi-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,22,40,.55) 75%,rgba(4,22,40,.9))}
+.hi-box{position:relative;z-index:2;margin-left:max(24px,calc((100vw - 1200px)/2));width:min(560px,82%);background:var(--grad);color:#fff;padding:clamp(28px,3.4vw,48px);box-shadow:0 30px 50px -30px rgba(44,27,12,.6)}
+.hi-box p{font-size:clamp(1.05rem,1.55vw,1.4rem);line-height:1.6;color:#fff}
+.hi-vision{position:relative;z-index:2;margin-top:auto;padding:0 clamp(24px,5vw,70px) clamp(40px,5vw,70px);text-align:right;color:#fff}
+.hi-kicker{font-family:var(--sans);font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(1rem,1.4vw,1.2rem);color:var(--amber);margin-bottom:8px}
+.hi-script{font-family:var(--script);font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:1.35;max-width:24ch;margin-left:auto}
+.hi-right{position:relative;padding:clamp(56px,7vw,110px) max(24px,calc((100vw - 1200px)/2)) 0 clamp(24px,4vw,60px)}
+.hi-arc{width:620px;height:620px;right:-240px;bottom:-300px}
+.hi-cols{display:grid;grid-template-columns:1fr auto 1.1fr;gap:clamp(20px,2.6vw,40px);position:relative}
+.hi-kicker-l{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.35;margin:clamp(60px,9vw,140px) 0 26px}
+.hi-region p{font-size:.95rem;margin-bottom:18px}
+.hi-rule{display:flex;flex-direction:column;align-items:center;gap:8px}
+.hi-rule::before,.hi-rule::after{content:"";flex:1;width:1.5px;background:var(--orange);opacity:.8}
+.hi-rule i{width:7px;height:7px;background:var(--orange);transform:rotate(45deg)}
+.hi-rule b{width:14px;height:14px;background:var(--teal);transform:rotate(45deg)}
+.hi-diff h2{font-size:clamp(2rem,3.4vw,3rem);line-height:1.05;margin-bottom:22px}
+.hi-lead{font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.45;margin-bottom:22px}
+.hi-sub{color:var(--orange);font-weight:600;margin-bottom:8px}
+.hi-call{margin-top:18px}
+.hi-call a{color:var(--teal);font-weight:600;border-bottom:1px solid transparent}
+.hi-call a:hover{border-color:var(--teal)}
+.hi-person{position:relative;height:clamp(300px,30vw,420px);margin-top:clamp(30px,4vw,50px)}
+.hi-circle{position:absolute;left:clamp(0px,8vw,110px);bottom:-80px;width:clamp(220px,22vw,320px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 30%,#7FF0F0,#2FB7B7 55%,#108C93)}
+.hi-person img{position:absolute;left:clamp(40px,12vw,170px);bottom:0;height:100%;width:auto}
+.hi-note{position:absolute;left:clamp(150px,22vw,320px);top:16%;font-size:clamp(1.2rem,1.7vw,1.5rem)}
+@media (max-width:1100px){.hi{grid-template-columns:1fr}.hi-left{min-height:640px}.hi-photo{top:120px}.hi-right{padding-left:24px;padding-right:24px}.hi-kicker-l{margin-top:0}}
+@media (max-width:760px){.hi-cols{grid-template-columns:1fr}.hi-rule{flex-direction:row;height:16px}.hi-rule::before,.hi-rule::after{width:auto;height:1.5px}.hi-box{width:auto;margin-right:24px}.hi-left{min-height:0}.hi-photo{position:relative;top:0;height:320px;order:2;margin-top:-40px}.hi-vision{order:3;background:#0B2742;padding-top:30px;text-align:left}.hi-script{margin-left:0}.hi-person{height:340px}.hi-note{left:auto;right:0;top:8%}}

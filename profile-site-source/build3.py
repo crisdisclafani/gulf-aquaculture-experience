@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108o">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108p">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108o"></script>
+<script src="assets/js/site.js?v=20261108p"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -110,8 +110,7 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
     <div class="actions"><a href="#approach" class="btn btn-or">Our approach</a><a href="operations.html" class="btn btn-line" style="color:var(--ink)">How we operate</a></div>
   </div>
   <div class="cover-media"><div class="img" role="img" aria-label="Sea cage at dawn"></div>
-    <svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="190"/><circle class="o" cx="200" cy="200" r="160"/></svg>
-    <p class="note"><span>This isn't just a job. It's a responsibility to the Gulf.</span></p></div>
+    <svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="190"/><circle class="o" cx="200" cy="200" r="160"/></svg></div>
 </section>
 
 <section class="navy"><div class="wrap nums">
@@ -121,32 +120,160 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
   <div class="num"><b><span data-count="20">0</span><small>M+</small></b><span>Fry</span><p>On track to ship to regional clients.</p></div>
 </div></section>
 
-<section class="sec"><div class="wrap cols">
-  <div class="rv"><span class="label">A region hungry for change</span><h2 style="margin-top:14px">In a region where seafood demand is growing and marine ecosystems are under strain, we believe in a better way.</h2></div>
-  <div class="rv"><p class="lead">Simpler, smarter, and grounded in nature.</p><p style="margin-top:18px">Demand for seafood in the UAE is growing at 8% annually, expected to reach 900,000 tonnes by 2030. Yet our local fisheries are in decline, and most aquaculture projects face challenges tied to over-engineered systems and species not suited to Gulf waters.</p>
-  <p>Despite significant investment, aquaculture in the UAE has yet to reach its potential. At Gulf Aquaculture, we saw this not as a failure — but an opportunity to rethink, simplify, and rebuild from first principles.</p></div>
-</div></section>
-
+<section class="hi" id="approach">
+ <div class="hi-left">
+  <div class="hi-photo" role="img" aria-label="Offshore fish cages in the Gulf"></div>
+  <div class="hi-box rv"><p>We exist to make aquaculture work — for our ecosystems, for food security, and for future generations. In a region where seafood demand is growing and marine ecosystems are under strain, we believe in a better way: simpler, smarter, and grounded in nature.</p></div>
+  <div class="hi-vision rv"><p class="hi-kicker">Our vision</p><p class="hi-script">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p></div>
+ </div>
+ <div class="hi-right"><span class="arc hi-arc" aria-hidden="true"></span>
+  <div class="hi-cols">
+   <div class="hi-region rv"><h2 class="hi-kicker hi-kicker-l">A region hungry<br>for change</h2>
+    <p>Demand for seafood in the UAE is growing at 8% annually, expected to reach 900,000 tonnes by 2030. Yet our local fisheries are in decline, and most aquaculture projects face challenges tied to over-engineered systems and species not suited to Gulf waters.</p>
+    <p>Despite significant investment, aquaculture in the UAE has yet to reach its potential. At Gulf Aquaculture, we saw this not as a failure — but an opportunity to rethink, simplify, and rebuild from first principles.</p></div>
+   <div class="hi-rule" aria-hidden="true"><i></i><b></b><i></i></div>
+   <div class="hi-diff rv"><h2>We’re Doing<br>Things<br>Differently</h2><p class="hi-lead">We believe success starts small.</p>
+    <p class="hi-sub">Our method is rooted in four pillars:</p>
+    <ol class="ab-pr"><li>Prioritise native species like grouper and red snapper</li><li>Keep upland infrastructure minimal — just hatchery and nursery</li><li>Move juveniles to sea cages early, reducing energy use</li><li>Grow gradually through proof of concept, validation, and iteration</li></ol>
+    <p class="hi-call">We call this:<br><a href="species.html">Local Species in Local Waters.</a></p></div>
+  </div>
+  <div class="hi-person"><span class="hi-circle" aria-hidden="true"></span><img src="assets/img/gulf-aquaculture-team-member-responsibility-to-the-gulf.webp" width="416" height="840" alt="Gulf Aquaculture team member" loading="lazy">
+   <p class="note hi-note rv"><span>This isn’t just a job.</span><br><span>It’s a responsibility</span><br><span>to the Gulf.</span></p></div>
+ </div>
+</section>
 <section class="yt-band" aria-label="Gulf Aquaculture video">
   <div class="wrap yt-inner"><div class="rv"><span class="label">An introduction to Gulf Aquaculture</span><h2>Aquaculture, grown in the Gulf.</h2><p>Our sea cages, hatchery, laboratories and the people behind them — in a 7-minute film.</p></div>
   <button type="button" class="yt-open rv" data-yt="QwZ2BvfbzRg" data-start="13" aria-haspopup="dialog"><span class="yt-btn" aria-hidden="true"><span></span></span><span class="yt-txt">Watch the video</span></button></div>
 </section>
 <div class="yt-modal" id="ytm" role="dialog" aria-modal="true" aria-label="Gulf Aquaculture video"><div class="yt-frame"></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
-<section class="sec paper" id="approach"><span class="arc" style="width:700px;height:700px;left:-380px;bottom:-420px"></span><div class="wrap cols">
-  <div class="rv"><span class="label">We're doing things differently</span><h2 style="margin:14px 0 22px">We believe success starts small.</h2><p>Our method is rooted in four pillars.</p>
-    <p class="note" style="margin-top:30px;color:var(--ink);font-size:1.35rem">We call this: <span style="color:#fff">Local Species in Local Waters.</span></p></div>
-  <ol class="pillars rv">
-    <li><span><b>Prioritise native species</b>Like grouper and red snapper.</span></li>
-    <li><span><b>Keep upland infrastructure minimal</b>Just hatchery and nursery.</span></li>
-    <li><span><b>Move juveniles to sea cages early</b>Reducing energy use.</span></li>
-    <li><span><b>Grow gradually</b>Through proof of concept, validation and iteration.</span></li>
-  </ol>
+<section class="sec paper" style="padding-top:0;background:none"><div class="wrap">
+  <div class="chapters rv">
+    <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles, legal structure and a conversation with our General Manager.</p><span class="more">Our story</span></a>
+    <a class="chap" href="operations.html"><span class="n">02</span><h3>Where innovation meets simplicity</h3><p>Five phases, continuous lab oversight and full traceability.</p><span class="more">Operations</span></a>
+    <a class="chap" href="assets.html"><span class="n">03</span><h3>Assets under management</h3><p>Balghailam Island and the Sheikh Khalifa Marine Research Centre.</p><span class="more">Assets</span></a>
+    <a class="chap" href="species.html"><span class="n">04</span><h3>Local species, local knowledge</h3><p>Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais — native, resilient, well-adapted.</p><span class="more">Species</span></a>
+    <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
+    <a class="chap" href="people.html"><span class="n">06</span><h3>The people behind the progress</h3><p>A better future is grown, not guessed.</p><span class="more">People</span></a>
+  </div>
 </div></section>
 
-<section class="sec"><div class="wrap" style="max-width:980px;text-align:center">
-  <span class="label rv">Our vision</span>
-  <p class="quote rv" style="margin-top:20px">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p>
+<section class="sec navy" style="background:linear-gradient(135deg,rgba(94,58,27,.92),rgba(44,27,12,.96)),url(assets/img/sunset-strip.jpg) center/cover"><div class="wrap cols" style="align-items:center">
+  <blockquote class="quote rv">“We're not building a fish farm. We're building trust — in the idea that the UAE can feed itself, responsibly.”<cite>Mohamed Razali · General Manager</cite></blockquote>
+  <div class="rv"><p>Every phase is tested before it's scaled. That's how we build trust — with nature and with investors.</p><a href="about.html#interview" class="more" style="margin-top:26px;color:var(--amber)">Read the conversation</a></div>
 </div></section>
+
+<section class="sec"><div class="wrap cols" style="align-items:center">
+  <div class="rv"><h2>We welcome conversations that move aquaculture forward.</h2></div>
+  <div class="rv"><p>Whether you're an investor who shares our long-term vision, a researcher exploring native species, or a policymaker shaping the future of food — we believe progress happens through partnership.</p><a href="contact.html" class="btn btn-or" style="margin-top:26px">Let's talk</a></div>
+</div></section>'''
+page("index.html","Gulf Aquaculture — Transforming Aquaculture in the Middle East","Gulf Aquaculture: local species in local waters — hatcheries, research and sea-cage farming in the UAE.",home)
+
+# ========================================================= ABOUT
+TL=[("2023","Founded","Formed as a joint venture between Emirates Consortium and Hibiscus Capital Investment — with a simple idea: aquaculture designed for this region."),
+    ("2024","First sale","First sale of Hamour fry to the local market. Proof of concept through our Balghailam Island hatchery."),
+    ("Feb 2025","Award","Awarded 1st place at the Sheikh Mansour Agriculture Award."),
+    ("Mar 2026","Certified","GA received BAP certification for its two assets."),
+    ("2026","Scale","Exclusive management of the largest hatchery and nursery facility in the UAE and the wider Gulf, under a 15-year lease — on track to ship 20+ million fry.")]
+tl='<div class="tline"><span class="bar"></span>'+"".join(f'<div class="tl"><b>{y}</b><i></i><h4>{h}</h4><p>{p}</p></div>' for y,h,p in TL)+"</div>"
+def node(n,role,parent=""): return f'<div class="node"><b>{n}</b><small>{role}</small>{f"<span class=\"edge\" style=\"color:#fff;margin-top:10px\">{parent}</span>" if parent else ""}</div>'
+org=f'''<div class="org rv">
+  {node("M. Razali (founder)","Aquaculture Network")}<div></div>{node("HH. Sh. Mohammed Bin Suroor Al Nahyan","Abu Dhabi Royal Family")}
+  {node("Hibiscus Capital Investments LLC","Investment holding","100% · M. Razali — BDF / BNF: TBC%")}
+  {node("Gulf Aquaculture LLC","Aquaculture Op Co.","35% Hibiscus · 65% Emirates Consortium")}
+  {node("Emirates Consortium LLC","Investment holding","100% · HH. Sh. Mohammed Bin Suroor Al Nahyan")}
+  {node("ODS Seafood Trading LLC","Gulf Seafood Imports","40% · Hibiscus Capital Investments")}
+  {node("Gulf Aquaculture Alliance","Government Concession (SPV)","100% · Gulf Aquaculture LLC")}
+  {node("Jalboot LLC","Marine Op Co.","100% · Emirates Consortium")}
+  {node("Asian Hatcheries","Fry Exports","90% · Hibiscus Capital Investments")}
+</div><p class="org-legend">Ownership shares as shown in the Company Profile. BDF / BNF holding: to be confirmed.</p>'''
+QA=[("What inspired you to launch Gulf Aquaculture?","I've always believed that food security starts in our own waters. But the models we saw here weren't working — they were imported, high-cost, and environmentally mismatched. We saw a gap for a simpler, region-specific approach. That's how Gulf Aquaculture began."),
+    ("What makes your approach different?","We don't chase complexity. We focus on native species, grow them naturally, and keep our systems lean. The difference is — we're not trying to replicate European aquaculture. We're building something Gulf-born and Gulf-suited."),
+    ("What's your vision for the next 5 years?","Scale. But responsibly. We want to prove this model can work nationally, and then regionally. And we want to be a partner to government and research institutions — not just a supplier, but a strategic contributor to the UAE's food systems."),
+    ("What does success look like for Gulf Aquaculture?","For us, success isn't measured by how fast we grow, but by how well we grow. If we can reliably produce fry of local species to support the region's aquaculture industry, raise healthy fish, protect the marine environment, and earn the trust of partners and regulators — that's a strong foundation. Over time, we hope our model can inspire others to approach aquaculture in a more local and sustainable way."),
+    ("How do you approach uncertainty in a developing sector like this?","Carefully. We know this industry is still taking shape in the region, so staying grounded is key. We start small, validate every step, and let production data and environmental conditions guide our decisions. It's about being proactive without being reckless — and keeping long-term resilience at the center of what we do.")]
+qa='<div class="qa rv">'+"".join(f'<details{" open" if i==0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i,(q,a) in enumerate(QA))+"</div>"
+TLX=[("2023","t","Formed in 2023 as a joint venture between Emirates Consortium and Hibiscus Capital Investment, Gulf Aquaculture [GA] began with a simple idea: what if aquaculture were designed for this region, not imported from elsewhere?"),
+     ("2024","o","By 2024, we achieved our first sale of Hamour fry to the local market.<br><br>Proof of our concept was achieved through operation of our Balghailam Island hatchery."),
+     ("2026","a","In 2026 GA secured exclusive management of the largest hatchery and nursery facility in the UAE and the wider Gulf region, under a 15-year lease.<br><br>At the time of printing the company is on track to ship 20+ million fry to regional clients.")]
+AW='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9.5 9l1.7 1.7L14.8 7.2"/><path d="M8.5 14l-2 7 3-1.5L12 22l2.5-2.5 3 1.5-2-7"/></svg>'
+about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a href="#story">Our story</a><a href="#mission">Mission &amp; vision</a><a href="#principles">Principles</a><a href="#role">Our regional role</a><a href="#achievements">Achievements</a><a href="#interview">Leadership interview</a><a href="people.html">Our team →</a></div></nav>
+<section class="ab-top" id="story"><span class="arc ab-arc" aria-hidden="true"></span><div class="wrap ab-grid">
+ <div class="ab-story">
+  <p class="ab-kicker rv in">Our story</p>
+  <h1 class="rv in">From Vision<br>to Operation</h1>
+  <ol class="ab-tl">{"".join(f'<li class="rv ab-{c}"><span class="ab-year">{y}</span><span class="ab-dia" aria-hidden="true"><i></i><b></b><i></i></span><p>{t}</p></li>' for y,c,t in TLX)}</ol>
+ </div>
+ <div class="ab-mission" id="mission">
+  <p class="ab-kicker ab-kicker-a rv">Our mission</p>
+  <p class="ab-script rv">To advance sustainable aquaculture by proving it can work in harmony with the Gulf’s ecosystems and communities.</p>
+  <img class="ab-razali rv" src="assets/img/mohamed-razali-gulf-aquaculture-founder-with-fish.webp" width="373" height="787" alt="Mohamed Razali, founder and General Manager of Gulf Aquaculture, holding a fish" loading="lazy">
+ </div>
+ <div class="ab-card rv" id="principles">
+  <h2>What We<br>Stand For</h2>
+  <p class="ab-kicker">Our principles</p>
+  <ol class="ab-pr"><li>Grow responsibly, not rapidly</li><li>Invest only what we need to learn</li><li>Focus on animal welfare and ecosystem integrity</li><li>Build trust through transparency</li><li>Share knowledge and invite collaboration</li></ol>
+  <p class="ab-kicker" style="margin-top:28px">Our vision</p>
+  <p class="ab-vision">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p>
+ </div>
+</div></section>
+<section class="ab-band" id="role"><div class="wrap">
+ <div class="ab-awards" id="achievements">
+  <div class="rv">{AW}<p><b>Feb 2025</b>Awarded 1st place at the Sheikh Mansour Agriculture Award</p></div>
+  <div class="rv">{AW}<p><b>Mar 2026</b>GA received BAP certification for its two assets.</p></div>
+ </div>
+ <div class="ab-band-grid">
+  <h2 class="ab-role rv">Our role is to serve the sea and the people who depend on it.</h2>
+  <div class="ab-stats">
+   <div class="rv"><p class="ab-big"><span data-count="50">0</span>% less</p><h3>Wild Gulf fish stocks since 1990</h3><p>We supply seedstock from land-based hatcheries, easing pressure on wild populations.</p></div>
+   <div class="rv"><p class="ab-big"><span data-count="95">0</span>%</p><h3>Of water recycled in our hatchery system</h3><p>Lower environmental footprint and energy use, aligned with national sustainability goals.</p></div>
+  </div>
+ </div>
+</div></section>
+'''
+about+=f'''<section class="iv" id="interview">
+ <div class="iv-left"><span class="arc iv-arc" aria-hidden="true"></span>
+  <h2 class="iv-title rv">A Thoughtful<br>Approach to<br>Growth</h2>
+  <p class="iv-kicker rv">A conversation with Mohamed Razali, General Manager</p>
+  <figure class="iv-photo rv"><img src="assets/img/gulf-aquaculture-razali-portrait.webp" width="640" height="640" alt="Mohamed Razali, General Manager of Gulf Aquaculture" loading="lazy"></figure>
+  {"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[:3])}
+  <p class="note iv-note rv"><span>“Every phase is tested</span><br><span>before it’s scaled. That’s</span><br><span>how we build trust —</span><br><span>with nature and with investors.”</span></p>
+  <figure class="iv-site rv"><img src="assets/img/gulf-aquaculture-facility-aerial.webp" width="1000" height="408" alt="Aerial view of the Gulf Aquaculture hatchery on Balghailam Island" loading="lazy"></figure>
+ </div>
+ <div class="iv-right">
+  <blockquote class="iv-quote rv">“We’re not building a fish farm. We’re building trust — in the idea that the UAE can feed itself, responsibly.”<cite>Mohamed Razali</cite></blockquote>
+  <div class="iv-rule rv" aria-hidden="true"><i></i><b></b><i></i></div>
+  <div class="iv-cols">{"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[3:])}</div>
+ </div>
+</section>'''
+page("about.html","Our Story — Gulf Aquaculture","Gulf Aquaculture: story, mission, vision, principles, legal structure and interview.",about)
+
+# ========================================================= OPERATIONS
+FEAT=[("Hatchery &amp; Nursery","Controlled environments for larvae and fry.",'<circle cx="8" cy="15" r="3"/><circle cx="14" cy="15" r="3"/><circle cx="20" cy="15" r="2.6"/><circle cx="11" cy="10" r="3"/><circle cx="17" cy="10" r="3"/><circle cx="14" cy="5.5" r="2.6"/>'),
+      ("Live Feed Systems","Rotifers, copepods, algae production.",'<path d="M9 12c3-4 8-5 12-1-4 4-9 3-12 1z"/><path d="M21 11l2-3v7z"/><circle cx="4" cy="10" r="1.3"/><circle cx="6" cy="14" r="1"/><circle cx="3" cy="16" r=".8"/>'),
+      ("Biosecurity","Closed-loop systems, advanced filtration, and strict protocols.",'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'),
+      ("Laboratories","Water quality and microbiology testing.",'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/>'),
+      ("Traceability","SFS Trace system ensures full lifecycle transparency.",'<path d="M4 12h4l2-5 4 10 2-5h4"/>')]
+ops=f'''<section class="opx paper"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
+ <div class="opx-left">
+  <h1 class="rv in">Where<br>Innovation<br>Meets Simplicity</h1>
+  <p class="opx-kicker rv in">Our operations</p>
+  <p class="lead rv in">We designed our facilities to do one thing well: raise healthy fish in sustainable, replicable systems.</p>
+  <figure class="opx-photo rv"><img src="assets/img/gulf-aquaculture-lab-technician.webp" width="1008" height="676" alt="Laboratory technician testing water samples" loading="lazy">
+   <p class="note opx-note"><span>Good water quality</span><br><span>isn’t an output. It’s a</span><br><span>daily practice.</span></p></figure>
+ </div>
+ <ol class="opx-feat">{"".join(f'<li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true">{i}</svg><h3>{t}:</h3><p>{d}</p></li>' for t,d,i in FEAT)}</ol>
+</div></section>
+<section class="opb" id="cycle"><div class="wrap">
+ <div class="opb-text">
+  <div class="rv"><p>Each stage of our operation reflects a clear purpose and a shared responsibility to the Gulf. In the hatchery, our teams begin early — checking water parameters, preparing live feed cultures, and monitoring larval development. This work is methodical and essential, creating the foundation for healthy fish and healthy ecosystems.</p>
+   <p>As fry grow, they are transitioned to nursery tanks and eventually to sea cages, where they continue to mature in conditions that mimic their natural habitat. This low-impact approach is not only efficient — it respects the Gulf’s unique marine environment by working in harmony with it, rather than forcing artificial outcomes.</p></div>
+  <div class="rv"><p>Behind the scenes, our laboratory teams track microbial health, monitor water quality, and ensure every fish can be traced from broodstock to harvest. Our systems reduce energy usage, recycle water, and eliminate the need for unnecessary antibiotics. Every step is intentional, designed to reduce stress on fish — and on the environment.</p>
+   <p class="note opb-note"><span>Our systems are modular and</span><br><span>repeatable — ready to be replicated</span><br><span>across future sites.</span></p></div>
+ </div>
+ <div class="opb-cycle"><p class="opb-hint rv">Select a phase around the cage — from broodstock to distribution, under continuous lab oversight.</p>
+  <div class="ops"><div class="ring rv" id="ring"></div>
+   <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div></div>
+
 
 <section class="sec paper" style="padding-top:0;background:none"><div class="wrap">
   <div class="chapters rv">
