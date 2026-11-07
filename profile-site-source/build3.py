@@ -60,7 +60,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108c">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -85,7 +85,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108b"></script>
+<script src="assets/js/site.js?v=20261108c"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -262,19 +262,25 @@ page("assets.html","Assets — Gulf Aquaculture","Balghailam Island hatchery and
 
 # ========================================================= SPECIES
 FISH='<svg class="fish" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M14 45C44 10 110 6 152 45 110 84 44 80 14 45Z" stroke="#E2A13C" stroke-width="1.2"/><path d="M152 45l40-28v56l-40-28Z" stroke="#E2A13C" stroke-width="1.2"/><circle cx="42" cy="40" r="3" fill="#E2A13C"/></svg>'
-sp=opener("04","Our core species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","grouper.jpg","We don't adapt species to our systems. We build systems around our species.")
-sp+=f'''<section class="sec"><div class="wrap"><span class="label rv">Our core species</span><h2 class="rv" style="margin:12px 0 44px">Valuable to the market — and naturally suited to our environment.</h2>
-<div class="species rv">
-  <article class="sp"><div class="bg bw" style="background-image:url(assets/img/grouper.jpg)"></div><span class="n">01</span><h3>Grouper</h3><p>Hamour — a high-value, slow-growing species prized in regional cuisine.</p></article>
-  <article class="sp"><div class="bg" style="background-image:url(assets/img/sunset-tall.jpg);opacity:.35;filter:sepia(.6)"></div>{FISH}<span class="n">02</span><h3>Red Snapper</h3><p>A hardy and fast-growing species ideal for sea cage culture.</p></article>
-  <article class="sp"><div class="bg" style="background-image:url(assets/img/boat-strip.jpg);opacity:.3;filter:sepia(.7)"></div>{FISH}<span class="n">03</span><h3>Shari</h3><p>A premium reef fish valued for its delicate flavour, strong market demand, and adaptability to warm-water aquaculture.</p></article>
-</div><p class="org-legend">Species photos for Red Snapper and Shari to be supplied.</p></div></section>
-<section class="sec paper"><div class="wrap cols">
-  <div class="rv"><span class="label">Deep knowledge. Local advantage.</span><p class="lead" style="margin:14px 0 22px">Our work begins with a profound understanding of native Gulf species — their biology, behaviour, and breeding cycles.</p><p>This knowledge allows us to:</p>{dia(["Optimise feed for local conditions","Breed fish with greater resilience to heat and salinity","Support wild population recovery through responsible sourcing","Avoid over-engineering, reducing costs and environmental stress"])}</div>
-  <div class="rv"><span class="label">Sustainability through specificity</span><p class="lead" style="margin:14px 0 22px">Rather than replicate global models, we've designed our hatchery and nursery systems to reflect what's needed — and nothing more.</p><p>This minimalist approach results in:</p>{dia(["Lower energy use","Higher survival rates","No antibiotic use","Meaningful reductions in environmental impact"])}</div>
-</div></section>
-<section class="sec"><div class="wrap" style="max-width:980px;text-align:center"><p class="quote rv">Meaningful sustainability starts with knowing what thrives here — not just what sells.</p>
-<p class="rv" style="margin-top:22px">Our approach is rooted in science, shaped by local conditions, and designed to benefit both ecosystems and economies.</p></div></section>'''
+SPX=[("grouper","Grouper","Hamour","A high-value, slow-growing species prized in regional cuisine."),
+     ("shari","Shari","","A premium reef fish valued for its delicate flavour, strong market demand, and adaptability to warm-water aquaculture."),
+     ("red-snapper","Red Snapper","","A hardy and fast-growing species ideal for sea cage culture.")]
+sp=opener("04","Native Gulf species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","grouper.jpg","")
+sp+='<section class="sec spx"><div class="wrap"><p class="spx-kicker rv">Our core species:</p><div class="spx-grid">'+"".join(
+  f'<article class="spc rv"><figure class="spc-img"><img src="assets/img/gulf-aquaculture-species-{k}.webp" alt="{n} held in two hands" loading="lazy"></figure>'
+  f'<h3 class="spc-name">{n}</h3>{f"<span class=spc-local>{loc}</span>" if loc else ""}<p>{d}</p>'
+  f'<a class="spc-link" href="contact.html#partner">Fry availability <span aria-hidden="true">→</span></a></article>' for k,n,loc,d in SPX)+'</div></div></section>'
+sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Aerial view of sea cages and a work vessel">
+  <p class="spk-belief">At Gulf Aquaculture, we believe meaningful sustainability starts with knowing what thrives here — not just what sells. Our approach is rooted in science, shaped by local conditions, and designed to benefit both ecosystems and economies.</p>
+  <p class="spk-claim">We don’t adapt species to our systems. We build systems around our species.</p></div>
+ <div class="spk-text"><span class="arc" aria-hidden="true"></span>
+  <div class="spk-block rv"><h2 class="spk-h">Deep knowledge.<br>Local advantage.</h2>
+   <p>Our work begins with a profound understanding of native Gulf species — their biology, behaviour, and breeding cycles. Species like Hamour and Red Snapper are not only valuable to the market — they’re naturally suited to our environment.</p>
+   <p>This knowledge allows us to:</p>{dia(["Optimise feed for local conditions","Breed fish with greater resilience to heat and salinity","Support wild population recovery through responsible sourcing","Avoid overengineering, reducing costs and environmental stress"])}</div>
+  <div class="spk-block rv"><h2 class="spk-h">Sustainability<br>through specificity</h2>
+   <p>Rather than replicate global models, we’ve designed our hatchery and nursery systems to reflect what’s needed — and nothing more. This minimalist approach results in:</p>{dia(["Lower energy use","Higher survival rates","No antibiotic use","Meaningful reductions in environmental impact"])}
+   <a class="btn btn-or" href="contact.html#partner" style="margin-top:30px">Fry orders &amp; availability <span aria-hidden="true">→</span></a></div>
+ </div></section>'''
 page("species.html","Species — Gulf Aquaculture","Native Gulf species: Grouper (Hamour), Red Snapper and Shari.",sp)
 
 # ========================================================= GROWTH
