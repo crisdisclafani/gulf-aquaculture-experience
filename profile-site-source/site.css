@@ -908,3 +908,16 @@ html{scroll-behavior:smooth}
 .ab-card.tgt-flash{animation:tgtFlash 1.6s var(--ease),none}
 .ab-mission.tgt-flash .ab-script,.ab-story.tgt-flash h1{animation:tgtPop 1.2s var(--ease)}
 @keyframes tgtPop{0%{transform:none}35%{transform:scale(1.04)}100%{transform:none}}
+/* ---------- giant fish window (inline SVG clip) ---------- */
+.opener .media.fishwin{align-self:center}
+.fw-svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 30px 40px rgba(11,42,63,.28))}
+.fw-swim{transform-origin:500px 280px;animation:fwSwim 7s ease-in-out infinite}
+.fw-img{transform-origin:500px 280px;animation:fwPan 18s ease-in-out infinite alternate}
+.fw-path{fill:none;stroke:url(#fwg);stroke-width:6;stroke-linejoin:round;stroke-dasharray:3200;stroke-dashoffset:3200;animation:fwDraw 3.5s .3s var(--ease) forwards}
+.fw-eye{fill:#fff;stroke:url(#fwg);stroke-width:5;opacity:0;animation:fadeIn .8s 2.8s forwards}
+@keyframes fwDraw{to{stroke-dashoffset:0}}
+@keyframes fwSwim{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(-1.4deg)}}
+@keyframes fwPan{from{transform:scale(1) translateX(-20px)}to{transform:scale(1.08) translateX(20px)}}
+.opener .media.fishwin .fw-note{position:relative;left:auto;bottom:auto;margin:18px 0 0 auto;max-width:360px;text-align:right}
+@media (prefers-reduced-motion:reduce){.fw-swim,.fw-img{animation:none}.fw-path{stroke-dashoffset:0;animation:none}.fw-eye{opacity:1;animation:none}}
+.opener .media.fishwin{transform:scale(1.12);transform-origin:center}@media (max-width:900px){.opener .media.fishwin{transform:none}}

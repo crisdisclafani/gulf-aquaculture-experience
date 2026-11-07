@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109a">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109c">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109a"></script>
+<script src="assets/js/site.js?v=20261109c"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -97,6 +97,18 @@ def opener(no,label,title,lead,img,note,extra=""):
   <div class="rv in"><span class="folio"><i></i>{label}</span><h1>{title}</h1><p class="lead">{lead}</p>{extra}</div>
   <div class="media rv in"><div class="img" style="background-image:url(assets/img/{img})" role="img" aria-label="Company Profile photo"></div>{f'<p class="note"><span>{note}</span></p>' if note else ""}</div>
 </div></section>'''
+
+import re as _re
+FISH_D="M30 290C140 70 470 20 690 230 760 150 860 60 975 30 930 150 915 230 920 290 915 350 930 430 975 550 860 520 760 430 690 350 470 560 140 510 30 290Z"
+def fishwin(html_, img, alt, note):
+    rep=(f'<div class="media rv in fishwin"><svg class="fw-svg" viewBox="0 0 1000 560" role="img" aria-label="{alt}"><defs><clipPath id="fwc"><path d="{FISH_D}"/></clipPath>'
+         f'<linearGradient id="fwg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C0451F"/><stop offset=".55" stop-color="#E3A43E"/><stop offset="1" stop-color="#FBE27A"/></linearGradient></defs>'
+         f'<g class="fw-swim"><g clip-path="url(#fwc)"><image class="fw-img" href="assets/img/{img}" x="-60" y="-40" width="1120" height="640" preserveAspectRatio="xMidYMid slice"/></g>'
+         f'<path class="fw-path" d="{FISH_D}"/><circle class="fw-eye" cx="215" cy="250" r="16"/></g></svg>'
+         + (f'<p class="note fw-note"><span>{note}</span></p>' if note else '') + '</div>')
+    return _re.sub(r'<div class="media rv in">.*?</div>(?:<p class="note">.*?</p>)?</div>', lambda m: rep, html_, count=1, flags=_re.S)
+import species_data as _sd, facilities_data as _fd
+_sd.FISHWIN=fishwin; _fd.FISHWIN=fishwin
 def dia(items): return '<ul class="diamonds">'+"".join(f"<li>{i}</li>" for i in items)+"</ul>"
 
 # ========================================================= HOME
@@ -382,6 +394,7 @@ legal=('<section class="sec legal" id="legal-structure"><div class="wrap"><div c
  '<div class="bio" id="lgd" role="dialog" aria-modal="true" aria-labelledby="lgdN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button>'
  '<span class="label" id="lgdK"></span><h3 id="lgdN" style="margin-top:8px"></h3><p id="lgdT" style="margin-top:14px"></p><a class="btn btn-or" id="lgdA" href="#" style="margin-top:22px;display:none"></a></div></div>')
 gr=opener("05","Sustainability in practice","Built for<br>Tomorrow","At Gulf Aquaculture, sustainability isn’t an add-on — it’s built into the way we think, work, and grow. From the design of our hatcheries to the resilience of our broodstock, every decision is made with tomorrow in mind.","sunset-tall.jpg","",'<p class="statement">We don’t just raise fish. We raise the bar for what aquaculture can be — for people, planet, and prosperity.</p>')
+gr=fishwin(gr,"gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp","Sea cages at sunset in the Arabian Gulf","")
 gr+=legal
 gr+='<section class="boatq" role="img" aria-label="Work vessel among the sea cages"><div class="wrap"><p class="note"><span>We grow value the same way</span><br><span>we grow fish — with patience,</span><br><span>precision, and full visibility.</span></p></div></section>'
 page("growth.html","Built for Tomorrow — Gulf Aquaculture","Sustainability in practice, Phase II future growth and regional footprint.",gr)
@@ -400,6 +413,7 @@ TEAM=[("gulf-aquaculture-team-razali.webp","Mohamed Razali Mohamed","General Man
  ("team-finnbogi.jpg","Finnbogi Baldvinsson","Industry Advisor","Finnbogi Baldvinsson is a senior seafood industry leader with over 30 years of global executive and board-level experience in wild capture fisheries, processing and aquaculture. He has built, restructured and led major seafood businesses across Europe, the Americas, Asia and MENA."),
  ("team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
 people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","aerial.jpg","A better future is grown, not guessed.")
+people=fishwin(people,"gulf-aquaculture-team-balghailam-island-hatchery.webp","The Gulf Aquaculture team at Balghailam Island","A better future is grown, not guessed.")
 people+='<section class="sec"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
 people+='<div class="bio" id="bio" role="dialog" aria-modal="true" aria-labelledby="bioN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button><div class="bio-head"><span class="ph bio-ph" aria-hidden="true"><img id="bioI" src="" alt=""></span><div><h3 id="bioN"></h3><span class="bio-role" id="bioK"></span></div></div><p id="bioT"></p></div></div>'
 page("people.html","People — Gulf Aquaculture","The team behind Gulf Aquaculture.",people)

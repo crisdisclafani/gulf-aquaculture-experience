@@ -52,10 +52,12 @@ def _items(lst, dia):
     return out
 
 
+FISHWIN=None
 def facilities_index(opener, dia):
     a = opener("03", "Assets under management", "Two assets.<br>One model.",
                "Balghailam Island and the Sheikh Khalifa Marine Research Centre — compact, biosecure and replicable.",
-               "aerial.jpg", "Systems that support people.")
+               "aerial.jpg", "")
+    a = FISHWIN(a, 'gulf-aquaculture-aerial-cages-video.webp', 'Aerial view of Gulf Aquaculture sea cages and work vessel', 'Systems that support people.')
     cards = "".join(
         f'<a class="fa-card rv" href="asset-{f["k"]}.html"><span class="fa-img"><img src="assets/img/{f["photo"]}" alt="{f["photo_alt"]}" loading="lazy"></span>'
         f'<span class="fa-body"><span class="fa-n">{i+1:02d}</span><span class="fa-name">{f["name"]}</span><span class="fa-short">{f["short"]}</span>'

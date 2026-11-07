@@ -51,8 +51,10 @@ def fishimg(d, cls="sp-fish"):
         return f'<img class="{cls}" src="assets/img/{d["img"]}" alt="{d["local"]} ({d["en"]})" loading="lazy">'
     return OUTLINE + '<span class="sp-nophoto">Photo to be supplied</span>'
 
+FISHWIN=None
 def species_index(opener, dia):
     sp = opener("04","Native Gulf species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","grouper.jpg","")
+    sp = FISHWIN(sp, "gulf-aquaculture-video-hamour-poster.webp", "Grouper swimming over a Gulf coral reef", "We don’t adapt species to our systems. We build systems around our species.")
     cards = "".join(
         f'<a class="sp-card rv" href="species-{d["k"]}.html"><span class="sp-stage">{fishimg(d)}<span class="sp-wave" aria-hidden="true"></span></span>'
         f'<span class="sp-status">{d["status"]}</span><span class="sp-local">{d["local"]}</span><span class="sp-en">{d["en"]}</span>'
