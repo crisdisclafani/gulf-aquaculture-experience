@@ -48,6 +48,8 @@
   .aq-brand span { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--acc2); text-shadow: 0 1px 8px rgba(0,0,0,.5); }
   .aq-ctrl { position: absolute; top: 18px; right: 20px; z-index: 6; display: flex; gap: 8px; opacity: 0; transition: opacity 1s .4s, right .5s; }
   .ready .aq-ctrl { opacity: 1; }
+  .aq-btn-snd .x { display: none; } .aq-btn-snd.muted .x { display: inline; } .aq-btn-snd.muted .w1, .aq-btn-snd.muted .w2 { display: none; } .aq-btn-snd:not(.snd-on):not(.muted) .w2 { opacity: .35; }
+  .aq-btn-snd.snd-on .w2 { animation: aqSnd 2.4s ease-in-out infinite; } @keyframes aqSnd { 50% { opacity: .35; } }
   .aq-btn { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18);
     background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 13px; font-weight: 500; transition: .25s; }
   .aq-btn:hover { border-color: var(--acc); }
@@ -395,7 +397,7 @@
   #aqua-app .aq-p-stats b.xl { font-size: 15.5px !important; line-height: 1.15; }
   @media (max-width: 760px) { #aqua-app .aq-p-stats b.l { font-size: 15px !important; } #aqua-app .aq-p-stats b.xl { font-size: 13px !important; } }
 </style>
-<link rel="preload" href="app.js?v=mw6k4g8b" as="script">
+<link rel="preload" href="app.js?v=mw6kntdb" as="script">
 </head>
 <body>
 <div id="aqua-app" tabindex="0" style="outline:none">
@@ -406,6 +408,7 @@
     <button class="aq-btn" data-act="drone" title="Free drone flight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg><b>Drone</b></button>
     <button class="aq-btn" data-act="tour" title="Guided tour"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><b>Tour</b></button>
     <button class="aq-btn" data-act="night" title="Day / Night"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><b>Night</b></button>
+    <button class="aq-btn aq-btn-snd" data-act="sound" title="Sound"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" stroke="none"/><path class="w1" d="M16.5 9a4 4 0 0 1 0 6"/><path class="w2" d="M19 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg><b>Sound</b></button>
     <button class="aq-btn" data-act="home" title="Overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><b>Overview</b></button>
   </div>
   <div class="aq-hint"><span class="t-mouse">Drag to orbit · Scroll to zoom · Click a pin or a building</span><span class="t-touch">Drag to orbit · Pinch to zoom · Tap a pin</span></div>
@@ -430,6 +433,6 @@
   <div class="aq-intro" style="display:none"><div><h1></h1><p></p></div></div>
   <div class="aq-loader"></div>
 </div>
-<script defer src="app.js?v=mw6k4g8b"></script>
+<script defer src="app.js?v=mw6kntdb"></script>
 </body>
 </html>
