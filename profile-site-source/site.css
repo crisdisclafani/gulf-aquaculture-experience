@@ -843,3 +843,53 @@ strong{font-weight:500;color:var(--ink)}
 .ks-d{margin-top:8px;font-size:.88rem;color:var(--text);max-width:26ch}
 @media (max-width:900px){.ks-grid{grid-template-columns:1fr 1fr;row-gap:40px}.ks:nth-child(3)::before,.ks:nth-child(3)::after{display:none}}
 @media (max-width:480px){.ks-grid{grid-template-columns:1fr}.ks::before,.ks::after{display:none}}
+/* =========================================================
+   Site-wide motion layer: diamonds + sensible micro-animations
+   ========================================================= */
+@keyframes dmSpin{from{transform:rotate(45deg)}to{transform:rotate(405deg)}}
+@keyframes dmPulse{0%,100%{transform:rotate(45deg) scale(1);opacity:.75}50%{transform:rotate(45deg) scale(1.45);opacity:1}}
+@keyframes dmGlow{0%,100%{box-shadow:0 0 0 0 rgba(10,127,143,.0)}50%{box-shadow:0 0 0 6px rgba(10,127,143,.18)}}
+@keyframes dmSlide{0%,100%{transform:translateX(0)}50%{transform:translateX(var(--slide,60px))}}
+@keyframes bulletIn{from{transform:rotate(45deg) scale(0)}to{transform:rotate(45deg) scale(1)}}
+/* footer rule: the trio travels back and forth along the orange line */
+.ftr-rule{--slide:clamp(40px,14vw,220px);animation:dmSlide 9s ease-in-out infinite}
+.ftr-rule .s{animation:dmPulse 2.4s ease-in-out infinite}
+.ftr-rule .s:last-child{animation-delay:1.2s}
+.ftr-rule .b{animation:dmSpin 6s linear infinite,dmGlow 3s ease-in-out infinite}
+/* Future Growth column rules */
+.fg-rule{--slide:22px}
+.fg-rule i{animation:dmSlide 5s ease-in-out infinite}
+.fg-rule i.b{animation:dmSpin 7s linear infinite}
+.fg-col:nth-child(2) .fg-rule i{animation-delay:.6s}.fg-col:nth-child(3) .fg-rule i{animation-delay:1.2s}.fg-col:nth-child(4) .fg-rule i{animation-delay:1.8s}
+/* interview / About / folio diamonds */
+.iv-rule b,.ab-dia b{animation:dmSpin 8s linear infinite}
+.iv-rule i,.ab-dia i,.folio i{animation:dmPulse 2.6s ease-in-out infinite}
+.iv-rule i:last-of-type,.ab-dia i:last-child{animation-delay:1.3s}
+.ab-tl li:nth-child(2) .ab-dia b{animation-duration:10s;animation-direction:reverse}
+.ab-tl li:nth-child(3) .ab-dia b{animation-duration:12s}
+/* timeline dots, key-figure separators, operations rail */
+.tline.in .tl i{animation:dmPulse 3s ease-in-out infinite}
+.ks+.ks::after{animation:dmSpin 9s linear infinite}
+.ks:nth-child(3)::after{animation-direction:reverse}
+.opx-feat li::before{animation:dmPulse 3s ease-in-out infinite}
+.opx-feat li:nth-child(2)::before{animation-delay:.6s}.opx-feat li:nth-child(3)::before{animation-delay:1.2s}.opx-feat li:nth-child(4)::before{animation-delay:1.8s}.opx-feat li:nth-child(5)::before{animation-delay:2.4s}
+.opx-feat::before{background:linear-gradient(var(--orange),var(--amber),var(--orange));background-size:100% 300%;animation:railFlow 6s linear infinite}
+@keyframes railFlow{to{background-position:0 300%}}
+/* bullet diamonds pop in when their list is revealed, then rotate on hover */
+.rv .diamonds li::before,.diamonds.rv li::before{transform:rotate(45deg) scale(0)}
+.rv.in .diamonds li::before,.diamonds.rv.in li::before{animation:bulletIn .5s var(--ease) forwards}
+.rv.in .diamonds li:nth-child(2)::before{animation-delay:.08s}.rv.in .diamonds li:nth-child(3)::before{animation-delay:.16s}.rv.in .diamonds li:nth-child(4)::before{animation-delay:.24s}.rv.in .diamonds li:nth-child(5)::before{animation-delay:.32s}.rv.in .diamonds li:nth-child(6)::before{animation-delay:.4s}.rv.in .diamonds li:nth-child(7)::before{animation-delay:.48s}
+.diamonds li{transition:padding-left .3s var(--ease)}
+.diamonds li:hover{padding-left:30px}
+.diamonds li:hover::before{transform:rotate(225deg) scale(1.2)!important;transition:transform .4s var(--ease)}
+/* sensible extras */
+.arc{animation:arcDrift 16s ease-in-out infinite alternate}
+.opener .media .img,.fx-photo img,.opx-photo img,.iv-site img{transition:transform 1.2s var(--ease)}
+.opener .media:hover .img,.fx-photo:hover img,.opx-photo:hover img,.iv-site:hover img{transform:scale(1.04)}
+.fx-photo,.opx-photo,.iv-site{overflow:hidden}
+.note span{background-size:200% 100%;transition:background-position 1.2s var(--ease)}
+.note:hover span{background-position:100% 0}
+.btn-or{background-size:200% 100%;background-image:linear-gradient(90deg,#C0622A,#E3A43E,#C0622A)}
+.btn-or:hover{background-position:100% 0}
+@media (prefers-reduced-motion:reduce){.ftr-rule,.ftr-rule .d,.fg-rule i,.iv-rule *,.ab-dia *,.folio i,.tl i,.ks::after,.opx-feat li::before,.opx-feat::before,.arc{animation:none!important}.rv .diamonds li::before{transform:rotate(45deg)!important;animation:none!important}}
+.home-chapters{background:none;padding-top:clamp(64px,8vw,110px)}

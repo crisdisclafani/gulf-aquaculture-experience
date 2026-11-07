@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108w">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108x">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108w"></script>
+<script src="assets/js/site.js?v=20261108x"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -150,13 +150,13 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
   <button type="button" class="yt-open rv" data-yt="QwZ2BvfbzRg" data-start="13" aria-haspopup="dialog"><span class="yt-btn" aria-hidden="true"><span></span></span><span class="yt-txt">Watch the video</span></button></div>
 </section>
 <div class="yt-modal" id="ytm" role="dialog" aria-modal="true" aria-label="Gulf Aquaculture video"><div class="yt-frame"></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
-<section class="sec paper" style="padding-top:0;background:none"><div class="wrap">
+<section class="sec paper home-chapters"><div class="wrap">
   <div class="chapters rv">
-    <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles, legal structure and a conversation with our General Manager.</p><span class="more">Our story</span></a>
+    <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles and a conversation with our General Manager.</p><span class="more">Our story</span></a>
     <a class="chap" href="operations.html"><span class="n">02</span><h3>Where innovation meets simplicity</h3><p>Five phases, continuous lab oversight and full traceability.</p><span class="more">Operations</span></a>
     <a class="chap" href="assets.html"><span class="n">03</span><h3>Assets under management</h3><p>Balghailam Island and the Sheikh Khalifa Marine Research Centre.</p><span class="more">Assets</span></a>
     <a class="chap" href="species.html"><span class="n">04</span><h3>Local species, local knowledge</h3><p>Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais — native, resilient, well-adapted.</p><span class="more">Species</span></a>
-    <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
+    <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, legal structure, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
     <a class="chap" href="people.html"><span class="n">06</span><h3>The people behind the progress</h3><p>A better future is grown, not guessed.</p><span class="more">People</span></a>
   </div>
 </div></section>
@@ -279,13 +279,13 @@ ops=f'''<section class="opx paper"><span class="arc opx-arc" aria-hidden="true">
    <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div></div>
 
 
-<section class="sec paper" style="padding-top:0;background:none"><div class="wrap">
+<section class="sec paper home-chapters"><div class="wrap">
   <div class="chapters rv">
-    <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles, legal structure and a conversation with our General Manager.</p><span class="more">Our story</span></a>
+    <a class="chap" href="about.html"><span class="n">01</span><h3>From vision to operation</h3><p>Our story, mission, principles and a conversation with our General Manager.</p><span class="more">Our story</span></a>
     <a class="chap" href="operations.html"><span class="n">02</span><h3>Where innovation meets simplicity</h3><p>Five phases, continuous lab oversight and full traceability.</p><span class="more">Operations</span></a>
     <a class="chap" href="assets.html"><span class="n">03</span><h3>Assets under management</h3><p>Balghailam Island and the Sheikh Khalifa Marine Research Centre.</p><span class="more">Assets</span></a>
     <a class="chap" href="species.html"><span class="n">04</span><h3>Local species, local knowledge</h3><p>Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais — native, resilient, well-adapted.</p><span class="more">Species</span></a>
-    <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
+    <a class="chap" href="growth.html"><span class="n">05</span><h3>Built for tomorrow</h3><p>Sustainability in practice, legal structure, Phase II and our regional footprint.</p><span class="more">Growth</span></a>
     <a class="chap" href="people.html"><span class="n">06</span><h3>The people behind the progress</h3><p>A better future is grown, not guessed.</p><span class="more">People</span></a>
   </div>
 </div></section>
