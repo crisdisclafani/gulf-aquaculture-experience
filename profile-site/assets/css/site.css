@@ -285,7 +285,7 @@ strong{font-weight:500;color:var(--ink)}
 
 /* footer — Company Profile back cover: paper texture, gradient rule with diamonds */
 .ftr{position:relative;background:#F1F0EE url(../img/paper.jpg) center/700px auto;color:var(--ink);padding:0 0 26px;border-top:2px solid transparent;border-image:linear-gradient(90deg,#E4B04A,#C2622A) 1}
-.ftr-rule{position:absolute;top:-2px;left:max(24px,calc((100% - 1200px)/2));display:flex;align-items:center;gap:14px;padding:0 16px;transform:translateY(-50%);background:#F1F0EE url(../img/paper.jpg) center/700px auto}
+.ftr-rule{position:absolute;top:-2px;left:max(24px,calc((100% - 1200px)/2));display:flex;align-items:center;gap:14px;padding:0 16px;transform:translateY(-50%);background:linear-gradient(180deg,#fff 0 50%,transparent 50%),#F1F0EE url(../img/paper.jpg) center/700px auto}
 .ftr-rule .d{display:block;transform:rotate(45deg)}
 .ftr-rule .s{width:9px;height:9px;background:#D49A5E}
 .ftr-rule .b{width:17px;height:17px;background:#6AA9A6}
