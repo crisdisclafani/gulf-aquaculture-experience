@@ -576,3 +576,6 @@ strong{font-weight:500;color:var(--ink)}
 .yt-frame iframe{width:100%;height:100%;border:0;display:block}
 .yt-x{position:absolute;top:14px;right:20px;width:48px;height:48px;font-size:2.2rem;color:#fff}
 @media (max-width:600px){.yt-btn{width:72px;height:72px}.yt-band{min-height:460px}}
+.yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s,transform 1.2s var(--ease);transform:scale(1.04)}
+.yt-thumb.ok{opacity:1}
+.yt-band:hover .yt-thumb{transform:scale(1)}

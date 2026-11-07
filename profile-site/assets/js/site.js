@@ -153,3 +153,12 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   m.addEventListener("click",e=>{ if(e.target===m) close(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape"&&m.classList.contains("open")) close(); });
 })();
+/* YouTube cover: fetched only when the band is about to scroll into view (no YouTube scripts) */
+(function(){
+  const img=document.querySelector(".yt-thumb"); if(!img) return;
+  const load=()=>{ img.onload=()=>{ if(img.naturalWidth>200) img.classList.add("ok"); else if(img.dataset.fallback&&img.src!==img.dataset.fallback) img.src=img.dataset.fallback; };
+    img.onerror=()=>{ if(img.dataset.fallback&&img.src!==img.dataset.fallback) img.src=img.dataset.fallback; };
+    img.src=img.dataset.src; };
+  if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); load(); } },{rootMargin:"300px"}); io.observe(img.parentElement); }
+  else load();
+})();
