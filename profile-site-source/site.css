@@ -764,3 +764,16 @@ strong{font-weight:500;color:var(--ink)}
 .hi-note{position:absolute;left:clamp(150px,22vw,320px);top:16%;font-size:clamp(1.2rem,1.7vw,1.5rem)}
 @media (max-width:1100px){.hi{grid-template-columns:1fr}.hi-left{min-height:640px}.hi-photo{top:120px}.hi-right{padding-left:24px;padding-right:24px}.hi-kicker-l{margin-top:0}}
 @media (max-width:760px){.hi-cols{grid-template-columns:1fr}.hi-rule{flex-direction:row;height:16px}.hi-rule::before,.hi-rule::after{width:auto;height:1.5px}.hi-box{width:auto;margin-right:24px}.hi-left{min-height:0}.hi-photo{position:relative;top:0;height:320px;order:2;margin-top:-40px}.hi-vision{order:3;background:#0B2742;padding-top:30px;text-align:left}.hi-script{margin-left:0}.hi-person{height:340px}.hi-note{left:auto;right:0;top:8%}}
+/* ---------- Home cover in the profile cover tints ---------- */
+.cover{background:linear-gradient(180deg,#E4E4E2 0%,#F3F3F1 55%,#EDEDEB 100%)}
+.cover-text{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0))}
+.cv-tag{align-self:flex-start;margin:0 0 34px calc(-1 * max(24px,calc((100vw - 1200px)/2)));padding:10px 46px 12px max(24px,calc((100vw - 1200px)/2));background:var(--grad);font-family:var(--script);font-size:clamp(1.4rem,2vw,1.9rem);color:#fff;line-height:1.1}
+.cover h1{color:#0B2A3F;font-size:clamp(2.8rem,5vw,4.6rem)}
+.cover .sub{font-weight:500;font-size:clamp(1.15rem,1.9vw,1.7rem);letter-spacing:.14em;background:linear-gradient(90deg,#C0622A,#E2A13C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover-media{background:#1a1a1a}
+.cover-media .img{background-image:url(../img/gulf-aquaculture-sea-cage-arabian-gulf-black-white.webp);background-position:40% center;filter:none}
+.cover-media::after{background:linear-gradient(180deg,rgba(235,235,233,.55) 0%,rgba(235,235,233,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.35) 100%)}
+.cover-media svg.cv-fish{width:78%;left:6%;top:auto;bottom:12%;transform:none}
+.cv-fish path{fill:none;stroke:url(#cvg);stroke-width:5;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3s 1s var(--ease) forwards}
+.cv-fish path:nth-child(3){animation-delay:1.6s}
+@media (max-width:900px){.cv-tag{margin-left:-24px;padding-left:24px}.cover-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45))}}

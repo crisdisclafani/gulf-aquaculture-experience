@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108p">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108r">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108p"></script>
+<script src="assets/js/site.js?v=20261108r"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -103,14 +103,13 @@ def dia(items): return '<ul class="diamonds">'+"".join(f"<li>{i}</li>" for i in 
 home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - 76px);min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
 <section class="cover">
   <div class="cover-text">
-    <span class="folio"><i></i>Company profile · Abu Dhabi, UAE</span>
+    <span class="cv-tag">Company Profile</span>
     <h1><span class="w">Transforming</span><br><span class="w">Aquaculture</span></h1>
     <p class="sub">in the Middle East</p>
     <p class="lead">We exist to make aquaculture work — for our ecosystems, for food security, and for future generations.</p>
     <div class="actions"><a href="#approach" class="btn btn-or">Our approach</a><a href="operations.html" class="btn btn-line" style="color:var(--ink)">How we operate</a></div>
   </div>
-  <div class="cover-media"><div class="img" role="img" aria-label="Sea cage at dawn"></div>
-    <svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="190"/><circle class="o" cx="200" cy="200" r="160"/></svg></div>
+  <div class="cover-media"><div class="img" role="img" aria-label="Sea cage at dawn"></div></div>
 </section>
 
 <section class="navy"><div class="wrap nums">
