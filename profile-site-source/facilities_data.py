@@ -25,7 +25,7 @@ FACILITIES = [
  dict(k="skmrc", name="Sheikh Khalifa Marine Research Centre", title="Sheikh Khalifa<br>Marine Research Centre",
   short="Operated by GA since November 2025 — the pinnacle of Middle Eastern hatchery technology, with ≈18,000 m² in two production streams.",
   intro="GA has been operating the Sheikh Khalifa Marine Research Centre [SKMRC] since November 2025. This asset represents the pinnacle of Middle Eastern hatchery technology and design.",
-  hero="skmrc.jpg", photo="gulf-aquaculture-skmrc-render.webp", photo_alt="Rendering of the Sheikh Khalifa Marine Research Centre and Marine Innovation Park",
+  hero="skmrc.jpg", photo="gulf-aquaculture-skmrc-render-hd.webp", photo_alt="Rendering of the Sheikh Khalifa Marine Research Centre and Marine Innovation Park",
   stats=["Fourteen dedicated laboratories provisioned for compliance with ISO/IEC 17025 international standards for testing and calibration laboratory competence",
          "1,200 m² of office space","Fully furnished staff canteen and academic spaces"],
   card_title="Innovation at<br>its heart.",
