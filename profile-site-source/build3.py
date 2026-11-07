@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108i">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108j">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108i"></script>
+<script src="assets/js/site.js?v=20261108j"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -208,10 +208,21 @@ about+=f'''<section class="sec"><div class="wrap"><span class="label rv">Milesto
     <div class="num"><b><span data-count="50">0</span><small>% less</small></b><span>Wild Gulf fish stocks since 1990</span><p>We supply seedstock from land-based hatcheries, easing pressure on wild populations.</p></div>
     <div class="num"><b><span data-count="95">0</span><small>%</small></b><span>Of water recycled in our hatchery</span><p>Lower environmental footprint and energy use, aligned with national sustainability goals.</p></div>
   </div></div></section>
-<section class="sec paper" id="interview"><div class="wrap cols">
-  <div class="rv"><span class="label">A conversation with Mohamed Razali, General Manager</span><h2 style="margin:12px 0 28px">A Thoughtful Approach to Growth</h2>
-    <blockquote class="quote">“We're not building a fish farm. We're building trust — in the idea that the UAE can feed itself, responsibly.”</blockquote></div>
-  {qa}</div></section>'''
+<section class="iv" id="interview">
+ <div class="iv-left"><span class="arc iv-arc" aria-hidden="true"></span>
+  <h2 class="iv-title rv">A Thoughtful<br>Approach to<br>Growth</h2>
+  <p class="iv-kicker rv">A conversation with Mohamed Razali, General Manager</p>
+  <figure class="iv-photo rv"><img src="assets/img/gulf-aquaculture-razali-portrait.webp" width="640" height="640" alt="Mohamed Razali, General Manager of Gulf Aquaculture" loading="lazy"></figure>
+  {"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[:3])}
+  <p class="note iv-note rv"><span>“Every phase is tested</span><br><span>before it’s scaled. That’s</span><br><span>how we build trust —</span><br><span>with nature and with investors.”</span></p>
+  <figure class="iv-site rv"><img src="assets/img/gulf-aquaculture-facility-aerial.webp" width="1000" height="408" alt="Aerial view of the Gulf Aquaculture hatchery on Balghailam Island" loading="lazy"></figure>
+ </div>
+ <div class="iv-right">
+  <blockquote class="iv-quote rv">“We’re not building a fish farm. We’re building trust — in the idea that the UAE can feed itself, responsibly.”<cite>Mohamed Razali</cite></blockquote>
+  <div class="iv-rule rv" aria-hidden="true"><i></i><b></b><i></i></div>
+  <div class="iv-cols">{"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[3:])}</div>
+ </div>
+</section>'''
 page("about.html","Our Story — Gulf Aquaculture","Gulf Aquaculture: story, mission, vision, principles, legal structure and interview.",about)
 
 # ========================================================= OPERATIONS
