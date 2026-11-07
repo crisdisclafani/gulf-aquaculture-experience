@@ -2,7 +2,7 @@ FACILITIES = [
  dict(k="balghailam", name="Balghailam Island", title="Assets Under Management —<br>Balghailam Island",
   short="Our proof-of-concept hatchery: compact, biosecure and replicable — 6,000 m² of hatchery space.",
   intro="Instead of scaling vertically or chasing complexity, we’ve built a system aligned with nature — focused on fish health, biosecurity, and operational reliability. Compact, efficient, and replicable — our facility is a model for sustainable marine hatcheries in the region.",
-  hero="aerial.jpg", photo="gulf-aquaculture-balghailam-team-hd.webp", photo_alt="The Gulf Aquaculture team at Balghailam Island",
+  hero="aerial.jpg", photo="gulf-aquaculture-team-balghailam-island-hatchery.webp", photo_alt="Gulf Aquaculture hatchery team at Balghailam Island, Abu Dhabi",
   stats=["6,000 m² of hatchery space","Dedicated rooms for live feed and algae production","Integrated RAS &amp; flow-through systems",
          "Automated filtration, UV sterilisation, and real-time water quality sensors","Biosecure broodstock housing and spawning zones",
          "Modular nursery capacity for phased growth","Fully equipped lab for water quality and microbiology"],
@@ -25,7 +25,7 @@ FACILITIES = [
  dict(k="skmrc", name="Sheikh Khalifa Marine Research Centre", title="Sheikh Khalifa<br>Marine Research Centre",
   short="Operated by GA since November 2025 — the pinnacle of Middle Eastern hatchery technology, with ≈18,000 m² in two production streams.",
   intro="GA has been operating the Sheikh Khalifa Marine Research Centre [SKMRC] since November 2025. This asset represents the pinnacle of Middle Eastern hatchery technology and design.",
-  hero="skmrc.jpg", photo="gulf-aquaculture-skmrc-render-hd.webp", photo_alt="Rendering of the Sheikh Khalifa Marine Research Centre and Marine Innovation Park",
+  hero="skmrc.jpg", photo="sheikh-khalifa-marine-research-centre-rendering-gulf-aquaculture.webp", photo_alt="Aerial rendering of the Sheikh Khalifa Marine Research Centre (SKMRC) and Marine Innovation Park, operated by Gulf Aquaculture in the UAE",
   stats=["Fourteen dedicated laboratories provisioned for compliance with ISO/IEC 17025 international standards for testing and calibration laboratory competence",
          "1,200 m² of office space","Fully furnished staff canteen and academic spaces"],
   card_title="Innovation at<br>its heart.",
@@ -57,7 +57,7 @@ def facilities_index(opener, dia):
                "Balghailam Island and the Sheikh Khalifa Marine Research Centre — compact, biosecure and replicable.",
                "aerial.jpg", "Systems that support people.")
     cards = "".join(
-        f'<a class="fa-card rv" href="asset-{f["k"]}.html"><span class="fa-img" style="background-image:url(assets/img/{f["photo"]})"></span>'
+        f'<a class="fa-card rv" href="asset-{f["k"]}.html"><span class="fa-img"><img src="assets/img/{f["photo"]}" alt="{f["photo_alt"]}" loading="lazy"></span>'
         f'<span class="fa-body"><span class="fa-n">{i+1:02d}</span><span class="fa-name">{f["name"]}</span><span class="fa-short">{f["short"]}</span>'
         f'<span class="sp-go">Explore the facility <span aria-hidden="true">→</span></span></span></a>'
         for i, f in enumerate(FACILITIES))
