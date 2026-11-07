@@ -118,7 +118,17 @@
     animation: aqTrack 3.2s cubic-bezier(.2,.8,.2,1) both; }
   .aq-intro p { margin: 18px 0 0; font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--acc2); animation: aqIn 1.2s .6s both; }
   @keyframes aqTrack { from { letter-spacing: .4em; opacity: 0; filter: blur(8px) } }
-  .aq-loader { position: absolute; inset: 0; z-index: 9; background: #0b1622; transition: opacity .9s; }
+  .aq-loader { position: absolute; inset: 0; z-index: 9; background: #0b1622 url("data:image/webp;base64,UklGRlQBAABXRUJQVlA4IEgBAABwBwCdASowABsAPtFgqE8oJSOiJWsxABoJYgCDALr3OZFmIQVHWev3I/sXsbuJ8Jf5NI9rpxkT03GLZk9NrWPr7I6QAADwbtFp11vdhFHH5hNTXtcgbWFDp9/ZvTdaPrR/70poCkBLG//Y3mLLnr+v+J5h7n5EEgewFtKxTdiIQ5N6+NLk4koPFabLgdJl7XNDObajQ9R7YY+ZiJFl+8Ur0FPNzl4HfiuHbrFxOuvIecHsM2+FCPM336FDx3S4TinyHJ7Y1IaPbh9bUMlsZ6PSALIurykNcrG5TuR9Whtt5ZYw1eL3XM2BicyzFidvywjPe4vOIyEcfSc0/iv2eodhRzEmXVK3FqxVc3q3tkuF/QbmTU5k/SOPschQdrFvmNLUYOO4/XZ30Kh+kXY7+nsqCZTJfKqnuavtTAKsaKGhuobZG7rAj5QA") center/cover no-repeat; transition: opacity .9s; overflow: hidden; }
+  .aq-loader::before { content: ''; position: absolute; inset: 0; background: url("assets/poster.webp") center/cover no-repeat; animation: aqKen 14s ease-out both; }
+  .aq-loader::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,44,61,0) 30%, rgba(15,44,61,.55) 60%, rgba(11,26,36,.9)); }
+  @keyframes aqKen { from { transform: scale(1.02); } to { transform: scale(1.09); } }
+  .aq-ld { position: absolute; left: 50%; bottom: 12%; z-index: 2; transform: translateX(-50%); width: min(340px, 78%); text-align: center; color: #fff; font-family: 'Poppins', system-ui, sans-serif; }
+  .aq-ld small { display: block; font-size: 10.5px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: #f3c26b; }
+  .aq-ld strong { display: block; margin: 8px 0 16px; font: 400 clamp(20px, 3vw, 30px)/1.15 'Gloock', Georgia, serif; text-shadow: 0 4px 24px rgba(0,0,0,.45); }
+  .aq-ld i { display: block; height: 3px; border-radius: 3px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .aq-ld i::before { content: ''; display: block; height: 100%; width: 40%; border-radius: 3px; background: linear-gradient(90deg, #c4571b, #dc8433, #efb64f); animation: aqBar 1.3s ease-in-out infinite; }
+  @keyframes aqBar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+  .aq-ld em { display: block; margin-top: 10px; font-size: 11px; font-style: normal; letter-spacing: .08em; color: rgba(255,255,255,.75); }
   .aq-loader.out { opacity: 0; pointer-events: none; }
 
 
@@ -409,7 +419,8 @@
   #aqua-app .aq-p-stats b.xl { font-size: 15.5px !important; line-height: 1.15; }
   @media (max-width: 760px) { #aqua-app .aq-p-stats b.l { font-size: 15px !important; } #aqua-app .aq-p-stats b.xl { font-size: 13px !important; } }
 </style>
-<link rel="preload" href="app.js?v=mw6l8518" as="script">
+<link rel="preload" href="assets/poster.webp" as="image" fetchpriority="high">
+<link rel="preload" href="app.js?v=mw6m50qx" as="script">
 </head>
 <body>
 <div id="aqua-app" tabindex="0" style="outline:none">
@@ -443,8 +454,8 @@
   </div>
   <div class="aq-caption"><small></small><b></b></div>
   <div class="aq-intro" style="display:none"><div><h1></h1><p></p></div></div>
-  <div class="aq-loader"></div>
+  <div class="aq-loader"><div class="aq-ld"><small>Gulf Aquaculture</small><strong>Marine Research Center</strong><i></i><em>Loading the 3D experience…</em></div></div>
 </div>
-<script defer src="app.js?v=mw6l8518"></script>
+<script defer src="app.js?v=mw6m50qx"></script>
 </body>
 </html>
