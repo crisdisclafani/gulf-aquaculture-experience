@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108z">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109a">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108z"></script>
+<script src="assets/js/site.js?v=20261109a"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -202,7 +202,7 @@ TLX=[("2023","t","Formed in 2023 as a joint venture between Emirates Consortium 
 AW='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9.5 9l1.7 1.7L14.8 7.2"/><path d="M8.5 14l-2 7 3-1.5L12 22l2.5-2.5 3 1.5-2-7"/></svg>'
 about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a href="#story">Our story</a><a href="#mission">Mission &amp; vision</a><a href="#principles">Principles</a><a href="#role">Our regional role</a><a href="#achievements">Achievements</a><a href="#interview">Leadership interview</a><a href="people.html">Our team →</a></div></nav>
 <section class="ab-top" id="story"><span class="arc ab-arc" aria-hidden="true"></span><div class="wrap ab-grid">
- <div class="ab-story">
+ <div class="ab-story" id="story-head">
   <p class="ab-kicker rv in">Our story</p>
   <h1 class="rv in">From Vision<br>to Operation</h1>
   <ol class="ab-tl">{"".join(f'<li class="rv ab-{c}"><span class="ab-year">{y}</span><span class="ab-dia" aria-hidden="true"><i></i><b></b><i></i></span><p>{t}</p></li>' for y,c,t in TLX)}</ol>

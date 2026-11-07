@@ -899,3 +899,12 @@ strong{font-weight:500;color:var(--ink)}
 .hq .quote cite{color:rgba(255,255,255,.75);margin-top:18px}
 .hq p{color:rgba(255,255,255,.85)}
 .ftr-rule,.ftr-rule .d,.ftr-rule .s,.ftr-rule .b{animation:none!important}.ftr-rule .d{transform:rotate(45deg)}
+/* About sub-nav: offset, active state and target highlight */
+html{scroll-behavior:smooth}
+#story,#mission,#principles,#role,#achievements,#interview{scroll-margin-top:150px}
+.ab-sub a.on{color:var(--orange);border-color:var(--orange)}
+@keyframes tgtFlash{0%{box-shadow:0 0 0 0 rgba(226,161,60,0);background-color:transparent}25%{box-shadow:0 0 0 14px rgba(226,161,60,.22);background-color:rgba(226,161,60,.10)}100%{box-shadow:0 0 0 0 rgba(226,161,60,0);background-color:transparent}}
+.tgt-flash{animation:tgtFlash 1.6s var(--ease)}
+.ab-card.tgt-flash{animation:tgtFlash 1.6s var(--ease),none}
+.ab-mission.tgt-flash .ab-script,.ab-story.tgt-flash h1{animation:tgtPop 1.2s var(--ease)}
+@keyframes tgtPop{0%{transform:none}35%{transform:scale(1.04)}100%{transform:none}}

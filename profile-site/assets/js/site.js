@@ -162,3 +162,22 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); load(); } },{rootMargin:"300px"}); io.observe(img.parentElement); }
   else load();
 })();
+/* About sub-nav: highlight the section you land on + scroll-spy */
+(function(){
+  const nav=document.querySelector(".ab-sub"); if(!nav) return; let lock=0;
+  const links=[...nav.querySelectorAll('a[href^="#"]')];
+  const target=id=>id==="story"?document.getElementById("story-head"):document.getElementById(id);
+  links.forEach(a=>a.addEventListener("click",e=>{
+    const id=a.getAttribute("href").slice(1), el=document.getElementById(id); if(!el) return;
+    e.preventDefault(); history.replaceState(null,"","#"+id);
+    el.scrollIntoView({behavior:"smooth",block:id==="principles"||id==="mission"?"center":"start"});
+    const t=target(id)||el; t.classList.remove("tgt-flash"); void t.offsetWidth; setTimeout(()=>t.classList.add("tgt-flash"),350);
+    setTimeout(()=>t.classList.remove("tgt-flash"),2200);
+    links.forEach(l=>l.classList.toggle("on",l===a)); lock=Date.now()+1400;
+  }));
+  const secs=links.map(l=>document.getElementById(l.getAttribute("href").slice(1))).filter(Boolean);
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting && Date.now()>lock){ links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+en.target.id)); } }),{rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(s=>io.observe(s));
+  }
+})();
