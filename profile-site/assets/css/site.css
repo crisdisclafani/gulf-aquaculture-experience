@@ -283,14 +283,25 @@ strong{font-weight:500;color:var(--ink)}
 .consent input{margin-top:5px;accent-color:var(--orange);width:16px;height:16px}
 .msg{display:none;margin-top:16px;padding:12px 16px;background:var(--paper);border-inline-start:3px solid var(--orange);font-size:.9rem}
 
-/* footer */
-.ftr{background:var(--navy-d);color:rgba(255,255,255,.7);padding:90px 0 30px;position:relative;overflow:hidden}
-.ftr .top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:50px;padding-bottom:50px;border-bottom:1px solid var(--line-d)}
-.ftr .brand{color:#fff}
-.ftr h5{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:14px}
-.ftr nav a{display:block;padding:4px 0;font-size:.92rem} .ftr nav a:hover{color:#fff}
-.ftr .bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:.76rem}
-.ftr .arc{width:640px;height:640px;right:-240px;bottom:-380px;opacity:.3}
+/* footer — Company Profile back cover: paper texture, gradient rule with diamonds */
+.ftr{position:relative;background:#F1F0EE url(../img/paper.jpg) center/700px auto;color:var(--ink);padding:0 0 26px;border-top:2px solid transparent;border-image:linear-gradient(90deg,#E4B04A,#C2622A) 1}
+.ftr-rule{position:absolute;top:-2px;left:max(24px,calc((100% - 1200px)/2));display:flex;align-items:center;gap:14px;padding:0 16px;transform:translateY(-50%);background:#F1F0EE url(../img/paper.jpg) center/700px auto}
+.ftr-rule .d{display:block;transform:rotate(45deg)}
+.ftr-rule .s{width:9px;height:9px;background:#D49A5E}
+.ftr-rule .b{width:17px;height:17px;background:#6AA9A6}
+.ftr .top{display:grid;grid-template-columns:2fr .6fr 1fr;gap:50px;align-items:center;padding:74px 0 54px;border-bottom:1px solid rgba(74,46,22,.12)}
+.ftr-claim{font-family:var(--sans);font-weight:300;font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:1.25;color:#1D2A33;margin-bottom:26px;letter-spacing:-.01em}
+.ftr-links{font-weight:500;font-size:1.12rem;line-height:1.55}
+.ftr-links a{color:#6AA9A6;transition:color .2s}
+.ftr-links a:hover{color:#3F8784}
+.ftr-addr{margin-top:22px;font-size:.98rem;color:#1D2A33}
+.ftr h5{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:12px}
+.ftr nav a{display:block;padding:3px 0;font-size:.9rem;color:#6AA9A6;font-weight:500}
+.ftr nav a:hover{color:#3F8784}
+.ftr-logo{justify-self:end}
+.ftr .brand img{height:62px;max-width:none;width:auto}
+.ftr .bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:22px;font-size:.74rem;color:#6E6259}
+@media (max-width:860px){.ftr .top{grid-template-columns:1fr;gap:32px}.ftr-logo{justify-self:start;order:-1}.ftr .brand img{height:46px}}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -321,7 +332,6 @@ strong{font-weight:500;color:var(--ink)}
 }
 
 .brand img{height:32px;width:auto;max-width:150px}
-.ftr .brand img{height:38px}
 @media (max-width:560px){.brand img{height:28px}}
 
 .xp3d{position:relative;height:calc(100svh - var(--hh));min-height:520px;background:#0b1a24}
