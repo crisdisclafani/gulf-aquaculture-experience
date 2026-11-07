@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108l">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108m">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108l"></script>
+<script src="assets/js/site.js?v=20261108m"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -251,7 +251,8 @@ ops=f'''<section class="opx paper"><span class="arc opx-arc" aria-hidden="true">
  <div class="opb-cycle"><p class="opb-hint rv">Select a phase around the cage — from broodstock to distribution, under continuous lab oversight.</p>
   <div class="ops"><div class="ring rv" id="ring"></div>
    <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div></div>
-</div></section>'''
+</div></section>
+<section class="opx-slogan"><div class="wrap"><p class="note rv"><span>From broodstock to the sea —</span><br><span>every step designed in harmony with the Gulf.</span></p></div></section>'''
 page("operations.html","Operations — Gulf Aquaculture","Where innovation meets simplicity: hatchery, nursery, live feed, biosecurity, laboratories and traceability.",ops)
 
 # ========================================================= ASSETS

@@ -684,3 +684,5 @@ strong{font-weight:500;color:var(--ink)}
 @media (max-width:1000px){.opx-grid{grid-template-columns:1fr}.opx-photo{max-width:560px}.opx-note{right:0}.opx-feat{display:grid;grid-template-columns:1fr 1fr;column-gap:30px}.opx-feat::before{display:none}.opx-feat li::before,.opx-feat li::after{display:none}.opx-feat{padding-left:0}}
 @media (max-width:760px){.opb-text{grid-template-columns:1fr}.opb-note{text-align:left}}
 @media (max-width:600px){.opx-feat{grid-template-columns:1fr}.opx-note{position:static;margin-top:14px}.opx-photo{margin-top:40px}}
+.opx-slogan{background:#fff;padding:clamp(56px,7vw,96px) 0 clamp(64px,8vw,110px);text-align:center}
+.opx-slogan .note{font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.6}
