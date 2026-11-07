@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108v">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108w">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108v"></script>
+<script src="assets/js/site.js?v=20261108w"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -115,11 +115,13 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
      <g class="r3"><circle cx="200" cy="200" r="118" stroke-dasharray="2 14"/></g></svg></div>
 </section>
 
-<section class="navy"><div class="wrap nums">
-  <div class="num"><b><span data-count="8">0</span><small>%</small></b><span>Annual growth</span><p>Seafood demand in the UAE.</p></div>
-  <div class="num"><b><span data-count="900000">0</span><small>t</small></b><span>By 2030</span><p>Expected seafood demand.</p></div>
-  <div class="num"><b><span data-count="95">0</span><small>%</small></b><span>Water recycled</span><p>In our hatchery system.</p></div>
-  <div class="num"><b><span data-count="20">0</span><small>M+</small></b><span>Fry</span><p>On track to ship to regional clients.</p></div>
+<section class="kstats" aria-label="Key figures"><div class="wrap">
+ <div class="ks-grid nums">
+  <div class="ks rv"><p class="ks-n"><span data-count="20">0</span>M+</p><p class="ks-l">Fry targeted in 2026</p><p class="ks-d">Shipping to regional clients from our hatcheries.</p></div>
+  <div class="ks rv"><p class="ks-n">≈<span data-count="18000">0</span><small>m²</small></p><p class="ks-l">Hatchery space at SKMRC</p><p class="ks-d">The largest hatchery &amp; nursery facility in the Gulf, under a 15-year lease.</p></div>
+  <div class="ks rv"><p class="ks-n"><span data-count="2">0</span></p><p class="ks-l">Assets, BAP certified</p><p class="ks-d">Balghailam Island and the Sheikh Khalifa Marine Research Centre.</p></div>
+  <div class="ks rv"><p class="ks-n">1<sup>st</sup></p><p class="ks-l">Sheikh Mansour Agriculture Award</p><p class="ks-d">First place, February 2025.</p></div>
+ </div>
 </div></section>
 
 <section class="hi" id="approach">

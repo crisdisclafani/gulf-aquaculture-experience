@@ -830,3 +830,16 @@ strong{font-weight:500;color:var(--ink)}
 .hi-left:has(.hi-vision.in) .hi-photo{background-size:100%!important}
 @media (max-width:1100px){.hi-photo{background-size:cover!important}}
 @media (prefers-reduced-motion:reduce){.hi-vision.rv{transform:none;opacity:1}.hi-vision .hi-kicker{letter-spacing:.12em;opacity:1}}
+/* ---------- Home key figures (white, profile palette) ---------- */
+.kstats{background:#fff;padding:clamp(48px,6vw,80px) 0;border-bottom:1px solid var(--line)}
+.ks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0}
+.ks{position:relative;padding:6px clamp(16px,2.4vw,34px);text-align:left}
+.ks+.ks::before{content:"";position:absolute;left:0;top:10%;bottom:10%;width:1px;background:linear-gradient(transparent,var(--orange),transparent);opacity:.6}
+.ks+.ks::after{content:"";position:absolute;left:-5px;top:calc(50% - 5px);width:10px;height:10px;background:var(--teal);transform:rotate(45deg)}
+.ks-n{font-family:var(--serif);font-size:clamp(2.6rem,4.4vw,3.8rem);line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.ks-n small{font-size:.45em;margin-left:4px}
+.ks-n sup{font-size:.45em;vertical-align:super}
+.ks-l{margin-top:12px;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.ks-d{margin-top:8px;font-size:.88rem;color:var(--text);max-width:26ch}
+@media (max-width:900px){.ks-grid{grid-template-columns:1fr 1fr;row-gap:40px}.ks:nth-child(3)::before,.ks:nth-child(3)::after{display:none}}
+@media (max-width:480px){.ks-grid{grid-template-columns:1fr}.ks::before,.ks::after{display:none}}
