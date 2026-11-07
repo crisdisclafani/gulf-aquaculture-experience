@@ -73,7 +73,7 @@ $$("[role=tablist]").forEach(tl=>{ const tabs=$$("[role=tab]",tl);
 
 /* people bios */
 const bio=$("#bio");
-if(bio){ $$(".person").forEach(p=>p.addEventListener("click",()=>{ $("#bioK").textContent=p.dataset.role; $("#bioN").textContent=p.dataset.name; $("#bioT").textContent=p.dataset.bio; bio.classList.add("open"); $(".x",bio).focus(); }));
+if(bio){ $$(".person").forEach(p=>p.addEventListener("click",()=>{ $("#bioK").textContent=p.dataset.role; const bi=$("#bioI"); if(bi) bi.src=p.dataset.img||""; $("#bioN").textContent=p.dataset.name; $("#bioT").textContent=p.dataset.bio; bio.classList.add("open"); $(".x",bio).focus(); }));
   const close=()=>bio.classList.remove("open"); $(".x",bio).addEventListener("click",close); bio.addEventListener("click",e=>{ if(e.target===bio) close(); });
   document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); }); }
 
