@@ -336,3 +336,11 @@ strong{font-weight:500;color:var(--ink)}
 
 .xp3d{position:relative;height:calc(100svh - var(--hh));min-height:520px;background:#0b1a24}
 .xp3d iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+
+/* map band above the footer (Company Profile back page) */
+.mapband{background:#fff;padding:0 0 70px;overflow:hidden}
+.mapband-img{max-width:1440px;margin:0 auto}
+.mapband-img img{width:100%;height:auto;display:block}
+.mapband-note{font-family:var(--script);font-weight:500;font-size:clamp(1.5rem,2.6vw,2.3rem);line-height:1;color:#fff;margin-top:-40px;position:relative}
+.mapband-note span{display:inline-block;background:linear-gradient(90deg,#BF6A2E 0%,#E3B34E 100%);padding:.16em .55em .22em;margin-bottom:.32em}
+@media (max-width:860px){.mapband-note{margin-top:24px}}
