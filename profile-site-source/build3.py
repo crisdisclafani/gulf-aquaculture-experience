@@ -38,7 +38,7 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
         <ol class="wc-aum"><li>Balghailam Island</li><li>Sheikh Khalifa Marine Research Centre</li></ol>
         <a class="btn btn-or wc-cta" href="contact.html">Let’s talk <span aria-hidden="true">→</span></a>
       </div>
-      <figure class="wc-person"><img src="assets/img/person.png" width="396" height="510" loading="lazy" alt="Gulf Aquaculture team member holding a grouper">
+      <figure class="wc-person"><img src="assets/img/gulf-aquaculture-grouper-farmer.webp" width="792" height="1020" loading="lazy" alt="Gulf Aquaculture team member holding a grouper">
         <figcaption class="wc-note"><span>Our numbers are not just data</span><br><span>points - they reflect deliberate</span><br><span>steps toward a scalable, resilient</span><br><span>business built for impact.</span></figcaption></figure>
     </div>
   </div>
