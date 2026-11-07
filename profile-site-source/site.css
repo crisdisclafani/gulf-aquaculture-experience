@@ -777,3 +777,19 @@ strong{font-weight:500;color:var(--ink)}
 .cv-fish path{fill:none;stroke:url(#cvg);stroke-width:5;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3s 1s var(--ease) forwards}
 .cv-fish path:nth-child(3){animation-delay:1.6s}
 @media (max-width:900px){.cv-tag{margin-left:-24px;padding-left:24px}.cover-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45))}}
+/* animated rings (home) */
+.cover-media svg.cv-rings{position:absolute;z-index:2;width:min(64%,460px);left:62%;top:54%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;animation:cvFloat 9s ease-in-out infinite}
+.cover-media .cv-rings circle{fill:none;stroke:url(#cvr);stroke-width:4;stroke-dashoffset:0;animation:none}
+.cover-media .cv-rings .r1 circle{stroke-dasharray:6 10}.cover-media .cv-rings .r2 circle{stroke-dasharray:420 520}.cover-media .cv-rings .r3 circle{stroke-dasharray:2 14}
+.cover-media .cv-rings .r1 circle{stroke:rgba(255,255,255,.9);stroke-width:2}
+.cover-media .cv-rings .r3 circle{stroke:#FBE27A;stroke-width:3.5}
+.cv-rings rect{fill:var(--teal)}
+.cv-rings g{transform-origin:200px 200px}
+.cv-rings .r1{animation:spin 60s linear infinite}
+.cv-rings .r2{animation:spin 18s linear infinite reverse}
+.cv-rings .r3{animation:spin 30s linear infinite}
+@keyframes cvFloat{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-47%,-54%)}}
+/* drifting decorative arcs on the home */
+.hi .arc,.cover ~ section .arc{animation:arcDrift 14s ease-in-out infinite alternate}
+@keyframes arcDrift{from{transform:rotate(0) translate(0,0)}to{transform:rotate(14deg) translate(-18px,12px)}}
+@media (prefers-reduced-motion:reduce){.cv-rings,.cv-rings g,.hi .arc,.cover ~ section .arc{animation:none!important}}

@@ -62,7 +62,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261108r">
+<link rel="stylesheet" href="assets/css/site.css?v=20261108s">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,7 +87,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261108r"></script>
+<script src="assets/js/site.js?v=20261108s"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -106,10 +106,13 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
     <span class="cv-tag">Company Profile</span>
     <h1><span class="w">Transforming</span><br><span class="w">Aquaculture</span></h1>
     <p class="sub">in the Middle East</p>
-    <p class="lead">We exist to make aquaculture work — for our ecosystems, for food security, and for future generations.</p>
     <div class="actions"><a href="#approach" class="btn btn-or">Our approach</a><a href="operations.html" class="btn btn-line" style="color:var(--ink)">How we operate</a></div>
   </div>
-  <div class="cover-media"><div class="img" role="img" aria-label="Sea cage at dawn"></div></div>
+  <div class="cover-media"><div class="img" role="img" aria-label="Sea cage at dawn"></div>
+    <svg class="cv-rings" viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="cvr" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C0451F"/><stop offset=".6" stop-color="#E3A43E"/><stop offset="1" stop-color="#FBE27A"/></linearGradient></defs>
+     <g class="r1"><circle cx="200" cy="200" r="185" stroke-dasharray="6 10"/></g>
+     <g class="r2"><circle cx="200" cy="200" r="150" stroke-dasharray="420 520"/><rect x="194" y="44" width="12" height="12" transform="rotate(45 200 50)"/></g>
+     <g class="r3"><circle cx="200" cy="200" r="118" stroke-dasharray="2 14"/></g></svg></div>
 </section>
 
 <section class="navy"><div class="wrap nums">
