@@ -22,7 +22,7 @@ FG_BAND='''<section class="fg" id="future-growth" aria-labelledby="fgT">
         <p class="fg-lead">Our vision has always been clear:<br>validate first, then grow with integrity.</p>
         <p class="fg-sub">With Phase II now approved, we’re preparing for the next chapter - one that remains grounded in our core principles.</p></div>
     </div>
-    <div class="fg-grid"><div class="fg-col"><h4>Vertical<br>Expansion</h4><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>We’re building more of the value chain - including transport, genetics, and off-take partnerships - to increase resilience and deliver long-term value.</p></div><div class="fg-col"><h4>New<br>Sites</h4><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>Future facilities will be located nationally and regionally, selected based on environmental suitability and alignment with our low-impact model.</p></div><div class="fg-col"><h4>Broodstock<br>Development</h4><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>We’re advancing broodstock lines to improve climate resilience and enable year-round spawning, supporting stable, scalable supply.</p></div><div class="fg-col"><h4>Strategic<br>Partnerships</h4><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>Through public-private collaboration, we aim to contribute to national food security, biodiversity, and the long-term future of Gulf aquaculture.</p></div></div>
+    <div class="fg-grid"><div class="fg-col"><h3>Vertical<br>Expansion</h3><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>We’re building more of the value chain - including transport, genetics, and off-take partnerships - to increase resilience and deliver long-term value.</p></div><div class="fg-col"><h3>New<br>Sites</h3><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>Future facilities will be located nationally and regionally, selected based on environmental suitability and alignment with our low-impact model.</p></div><div class="fg-col"><h3>Broodstock<br>Development</h3><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>We’re advancing broodstock lines to improve climate resilience and enable year-round spawning, supporting stable, scalable supply.</p></div><div class="fg-col"><h3>Strategic<br>Partnerships</h3><div class="fg-rule" aria-hidden="true"><i class="s"></i><i class="b"></i><i class="s"></i></div><p>Through public-private collaboration, we aim to contribute to national food security, biodiversity, and the long-term future of Gulf aquaculture.</p></div></div>
   </div>
 </section>
 '''
@@ -127,7 +127,7 @@ def page(fn,title,desc,body):
       <p class="ftr-addr">7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</p>
       {social_icons("soc-ftr")}
     </div>
-    <nav class="ftr-nav" aria-label="Footer"><h5>The company</h5>{foot_nav}</nav>
+    <nav class="ftr-nav" aria-label="Footer"><p class="ftr-h">The company</p>{foot_nav}</nav>
     <div class="ftr-logo">{BRAND}</div>
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
@@ -284,7 +284,7 @@ about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a h
   <ol class="ab-tl">{"".join(f'<li class="rv ab-{c}"><span class="ab-year">{y}</span><span class="ab-dia" aria-hidden="true"><i></i><b></b><i></i></span><p>{t}</p></li>' for y,c,t in TLX)}</ol>
  </div>
  <div class="ab-mission" id="mission">
-  <p class="ab-kicker ab-kicker-a rv">Our mission</p>
+  <h2 class="hx ab-kicker ab-kicker-a rv">Our mission</h2>
   <p class="ab-script rv">To advance sustainable aquaculture by proving it can work in harmony with the Gulf’s ecosystems and communities.</p>
   <img class="ab-razali rv" src="assets/img/mohamed-razali-gulf-aquaculture-founder-with-fish.webp?v=2" width="663" height="1400" alt="Mohamed Razali, founder and General Manager of Gulf Aquaculture, holding a fish" loading="lazy">
  </div>
@@ -292,7 +292,7 @@ about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a h
   <h2>What We<br>Stand For</h2>
   <p class="ab-kicker">Our principles</p>
   <ol class="ab-pr"><li>Grow responsibly, not rapidly</li><li>Invest only what we need to learn</li><li>Focus on animal welfare and ecosystem integrity</li><li>Build trust through transparency</li><li>Share knowledge and invite collaboration</li></ol>
-  <p class="ab-kicker" style="margin-top:28px">Our vision</p>
+  <h3 class="hx ab-kicker" style="margin-top:28px">Our vision</h3>
   <p class="ab-vision">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p>
  </div>
 </div></section>
@@ -315,14 +315,14 @@ about+=f'''<section class="iv" id="interview">
   <h2 class="iv-title rv">A Thoughtful<br>Approach to<br>Growth</h2>
   <p class="iv-kicker rv">A conversation with Mohamed Razali, General Manager</p>
   <figure class="iv-photo rv"><img src="assets/img/mohamed-razali-general-manager-gulf-aquaculture-portrait.webp" width="640" height="640" alt="Mohamed Razali, General Manager of Gulf Aquaculture" loading="lazy"></figure>
-  {"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[:3])}
+  {"".join(f'<div class="iv-qa rv"><h3 class="hx iv-q">Q: {q}</h3><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[:3])}
   <p class="note iv-note rv"><span>“Every phase is tested</span><br><span>before it’s scaled. That’s</span><br><span>how we build trust —</span><br><span>with nature and with investors.”</span></p>
   <figure class="iv-site rv"><img src="assets/img/balghailam-island-hatchery-aerial-gulf-aquaculture.webp" width="1000" height="408" alt="Aerial view of the Gulf Aquaculture hatchery on Balghailam Island" loading="lazy"></figure>
  </div>
  <div class="iv-right">
   <blockquote class="iv-quote rv">“We’re not building a fish farm. We’re building trust — in the idea that the UAE can feed itself, responsibly.”<cite>Mohamed Razali</cite></blockquote>
   <div class="iv-rule rv" aria-hidden="true"><i></i><b></b><i></i></div>
-  <div class="iv-cols">{"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[3:])}</div>
+  <div class="iv-cols">{"".join(f'<div class="iv-qa rv"><h3 class="hx iv-q">Q: {q}</h3><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[3:])}</div>
  </div>
 </section>'''
 page("about.html","Our Story — Gulf Aquaculture","Gulf Aquaculture: story, mission, vision, principles, legal structure and interview.",about)
@@ -343,14 +343,14 @@ INFRA=[("Recirculating Aquaculture Systems (RAS)","Integrated RAS and flow-throu
 ops=f'''<section class="opx paper" id="overview"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
  <div class="opx-left">
   <h1 class="rv in">Where<br>Innovation<br>Meets Simplicity</h1>
-  <p class="opx-kicker rv in">Our operations</p>
+  <h2 class="hx opx-kicker rv in">Our operations</h2>
   <p class="lead rv in">We designed our facilities to do one thing well: raise healthy fish in sustainable, replicable systems.</p>
   <figure class="opx-photo rv"><img src="assets/img/gulf-aquaculture-lab-technician.webp" width="1008" height="676" alt="Laboratory technician testing water samples" loading="lazy">
    <p class="note opx-note"><span>Good water quality</span><br><span>isn’t an output. It’s a</span><br><span>daily practice.</span></p></figure>
  </div>
  <ol class="opx-feat">{"".join(f'<li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true">{i}</svg><h3>{t}:</h3><p>{d}</p></li>' for t,d,i in FEAT)}</ol>
 </div></section>
-<section class="opb" id="cycle"><div class="wrap">
+<section class="opb" id="cycle"><div class="wrap"><h2 class="sr-only">The production cycle: from broodstock to distribution</h2>
  <div class="opb-text">
   <div class="rv"><p>Each stage of our operation reflects a clear purpose and a shared responsibility to the Gulf. In the hatchery, our teams begin early — checking water parameters, preparing live feed cultures, and monitoring larval development. This work is methodical and essential, creating the foundation for healthy fish and healthy ecosystems.</p>
    <p>As fry grow, they are transitioned to nursery tanks and eventually to sea cages, where they continue to mature in conditions that mimic their natural habitat. This low-impact approach is not only efficient — it respects the Gulf’s unique marine environment by working in harmony with it, rather than forcing artificial outcomes.</p></div>
@@ -518,7 +518,7 @@ TEAM=[("gulf-aquaculture-team-razali.webp","Mohamed Razali Mohamed","General Man
  ("gulf-aquaculture-team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
 people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","gulf-aquaculture-aerial-view-abu-dhabi.jpg","A better future is grown, not guessed.")
 people=fishwin(people,"gulf-aquaculture-offshore-sea-cages-uae.webp","Gulf Aquaculture sea cages offshore in the UAE","A better future is grown, not guessed.")
-people+='<section class="sec" id="team"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="{html.escape(n)}, {html.escape(r)} at Gulf Aquaculture" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
+people+='<section class="sec" id="team"><div class="wrap"><h2 class="sr-only">Our team</h2><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="{html.escape(n)}, {html.escape(r)} at Gulf Aquaculture" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
 people+='<div class="bio" id="bio" role="dialog" aria-modal="true" aria-labelledby="bioN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button><div class="bio-head"><span class="ph bio-ph" aria-hidden="true"><img id="bioI" src="" alt=""></span><div><h3 id="bioN"></h3><span class="bio-role" id="bioK"></span></div></div><p id="bioT"></p></div></div>'
 _IV=[n for n in NEWS if n["cat"]=="People & Interviews"]
 people+=('<section class="sec paper ivrow" id="interviews"><div class="wrap"><div class="nw-head rv"><div><span class="label">Interviews</span><h2 style="margin-top:12px">Conversations with our team</h2></div><a class="more" href="news.html#cat=people-and-interviews">All interviews</a></div>'
@@ -532,7 +532,7 @@ contact=f'''<section class="sec paper"><span class="arc" style="width:760px;heig
     <p>We're building more than a business. We're building trust, resilience, and a model that others can build on. If that resonates with you, we'd love to hear from you.</p>
     <a class="wa-btn" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}Chat with us on WhatsApp</a>
     <dl class="dl"><dt>Email</dt><dd>info@gulfaquaculture.com</dd><dt>Website</dt><dd>gulfaquaculture.com</dd><dt>Head office</dt><dd>7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</dd><dt>AUM</dt><dd>1. Balghailam Island<br>2. Sheikh Khalifa Marine Research Centre</dd></dl></div>
-  <form class="form rv" id="form" novalidate><h3 style="font-size:1.5rem">Let's build something lasting, together.</h3>
+  <form class="form rv" id="form" novalidate><h2 style="font-size:1.5rem;line-height:1.06">Let's build something lasting, together.</h2>
     <p class="legend" style="margin-top:22px">What is your enquiry about?</p>
     <div class="who">
       <label><input type="radio" name="type" value="fry">Fry orders &amp; availability</label><label><input type="radio" name="type" value="partner">Commercial aquaculture enquiry</label>
@@ -582,7 +582,7 @@ _galchips='<button class="on" data-f="all">All photos</button>'+"".join(f'<butto
 news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
 news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
   <div class="nw-chips rv" role="toolbar" aria-label="Filter news by category">{_chips}</div>
-  <div class="nw-grid" id="nwGrid">{"".join(ncard(n) for n in NEWS)}</div>
+  <h2 class="sr-only">Latest articles</h2><div class="nw-grid" id="nwGrid">{"".join(ncard(n) for n in NEWS)}</div>
   <p class="nw-empty" id="nwEmpty" hidden>No posts in this category yet — new articles will appear here as they are published.</p>
 </div></section>'''
 news=fishwin(news,GA_NEWS_IMG,"Gulf Aquaculture technician checking fry in hatchery tanks","")
@@ -592,7 +592,7 @@ gallery=opener(None,"Media gallery","Media gallery","Photos from our hatcheries,
 gallery=fishwin(gallery,"gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp","Sea cages at sunset in the Arabian Gulf","")
 gallery+=f'''<section class="sec gl" id="photos"><div class="wrap">
   <div class="gl-chips rv" role="toolbar" aria-label="Filter photos by album">{_galchips}</div>
-  <div class="gl-grid">{_gal}</div>
+  <h2 class="sr-only">Photo gallery</h2><div class="gl-grid">{_gal}</div>
   <p class="gl-note rv">Click any photo to open it full screen; use the arrows, your keyboard or swipe to browse.</p>
 </div></section>'''
 page("gallery.html","Media gallery — Gulf Aquaculture","",gallery)
@@ -609,7 +609,7 @@ for i,n in enumerate([x for x in NEWS if not x.get('href')]):
   {_fishfig(n["img"],html.escape(n["title"]))}
   <div class="nw-body">{"".join(f"<p>{x}</p>" for x in n["body"])}</div>
 </div></article>
-<section class="sec nw-latest"><div class="wrap"><div class="nw-head rv"><div><span class="label">More news</span></div><a class="more" href="news.html">All news</a></div>
+<section class="sec nw-latest"><div class="wrap"><div class="nw-head rv"><div><h2 class="hx label">More news</h2></div><a class="more" href="news.html">All news</a></div>
   <div class="nw-grid">{"".join(ncard(m) for m in rel)}</div></div></section>'''
     page(f"news-{n['slug']}.html",n["title"],n["excerpt"],body)
 

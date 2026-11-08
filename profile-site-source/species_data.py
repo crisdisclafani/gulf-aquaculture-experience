@@ -60,10 +60,10 @@ def species_index(opener, dia):
         f'<span class="sp-status">{d["status"]}</span><span class="sp-local">{d["local"]}</span><span class="sp-en">{d["en"]}</span>'
         f'<span class="sp-sci">{d["sci"] or "Scientific name TBC"}</span><span class="sp-blurb">{d["blurb"]}</span>'
         f'<span class="sp-go">Explore species <span aria-hidden="true">→</span></span></a>' for d in SPECIES)
-    sp += ('<section class="sec spx"><div class="wrap"><p class="spx-kicker rv">Our core species:</p>'
+    sp += ('<section class="sec spx"><div class="wrap"><h2 class="hx spx-kicker rv">Our core species:</h2>'
            '<p class="spx-hint rv">Select a species to explore its biology, farming characteristics and fry availability.</p>'
            f'<div class="sp-grid">{cards}</div>'
-           '<div class="sp-prog rv"><div><span class="label">Other species &amp; development programmes</span><h3>Broodstock development</h3>'
+           '<div class="sp-prog rv"><div><h2 class="hx label">Other species &amp; development programmes</h2><h3>Broodstock development</h3>'
            '<p>We’re advancing broodstock lines to improve climate resilience and enable year-round spawning, supporting stable, scalable supply.</p></div>'
            '<div>' + dia(["Broodstock management and spawning","Larval development and live-feed systems","Nursery and fry conditioning"]) +
            f'<p class="tbs-wrap">Further development species: {TBS}</p></div></div></div></section>')
@@ -89,7 +89,7 @@ def species_pages(page):
         body = f'''<section class="sph paper"><span class="arc" style="width:820px;height:820px;right:-300px;top:-420px"></span><div class="wrap sph-grid">
  <div class="rv in"><a class="sph-back" href="species.html"><span aria-hidden="true">←</span> All species</a>
   <span class="folio"><i></i>Species · {n+1:02d} / {len(SPECIES):02d}</span>
-  <p class="sph-local">{d["local"]}</p><h1>{d["en"]}</h1><p class="sph-sci">{sci}</p>
+  <h1><span class="sph-local">{d["local"]}</span> <span class="sph-en">{d["en"]}</span></h1><p class="sph-sci">{sci}</p>
   <span class="sp-status">{d["status"]}</span><p class="lead" style="margin-top:22px">{d["blurb"]}</p>
   <a class="btn btn-or" href="contact.html?species={q}#partner" style="margin-top:26px">Enquire about {d["local"]} fry <span aria-hidden="true">→</span></a></div>
  <div class="sph-media rv in"><span class="sph-band" aria-hidden="true"></span>{fishimg(d, "sph-fish")}</div>

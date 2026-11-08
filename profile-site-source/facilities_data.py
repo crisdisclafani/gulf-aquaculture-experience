@@ -80,7 +80,7 @@ def facilities_index(opener, dia):
         f'<span class="fa-body"><span class="fa-n">{i+1:02d}</span><span class="fa-name">{f["name"]}</span><span class="fa-short">{f["short"]}</span>'
         f'<span class="sp-go">Explore the facility <span aria-hidden="true">→</span></span></span></a>'
         for i, f in enumerate(FACILITIES))
-    a += (f'<section class="sec"><div class="wrap"><p class="spx-kicker rv">Our facilities:</p>'
+    a += (f'<section class="sec"><div class="wrap"><h2 class="hx spx-kicker rv">Our facilities:</h2>'
           f'<p class="spx-hint rv">Select a facility to see its infrastructure, feed systems, laboratories and site layout.</p>'
           f'<div class="fa-grid">{cards}</div></div></section>')
     return a
@@ -119,7 +119,7 @@ def facility_pages(page, dia):
                          '<div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>')
         else:
             plan_html = f'<a class="fx-plan rv" href="assets/img/{f["plan"]}" target="_blank" rel="noopener" aria-label="Open the {f["name"]} site plan full size"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy"><span class="fx-zoom" aria-hidden="true">⤢ View full size</span></a>'
-        card = "".join(f'<h3 class="fx-h3">{h}</h3><p>{p}</p>' for h, p in f["card"])
+        card = "".join(f'<h2 class="fx-h3">{h}</h2><p>{p}</p>' for h, p in f["card"])
         body = f'''<section class="sph paper"><span class="arc" style="width:820px;height:820px;right:-300px;top:-420px"></span><div class="wrap">
  <a class="sph-back rv in" href="assets.html"><span aria-hidden="true">←</span> All assets</a>
  <span class="folio rv in"><i></i>Assets under management · {n+1:02d} / {len(FACILITIES):02d}</span>
