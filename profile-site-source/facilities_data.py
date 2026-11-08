@@ -23,10 +23,10 @@ FACILITIES = [
   ],
   plan="gulf-aquaculture-balghailam-plan.webp", plan_title="Explore the site",
   hotspots=[("Hatchery &amp; Nursery Tanks",10,68,718,213,1),("Live Feed",214,215,718,315,1),("Broodstock Tanks",388,315,718,431,1),
-            ("Microbiology Lab",755,69,881,168,1),("Microbiology Lab",755,215,881,315,0),("Laboratory",181,240,214,315,0),("Blower Room",637,69,718,151,0),
-            ("Power Station",10,7,72,68,0),("Pump House",754,433,881,531,1),("Office",10,215,81,315,0),("M.A",114,240,181,315,0),
-            ("Accommodation",229,315,355,378,0),("Accommodation",131,345,194,471,0),("Accommodation",929,69,991,194,0),("Laundry",355,315,388,378,0),
-            ("Kitchen",251,400,321,466,0),("Food Store",929,215,991,297,0),("Store",929,297,991,359,0)], plan_caption="Click any area of the hatchery — tanks, live feed, broodstock, labs — to watch it in action."),
+            ("Microbiology Lab",755,69,881,168,1),("Microbiology Lab",755,215,881,315,1),("Laboratory",181,240,214,315,1),("Blower Room",637,69,718,151,1),
+            ("Power Station",10,7,72,68,1),("Pump House",754,433,881,531,1),("Office",10,215,81,315,1),("M.A",114,240,181,315,1),
+            ("Accommodation",229,315,355,378,1),("Accommodation",131,345,194,471,1),("Accommodation",929,69,991,194,1),("Laundry",355,315,388,378,1),
+            ("Kitchen",251,400,321,466,1),("Food Store",929,215,991,297,1),("Store",929,297,991,359,1)], plan_caption="Click any area of the hatchery — tanks, live feed, broodstock, labs — to watch it in action."),
  dict(k="skmrc", name="Sheikh Khalifa Marine Research Centre", title="Sheikh Khalifa<br>Marine Research Centre",
   short="Operated by GA since November 2025 — the pinnacle of Middle Eastern hatchery technology, with ≈18,000 m² in two production streams.",
   intro="GA has been operating the Sheikh Khalifa Marine Research Centre [SKMRC] since November 2025. This asset represents the pinnacle of Middle Eastern hatchery technology and design.",
@@ -54,10 +54,10 @@ FACILITIES = [
     ("Hatchery","200,318 350,200 465,250 305,385",330,292,1),
     ("Broodstock","410,320 505,262 660,340 565,410",535,336,1),
     ("Broodstock","605,250 705,165 858,255 780,345",732,255,1),
-    ("Plant Room","785,325 830,290 905,325 860,365",846,328,0),
-    ("Generator Room","885,380 925,365 975,400 940,430",930,398,0),
-    ("Plant Room","660,405 710,370 915,445 870,535",786,452,0),
-    ("Header Tanks","783,368 828,368 832,412 788,412",808,392,0),
+    ("Plant Room","785,325 830,290 905,325 860,365",846,328,1),
+    ("Generator Room","885,380 925,365 975,400 940,430",930,398,1),
+    ("Plant Room","660,405 710,370 915,445 870,535",786,452,1),
+    ("Header Tanks","783,368 828,368 832,412 788,412",808,392,1),
     ("Generator Room","880,440 918,444 918,482 880,478",900,500,0)]), plan_caption="Hatchery, broodstock, nursery and weaning buildings — click a roof to watch it in action."),
 ]
 
@@ -96,7 +96,7 @@ def facility_pages(page, dia):
             hs = "".join(
                 f'<a class="hs{" hs-main" if m else ""}" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="{t}" aria-label="{t} — watch video">'
                 f'<rect x="{x0}" y="{y0}" width="{x1-x0}" height="{y1-y0}" rx="2"/>'
-                + (f'<circle class="hs-dot" cx="{x1-14}" cy="{y0+14}" r="7"/><circle class="hs-ping" cx="{x1-14}" cy="{y0+14}" r="7"/>' if m else '')
+                + (f'<circle class="hs-dot" cx="{x0+min(14,(x1-x0)/2)}" cy="{y0+min(14,(y1-y0)/2)}" r="6"/><circle class="hs-ping" cx="{x0+min(14,(x1-x0)/2)}" cy="{y0+min(14,(y1-y0)/2)}" r="6"/>' if m else '')
                 + f'<title>{t}</title></a>' for t, x0, y0, x1, y1, m in f["hotspots"])
             plan_html = (f'<figure class="fx-plan hsplan rv"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy">'
                          f'<svg class="hs-svg" viewBox="0 0 1000 531" preserveAspectRatio="none">{hs}</svg>'

@@ -1059,3 +1059,4 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .hdr>.wrap>.brand,.hdr>.wrap>.btn,.hdr>.wrap>.burger{align-self:center}
 .menu{align-items:stretch}
 .menu>li{display:flex;align-items:center}
+.hs:nth-child(5n+2) .hs-ping{animation-delay:.4s}.hs:nth-child(5n+3) .hs-ping{animation-delay:.8s}.hs:nth-child(5n+4) .hs-ping{animation-delay:1.2s}.hs:nth-child(5n+5) .hs-ping{animation-delay:1.6s}
