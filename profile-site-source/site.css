@@ -975,6 +975,7 @@ body[data-aud] .menu a[aria-current="page"]{color:var(--aud-d)}
 /* mega menu */
 .menu>li{position:static}
 .has-mega>a{padding-right:20px}
+.has-mega>a::after{right:20px}
 .has-mega>a::before{content:"";position:absolute;right:6px;top:50%;width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg);opacity:.6;transition:transform .3s}
 .has-mega.open>a::before{transform:translateY(-30%) rotate(225deg)}
 .mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid var(--line);box-shadow:0 30px 50px -30px rgba(11,42,63,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .3s var(--ease),visibility 0s .3s;z-index:60}
@@ -1288,6 +1289,10 @@ html.lb-open{overflow:hidden}
   .hdr>.wrap{gap:14px}
   .menu{gap:0}
   .menu a{padding:8px 7px;font-size:.82rem}
+  .menu .has-mega>a{padding-right:19px}
+  .menu .has-mega>a::before{right:6px}
+  .menu a::after{left:7px;right:7px}
+  .menu .has-mega>a::after{right:19px}
   .hdr>.wrap>.btn{padding-left:16px;padding-right:16px}
 }
 
