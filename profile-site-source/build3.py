@@ -47,7 +47,9 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
 </section>
 '''
 MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint">
-  <div class="mapband-img"><img src="assets/img/map.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"></div>
+  <div class="mapband-img hsplan maplan"><img src="assets/img/map.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"><svg class="map-svg" viewBox="0 0 1600 1686" preserveAspectRatio="xMidYMid meet"><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Oman — Seabream &amp; Red Snapper" aria-label="Oman — Seabream &amp; Red Snapper — watch video"><circle class="hs-hit" cx="994" cy="504" r="34"/><circle class="hs-ping" cx="994" cy="504" r="16"/><circle class="hs-ring" cx="994" cy="504" r="22"/><title>Oman — Seabream &amp; Red Snapper</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Sheikh Khalifa Marine Research Centre (SKMRC)" aria-label="Sheikh Khalifa Marine Research Centre (SKMRC) — watch video"><circle class="hs-hit" cx="744" cy="772" r="34"/><circle class="hs-ping" cx="744" cy="772" r="16"/><circle class="hs-ring" cx="744" cy="772" r="22"/><title>Sheikh Khalifa Marine Research Centre (SKMRC)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Juvenile Supply (UAE)" aria-label="Juvenile Supply (UAE) — watch video"><circle class="hs-hit" cx="1010" cy="824" r="34"/><circle class="hs-ping" cx="1010" cy="824" r="16"/><circle class="hs-ring" cx="1010" cy="824" r="22"/><title>Juvenile Supply (UAE)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Abu Dhabi HQ" aria-label="Abu Dhabi HQ — watch video"><circle class="hs-hit" cx="516" cy="976" r="34"/><circle class="hs-ping" cx="516" cy="976" r="16"/><circle class="hs-ring" cx="516" cy="976" r="22"/><title>Abu Dhabi HQ</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Balghailam Island" aria-label="Balghailam Island — watch video"><circle class="hs-hit" cx="568" cy="962" r="34"/><circle class="hs-ping" cx="568" cy="962" r="16"/><circle class="hs-ring" cx="568" cy="962" r="22"/><title>Balghailam Island</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Malaysia — Red Snapper hatchery" aria-label="Malaysia — Red Snapper hatchery — watch video"><circle class="hs-hit" cx="1018" cy="1322" r="34"/><circle class="hs-ping" cx="1018" cy="1322" r="16"/><circle class="hs-ring" cx="1018" cy="1322" r="22"/><title>Malaysia — Red Snapper hatchery</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Indonesia — Grouper hatchery" aria-label="Indonesia — Grouper hatchery — watch video"><circle class="hs-hit" cx="1220" cy="1502" r="34"/><circle class="hs-ping" cx="1220" cy="1502" r="16"/><circle class="hs-ring" cx="1220" cy="1502" r="22"/><title>Indonesia — Grouper hatchery</title></a></svg>
+   <p class="hs-hint map-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Click a location to watch it in action</p></div>
+  <div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
   <div class="wrap"><p class="mapband-note"><span>Committed to proving that aquaculture</span><br><span>can work - for our waters, for our communities,</span><br><span>and for future generations.</span></p></div>
 </section>'''
 
@@ -63,7 +65,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109l">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109m">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -89,7 +91,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109l"></script>
+<script src="assets/js/site.js?v=20261109m"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)

@@ -1066,3 +1066,12 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .legal-pg a,.ftr .bot a{color:var(--teal)}
 .ftr .bot a:hover{text-decoration:underline}
 @media (max-width:1150px){.menu{display:none}.burger{display:block}}
+/* map hotspots (Growth · regional footprint) */
+.maplan{position:relative}
+.map-svg{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1600/1686}
+.hs-map .hs-hit{fill:rgba(255,255,255,0);cursor:pointer}
+.hs-map .hs-ring{fill:none;stroke:#fff;stroke-width:3;opacity:.0;transition:opacity .3s,r .3s}
+.hs-map:hover .hs-ring,.hs-map:focus-visible .hs-ring{opacity:1}
+.hs-map:hover .hs-hit,.hs-map:focus-visible .hs-hit{fill:rgba(226,161,60,.35)}
+.hs-map .hs-ping{stroke:#fff;stroke-width:3}
+.map-hint{position:absolute;left:clamp(16px,4vw,60px);top:clamp(12px,2vw,24px);background:rgba(255,255,255,.9);padding:4px 14px 4px 6px;height:auto;margin:0}
