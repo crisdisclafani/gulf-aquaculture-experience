@@ -1042,3 +1042,15 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .hsm-box{width:min(1100px,100%)}
 .hsm-t{color:#fff;font-family:var(--serif);font-size:1.5rem;margin-bottom:12px}
 @media (prefers-reduced-motion:reduce){.hs-ping{animation:none;opacity:0}}
+/* aerial hotspot plan (SKMRC) */
+.polyplan .hs-svg{height:calc(100% - 2*clamp(10px,2vw,22px) - 40px)}
+.polyplan polygon{fill:rgba(226,161,60,0);stroke:rgba(255,255,255,0);stroke-width:2;vector-effect:non-scaling-stroke;cursor:pointer;transition:fill .3s,stroke .3s}
+.polyplan:hover polygon{stroke:rgba(255,255,255,.55);fill:rgba(255,255,255,.06)}
+.polyplan .hs:hover polygon,.polyplan .hs:focus-visible polygon{fill:rgba(226,161,60,.32)!important;stroke:var(--orange)!important}
+.pls{pointer-events:none}
+.pl text{font-family:var(--sans);font-weight:600;font-size:15px;fill:#2A9AA0;text-anchor:middle;paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:3px;stroke-linejoin:round}
+.pl-main text{font-size:17px}
+.pl .hs-dot{fill:var(--orange)}
+.ph-tag rect{fill:#fff;opacity:.95}
+.ph-tag text{font-family:var(--sans);font-weight:500;font-size:22px;letter-spacing:2px;text-anchor:middle;fill:var(--orange)}
+@media (max-width:760px){.pl text{font-size:20px}.pl-main text{font-size:20px}}

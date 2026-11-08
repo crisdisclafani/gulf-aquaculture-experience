@@ -46,7 +46,19 @@ FACILITIES = [
    ("Laboratories and diagnostics",None,
     [("Microbial Testing Capabilities Include:",["Viruses","Bacteria","Parasites","Water quality parameters"])]),
   ],
-  plan="gulf-aquaculture-skmrc-plan.webp", plan_title="Phase 01 · Phase 02", plan_caption="Hatchery, broodstock, nursery &amp; weaning buildings with plant rooms, header tanks and generator rooms."),
+  plan="sheikh-khalifa-marine-research-centre-phase01-02.webp", plan_title="Phase 01 · Phase 02",
+  polyspots=dict(w=1000,h=601,phases=[("PHASE 01",430,470),("PHASE 02",640,62)],spots=[
+    ("Nursery Weaning &amp; Office","22,148 130,95 348,205 240,262",185,178,1),
+    ("Nursery Weaning","293,55 355,20 560,112 495,152",425,88,1),
+    ("Hatchery &amp; Office","495,152 560,112 695,160 600,255 520,215",598,178,1),
+    ("Hatchery","200,318 350,200 465,250 305,385",330,292,1),
+    ("Broodstock","410,320 505,262 660,340 565,410",535,336,1),
+    ("Broodstock","605,250 705,165 858,255 780,345",732,255,1),
+    ("Plant Room","785,325 830,290 905,325 860,365",846,328,0),
+    ("Generator Room","885,380 925,365 975,400 940,430",930,398,0),
+    ("Plant Room","660,405 710,370 915,445 870,535",786,452,0),
+    ("Header Tanks","783,368 828,368 832,412 788,412",808,392,0),
+    ("Generator Room","880,440 918,444 918,482 880,478",900,500,0)]), plan_caption="Hatchery, broodstock, nursery and weaning buildings — click a roof to watch it in action."),
 ]
 
 
@@ -89,6 +101,21 @@ def facility_pages(page, dia):
             plan_html = (f'<figure class="fx-plan hsplan rv"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy">'
                          f'<svg class="hs-svg" viewBox="0 0 1000 531" preserveAspectRatio="none">{hs}</svg>'
                          f'<figcaption class="hs-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Hover an area and click to watch it in action</figcaption></figure>'
+                         '<div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>')
+        elif f.get("polyspots"):
+            P = f["polyspots"]; W, H = P["w"], P["h"]
+            shapes = "".join(
+                f'<a class="hs{" hs-main" if m else ""}" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="{t}" aria-label="{t} — watch video">'
+                f'<polygon points="{pts}"/><title>{t}</title></a>' for t, pts, lx, ly, m in P["spots"])
+            labels = "".join(
+                f'<g class="pl{" pl-main" if m else ""}" transform="translate({lx} {ly})">'
+                + "".join(f'<text y="{i*17 - (len(t.split(" &amp; "))-1)*8}">{line}</text>' for i, line in enumerate(t.replace("Nursery Weaning &amp; Office","Nursery|Weaning &amp; Office").replace("Hatchery &amp; Office","Hatchery &amp;|Office").replace("Generator Room","Generator|Room").replace("Plant Room","Plant|Room").replace("Header Tanks","Header|Tanks").replace("Nursery Weaning","Nursery|Weaning").split("|")))
+                + (f'<circle class="hs-dot" cx="0" cy="-26" r="6"/><circle class="hs-ping" cx="0" cy="-26" r="6"/>' if m else '') + '</g>'
+                for t, pts, lx, ly, m in P["spots"])
+            phases = "".join(f'<g class="ph-tag" transform="translate({x} {y})"><rect x="-70" y="-20" width="140" height="40"/><text y="8">{t}</text></g>' for t, x, y in P["phases"])
+            plan_html = (f'<figure class="fx-plan hsplan polyplan rv"><img src="assets/img/{f["plan"]}" width="1600" height="962" alt="{f["name"]} aerial rendering: {f["plan_caption"]}" loading="lazy">'
+                         f'<svg class="hs-svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid meet">{shapes}<g class="pls" aria-hidden="true">{labels}{phases}</g></svg>'
+                         f'<figcaption class="hs-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Hover a building and click to watch it in action</figcaption></figure>'
                          '<div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>')
         else:
             plan_html = f'<a class="fx-plan rv" href="assets/img/{f["plan"]}" target="_blank" rel="noopener" aria-label="Open the {f["name"]} site plan full size"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy"><span class="fx-zoom" aria-hidden="true">⤢ View full size</span></a>'
