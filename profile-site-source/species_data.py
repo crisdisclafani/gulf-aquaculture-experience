@@ -2,7 +2,7 @@
 DEFAULT_VIDEO=("gulf-aquaculture-video-hamour.mp4","gulf-aquaculture-video-hamour-poster.webp")
 TBS='<span class="tbs">To be supplied by Gulf Aquaculture</span>'
 SPECIES=[
- dict(k="hamour",local="Hamour",en="Orange-spotted Grouper",sci="Epinephelus coioides",status="In production",img="gulf-aquaculture-fish-hamour.webp",hands="gulf-aquaculture-species-grouper.webp",
+ dict(k="hamour",local="Hamour",en="Orange-spotted Grouper",sci="Epinephelus coioides",status="In production",img="gulf-aquaculture-fish-hamour.webp",hands=None,
   blurb="A high-value, slow-growing species prized in regional cuisine.",
   bio="A high-value species with firm texture, strong market pricing and cultural importance across the GCC and Asia.",
   hab="Native to regional waters. Found across the Indo-West Pacific, including the Arabian Gulf, around coastal reefs, estuaries and mangrove areas.",
@@ -10,7 +10,7 @@ SPECIES=[
   farm="Commonly stocked in marine cage systems. A slow-growing species with premium market value.",
   prod="Fry are produced through controlled broodstock, larval and nursery phases — supporting consistent size grading, stable early feeding and smooth transfer into nursery tanks or sea cages.",
   fry=["Pilot facility (2024): annual capacity of 2 million larvae and fry","First sale of Hamour fry to the local market in 2024","Grouper juveniles supplied to a local company since 2024 — projected 7 million/year by 2026 (with Red Snapper)","Indonesia hatchery with Aquagrow International: 300,000 fry/month, launching 2026"]),
- dict(k="hamra",local="Hamra",en="Malabar Red Snapper",sci="Lutjanus malabaricus",status="In production",img="gulf-aquaculture-fish-hamra.webp",hands="gulf-aquaculture-species-red-snapper.webp",
+ dict(k="hamra",local="Hamra",en="Malabar Red Snapper",sci="Lutjanus malabaricus",status="In production",img="gulf-aquaculture-fish-hamra.webp",hands=None,
   blurb="A hardy and fast-growing species ideal for sea cage culture.",
   bio="A hardy warm-water species with favourable growth characteristics and attractive culinary traits.",
   hab="Found across the Indo-West Pacific, including the Arabian Gulf, on coastal and offshore reef grounds.",
@@ -26,7 +26,7 @@ SPECIES=[
   farm="Suited to low-density cage systems and well-managed land-based systems, with efficient feed conversion and predictable harvest values.",
   prod="Fry are reared with live feed systems and microbiology monitoring during the larval phase, supporting stable development through the most sensitive early growth stages.",
   fry=None),
- dict(k="shaari",local="Shaari",en="Spangled Emperor",sci="Lethrinus nebulosus",status="Core species",img="gulf-aquaculture-fish-shaari.webp",hands="gulf-aquaculture-species-shari.webp",
+ dict(k="shaari",local="Shaari",en="Spangled Emperor",sci="Lethrinus nebulosus",status="Core species",img="gulf-aquaculture-fish-shaari.webp",hands=None,
   blurb="A premium reef fish valued for its delicate flavour, strong market demand, and adaptability to warm-water aquaculture.",
   bio="A premium reef fish valued for its delicate flavour and strong market demand.",
   hab="Distributed from East Africa to southern Japan, around Australia, the Red Sea and the Arabian Gulf, over coral reefs, rocky reefs and sandy habitats.",
