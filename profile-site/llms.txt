@@ -1,0 +1,29 @@
+# Gulf Aquaculture
+
+> Abu Dhabi aquaculture company (founded 2023, joint venture of Emirates Consortium and Hibiscus Capital Investment) that raises native Gulf fish species from broodstock to juvenile and supplies hatchery-raised fry to farms in the UAE and the region. Approach: "Local Species in Local Waters".
+
+Key facts:
+- Operates the Balghailam Island hatchery (6,000 m²) and the Sheikh Khalifa Marine Research Centre in Umm Al Quwain, SKMRC (≈18,000 m², 14 ISO/IEC 17025 laboratories) under a 15-year lease — the largest hatchery and nursery facility in the UAE and the wider Gulf.
+- On track to ship 20+ million fry to regional clients; target 20 million fry at SKMRC in 2026.
+- Species: Hamour (orange-spotted grouper, Epinephelus coioides), Hamra (Malabar red snapper, Lutjanus malabaricus), Shiqra (mangrove red snapper, Lutjanus argentimaculatus), Shaari (spangled emperor, Lethrinus nebulosus), Sobaity seabream; Umm Drais under evaluation.
+- 1st place, Sheikh Mansour Agriculture Award (Feb 2025); BAP certification for two assets (Mar 2026).
+- Regional footprint: UAE, Oman (seabream & red snapper fry supply), Malaysia and Indonesia hatcheries with Aquagrow International.
+- Contact: info@gulfaquaculture.com · 7th Floor, East Tower, Abu Dhabi Mall, P.O. Box 55345, Abu Dhabi, UAE.
+
+## Pages
+- [About](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/about.html): story, mission, principles, leadership interview
+- [Operations](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/operations.html): hatchery, live feed, biosecurity, labs, traceability, production cycle
+- [Assets](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/assets.html): [Balghailam Island](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/asset-balghailam.html), [SKMRC](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/asset-skmrc.html)
+- [Species](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species.html): [Hamour](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-hamour.html), [Hamra](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-hamra.html), [Shiqra](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-shiqra.html), [Shaari](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-shaari.html), [Seabream](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-seabream.html), [Umm Drais](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/species-umm-drais.html)
+- [Growth](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/growth.html): sustainability, legal structure, Phase II, regional footprint
+- [People](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/people.html): team
+- [Contact](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/contact.html): fry orders, partnerships, research collaboration
+- [News & insights](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news.html): company news, projects & partnerships, events, media gallery
+
+## News
+- [Gulf Aquaculture receives BAP certification for both its assets](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-bap-certification-2026.html) (2026-03): Balghailam Island and the Sheikh Khalifa Marine Research Centre are now certified under Best Aquaculture Practices.
+- [Fry supply agreement signed for Red Snapper and Seabream in Oman](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-oman-fry-supply-agreement.html) (2025-12): From December 2025 Gulf Aquaculture supplies Red Snapper and Seabream fry to a regional partner in Oman.
+- [Gulf Aquaculture takes over the Sheikh Khalifa Marine Research Centre](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-skmrc-15-year-concession.html) (2025-11): A 15-year concession gives Gulf Aquaculture exclusive management of the largest hatchery and nursery facility in the UAE and the wider Gulf.
+- [First place at the Sheikh Mansour Agriculture Award](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-sheikh-mansour-agriculture-award.html) (2025-02): Gulf Aquaculture was awarded 1st place at the Sheikh Mansour Agriculture Award in February 2025.
+- [First commercial sale of Hamour fry to the local market](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-first-hamour-fry-sale.html) (2024-06): Our Balghailam Island hatchery proved the concept: native Hamour fry, produced in Abu Dhabi, sold to UAE farms.
+- [Gulf Aquaculture is founded in Abu Dhabi](https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/news-gulf-aquaculture-founded.html) (2023-01): A joint venture between Emirates Consortium and Hibiscus Capital Investment, built on a simple idea: aquaculture designed for this region.

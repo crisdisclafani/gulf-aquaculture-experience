@@ -1,5 +1,5 @@
 # Video per species: add "video": ("file.mp4","poster.webp") to a species to override the default.
-DEFAULT_VIDEO=("gulf-aquaculture-video-hamour.mp4","gulf-aquaculture-video-hamour-poster.webp")
+DEFAULT_VIDEO=("gulf-aquaculture-video-hamour.mp4","hamour-grouper-coral-reef-video-poster.webp")
 TBS='<span class="tbs">To be supplied by Gulf Aquaculture</span>'
 SPECIES=[
  dict(k="hamour",local="Hamour",en="Orange-spotted Grouper",sci="Epinephelus coioides",status="In production",img="gulf-aquaculture-fish-hamour.webp",hands=None,
@@ -53,8 +53,8 @@ def fishimg(d, cls="sp-fish"):
 
 FISHWIN=None
 def species_index(opener, dia):
-    sp = opener("04","Native Gulf species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","grouper.jpg","")
-    sp = FISHWIN(sp, "gulf-aquaculture-video-hamour-poster.webp", "Grouper swimming over a Gulf coral reef", "We don’t adapt species to our systems. We build systems around our species.")
+    sp = opener("04","Native Gulf species","Local Species.<br>Local Knowledge.","We focus exclusively on native Gulf species — resilient, well-adapted, and ecologically appropriate.","hamour-orange-spotted-grouper-gulf-aquaculture.jpg","")
+    sp = FISHWIN(sp, "hamour-grouper-coral-reef-video-poster.webp", "Grouper swimming over a Gulf coral reef", "We don’t adapt species to our systems. We build systems around our species.")
     cards = "".join(
         f'<a class="sp-card rv" href="species-{d["k"]}.html"><span class="sp-stage">{fishimg(d)}<span class="sp-wave" aria-hidden="true"></span></span>'
         f'<span class="sp-status">{d["status"]}</span><span class="sp-local">{d["local"]}</span><span class="sp-en">{d["en"]}</span>'

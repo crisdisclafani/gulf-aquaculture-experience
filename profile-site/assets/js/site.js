@@ -50,7 +50,7 @@ if(ring){
       <text class="t" x="${p.lx}" y="${p.ly}" text-anchor="${p.anchor}">${p.t}</text>${lines}</g>`; });
   ring.innerHTML=`<svg viewBox="0 0 800 660" role="group" aria-label="Operations cycle">
     <defs><clipPath id="cc"><circle cx="${C[0]}" cy="${C[1]}" r="150"/></clipPath><path id="rp" d="M ${C[0]} ${C[1]} m -172 0 a 172 172 0 1 1 344 0 a 172 172 0 1 1 -344 0"/></defs>
-    <image href="assets/img/cage-ring.jpg" x="${C[0]-175}" y="${C[1]-175}" width="350" height="350" clip-path="url(#cc)"/>
+    <image href="assets/img/gulf-aquaculture-sea-cage-top-view.jpg" x="${C[0]-175}" y="${C[1]-175}" width="350" height="350" clip-path="url(#cc)"/>
     <circle cx="${C[0]}" cy="${C[1]}" r="${R}" fill="none" stroke="rgba(255,255,255,.25)" stroke-dasharray="2 5"/>
     <g class="spin"><text class="rt"><textPath href="#rp">Continuous Lab Oversight ◆ Microbial monitoring ◆ Real-time data &amp; traceability ◆ Continuous Lab Oversight ◆</textPath></text></g>
     ${g}</svg>`;
@@ -252,3 +252,13 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   const reset=()=>{ try{localStorage.removeItem("ga-aud")}catch(e){} delete document.body.dataset.aud; };
   document.querySelectorAll('a.brand, .menu>li>a[href="index.html"], .mnav a.mn-top[href="index.html"]').forEach(a=>a.addEventListener("click",reset));
 })();
+
+/* News filter */
+(function(){var ch=document.querySelector('.nw-chips');if(!ch)return;
+ var cards=[].slice.call(document.querySelectorAll('#nwGrid .nw-card')),empty=document.getElementById('nwEmpty');
+ function f(c){[].forEach.call(ch.children,function(b){b.classList.toggle('on',b.dataset.f===c)});
+  if(c==='media-gallery'){cards.forEach(function(x){x.hidden=false});empty.hidden=true;document.getElementById('media-gallery').scrollIntoView({behavior:'smooth'});return}
+  var n=0;cards.forEach(function(x){var s=c==='all'||x.dataset.cat===c;x.hidden=!s;if(s)n++});empty.hidden=n>0}
+ ch.addEventListener('click',function(e){var b=e.target.closest('button');if(b){f(b.dataset.f);if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'news.html':'#cat='+b.dataset.f)}});
+ function fromHash(){var m=location.hash.match(/cat=([a-z-]+)/);if(m)f(m[1])}
+ fromHash();window.addEventListener('hashchange',fromHash);})();

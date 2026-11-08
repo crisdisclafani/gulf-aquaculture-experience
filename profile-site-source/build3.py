@@ -10,8 +10,8 @@ for f in os.listdir(f"{HERE}/video"): shutil.copy(f"{HERE}/video/{f}",f"{OUT}/as
 PAGES=[("about.html","About","01"),("operations.html","Operations","02"),("assets.html","Assets","03"),("species.html","Species","04"),
        ("growth.html","Growth","05"),("people.html","People","06"),("contact.html","Contact","07")]
 LOGO='<svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><circle cx="16" cy="21" r="10" stroke="#C8742A" stroke-width="2.4"/><circle cx="26" cy="21" r="10" stroke="#4A2E16" stroke-width="2.4"/><path d="M11 21c2.7-3.2 6-3.2 8.6 0s6 3.2 8.6 0" stroke="#3A9C9A" stroke-width="1.8"/></svg>'
-BRAND='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/logo.png" alt="Gulf Aquaculture" width="640" height="150"></a>'
-BRAND_W='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/logo-white.png" alt="Gulf Aquaculture" width="640" height="150"></a>'
+BRAND='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/gulf-aquaculture-logo.png" alt="Gulf Aquaculture logo" width="640" height="150"></a>'
+BRAND_W='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/gulf-aquaculture-logo-white.png" alt="Gulf Aquaculture logo" width="640" height="150"></a>'
 FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">'
 FG_BAND='''<section class="fg" id="future-growth" aria-labelledby="fgT">
   <div class="fg-bg" aria-hidden="true"></div>
@@ -47,14 +47,26 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
 </section>
 '''
 MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint">
-  <div class="mapband-img hsplan maplan"><img src="assets/img/map.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"><svg class="map-svg" viewBox="0 0 1600 1686" preserveAspectRatio="xMidYMid meet"><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Oman — Seabream &amp; Red Snapper" aria-label="Oman — Seabream &amp; Red Snapper — watch video"><circle class="hs-hit" cx="994" cy="504" r="34"/><circle class="hs-ping" cx="994" cy="504" r="16"/><circle class="hs-ring" cx="994" cy="504" r="22"/><title>Oman — Seabream &amp; Red Snapper</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Sheikh Khalifa Marine Research Centre (SKMRC)" aria-label="Sheikh Khalifa Marine Research Centre (SKMRC) — watch video"><circle class="hs-hit" cx="744" cy="772" r="34"/><circle class="hs-ping" cx="744" cy="772" r="16"/><circle class="hs-ring" cx="744" cy="772" r="22"/><title>Sheikh Khalifa Marine Research Centre (SKMRC)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Juvenile Supply (UAE)" aria-label="Juvenile Supply (UAE) — watch video"><circle class="hs-hit" cx="1010" cy="824" r="34"/><circle class="hs-ping" cx="1010" cy="824" r="16"/><circle class="hs-ring" cx="1010" cy="824" r="22"/><title>Juvenile Supply (UAE)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Abu Dhabi HQ" aria-label="Abu Dhabi HQ — watch video"><circle class="hs-hit" cx="516" cy="976" r="34"/><circle class="hs-ping" cx="516" cy="976" r="16"/><circle class="hs-ring" cx="516" cy="976" r="22"/><title>Abu Dhabi HQ</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Balghailam Island" aria-label="Balghailam Island — watch video"><circle class="hs-hit" cx="568" cy="962" r="34"/><circle class="hs-ping" cx="568" cy="962" r="16"/><circle class="hs-ring" cx="568" cy="962" r="22"/><title>Balghailam Island</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Malaysia — Red Snapper hatchery" aria-label="Malaysia — Red Snapper hatchery — watch video"><circle class="hs-hit" cx="1018" cy="1322" r="34"/><circle class="hs-ping" cx="1018" cy="1322" r="16"/><circle class="hs-ring" cx="1018" cy="1322" r="22"/><title>Malaysia — Red Snapper hatchery</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Indonesia — Grouper hatchery" aria-label="Indonesia — Grouper hatchery — watch video"><circle class="hs-hit" cx="1220" cy="1502" r="34"/><circle class="hs-ping" cx="1220" cy="1502" r="16"/><circle class="hs-ring" cx="1220" cy="1502" r="22"/><title>Indonesia — Grouper hatchery</title></a></svg>
+  <div class="mapband-img hsplan maplan"><img src="assets/img/gulf-aquaculture-regional-footprint-map-uae-oman-malaysia-indonesia.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"><svg class="map-svg" viewBox="0 0 1600 1686" preserveAspectRatio="xMidYMid meet"><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Oman — Seabream &amp; Red Snapper" aria-label="Oman — Seabream &amp; Red Snapper — watch video"><circle class="hs-hit" cx="994" cy="504" r="34"/><circle class="hs-ping" cx="994" cy="504" r="16"/><circle class="hs-ring" cx="994" cy="504" r="22"/><title>Oman — Seabream &amp; Red Snapper</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Sheikh Khalifa Marine Research Centre (SKMRC)" aria-label="Sheikh Khalifa Marine Research Centre (SKMRC) — watch video"><circle class="hs-hit" cx="744" cy="772" r="34"/><circle class="hs-ping" cx="744" cy="772" r="16"/><circle class="hs-ring" cx="744" cy="772" r="22"/><title>Sheikh Khalifa Marine Research Centre (SKMRC)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Juvenile Supply (UAE)" aria-label="Juvenile Supply (UAE) — watch video"><circle class="hs-hit" cx="1010" cy="824" r="34"/><circle class="hs-ping" cx="1010" cy="824" r="16"/><circle class="hs-ring" cx="1010" cy="824" r="22"/><title>Juvenile Supply (UAE)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Abu Dhabi HQ" aria-label="Abu Dhabi HQ — watch video"><circle class="hs-hit" cx="516" cy="976" r="34"/><circle class="hs-ping" cx="516" cy="976" r="16"/><circle class="hs-ring" cx="516" cy="976" r="22"/><title>Abu Dhabi HQ</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Balghailam Island" aria-label="Balghailam Island — watch video"><circle class="hs-hit" cx="568" cy="962" r="34"/><circle class="hs-ping" cx="568" cy="962" r="16"/><circle class="hs-ring" cx="568" cy="962" r="22"/><title>Balghailam Island</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Malaysia — Red Snapper hatchery" aria-label="Malaysia — Red Snapper hatchery — watch video"><circle class="hs-hit" cx="1018" cy="1322" r="34"/><circle class="hs-ping" cx="1018" cy="1322" r="16"/><circle class="hs-ring" cx="1018" cy="1322" r="22"/><title>Malaysia — Red Snapper hatchery</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Indonesia — Grouper hatchery" aria-label="Indonesia — Grouper hatchery — watch video"><circle class="hs-hit" cx="1220" cy="1502" r="34"/><circle class="hs-ping" cx="1220" cy="1502" r="16"/><circle class="hs-ring" cx="1220" cy="1502" r="22"/><title>Indonesia — Grouper hatchery</title></a></svg>
    <p class="hs-hint map-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Click a location to watch it in action</p></div>
   <div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
   <div class="wrap"><p class="mapband-note"><span>Committed to proving that aquaculture</span><br><span>can work - for our waters, for our communities,</span><br><span>and for future generations.</span></p></div>
 </section>'''
 
+from seo import head as seo_head, faq_html, write_extras, META as SEO_META
 from nav_data import mega_menu, mobile_nav, access_bar, aud_ribbon
+WA_NUMBER="971000000000"  # TODO: numero WhatsApp Business del cliente (formato internazionale, solo cifre)
+WA_TEXT="Hello Gulf Aquaculture, I would like some information."
+import urllib.parse as _up
+WA_URL=f"https://wa.me/{WA_NUMBER}?text={_up.quote(WA_TEXT)}"
+WA_ICO='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.2-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.4 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3Z"/></svg>'
 def page(fn,title,desc,body):
+    from species_data import SPECIES as _SP
+    _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
+    SEO_HEAD=seo_head(fn,_sp)
+    _fq=faq_html(fn,_sp)
+    if _fq:
+        body=body.replace('<section class="sp-cta">',_fq+'<section class="sp-cta">',1) if '<section class="sp-cta">' in body else body+_fq
     menu=mega_menu(fn)
     mnav=mobile_nav(fn)
     foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES)
@@ -63,9 +75,9 @@ def page(fn,title,desc,body):
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>{title}</title><meta name="description" content="{html.escape(desc)}">
+{SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109n">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109r">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -83,7 +95,7 @@ def page(fn,title,desc,body):
   <div class="top">
     <div class="ftr-main">
       <p class="ftr-claim">Let’s build something lasting, together.</p>
-      <p class="ftr-links"><a href="https://gulfaquaculture.com">gulfaquaculture.com</a><br><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a></p>
+      <p class="ftr-links"><a href="https://gulfaquaculture.com">gulfaquaculture.com</a><br><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a><br><a class="wa-link" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}WhatsApp</a></p>
       <p class="ftr-addr">7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</p>
     </div>
     <nav class="ftr-nav" aria-label="Footer"><h5>The company</h5>{foot_nav}</nav>
@@ -91,15 +103,19 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109n"></script>
+<a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
+<script src="assets/js/site.js?v=20261109r"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
 
+IMG_ALT={"gulf-aquaculture-aerial-view-abu-dhabi.jpg":"Aerial view of Gulf Aquaculture's sea cages off Abu Dhabi",
+ "gulf-aquaculture-sea-cages-sunset-vertical.jpg":"Sea cages at sunset in the Arabian Gulf",
+ "hamour-orange-spotted-grouper-gulf-aquaculture.jpg":"Hamour (orange-spotted grouper), a native Gulf species raised by Gulf Aquaculture"}
 def opener(no,label,title,lead,img,note,extra=""):
     return f'''<section class="opener paper"><span class="arc"></span><div class="wrap">
   <div class="rv in"><span class="folio"><i></i>{label}</span><h1>{title}</h1><p class="lead">{lead}</p>{extra}</div>
-  <div class="media rv in"><div class="img" style="background-image:url(assets/img/{img})" role="img" aria-label="Company Profile photo"></div>{f'<p class="note"><span>{note}</span></p>' if note else ""}</div>
+  <div class="media rv in"><div class="img" style="background-image:url(assets/img/{img})" role="img" aria-label="{IMG_ALT.get(img,'Gulf Aquaculture')}"></div>{f'<p class="note"><span>{note}</span></p>' if note else ""}</div>
 </div></section>'''
 
 import re as _re
@@ -116,7 +132,19 @@ _sd.FISHWIN=fishwin; _fd.FISHWIN=fishwin
 def dia(items): return '<ul class="diamonds">'+"".join(f"<li>{i}</li>" for i in items)+"</ul>"
 
 # ========================================================= HOME
-home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - 88px);min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
+
+# ---------- News & Insights ----------
+from news_data import NEWS, CATS, GALLERY
+import datetime as _dt
+NEWS=sorted(NEWS,key=lambda n:n["date"],reverse=True)
+def _ndate(d): return _dt.date.fromisoformat(d).strftime("%B %Y")
+def _cslug(c): return _re.sub(r"[^a-z]+","-",c.lower().replace("&","and")).strip("-")
+def ncard(n):
+    return (f'<a class="nw-card rv" href="news-{n["slug"]}.html" data-cat="{_cslug(n["cat"])}">'
+            f'<span class="nw-img"><img src="assets/img/{n["img"]}" alt="{html.escape(n["title"])}" loading="lazy" width="640" height="400"></span>'
+            f'<span class="nw-meta"><b>{n["cat"].replace("&","&amp;")}</b> · <time datetime="{n["date"]}">{_ndate(n["date"])}</time></span>'
+            f'<h3>{n["title"]}</h3><p>{n["excerpt"]}</p><span class="more">Read more</span></a>')
+home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - var(--hh));min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
 <section class="cover">
   <div class="cover-text">
     <span class="cv-tag">Local Species in Local Waters</span>
@@ -186,6 +214,7 @@ home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="pos
   <div class="rv"><h2>We welcome conversations that move aquaculture forward.</h2></div>
   <div class="rv"><p>Whether you're an investor who shares our long-term vision, a researcher exploring native species, or a policymaker shaping the future of food — we believe progress happens through partnership.</p><a href="contact.html" class="btn btn-or" style="margin-top:26px">Let's talk</a></div>
 </div></section>'''
+home=home.replace('<section class="sec"><div class="wrap cols" style="align-items:center">\n  <div class="rv"><h2>We welcome conversations','<section class="sec paper nw-latest"><div class="wrap"><div class="nw-head rv"><div><span class="label">News &amp; insights</span><h2 style="margin-top:12px">Latest news and developments</h2></div><a class="more" href="news.html">All news</a></div>\n  <div class="nw-grid">'+''.join(ncard(n) for n in NEWS[:3])+'</div></div></section>\n'+'<section class="sec"><div class="wrap cols" style="align-items:center">\n  <div class="rv"><h2>We welcome conversations',1)
 page("index.html","Gulf Aquaculture — Transforming Aquaculture in the Middle East","Gulf Aquaculture: local species in local waters — hatcheries, research and sea-cage farming in the UAE.",home)
 
 # ========================================================= ABOUT
@@ -254,10 +283,10 @@ about+=f'''<section class="iv" id="interview">
  <div class="iv-left"><span class="arc iv-arc" aria-hidden="true"></span>
   <h2 class="iv-title rv">A Thoughtful<br>Approach to<br>Growth</h2>
   <p class="iv-kicker rv">A conversation with Mohamed Razali, General Manager</p>
-  <figure class="iv-photo rv"><img src="assets/img/gulf-aquaculture-razali-portrait.webp" width="640" height="640" alt="Mohamed Razali, General Manager of Gulf Aquaculture" loading="lazy"></figure>
+  <figure class="iv-photo rv"><img src="assets/img/mohamed-razali-general-manager-gulf-aquaculture-portrait.webp" width="640" height="640" alt="Mohamed Razali, General Manager of Gulf Aquaculture" loading="lazy"></figure>
   {"".join(f'<div class="iv-qa rv"><p class="iv-q">Q: {q}</p><p><b class="iv-a">A:</b> {a_}</p></div>' for q,a_ in QA[:3])}
   <p class="note iv-note rv"><span>“Every phase is tested</span><br><span>before it’s scaled. That’s</span><br><span>how we build trust —</span><br><span>with nature and with investors.”</span></p>
-  <figure class="iv-site rv"><img src="assets/img/gulf-aquaculture-facility-aerial.webp" width="1000" height="408" alt="Aerial view of the Gulf Aquaculture hatchery on Balghailam Island" loading="lazy"></figure>
+  <figure class="iv-site rv"><img src="assets/img/balghailam-island-hatchery-aerial-gulf-aquaculture.webp" width="1000" height="408" alt="Aerial view of the Gulf Aquaculture hatchery on Balghailam Island" loading="lazy"></figure>
  </div>
  <div class="iv-right">
   <blockquote class="iv-quote rv">“We’re not building a fish farm. We’re building trust — in the idea that the UAE can feed itself, responsibly.”<cite>Mohamed Razali</cite></blockquote>
@@ -311,7 +340,7 @@ bal=f'''<div class="cols" style="margin-bottom:50px"><div><span class="label">Ba
        ("Systems That Support People","<p><strong>Dry Lab &amp; Traceability Systems</strong> — supports planning and analytics, integrated with SFS Trace to track fish from broodstock to harvest.</p><p><strong>Staff Facilities</strong> — dedicated spaces for welfare, training, and teamwork.</p>")])}'''
 sk=f'''<div class="cols" style="margin-bottom:50px"><div><span class="label">Sheikh Khalifa Marine Research Centre</span><h2 style="margin:12px 0 20px">The pinnacle of Middle Eastern hatchery technology and design.</h2>
   <p>GA has been operating the Sheikh Khalifa Marine Research Centre [SKMRC] since November 2025.</p>
-  <div class="photo" style="background-image:url(assets/img/skmrc.jpg);margin-top:26px;min-height:260px" role="img" aria-label="SKMRC — rendering from the Company Profile"></div></div>
+  <div class="photo" style="background-image:url(assets/img/sheikh-khalifa-marine-research-centre-skmrc-gulf-aquaculture.jpg);margin-top:26px;min-height:260px" role="img" aria-label="SKMRC — rendering from the Company Profile"></div></div>
   <div class="keystats"><h3>Innovation at its heart</h3><ul><li>Fourteen dedicated laboratories provisioned for compliance with ISO/IEC 17025</li><li>1,200 m² of office space</li><li>Fully furnished staff canteen and academic spaces</li><li>The Marine Innovation Park — 14 laboratories and a science discovery division for research and younger audiences</li></ul></div></div>
 <p class="sub-h">Hatchery infrastructure · ≈18,000 m² in two production streams</p>
 {spec([("Broodstock Management","<p>The team manages and breeds Seabream, Hamour, Shaari, Mangrove Snapper, Mullet, Cobia, and Naisrah.</p>"),
@@ -397,7 +426,7 @@ legal=('<section class="sec legal" id="legal-structure"><div class="wrap"><div c
  '</div></section>'
  '<div class="bio" id="lgd" role="dialog" aria-modal="true" aria-labelledby="lgdN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button>'
  '<span class="label" id="lgdK"></span><h3 id="lgdN" style="margin-top:8px"></h3><p id="lgdT" style="margin-top:14px"></p><a class="btn btn-or" id="lgdA" href="#" style="margin-top:22px;display:none"></a></div></div>')
-gr=opener("05","Sustainability in practice","Built for<br>Tomorrow","At Gulf Aquaculture, sustainability isn’t an add-on — it’s built into the way we think, work, and grow. From the design of our hatcheries to the resilience of our broodstock, every decision is made with tomorrow in mind.","sunset-tall.jpg","",'<p class="statement">We don’t just raise fish. We raise the bar for what aquaculture can be — for people, planet, and prosperity.</p>')
+gr=opener("05","Sustainability in practice","Built for<br>Tomorrow","At Gulf Aquaculture, sustainability isn’t an add-on — it’s built into the way we think, work, and grow. From the design of our hatcheries to the resilience of our broodstock, every decision is made with tomorrow in mind.","gulf-aquaculture-sea-cages-sunset-vertical.jpg","",'<p class="statement">We don’t just raise fish. We raise the bar for what aquaculture can be — for people, planet, and prosperity.</p>')
 gr=fishwin(gr,"gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp","Sea cages at sunset in the Arabian Gulf","")
 gr+=legal
 gr+='<section class="boatq" role="img" aria-label="Work vessel among the sea cages"><div class="wrap"><p class="note"><span>We grow value the same way</span><br><span>we grow fish — with patience,</span><br><span>precision, and full visibility.</span></p></div></section>'
@@ -414,11 +443,11 @@ TEAM=[("gulf-aquaculture-team-razali.webp","Mohamed Razali Mohamed","General Man
  ("gulf-aquaculture-team-migone.webp","Migonè Bi Frank Ulrich","Aquaculture Engineer","Migonè previously managed the Ivory Coast Government’s PSTACI Programme in West Africa with Aquagrow Group. Brings 14 years of industry experience spanning aquaculture and aquaculture civil engineering, with extensive project and operational expertise across West Africa and the UAE."),
  ("gulf-aquaculture-team-jp.webp","J.P. Rebollini","Investor Relations, Branding & Corporate Communications","JP is a veteran of hospitality and marine industries with over a decade of stakeholder engagement and relationship management under his belt. JP handles branding and corporate communications for the organisation."),
  ("gulf-aquaculture-team-loh.webp","Dr. James Loh","Advisor","Dr Loh is an Aquaculture Specialist and Associate Professor with over 15 years of experience in fish nutrition, research, and commercial farming. His career spans academia, industry, and farm operations across Asia, including leadership roles in research, education, commercial aquaculture, and industry advisory."),
- ("team-finnbogi.jpg","Finnbogi Baldvinsson","Industry Advisor","Finnbogi Baldvinsson is a senior seafood industry leader with over 30 years of global executive and board-level experience in wild capture fisheries, processing and aquaculture. He has built, restructured and led major seafood businesses across Europe, the Americas, Asia and MENA."),
- ("team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
-people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","aerial.jpg","A better future is grown, not guessed.")
+ ("gulf-aquaculture-team-finnbogi.jpg","Finnbogi Baldvinsson","Industry Advisor","Finnbogi Baldvinsson is a senior seafood industry leader with over 30 years of global executive and board-level experience in wild capture fisheries, processing and aquaculture. He has built, restructured and led major seafood businesses across Europe, the Americas, Asia and MENA."),
+ ("gulf-aquaculture-team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
+people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","gulf-aquaculture-aerial-view-abu-dhabi.jpg","A better future is grown, not guessed.")
 people=fishwin(people,"gulf-aquaculture-offshore-sea-cages-uae.webp","Gulf Aquaculture sea cages offshore in the UAE","A better future is grown, not guessed.")
-people+='<section class="sec"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
+people+='<section class="sec"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="{html.escape(n)}, {html.escape(r)} at Gulf Aquaculture" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
 people+='<div class="bio" id="bio" role="dialog" aria-modal="true" aria-labelledby="bioN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button><div class="bio-head"><span class="ph bio-ph" aria-hidden="true"><img id="bioI" src="" alt=""></span><div><h3 id="bioN"></h3><span class="bio-role" id="bioK"></span></div></div><p id="bioT"></p></div></div>'
 page("people.html","People — Gulf Aquaculture","The team behind Gulf Aquaculture.",people)
 
@@ -427,6 +456,7 @@ contact=f'''<section class="sec paper"><span class="arc" style="width:760px;heig
   <div class="rv"><span class="folio"><i></i>Contact</span><h1 style="margin:14px 0 18px">We welcome conversations that move aquaculture forward.</h1>
     <p>Whether you're an investor who shares our long-term vision, a researcher exploring native species, or a policymaker shaping the future of food — we believe progress happens through partnership.</p>
     <p>We're building more than a business. We're building trust, resilience, and a model that others can build on. If that resonates with you, we'd love to hear from you.</p>
+    <a class="wa-btn" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}Chat with us on WhatsApp</a>
     <dl class="dl"><dt>Email</dt><dd>info@gulfaquaculture.com</dd><dt>Website</dt><dd>gulfaquaculture.com</dd><dt>Head office</dt><dd>7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</dd><dt>AUM</dt><dd>1. Balghailam Island<br>2. Sheikh Khalifa Marine Research Centre</dd></dl></div>
   <form class="form rv" id="form" novalidate><h3 style="font-size:1.5rem">Let's build something lasting, together.</h3>
     <p class="legend" style="margin-top:22px">I am… (tick all that apply)</p>
@@ -464,3 +494,30 @@ legal_page("cookies.html","Cookie Policy","How this website uses cookies and sim
  ("Fonts",["Fonts are loaded from Google Fonts, which may receive your IP address to deliver them."]),
  ("Managing preferences",["You can block or delete cookies and local storage from your browser settings. If analytics are added in the future (as foreseen in the website brief), this policy and a consent banner will be updated first."]),
 ])
+
+# News index + article pages
+_chips='<button class="on" data-f="all">All</button>'+"".join(f'<button data-f="{_cslug(c)}">{c.replace("&","&amp;")}</button>' for c in CATS)
+_gal="".join(f'<figure class="rv"><img src="assets/img/{i}" alt="{html.escape(c)}" loading="lazy" width="600" height="420"><figcaption>{html.escape(c)}</figcaption></figure>' for i,c in GALLERY)
+news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
+news+=f'''<section class="sec nw-list"><div class="wrap">
+  <div class="nw-chips rv" role="toolbar" aria-label="Filter news by category">{_chips}</div>
+  <div class="nw-grid" id="nwGrid">{"".join(ncard(n) for n in NEWS)}</div>
+  <p class="nw-empty" id="nwEmpty" hidden>No posts in this category yet — new articles will appear here as they are published.</p>
+</div></section>
+<section class="sec paper nw-gallery" id="media-gallery" data-cat="media-gallery"><div class="wrap"><div class="nw-head rv"><div><span class="label">Media gallery</span><h2 style="margin-top:12px">Photos from our sites</h2></div></div>
+  <div class="nw-gal">{_gal}</div></div></section>'''
+page("news.html","News — Gulf Aquaculture","",news)
+for i,n in enumerate(NEWS):
+    rel=[m for m in NEWS if m is not n][:3]
+    body=f'''<article class="sec paper nw-art"><div class="wrap" style="max-width:860px">
+  <a class="nw-back rv in" href="news.html">← All news</a>
+  <span class="nw-meta rv in"><b>{n["cat"].replace("&","&amp;")}</b> · <time datetime="{n["date"]}">{_ndate(n["date"])}</time></span>
+  <h1 class="rv in">{n["title"]}</h1><p class="lead rv in">{n["excerpt"]}</p>
+  <img class="nw-hero rv in" src="assets/img/{n["img"]}" alt="{html.escape(n["title"])}" width="1200" height="700">
+  <div class="nw-body">{"".join(f"<p>{x}</p>" for x in n["body"])}</div>
+</div></article>
+<section class="sec nw-latest"><div class="wrap"><div class="nw-head rv"><div><span class="label">More news</span></div><a class="more" href="news.html">All news</a></div>
+  <div class="nw-grid">{"".join(ncard(m) for m in rel)}</div></div></section>'''
+    page(f"news-{n['slug']}.html",n["title"],n["excerpt"],body)
+
+write_extras(OUT,[f for f in sorted(os.listdir(OUT)) if f.endswith(".html")])

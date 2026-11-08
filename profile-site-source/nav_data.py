@@ -55,6 +55,14 @@ NAV = [
          ("people.html", "Our team", "Leadership, hatchery &amp; advisors", "gr"),
          ("about.html#interview", "Leadership interview", "A conversation with our GM", "gr"),
      ]),
+    ("news.html", "News", "News &amp; insights",
+     "Company news, partnerships, research, events and media.", [
+         ("news.html", "All news", "Latest articles and announcements", "ogr"),
+         ("news.html#cat=projects-and-partnerships", "Projects &amp; partnerships", "Concessions, supply agreements", "og"),
+         ("news.html#cat=research-and-publications", "Research &amp; publications", "Scientific work and papers", "r"),
+         ("news.html#cat=events-and-conferences", "Events &amp; awards", "Conferences and recognition", "g"),
+         ("news.html#media-gallery", "Media gallery", "Photos from our sites", "ogr"),
+     ]),
     ("contact.html", "Contact", "We welcome conversations",
      "Tell us who you are — we route every enquiry to the right team.", [
          ("contact.html?type=partner#partner", "Fry orders &amp; availability", "Hamour, Hamra, Shiqra, Shaari, Seabream", "o"),

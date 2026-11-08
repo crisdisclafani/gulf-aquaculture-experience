@@ -1,0 +1,17 @@
+# Ready for launch. While the concept site is online, pages also carry <meta name=robots content=noindex>.
+User-agent: *
+Allow: /
+
+# AI assistants and answer engines (GEO) are welcome to read and cite the site
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://crisdisclafani.github.io/gulf-aquaculture-experience/profile-site/sitemap.xml
