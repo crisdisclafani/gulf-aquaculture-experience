@@ -57,7 +57,7 @@ NAV = [
      ]),
     ("news.html", "News", "News &amp; insights",
      "Company news, partnerships, research, events and media.", [
-         ("news.html", "All news", "Latest articles and announcements", "ogr"),
+         ("news.html#articles", "All news", "Latest articles and announcements", "ogr"),
          ("news.html#cat=projects-and-partnerships", "Projects &amp; partnerships", "Concessions, supply agreements", "og"),
          ("news.html#cat=research-and-publications", "Research &amp; publications", "Scientific work and papers", "r"),
          ("news.html#cat=events-and-conferences", "Events &amp; awards", "Conferences and recognition", "g"),

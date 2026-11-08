@@ -77,7 +77,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109s">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109t">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109s"></script>
+<script src="assets/js/site.js?v=20261109t"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -499,7 +499,7 @@ legal_page("cookies.html","Cookie Policy","How this website uses cookies and sim
 _chips='<button class="on" data-f="all">All</button>'+"".join(f'<button data-f="{_cslug(c)}">{c.replace("&","&amp;")}</button>' for c in CATS)
 _gal="".join(f'<figure class="rv"><img src="assets/img/{i}" alt="{html.escape(c)}" loading="lazy" width="600" height="420"><figcaption>{html.escape(c)}</figcaption></figure>' for i,c in GALLERY)
 news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
-news+=f'''<section class="sec nw-list"><div class="wrap">
+news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
   <div class="nw-chips rv" role="toolbar" aria-label="Filter news by category">{_chips}</div>
   <div class="nw-grid" id="nwGrid">{"".join(ncard(n) for n in NEWS)}</div>
   <p class="nw-empty" id="nwEmpty" hidden>No posts in this category yet — new articles will appear here as they are published.</p>

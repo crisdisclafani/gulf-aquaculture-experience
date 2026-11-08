@@ -255,13 +255,19 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
 
 /* News filter */
 (function(){var ch=document.querySelector('.nw-chips');if(!ch)return;
- var cards=[].slice.call(document.querySelectorAll('#nwGrid .nw-card')),empty=document.getElementById('nwEmpty');
- function f(c){[].forEach.call(ch.children,function(b){b.classList.toggle('on',b.dataset.f===c)});
-  if(c==='media-gallery'){cards.forEach(function(x){x.hidden=false});empty.hidden=true;document.getElementById('media-gallery').scrollIntoView({behavior:'smooth'});return}
-  var n=0;cards.forEach(function(x){var s=c==='all'||x.dataset.cat===c;x.hidden=!s;if(s)n++});empty.hidden=n>0}
- ch.addEventListener('click',function(e){var b=e.target.closest('button');if(b){f(b.dataset.f);if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'news.html':'#cat='+b.dataset.f)}});
- function fromHash(){var m=location.hash.match(/cat=([a-z-]+)/);if(m)f(m[1])}
- fromHash();window.addEventListener('hashchange',fromHash);})();
+ var cards=[].slice.call(document.querySelectorAll('#nwGrid .nw-card')),empty=document.getElementById('nwEmpty'),list=document.getElementById('articles'),gal=document.getElementById('media-gallery');
+ function closeMenus(){document.querySelectorAll('.has-mega.open').forEach(function(m){m.classList.remove('open')});if(document.activeElement&&document.activeElement.blur)document.activeElement.blur()}
+ function f(c,scroll){var ok=[].some.call(ch.children,function(b){return b.dataset.f===c});if(!ok)c='all';
+  [].forEach.call(ch.children,function(b){b.classList.toggle('on',b.dataset.f===c)});
+  if(c==='media-gallery'){cards.forEach(function(x){x.hidden=false});empty.hidden=true;if(scroll)gal.scrollIntoView({behavior:'smooth'});return}
+  var n=0;cards.forEach(function(x){var s=c==='all'||x.dataset.cat===c;x.hidden=!s;if(s)n++});empty.hidden=n>0;
+  if(scroll)list.scrollIntoView({behavior:'smooth'})}
+ ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;f(b.dataset.f,b.dataset.f==='media-gallery');if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'news.html':'#cat='+b.dataset.f)});
+ function fromHash(){var h=location.hash,m=h.match(/cat=([a-z-]+)/);
+  if(m){closeMenus();setTimeout(function(){f(m[1],true)},60)}
+  else if(h==='#media-gallery'||h==='#articles'){closeMenus();setTimeout(function(){(h==='#articles'?list:gal).scrollIntoView({behavior:'smooth'})},60)}}
+ fromHash();window.addEventListener('hashchange',fromHash);
+ document.addEventListener('click',function(e){var a=e.target.closest('a[href*="news.html#"]');if(a&&location.pathname.match(/news\.html$/)&&a.hash===location.hash){e.preventDefault();fromHash()}});})();
 
 /* 3D experience → site pages: "Discover more" / "More details" open the matching page.
    Listens to the 3D app's own events (same origin) without touching the 3d/ files. */
