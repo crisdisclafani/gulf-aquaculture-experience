@@ -2,6 +2,7 @@
 import os, sys, shutil, html
 OUT=sys.argv[1]; HERE=os.path.dirname(os.path.abspath(__file__))
 for d in ("assets/css","assets/js","assets/img"): os.makedirs(f"{OUT}/{d}",exist_ok=True)
+shutil.copytree(f"{HERE}/fonts",f"{OUT}/assets/fonts",dirs_exist_ok=True)
 shutil.copy(f"{HERE}/site.css",f"{OUT}/assets/css/site.css"); shutil.copy(f"{HERE}/site.js",f"{OUT}/assets/js/site.js"); shutil.copy(f"{HERE}/ambience.js",f"{OUT}/assets/js/ambience.js"); shutil.copy(f"{HERE}/tour.js",f"{OUT}/assets/js/tour.js")
 for f in os.listdir(f"{HERE}/img"): shutil.copy(f"{HERE}/img/{f}",f"{OUT}/assets/img/{f}")
 os.makedirs(f"{OUT}/assets/video",exist_ok=True)
@@ -12,7 +13,9 @@ PAGES=[("about.html","About","01"),("operations.html","Operations","02"),("asset
 LOGO='<svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><circle cx="16" cy="21" r="10" stroke="#C8742A" stroke-width="2.4"/><circle cx="26" cy="21" r="10" stroke="#4A2E16" stroke-width="2.4"/><path d="M11 21c2.7-3.2 6-3.2 8.6 0s6 3.2 8.6 0" stroke="#3A9C9A" stroke-width="1.8"/></svg>'
 BRAND='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/gulf-aquaculture-logo.png" alt="Gulf Aquaculture logo" width="640" height="150"></a>'
 BRAND_W='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/gulf-aquaculture-logo-white.png" alt="Gulf Aquaculture logo" width="640" height="150"></a>'
-FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">'
+FONTS=('<link rel="preload" href="assets/fonts/poppins-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>'
+       '<link rel="preload" href="assets/fonts/dm-serif-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
+       '<style>'+open(f"{HERE}/fonts.css").read().replace("\n","")+'</style>')
 FG_BAND='''<section class="fg" id="future-growth" aria-labelledby="fgT">
   <div class="fg-bg" aria-hidden="true"></div>
   <div class="wrap">
@@ -588,7 +591,7 @@ legal_page("privacy.html","Privacy Policy","How Gulf Aquaculture LLC collects, u
 legal_page("cookies.html","Cookie Policy","How this website uses cookies and similar technologies.",[
  ("What we use",["This website does not use advertising or analytics cookies.","It stores two small preferences in your browser’s local storage, only on your device: the visitor profile you choose under “Access by profile” (to highlight relevant pages) and nothing else that identifies you. You can clear it at any time with “Clear ×” or by clicking Home."]),
  ("Embedded videos",["Videos are embedded from YouTube in privacy-enhanced mode (youtube-nocookie.com) and are only loaded when you press play. Once you play a video, YouTube (Google) may set cookies under its own policy."]),
- ("Fonts",["Fonts are loaded from Google Fonts, which may receive your IP address to deliver them."]),
+ ("Fonts",["All fonts are hosted on this website: no third-party font service is contacted and no data is shared to display them."]),
  ("Managing preferences",["You can block or delete cookies and local storage from your browser settings. If analytics are added in the future (as foreseen in the website brief), this policy and a consent banner will be updated first."]),
 ])
 
