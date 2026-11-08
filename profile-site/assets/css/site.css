@@ -1508,3 +1508,6 @@ h2.fx-h3{line-height:1.06}
 @media (prefers-reduced-motion:reduce){
   .smap *,.smap *::before,.smap *::after{animation:none!important;opacity:1!important;transform:none!important}
 }
+.ftr nav a.ftr-sm{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:6px 14px 6px 10px;border:1px solid rgba(106,169,166,.45);border-radius:30px;font-size:.85rem}
+.ftr nav a.ftr-sm::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Crect x='9' y='2' width='6' height='5' rx='1'/%3E%3Crect x='2' y='17' width='6' height='5' rx='1'/%3E%3Crect x='16' y='17' width='6' height='5' rx='1'/%3E%3Cpath d='M12 7v5M5 17v-3h14v3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Crect x='9' y='2' width='6' height='5' rx='1'/%3E%3Crect x='2' y='17' width='6' height='5' rx='1'/%3E%3Crect x='16' y='17' width='6' height='5' rx='1'/%3E%3Cpath d='M12 7v5M5 17v-3h14v3'/%3E%3C/svg%3E") center/contain no-repeat}
+.ftr nav a.ftr-sm:hover{border-color:#3F8784;background:rgba(106,169,166,.08)}
