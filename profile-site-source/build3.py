@@ -2,7 +2,7 @@
 import os, sys, shutil, html
 OUT=sys.argv[1]; HERE=os.path.dirname(os.path.abspath(__file__))
 for d in ("assets/css","assets/js","assets/img"): os.makedirs(f"{OUT}/{d}",exist_ok=True)
-shutil.copy(f"{HERE}/site.css",f"{OUT}/assets/css/site.css"); shutil.copy(f"{HERE}/site.js",f"{OUT}/assets/js/site.js")
+shutil.copy(f"{HERE}/site.css",f"{OUT}/assets/css/site.css"); shutil.copy(f"{HERE}/site.js",f"{OUT}/assets/js/site.js"); shutil.copy(f"{HERE}/ambience.js",f"{OUT}/assets/js/ambience.js")
 for f in os.listdir(f"{HERE}/img"): shutil.copy(f"{HERE}/img/{f}",f"{OUT}/assets/img/{f}")
 os.makedirs(f"{OUT}/assets/video",exist_ok=True)
 for f in os.listdir(f"{HERE}/video"): shutil.copy(f"{HERE}/video/{f}",f"{OUT}/assets/video/{f}")
@@ -80,7 +80,8 @@ def lang_switch():
         if c=="en": out+=f'<li><a class="on" href="#" lang="en" aria-current="true" title="{l}">{f}<span>EN</span></a></li>'
         else: out+=f'<li><button type="button" class="lang-soon" lang="{c}" title="{l} — coming soon" data-soon="النسخة العربية قريباً · Arabic version coming soon">{f}<span>{c.upper()}</span></button></li>'
     return out+'</ul>'
-TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
+SND_BTN='<button type="button" class="snd-btn" aria-pressed="false" title="Immersive sound — click to turn on"><span class="snd-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="snd-l">Sound</span></button>'
+TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{SND_BTN}<span class="tb-sep" aria-hidden="true"></span>{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
 def news_band(fn):
     if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html"): return ""
     items=NEWS[:3]
@@ -103,11 +104,11 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110c">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110d">
 </head>
 <body>
 {TOPBAR}
-<header class="hdr"><div class="wrap">{BRAND}<div class="tb-in">{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div>
+<header class="hdr"><div class="wrap">{BRAND}<div class="tb-in">{SND_BTN}<span class="tb-sep" aria-hidden="true"></span>{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div>
   <ul class="menu" aria-label="Main">{menu}</ul>
   <a href="contact.html" class="btn btn-or"{" aria-current=\"page\"" if fn=="contact.html" else ""}>Let's talk</a>
   <button class="burger" type="button" aria-label="Open menu"><span></span></button>
@@ -132,7 +133,8 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261110c"></script>
+<script src="assets/js/site.js?v=20261110d"></script>
+<script src="assets/js/ambience.js?v=20261110d" defer></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -574,7 +576,8 @@ legal_page("cookies.html","Cookie Policy","How this website uses cookies and sim
 
 # News index + article pages
 _chips='<button class="on" data-f="all">All</button>'+"".join(f'<button data-f="{_cslug(c)}">{c.replace("&","&amp;")}</button>' for c in CATS)
-_gal="".join(f'<figure class="gl-item rv" data-al="{_cslug(al)}"><a href="assets/img/{i}" data-lb="gal" data-cap="{html.escape(c)}"><img src="assets/img/{i}" alt="{html.escape(c)}" loading="lazy" width="600" height="450"><span class="gl-zoom" aria-hidden="true">+</span></a><figcaption>{html.escape(c)}</figcaption></figure>' for al,i,c in GALLERY)
+_gsrc=lambda i: i if i.startswith("http") else "assets/img/"+i
+_gal="".join(f'<figure class="gl-item rv" data-al="{_cslug(al)}"><a href="{_gsrc(i)}" data-lb="gal" data-cap="{html.escape(c)}"><img src="{_gsrc(i)}" alt="{html.escape(c)}" loading="lazy" width="600" height="450"><span class="gl-zoom" aria-hidden="true">+</span></a><figcaption>{html.escape(c)}</figcaption></figure>' for al,i,c in GALLERY)
 _galchips='<button class="on" data-f="all">All photos</button>'+"".join(f'<button data-f="{_cslug(a)}">{a.replace("&","&amp;")}</button>' for a in GALBUMS)
 news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
 news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
