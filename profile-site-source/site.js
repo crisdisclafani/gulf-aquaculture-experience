@@ -83,8 +83,9 @@ if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF
   const MAP={partner:sq?"fry":"partner"}; let h=qs.get("type")||location.hash.slice(1); h=MAP[h]||h; if(sq&&!h) h="fry";
   const sync=()=>{ if(fryF) fryF.hidden=!$('.who input[value="fry"]').checked; };
   const pre=$(`.who input[value="${h}"]`); if(pre){ pre.checked=true; }
-  if(sq&&$("#fs")){ const o=[...$("#fs").options].find(o=>o.text.toLowerCase().startsWith(sq.toLowerCase().split(" ")[0])); if(o) o.selected=true; }
+  if(sq&&$("#fs")){ const o=[...$("#fs").options].find(o=>o.text.toLowerCase().includes(sq.toLowerCase())); if(o) o.selected=true; }
   $$(".who input").forEach(i=>i.addEventListener("change",sync)); sync();
+  if(pre){ setTimeout(()=>f.scrollIntoView({behavior:"smooth",block:"start"}),250); }
   f.addEventListener("submit",e=>{ e.preventDefault(); const m=$("#msg");
     const errs=[]; if(!$$(".who input:checked").length) errs.push("tell us who you are"); if(!$("#n").value.trim()) errs.push("add your name"); if(!$("#e").value.includes("@")) errs.push("add a valid email"); if(!$("#c").checked) errs.push("accept the privacy note");
     m.style.display="block"; m.innerHTML = errs.length ? `Please ${errs.join(", ")}.` : "<b>Thank you.</b> This is a demo — the form is not connected yet. In the live site your message reaches info@gulfaquaculture.com."; }); }

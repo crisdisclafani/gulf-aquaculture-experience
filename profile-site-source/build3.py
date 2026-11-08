@@ -105,7 +105,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110j">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110k">
 </head>
 <body data-sec="{SECTION}">
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -150,9 +150,9 @@ def page(fn,title,desc,body):
   </section>
   <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
 </div>
-<script src="assets/js/site.js?v=20261110j"></script>
-<script src="assets/js/tour.js?v=20261110j" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110j" defer></script>'}
+<script src="assets/js/site.js?v=20261110k"></script>
+<script src="assets/js/tour.js?v=20261110k" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110k" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -557,7 +557,7 @@ contact=f'''<section class="sec paper"><span class="arc" style="width:760px;heig
       <label><input type="radio" name="type" value="policy">Government &amp; institutional partnership</label><label><input type="radio" name="type" value="research">Research &amp; academic collaboration</label>
       <label><input type="radio" name="type" value="investor">Investment &amp; strategic partnership</label><label><input type="radio" name="type" value="general">General enquiry</label></div>
     <fieldset class="fry-fields" id="fryF" hidden><legend class="legend">Fry request</legend>
-      <div class="row2"><div class="fld"><label for="fs">Species</label><select id="fs"><option>Hamour (orange-spotted grouper)</option><option>Hamra (Malabar red snapper)</option><option>Shiqra (mangrove red snapper)</option><option>Shaari (spangled emperor)</option><option>Sobaity seabream</option><option>Other / not sure</option></select></div><div class="fld"><label for="fq">Quantity (pcs)</label><input id="fq" inputmode="numeric" placeholder="e.g. 50,000"></div></div>
+      <div class="row2"><div class="fld"><label for="fs">Species</label><select id="fs"><option>Hamour (orange-spotted grouper)</option><option>Hamra (Malabar red snapper)</option><option>Shiqra (mangrove red snapper)</option><option>Shaari (spangled emperor)</option><option>Sobaity seabream</option><option>Umm Drais (under evaluation)</option><option>Other / not sure</option></select></div><div class="fld"><label for="fq">Quantity (pcs)</label><input id="fq" inputmode="numeric" placeholder="e.g. 50,000"></div></div>
       <div class="row2"><div class="fld"><label for="fz">Preferred size</label><input id="fz" placeholder="e.g. 3–5 cm"></div><div class="fld"><label for="fd">Delivery date</label><input id="fd" type="month"></div></div>
       <div class="fld"><label for="fl">Farm location</label><input id="fl" placeholder="City, country"></div></fieldset>
     <div class="row2"><div class="fld"><label for="n">Name *</label><input id="n" autocomplete="name"></div><div class="fld"><label for="o">Organisation</label><input id="o" autocomplete="organization"></div></div>
