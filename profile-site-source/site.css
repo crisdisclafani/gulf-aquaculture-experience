@@ -1054,3 +1054,8 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .ph-tag rect{fill:#fff;opacity:.95}
 .ph-tag text{font-family:var(--sans);font-weight:500;font-size:22px;letter-spacing:2px;text-anchor:middle;fill:var(--orange)}
 @media (max-width:760px){.pl text{font-size:20px}.pl-main text{font-size:20px}}
+/* mega: let the hover area reach the panel (no gap between link and panel) */
+.hdr>.wrap{align-items:stretch}
+.hdr>.wrap>.brand,.hdr>.wrap>.btn,.hdr>.wrap>.burger{align-self:center}
+.menu{align-items:stretch}
+.menu>li{display:flex;align-items:center}

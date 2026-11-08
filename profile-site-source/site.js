@@ -191,7 +191,7 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   megas.forEach(m=>{
     const a=m.firstElementChild; let t;
     const open=()=>{ clearTimeout(t); closeAll(m); m.classList.add("open"); a.setAttribute("aria-expanded","true"); };
-    const close=()=>{ t=setTimeout(()=>{ m.classList.remove("open"); a.setAttribute("aria-expanded","false"); },160); };
+    const close=()=>{ t=setTimeout(()=>{ m.classList.remove("open"); a.setAttribute("aria-expanded","false"); },320); };
     m.addEventListener("mouseenter",open); m.addEventListener("mouseleave",close);
     a.addEventListener("focus",open);
     a.addEventListener("click",e=>{ if(matchMedia("(hover:none)").matches && !m.classList.contains("open")){ e.preventDefault(); open(); } });
