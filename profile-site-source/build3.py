@@ -63,7 +63,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109k">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109l">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -87,9 +87,9 @@ def page(fn,title,desc,body):
     <nav class="ftr-nav" aria-label="Footer"><h5>The company</h5>{foot_nav}</nav>
     <div class="ftr-logo">{BRAND}</div>
   </div>
-  <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
+  <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109k"></script>
+<script src="assets/js/site.js?v=20261109l"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -440,3 +440,25 @@ contact=f'''<section class="sec paper"><span class="arc" style="width:760px;heig
 page("contact.html","Contact — Gulf Aquaculture","Contact Gulf Aquaculture — head office in Abu Dhabi.",contact)
 open(f"{OUT}/README.md","w").write("# Gulf Aquaculture — website built from the Company Profile (v3)\n\nStatic HTML, 8 pages following the brochure's chapters. Open index.html. All texts, figures and photos come from the GA Company Profile; portraits and missing species photos to be supplied. Demo by Kriswa International.\n")
 print("built",sorted(f for f in os.listdir(OUT) if f.endswith(".html")))
+
+# ========================================================= LEGAL
+def legal_page(fn,title,lead,sections):
+    body=f'<section class="sec paper legal-pg"><div class="wrap" style="max-width:860px"><span class="folio rv in"><i></i>Legal</span><h1 class="rv in" style="margin:14px 0 18px">{title}</h1><p class="lead rv in">{lead}</p><p class="tbs-wrap"><span class="tbs">Draft for the concept website — to be reviewed by Gulf Aquaculture’s legal advisor</span></p>'
+    body+="".join(f'<h2 class="lg-h">{h}</h2>'+"".join(f"<p>{p}</p>" for p in ps) for h,ps in sections)
+    body+='<p style="margin-top:40px">Last updated: November 2026.</p></div></section>'
+    page(fn,f"{title} — Gulf Aquaculture",title,body)
+legal_page("privacy.html","Privacy Policy","How Gulf Aquaculture LLC collects, uses and protects personal data shared through this website.",[
+ ("Who we are",["Gulf Aquaculture LLC, 7th Floor, East Tower, Abu Dhabi Mall, P.O. Box 55345, Abu Dhabi, United Arab Emirates (“Gulf Aquaculture”, “we”). For any privacy request, contact <a href=\"mailto:info@gulfaquaculture.com\">info@gulfaquaculture.com</a>."]),
+ ("Data we collect",["Information you give us through the enquiry form: name, organisation, email, phone, the profile you select and your message.","Technical data needed to deliver the website (such as IP address and browser type) processed by our hosting provider."]),
+ ("How we use it",["To answer your enquiry and route it to the right team (commercial, government &amp; investment, research).","To keep a record of business correspondence, and to meet legal obligations. We do not sell personal data or use it for automated decision-making."]),
+ ("Legal basis",["We process personal data in line with the UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data and, where applicable, the EU GDPR — on the basis of your consent, our legitimate interest in responding to business enquiries, or legal obligations."]),
+ ("Sharing and transfers",["Data may be shared with service providers who host the website or manage email on our behalf, under appropriate safeguards. Where data is transferred outside the UAE we ensure an adequate level of protection."]),
+ ("Retention",["Enquiries are kept for as long as needed to handle the request and for our legitimate business records, then deleted or anonymised."]),
+ ("Your rights",["You can ask to access, correct, delete or restrict the processing of your data, object to processing, or withdraw consent at any time by writing to <a href=\"mailto:info@gulfaquaculture.com\">info@gulfaquaculture.com</a>."]),
+])
+legal_page("cookies.html","Cookie Policy","How this website uses cookies and similar technologies.",[
+ ("What we use",["This website does not use advertising or analytics cookies.","It stores two small preferences in your browser’s local storage, only on your device: the visitor profile you choose under “Access by profile” (to highlight relevant pages) and nothing else that identifies you. You can clear it at any time with “Clear ×” or by clicking Home."]),
+ ("Embedded videos",["Videos are embedded from YouTube in privacy-enhanced mode (youtube-nocookie.com) and are only loaded when you press play. Once you play a video, YouTube (Google) may set cookies under its own policy."]),
+ ("Fonts",["Fonts are loaded from Google Fonts, which may receive your IP address to deliver them."]),
+ ("Managing preferences",["You can block or delete cookies and local storage from your browser settings. If analytics are added in the future (as foreseen in the website brief), this policy and a consent banner will be updated first."]),
+])

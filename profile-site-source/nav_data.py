@@ -53,7 +53,15 @@ NAV = [
     ("people.html", "People", "The people behind the progress",
      "Scientists, technicians, strategists and aquaculture practitioners.", [
          ("people.html", "Our team", "Leadership, hatchery &amp; advisors", "gr"),
-         ("contact.html", "Contact &amp; enquiries", "Fry orders, partnerships, research", "ogr"),
+         ("about.html#interview", "Leadership interview", "A conversation with our GM", "gr"),
+     ]),
+    ("contact.html", "Contact", "We welcome conversations",
+     "Tell us who you are — we route every enquiry to the right team.", [
+         ("contact.html?type=partner#partner", "Fry orders &amp; availability", "Hamour, Hamra, Shiqra, Shaari, Seabream", "o"),
+         ("contact.html?type=partner#partner", "Commercial aquaculture enquiries", "Farms, operators, distributors", "o"),
+         ("contact.html?type=policy#policy", "Government &amp; institutional partnerships", "Food security, concessions", "g"),
+         ("contact.html?type=investor#investor", "Investment &amp; strategic partnerships", "Phase II and regional growth", "g"),
+         ("contact.html?type=research#research", "Research &amp; academic collaboration", "SKMRC laboratories, visiting researchers", "r"),
      ]),
 ]
 
@@ -89,7 +97,6 @@ def mobile_nav(fn):
         links = "".join(f'<li data-aud="{a}"><a href="{h}">{t}<span class="ads">{_dots(a)}</span></a></li>' for h, t, d, a in subs)
         op = " open" if _active(fn, href) else ""
         out.append(f'<details class="mn-g"{op}><summary>{label}</summary><a class="mn-ov" href="{href}">{title} — overview →</a><ul>{links}</ul></details>')
-    out.append('<a class="mn-top" href="contact.html">Contact</a>')
     return "".join(out)
 
 

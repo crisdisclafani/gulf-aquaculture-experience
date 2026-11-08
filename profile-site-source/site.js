@@ -79,7 +79,7 @@ if(bio){ $$(".person").forEach(p=>p.addEventListener("click",()=>{ $("#bioK").te
 
 /* contact form */
 const f=$("#form");
-if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#m")) $("#m").value=`Fry enquiry: ${sq}. `; const h=location.hash.slice(1); const pre=$(`.who input[value="${h}"]`); if(pre){ pre.checked=true; }
+if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#m")) $("#m").value=`Fry enquiry: ${sq}. `; const h=new URLSearchParams(location.search).get("type")||location.hash.slice(1); const pre=$(`.who input[value="${h}"]`); if(pre){ pre.checked=true; }
   f.addEventListener("submit",e=>{ e.preventDefault(); const m=$("#msg");
     const errs=[]; if(!$$(".who input:checked").length) errs.push("tell us who you are"); if(!$("#n").value.trim()) errs.push("add your name"); if(!$("#e").value.includes("@")) errs.push("add a valid email"); if(!$("#c").checked) errs.push("accept the privacy note");
     m.style.display="block"; m.innerHTML = errs.length ? `Please ${errs.join(", ")}.` : "<b>Thank you.</b> This is a demo — the form is not connected yet. In the live site your message reaches info@gulfaquaculture.com."; }); }

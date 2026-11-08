@@ -1061,3 +1061,8 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .menu>li{display:flex;align-items:center}
 .hs:nth-child(5n+2) .hs-ping{animation-delay:.4s}.hs:nth-child(5n+3) .hs-ping{animation-delay:.8s}.hs:nth-child(5n+4) .hs-ping{animation-delay:1.2s}.hs:nth-child(5n+5) .hs-ping{animation-delay:1.6s}
 .hdr .brand img{height:46px;max-width:none;width:auto}@media (max-width:600px){.hdr .brand img{height:38px}}
+.legal-pg .lg-h{font-family:var(--sans);font-weight:500;font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin:36px 0 10px}
+.legal-pg p{margin-bottom:12px}
+.legal-pg a,.ftr .bot a{color:var(--teal)}
+.ftr .bot a:hover{text-decoration:underline}
+@media (max-width:1150px){.menu{display:none}.burger{display:block}}
