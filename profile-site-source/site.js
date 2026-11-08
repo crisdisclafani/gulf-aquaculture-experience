@@ -181,3 +181,50 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
     secs.forEach(s=>io.observe(s));
   }
 })();
+/* ===== mega menu + audience profiles ===== */
+(function(){
+  const AUDN={o:"Commercial Operators",g:"Government & Investors",r:"Universities & R&D"};
+  const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(e){}}};
+  /* mega menu: hover on desktop, click/keyboard everywhere */
+  const megas=[...document.querySelectorAll(".has-mega")];
+  const closeAll=except=>megas.forEach(m=>{ if(m!==except){ m.classList.remove("open"); m.firstElementChild.setAttribute("aria-expanded","false"); } });
+  megas.forEach(m=>{
+    const a=m.firstElementChild; let t;
+    const open=()=>{ clearTimeout(t); closeAll(m); m.classList.add("open"); a.setAttribute("aria-expanded","true"); };
+    const close=()=>{ t=setTimeout(()=>{ m.classList.remove("open"); a.setAttribute("aria-expanded","false"); },160); };
+    m.addEventListener("mouseenter",open); m.addEventListener("mouseleave",close);
+    a.addEventListener("focus",open);
+    a.addEventListener("click",e=>{ if(matchMedia("(hover:none)").matches && !m.classList.contains("open")){ e.preventDefault(); open(); } });
+    m.addEventListener("focusout",e=>{ if(!m.contains(e.relatedTarget)) close(); });
+  });
+  addEventListener("keydown",e=>{ if(e.key==="Escape") closeAll(null); });
+  /* mobile menu links close the drawer */
+  document.querySelectorAll(".mnav a").forEach(l=>l.addEventListener("click",()=>{ document.querySelector(".mnav")?.classList.remove("open"); document.body.style.overflow=""; }));
+  /* profiles */
+  const panel=document.getElementById("accPanel");
+  const btns=[...document.querySelectorAll(".acc-btn")];
+  function apply(k){
+    if(k) document.body.dataset.aud=k; else delete document.body.dataset.aud;
+    store.set("ga-aud",k||"");
+    btns.forEach(b=>b.setAttribute("aria-pressed",b.dataset.aud===k));
+    document.querySelectorAll("li[data-aud]").forEach(li=>li.classList.toggle("hl",!!k && li.dataset.aud.includes(k)));
+    document.querySelectorAll(".menu>li.has-mega").forEach(li=>{
+      const on=!!k && li.querySelector("li.hl"); li.classList.toggle("hl-parent",!!on);
+      const a=li.firstElementChild; let d=a.querySelector(".hl-dot"); if(!d){ d=document.createElement("span"); d.className="hl-dot"; a.appendChild(d); }
+    });
+    document.querySelectorAll(".mega-aud").forEach(p=>p.textContent=k?`Highlighted for ${AUDN[k]}`:"");
+    const r=document.querySelector(".aud-ribbon .ar-txt"); if(r) r.innerHTML=k?`Browsing as <b>${AUDN[k]}</b><span class="ar-more"> — highlighted pages in the menu are selected for you</span>`:"";
+  }
+  function showPane(k){
+    if(!panel) return;
+    panel.querySelectorAll(".acc-pane").forEach(p=>p.hidden=p.dataset.for!==k);
+    panel.hidden=!k; btns.forEach(b=>b.setAttribute("aria-expanded",!!k && b.dataset.aud===k));
+  }
+  btns.forEach(b=>b.addEventListener("click",()=>{
+    const k=b.dataset.aud, cur=document.body.dataset.aud, openNow=panel && !panel.hidden;
+    if(cur===k && openNow){ showPane(null); return; }
+    apply(k); showPane(k);
+  }));
+  document.querySelectorAll(".acc-clear").forEach(c=>c.addEventListener("click",()=>{ apply(null); showPane(null); }));
+  apply(store.get("ga-aud")||null);
+})();

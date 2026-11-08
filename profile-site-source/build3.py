@@ -13,7 +13,7 @@ LOGO='<svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><circle cx="16" cy
 BRAND='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/logo.png" alt="Gulf Aquaculture" width="640" height="150"></a>'
 BRAND_W='<a href="index.html" class="brand" aria-label="Gulf Aquaculture — home"><img src="assets/img/logo-white.png" alt="Gulf Aquaculture" width="640" height="150"></a>'
 FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">'
-FG_BAND='''<section class="fg" aria-labelledby="fgT">
+FG_BAND='''<section class="fg" id="future-growth" aria-labelledby="fgT">
   <div class="fg-bg" aria-hidden="true"></div>
   <div class="wrap">
     <div class="fg-head">
@@ -46,14 +46,15 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
   </div>
 </section>
 '''
-MAP_BAND='''<section class="mapband" aria-label="Regional footprint">
+MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint">
   <div class="mapband-img"><img src="assets/img/map.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"></div>
   <div class="wrap"><p class="mapband-note"><span>Committed to proving that aquaculture</span><br><span>can work - for our waters, for our communities,</span><br><span>and for future generations.</span></p></div>
 </section>'''
 
+from nav_data import mega_menu, mobile_nav, access_bar, aud_ribbon
 def page(fn,title,desc,body):
-    menu=f'<li><a href="index.html"{" aria-current=\"page\"" if fn=="index.html" else ""}>Home</a></li>'+"".join(f'<li><a href="{h}"{" aria-current=\"page\"" if (h==fn or (h=="species.html" and fn.startswith("species-")) or (h=="assets.html" and fn.startswith("asset-"))) else ""}>{t}</a></li>' for h,t,_ in PAGES if h!="contact.html")
-    mnav="".join(f'<a href="{h}"><span>{n}</span>{t}</a>' for h,t,n in PAGES)
+    menu=mega_menu(fn)
+    mnav=mobile_nav(fn)
     foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES)
     out=f'''<!DOCTYPE html>
 <html lang="en">
@@ -62,15 +63,16 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109c">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109e">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
   <ul class="menu" aria-label="Main">{menu}</ul>
   <a href="contact.html" class="btn btn-or"{" aria-current=\"page\"" if fn=="contact.html" else ""}>Let's talk</a>
   <button class="burger" type="button" aria-label="Open menu"><span></span></button>
-</div></header>
-<nav class="mnav" aria-label="Menu"><button class="x" type="button" aria-label="Close menu">×</button><a href="index.html"><span>00</span>Home</a>{mnav}</nav>
+</div>{aud_ribbon()}</header>
+{access_bar()}
+<nav class="mnav" aria-label="Menu"><button class="x" type="button" aria-label="Close menu">×</button>{mnav}</nav>
 <main>
 {body}
 </main>
@@ -87,7 +89,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture</span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109c"></script>
+<script src="assets/js/site.js?v=20261109e"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -269,7 +271,7 @@ FEAT=[("Hatchery &amp; Nursery","Controlled environments for larvae and fry.",'<
       ("Biosecurity","Closed-loop systems, advanced filtration, and strict protocols.",'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'),
       ("Laboratories","Water quality and microbiology testing.",'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/>'),
       ("Traceability","SFS Trace system ensures full lifecycle transparency.",'<path d="M4 12h4l2-5 4 10 2-5h4"/>')]
-ops=f'''<section class="opx paper"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
+ops=f'''<section class="opx paper" id="overview"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
  <div class="opx-left">
   <h1 class="rv in">Where<br>Innovation<br>Meets Simplicity</h1>
   <p class="opx-kicker rv in">Our operations</p>
@@ -413,7 +415,7 @@ TEAM=[("gulf-aquaculture-team-razali.webp","Mohamed Razali Mohamed","General Man
  ("team-finnbogi.jpg","Finnbogi Baldvinsson","Industry Advisor","Finnbogi Baldvinsson is a senior seafood industry leader with over 30 years of global executive and board-level experience in wild capture fisheries, processing and aquaculture. He has built, restructured and led major seafood businesses across Europe, the Americas, Asia and MENA."),
  ("team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
 people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","aerial.jpg","A better future is grown, not guessed.")
-people=fishwin(people,"gulf-aquaculture-team-balghailam-island-hatchery.webp","The Gulf Aquaculture team at Balghailam Island","A better future is grown, not guessed.")
+people=fishwin(people,"gulf-aquaculture-offshore-sea-cages-uae.webp","Gulf Aquaculture sea cages offshore in the UAE","A better future is grown, not guessed.")
 people+='<section class="sec"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
 people+='<div class="bio" id="bio" role="dialog" aria-modal="true" aria-labelledby="bioN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button><div class="bio-head"><span class="ph bio-ph" aria-hidden="true"><img id="bioI" src="" alt=""></span><div><h3 id="bioN"></h3><span class="bio-role" id="bioK"></span></div></div><p id="bioT"></p></div></div>'
 page("people.html","People — Gulf Aquaculture","The team behind Gulf Aquaculture.",people)
