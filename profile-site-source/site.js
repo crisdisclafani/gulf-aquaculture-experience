@@ -228,3 +228,22 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   document.querySelectorAll(".acc-clear").forEach(c=>c.addEventListener("click",()=>{ apply(null); showPane(null); }));
   apply(store.get("ga-aud")||null);
 })();
+/* clickable plan hotspots -> video dialog */
+(function(){
+  const m=document.getElementById("hsm"); if(!m) return;
+  const frame=m.querySelector(".yt-frame"), title=m.querySelector(".hsm-t"); let last=null;
+  const tip=document.createElement("div"); tip.className="hs-tip"; document.body.appendChild(tip);
+  const open=h=>{ last=h; title.textContent=h.dataset.title.replace("&amp;","&");
+    frame.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${h.dataset.yt}?autoplay=1&start=${h.dataset.start||0}&rel=0&playsinline=1" title="${title.textContent} — video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    m.classList.add("open"); m.querySelector(".yt-x").focus(); tip.classList.remove("on"); };
+  const close=()=>{ m.classList.remove("open"); frame.innerHTML=""; last?.focus(); };
+  document.querySelectorAll(".hs").forEach(h=>{
+    h.addEventListener("click",e=>{ e.preventDefault(); open(h); });
+    h.addEventListener("keydown",e=>{ if(e.key===" "){ e.preventDefault(); open(h); } });
+    h.addEventListener("mousemove",e=>{ tip.innerHTML=`${h.dataset.title}<b>▶ Watch</b>`; tip.style.left=e.clientX+"px"; tip.style.top=e.clientY+"px"; tip.classList.add("on"); });
+    h.addEventListener("mouseleave",()=>tip.classList.remove("on"));
+  });
+  m.querySelector(".yt-x").addEventListener("click",close);
+  m.addEventListener("click",e=>{ if(e.target===m) close(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&m.classList.contains("open")) close(); });
+})();

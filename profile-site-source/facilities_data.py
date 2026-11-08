@@ -21,7 +21,12 @@ FACILITIES = [
     [("Water Quality &amp; Microbiology Labs","Our on-site lab monitors water quality and fish health. Two functional areas track key parameters and identify pathogens early."),
      ("Microbial Testing Capabilities Include:",["CFU counts","Microbial cultivation","Wet mounts","Antibiograms for treatment guidance"])]),
   ],
-  plan="gulf-aquaculture-balghailam-plan.webp", plan_title="Site layout", plan_caption="Hatchery &amp; nursery tanks, live feed, broodstock tanks, microbiology labs and support buildings."),
+  plan="gulf-aquaculture-balghailam-plan.webp", plan_title="Explore the site",
+  hotspots=[("Hatchery &amp; Nursery Tanks",10,68,718,213,1),("Live Feed",214,215,718,315,1),("Broodstock Tanks",388,315,718,431,1),
+            ("Microbiology Lab",755,69,881,168,1),("Microbiology Lab",755,215,881,315,0),("Laboratory",181,240,214,315,0),("Blower Room",637,69,718,151,0),
+            ("Power Station",10,7,72,68,0),("Pump House",754,433,881,531,1),("Office",10,215,81,315,0),("M.A",114,240,181,315,0),
+            ("Accommodation",229,315,355,378,0),("Accommodation",131,345,194,471,0),("Accommodation",929,69,991,194,0),("Laundry",355,315,388,378,0),
+            ("Kitchen",251,400,321,466,0),("Food Store",929,215,991,297,0),("Store",929,297,991,359,0)], plan_caption="Click any area of the hatchery — tanks, live feed, broodstock, labs — to watch it in action."),
  dict(k="skmrc", name="Sheikh Khalifa Marine Research Centre", title="Sheikh Khalifa<br>Marine Research Centre",
   short="Operated by GA since November 2025 — the pinnacle of Middle Eastern hatchery technology, with ≈18,000 m² in two production streams.",
   intro="GA has been operating the Sheikh Khalifa Marine Research Centre [SKMRC] since November 2025. This asset represents the pinnacle of Middle Eastern hatchery technology and design.",
@@ -75,6 +80,18 @@ def facility_pages(page, dia):
         cols = "".join(
             f'<div class="fx-col rv"><h2 class="fx-h2">{t}</h2>{f"<p>{lead}</p>" if lead else ""}{_items(items, dia)}</div>'
             for t, lead, items in f["blocks"])
+        if f.get("hotspots"):
+            hs = "".join(
+                f'<a class="hs{" hs-main" if m else ""}" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="{t}" aria-label="{t} — watch video">'
+                f'<rect x="{x0}" y="{y0}" width="{x1-x0}" height="{y1-y0}" rx="2"/>'
+                + (f'<circle class="hs-dot" cx="{x1-14}" cy="{y0+14}" r="7"/><circle class="hs-ping" cx="{x1-14}" cy="{y0+14}" r="7"/>' if m else '')
+                + f'<title>{t}</title></a>' for t, x0, y0, x1, y1, m in f["hotspots"])
+            plan_html = (f'<figure class="fx-plan hsplan rv"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy">'
+                         f'<svg class="hs-svg" viewBox="0 0 1000 531" preserveAspectRatio="none">{hs}</svg>'
+                         f'<figcaption class="hs-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Hover an area and click to watch it in action</figcaption></figure>'
+                         '<div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>')
+        else:
+            plan_html = f'<a class="fx-plan rv" href="assets/img/{f["plan"]}" target="_blank" rel="noopener" aria-label="Open the {f["name"]} site plan full size"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy"><span class="fx-zoom" aria-hidden="true">⤢ View full size</span></a>'
         card = "".join(f'<h3 class="fx-h3">{h}</h3><p>{p}</p>' for h, p in f["card"])
         body = f'''<section class="sph paper"><span class="arc" style="width:820px;height:820px;right:-300px;top:-420px"></span><div class="wrap">
  <a class="sph-back rv in" href="assets.html"><span aria-hidden="true">←</span> All assets</a>
@@ -87,7 +104,7 @@ def facility_pages(page, dia):
 </div></section>
 <section class="sec"><div class="wrap fx-cols">{cols}</div></section>
 <section class="sec paper fx-plan-sec"><div class="wrap"><div class="fx-plan-head rv"><span class="label">Site plan</span><h2>{f["plan_title"]}</h2><p>{f["plan_caption"]}</p></div>
- <a class="fx-plan rv" href="assets/img/{f["plan"]}" target="_blank" rel="noopener" aria-label="Open the {f["name"]} site plan full size"><img src="assets/img/{f["plan"]}" alt="{f["name"]} site plan: {f["plan_caption"]}" loading="lazy"><span class="fx-zoom" aria-hidden="true">⤢ View full size</span></a></div></section>
+ {plan_html}</div></section>
 <section class="sp-cta"><div class="wrap"><div><span class="label">Visits &amp; partnerships</span><h2>Interested in {f["name"]}?</h2><p>Government, research and commercial partners are welcome to get in touch about collaboration and site visits.</p></div>
  <a class="btn btn-or" href="contact.html#partner">Get in touch <span aria-hidden="true">→</span></a></div></section>
 <nav class="sp-pn wrap" aria-label="Other facilities"><a href="assets.html"><span>← Back</span><b>All assets</b></a><span></span><a href="asset-{other["k"]}.html" class="sp-next"><span>Next facility →</span><b>{other["name"]}</b></a></nav>'''
