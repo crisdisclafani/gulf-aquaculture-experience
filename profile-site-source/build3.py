@@ -88,6 +88,7 @@ def news_band(fn):
     cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><div class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><h3 class="nb-h">{n["title"]}</h3></div></a>' for n in items)
     return f'<section class="nband"><div class="wrap"><div class="nb-head"><h2 class="hx label">Latest news &amp; interviews</h2><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
 def page(fn,title,desc,body):
+    SECTION=("about" if fn.startswith(("about","people")) else "operations" if fn.startswith("operations") else "assets" if fn.startswith("asset") else "species" if fn.startswith("species") else "growth" if fn.startswith("growth") else "home" if fn=="index.html" else "other")
     from species_data import SPECIES as _SP
     _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
     SEO_HEAD=seo_head(fn,_sp)
@@ -104,9 +105,9 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110i">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110j">
 </head>
-<body>
+<body data-sec="{SECTION}">
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
 <header class="hdr"><div class="wrap">{BRAND}<div class="tb-in">{SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>' if fn!="index.html" else ""}{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div>
   <ul class="menu" aria-label="Main">{menu}</ul>
@@ -149,9 +150,9 @@ def page(fn,title,desc,body):
   </section>
   <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
 </div>
-<script src="assets/js/site.js?v=20261110i"></script>
-<script src="assets/js/tour.js?v=20261110i" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110i" defer></script>'}
+<script src="assets/js/site.js?v=20261110j"></script>
+<script src="assets/js/tour.js?v=20261110j" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110j" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -167,7 +168,7 @@ def opener(no,label,title,lead,img,note,extra=""):
 
 import re as _re
 FISH_D="M30 290C140 70 470 20 690 230 760 150 860 60 975 30 930 150 915 230 920 290 915 350 930 430 975 550 860 520 760 430 690 350 470 560 140 510 30 290Z"
-GA_NEWS_IMG="https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-10-scaled.jpg"  # foto dal sito gulfaquaculture.com (gallery), hotlink per la demo
+GA_NEWS_IMG="gulf-aquaculture-technician-checking-fry-nursery-tanks.webp"
 def fishwin(html_, img, alt, note):
     rep=(f'<div class="media rv in fishwin"><svg class="fw-svg" viewBox="0 0 1000 560" role="img" aria-label="{alt}"><defs><clipPath id="fwc"><path d="{FISH_D}"/></clipPath>'
          f'<linearGradient id="fwg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C0451F"/><stop offset=".55" stop-color="#E3A43E"/><stop offset="1" stop-color="#FBE27A"/></linearGradient></defs>'
@@ -429,7 +430,7 @@ _RTXT={"hamour":"Indo-West Pacific: from East Africa and the Red Sea, through th
        "umm-drais":"Regional red snapper of the Arabian Gulf and Gulf of Oman — under evaluation in our broodstock programme."}
 def range_map():
     from species_data import SPECIES as _S
-    chips="".join(f'<button type="button" data-k="{d["k"]}" data-r="{_RKEY[d["k"]]}" data-t="{html.escape(_RTXT[d["k"]])}" data-sci="{html.escape(d["sci"] or "")}" data-en="{html.escape(d["en"])}"{" class=on" if i==0 else ""}>{d["local"]}</button>' for i,d in enumerate(_S))
+    chips="".join(f'<button type="button" data-k="{d["k"]}" data-href="species-{d["k"]}.html" data-r="{_RKEY[d["k"]]}" data-t="{html.escape(_RTXT[d["k"]])}" data-sci="{html.escape(d["sci"] or "")}" data-en="{html.escape(d["en"])}"{" class=on" if i==0 else ""}>{d["local"]}</button>' for i,d in enumerate(_S))
     ranges="".join(f'<path class="rm-range" data-r="{k}" d="{v}"/>' for k,v in _RM["ranges"].items())
     S=_RM["sites"]; uae=S[0]
     marks=(f'<g class="rm-site" tabindex="0"><circle cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><circle class="rm-pulse" cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><text x="{uae["x"]-10}" y="{uae["y"]-16}" text-anchor="middle" data-short="UAE">UAE · HQ, Balghailam, SKMRC</text></g>'
@@ -631,3 +632,5 @@ for i,n in enumerate([x for x in NEWS if not x.get('href')]):
     page(f"news-{n['slug']}.html",n["title"],n["excerpt"],body)
 
 write_extras(OUT,[f for f in sorted(os.listdir(OUT)) if f.endswith(".html")])
+import slugs as _slugs
+_slugs.apply(OUT)

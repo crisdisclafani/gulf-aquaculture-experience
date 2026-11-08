@@ -272,7 +272,7 @@ if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF
   if(m){closeMenus();setTimeout(function(){f(m[1],true)},60)}
   else if(h==='#media-gallery'||h==='#articles'){closeMenus();setTimeout(function(){(h==='#articles'?list:gal).scrollIntoView({behavior:'smooth'})},60)}}
  fromHash();window.addEventListener('hashchange',fromHash);
- document.addEventListener('click',function(e){var a=e.target.closest('a[href*="news.html#"]');if(a&&location.pathname.match(/news\.html$/)&&a.hash===location.hash){e.preventDefault();fromHash()}});})();
+ document.addEventListener('click',function(e){var a=e.target.closest('a[href*="news.html#"]');if(a&&ch&&a.hash===location.hash&&a.pathname===location.pathname){e.preventDefault();fromHash()}});})();
 
 /* 3D experience → site pages: "Discover more" / "More details" open the matching page.
    Same-origin: listen to the 3D app's aqua:cta event on the real iframe document; fallback: postMessage. */
@@ -297,7 +297,7 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
  function set(b){chips.forEach(function(c){c.classList.toggle('on',c===b);c.setAttribute('aria-selected',c===b)});
   rs.forEach(function(r){r.classList.toggle('on',r.dataset.r===b.dataset.r)});
   m.querySelector('.rm-en').textContent=b.dataset.en;m.querySelector('.rm-sci i').textContent=b.dataset.sci;m.querySelector('.rm-txt').textContent=b.dataset.t;
-  m.querySelector('#rmLink').href='species-'+b.dataset.k+'.html'}
+  m.querySelector('#rmLink').href=b.dataset.href}
  chips.forEach(function(b){b.setAttribute('role','tab');b.addEventListener('click',function(){set(b)})});
  var q=new URLSearchParams(location.search).get('sp'),st=chips.filter(function(c){return c.dataset.k===q})[0]||chips[0];set(st);})();
 /* distribution map: zoom on Gulf → South-East Asia on small screens so labels stay readable */

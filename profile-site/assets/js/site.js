@@ -259,7 +259,7 @@ if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF
 })();
 
 /* News filter */
-(function(){if(location.hash==='#media-gallery'){location.replace('gallery.html');return}var ch=document.querySelector('.nw-chips');if(!ch)return;
+(function(){if(location.hash==='#media-gallery'){location.replace('aquaculture-photo-gallery-uae.html');return}var ch=document.querySelector('.nw-chips');if(!ch)return;
  var cards=[].slice.call(document.querySelectorAll('#nwGrid .nw-card')),empty=document.getElementById('nwEmpty'),list=document.getElementById('articles'),gal=document.getElementById('media-gallery');
  function closeMenus(){document.querySelectorAll('.has-mega.open').forEach(function(m){m.classList.remove('open')});if(document.activeElement&&document.activeElement.blur)document.activeElement.blur()}
  function f(c,scroll){var ok=[].some.call(ch.children,function(b){return b.dataset.f===c});if(!ok)c='all';
@@ -267,19 +267,19 @@ if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF
   if(c==='media-gallery'){cards.forEach(function(x){x.hidden=false});empty.hidden=true;if(scroll)gal.scrollIntoView({behavior:'smooth'});return}
   var n=0;cards.forEach(function(x){var s=c==='all'||x.dataset.cat===c;x.hidden=!s;if(s)n++});empty.hidden=n>0;
   if(scroll)list.scrollIntoView({behavior:'smooth'})}
- ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;f(b.dataset.f,b.dataset.f==='media-gallery');if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'news.html':'#cat='+b.dataset.f)});
+ ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;f(b.dataset.f,b.dataset.f==='media-gallery');if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'aquaculture-news-uae-gulf.html':'#cat='+b.dataset.f)});
  function fromHash(){var h=location.hash,m=h.match(/cat=([a-z-]+)/);
   if(m){closeMenus();setTimeout(function(){f(m[1],true)},60)}
   else if(h==='#media-gallery'||h==='#articles'){closeMenus();setTimeout(function(){(h==='#articles'?list:gal).scrollIntoView({behavior:'smooth'})},60)}}
  fromHash();window.addEventListener('hashchange',fromHash);
- document.addEventListener('click',function(e){var a=e.target.closest('a[href*="news.html#"]');if(a&&location.pathname.match(/news\.html$/)&&a.hash===location.hash){e.preventDefault();fromHash()}});})();
+ document.addEventListener('click',function(e){var a=e.target.closest('a[href*="aquaculture-news-uae-gulf.html#"]');if(a&&ch&&a.hash===location.hash&&a.pathname===location.pathname){e.preventDefault();fromHash()}});})();
 
 /* 3D experience → site pages: "Discover more" / "More details" open the matching page.
    Same-origin: listen to the 3D app's aqua:cta event on the real iframe document; fallback: postMessage. */
 (function(){var fr=document.querySelector('.xp3d iframe');if(!fr)return;
- var ITEM={'fish-hamour':'species-hamour.html','fish-hamrah':'species-hamra.html','fish-shaari':'species-shaari.html','fish-ummdrais':'species-umm-drais.html','stock':'species.html','aq':'species.html'};
- var BLD={broodstock:'operations.html#cycle',hatchery:'operations.html#cycle',nursery:'operations.html#cycle',livefeed:'operations.html#overview',
-  research:'asset-skmrc.html',plantroom:'asset-skmrc.html',genroom:'asset-skmrc.html',visitor:'asset-skmrc.html',seacages:'species.html'};
+ var ITEM={'fish-hamour':'hamour-orange-spotted-grouper-fry.html','fish-hamrah':'hamra-malabar-red-snapper-fry.html','fish-shaari':'shaari-spangled-emperor-fry.html','fish-ummdrais':'umm-drais-gulf-red-snapper.html','stock':'native-gulf-fish-species-fry-supply.html','aq':'native-gulf-fish-species-fry-supply.html'};
+ var BLD={broodstock:'hatchery-operations-production-cycle.html#cycle',hatchery:'hatchery-operations-production-cycle.html#cycle',nursery:'hatchery-operations-production-cycle.html#cycle',livefeed:'hatchery-operations-production-cycle.html#overview',
+  research:'sheikh-khalifa-marine-research-centre-skmrc.html',plantroom:'sheikh-khalifa-marine-research-centre-skmrc.html',genroom:'sheikh-khalifa-marine-research-centre-skmrc.html',visitor:'sheikh-khalifa-marine-research-centre-skmrc.html',seacages:'native-gulf-fish-species-fry-supply.html'};
  var hookedDoc=null,lastGo=0;
  function go(id,item){var u=(item&&ITEM[item])||BLD[id];if(!u)return;var now=Date.now();if(now-lastGo<800)return;lastGo=now;window.location.href=u}
  function onCta(e){var x=e.detail||{};go(x.id,x.item)}
@@ -297,7 +297,7 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
  function set(b){chips.forEach(function(c){c.classList.toggle('on',c===b);c.setAttribute('aria-selected',c===b)});
   rs.forEach(function(r){r.classList.toggle('on',r.dataset.r===b.dataset.r)});
   m.querySelector('.rm-en').textContent=b.dataset.en;m.querySelector('.rm-sci i').textContent=b.dataset.sci;m.querySelector('.rm-txt').textContent=b.dataset.t;
-  m.querySelector('#rmLink').href='species-'+b.dataset.k+'.html'}
+  m.querySelector('#rmLink').href=b.dataset.href}
  chips.forEach(function(b){b.setAttribute('role','tab');b.addEventListener('click',function(){set(b)})});
  var q=new URLSearchParams(location.search).get('sp'),st=chips.filter(function(c){return c.dataset.k===q})[0]||chips[0];set(st);})();
 /* distribution map: zoom on Gulf → South-East Asia on small screens so labels stay readable */
@@ -338,10 +338,10 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
  chat.querySelector('.hc-x').addEventListener('click',close);
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&hub.classList.contains('open'))close()});
  document.addEventListener('click',function(e){if(hub.classList.contains('open')&&!hub.contains(e.target))close()});
- var A={fry:['Fry availability','We supply Hamour, Hamra, Shiqra, Shaari and Seabream fry to regional farms. Tell us species, quantity, size and delivery date and our team will confirm availability. <a href="contact.html?type=fry#fry">Request fry →</a>'],
-  species:['Our species','We focus on native Gulf species — resilient and adapted to local heat and salinity. <a href="species.html">Explore our species →</a>'],
-  visit:['Visit a facility','Government, research and commercial partners can request a visit to Balghailam Island or the Sheikh Khalifa Marine Research Centre. <a href="contact.html?type=general#general">Ask for a visit →</a>'],
-  invest:['Partnerships','We work with investors, government bodies and universities on food security, Phase II growth and research. <a href="contact.html?type=investor#investor">Start a conversation →</a>']};
+ var A={fry:['Fry availability','We supply Hamour, Hamra, Shiqra, Shaari and Seabream fry to regional farms. Tell us species, quantity, size and delivery date and our team will confirm availability. <a href="contact-gulf-aquaculture-fry-orders.html?type=fry#fry">Request fry →</a>'],
+  species:['Our species','We focus on native Gulf species — resilient and adapted to local heat and salinity. <a href="native-gulf-fish-species-fry-supply.html">Explore our species →</a>'],
+  visit:['Visit a facility','Government, research and commercial partners can request a visit to Balghailam Island or the Sheikh Khalifa Marine Research Centre. <a href="contact-gulf-aquaculture-fry-orders.html?type=general#general">Ask for a visit →</a>'],
+  invest:['Partnerships','We work with investors, government bodies and universities on food security, Phase II growth and research. <a href="contact-gulf-aquaculture-fry-orders.html?type=investor#investor">Start a conversation →</a>']};
  body.addEventListener('click',function(e){var b=e.target.closest('[data-q]');if(!b)return;var a=A[b.dataset.q];
    var me=document.createElement('div');me.className='hc-msg me';me.textContent=a[0];body.appendChild(me);
    var t=document.createElement('div');t.className='hc-typing';t.innerHTML='<i></i><i></i><i></i>';body.appendChild(t);body.scrollTop=body.scrollHeight;

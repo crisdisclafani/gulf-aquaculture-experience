@@ -23,7 +23,7 @@
     if(/^growth/.test(p))return 'horizon';
     return 'gulf';
   }
-  var T=THEMES[themeFor(page)];
+  var SEC={about:'hijaz',operations:'lab',assets:'tanks',species:'reef',growth:'horizon'};var T=THEMES[SEC[document.body.dataset.sec]||'gulf'];
   function g(v){var n=ctx.createGain();n.gain.value=v;return n}
   function filt(t,f,q){var n=ctx.createBiquadFilter();n.type=t;n.frequency.value=f;n.Q.value=q||.7;return n}
   function osc(t,f){var o=ctx.createOscillator();o.type=t;o.frequency.value=f;return o}

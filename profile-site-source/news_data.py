@@ -62,7 +62,6 @@ NEWS = [
 ]
 
 # Media gallery (separate page gallery.html): (album, image, caption)
-# Images starting with https:// are photos from gulfaquaculture.com (hotlinked for the demo — client to supply files)
 GALBUMS = ["Sites & facilities", "Fish & species", "People & labs"]
 GALLERY = [
  ("Sites & facilities","gulf-aquaculture-aerial-sea-cages-work-vessel.webp","Sea cages and work vessel, Abu Dhabi"),
@@ -76,11 +75,11 @@ GALLERY = [
  ("Fish & species","gulf-aquaculture-grouper-juveniles.webp","Grouper juveniles in the nursery"),
  ("Fish & species","gulf-aquaculture-grouper-farmer.webp","Hamour at harvest"),
  ("Fish & species","hamour-grouper-coral-reef-video-poster.webp","Hamour on a Gulf reef"),
- ("Fish & species","https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-3-scaled.jpg","Fry in the nursery tanks"),
- ("Fish & species","https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-9-scaled.jpg","Broodstock tank"),
+ ("Fish & species","marine-fish-fry-nursery-tank-gulf-aquaculture-hatchery.webp","Marine fish fry in a nursery tank"),
+ ("Fish & species","grouper-broodstock-tank-gulf-aquaculture-hatchery.webp","Grouper broodstock tank at the hatchery"),
  ("People & labs","gulf-aquaculture-lab-technician.webp","Water-quality and microbiology laboratory"),
- ("People & labs","https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-1-scaled.jpeg","Laboratory work at the hatchery"),
- ("People & labs","https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-10-scaled.jpg","Checking fry in the hatchery tanks"),
+ ("People & labs","gulf-aquaculture-laboratory-technician-microbiology-clean-bench.webp","Microbiology work at the laboratory clean bench"),
+ ("People & labs","gulf-aquaculture-technician-checking-fry-nursery-tanks.webp","Checking fry in the hatchery tanks"),
  ("People & labs","gulf-aquaculture-team-balghailam-island-hatchery.webp","The team at Balghailam Island"),
  ("People & labs","gulf-aquaculture-team-sea-cages.webp","Our team at the sea cages"),
  ("People & labs","mohamed-razali-gulf-aquaculture-founder-with-fish.webp","Mohamed Razali, General Manager, with a Hamour"),
