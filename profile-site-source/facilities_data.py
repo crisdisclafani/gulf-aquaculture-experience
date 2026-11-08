@@ -58,7 +58,7 @@ FACILITIES = [
     ("Generator Room","885,380 925,365 975,400 940,430",930,398,1),
     ("Plant Room","660,405 710,370 915,445 870,535",786,452,1),
     ("Header Tanks","783,368 828,368 832,412 788,412",808,392,1),
-    ("Generator Room","880,440 918,444 918,482 880,478",900,500,0)]), plan_caption="Hatchery, broodstock, nursery and weaning buildings — click a roof to watch it in action."),
+    ("Generator Room","880,440 918,444 918,482 880,478",900,500,1)]), plan_caption="Hatchery, broodstock, nursery and weaning buildings — click a roof to watch it in action."),
 ]
 
 
