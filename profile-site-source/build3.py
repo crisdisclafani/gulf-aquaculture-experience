@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110h">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110i">
 </head>
 <body>
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -149,9 +149,9 @@ def page(fn,title,desc,body):
   </section>
   <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
 </div>
-<script src="assets/js/site.js?v=20261110h"></script>
-<script src="assets/js/tour.js?v=20261110h" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110h" defer></script>'}
+<script src="assets/js/site.js?v=20261110i"></script>
+<script src="assets/js/tour.js?v=20261110i" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110i" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
