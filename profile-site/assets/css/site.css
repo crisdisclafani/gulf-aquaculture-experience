@@ -1284,7 +1284,7 @@ html.lb-open{overflow:hidden}
   .iv-kicker{max-width:calc(100% - clamp(140px,12vw,190px) - 28px)}
 }
 /* desktop widths 1151–1430: everything fits on one line (logo, menu, Let's talk) */
-@media (min-width:1151px) and (max-width:1430px){
+@media (min-width:1151px) and (max-width:1370px){
   .hdr .brand img{height:66px}
   .hdr>.wrap{gap:14px}
   .menu{gap:0}
@@ -1385,3 +1385,5 @@ h2.fx-h3{line-height:1.06}
   .hub-it{width:calc(100vw - 32px)}
   .hub-chat{position:fixed;inset:0;width:auto;height:auto;border-radius:0;z-index:1001}
 }
+/* desktop header: wider container with equal side margins, so logo, menu and button share the width evenly */
+@media (min-width:1151px){.hdr>.wrap{width:min(1480px,100% - 64px)}}
