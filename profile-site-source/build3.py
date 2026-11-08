@@ -65,7 +65,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 <title>{title}</title><meta name="description" content="{html.escape(desc)}">
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109m">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109n">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -91,7 +91,7 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<script src="assets/js/site.js?v=20261109m"></script>
+<script src="assets/js/site.js?v=20261109n"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -116,7 +116,7 @@ _sd.FISHWIN=fishwin; _fd.FISHWIN=fishwin
 def dia(items): return '<ul class="diamonds">'+"".join(f"<li>{i}</li>" for i in items)+"</ul>"
 
 # ========================================================= HOME
-home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - 76px);min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
+home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - 88px);min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
 <section class="cover">
   <div class="cover-text">
     <span class="cv-tag">Local Species in Local Waters</span>

@@ -1075,3 +1075,5 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .hs-map:hover .hs-hit,.hs-map:focus-visible .hs-hit{fill:rgba(226,161,60,.35)}
 .hs-map .hs-ping{stroke:#fff;stroke-width:3}
 .map-hint{position:absolute;left:clamp(16px,4vw,60px);top:clamp(12px,2vw,24px);background:rgba(255,255,255,.9);padding:4px 14px 4px 6px;height:auto;margin:0}
+.hdr .brand img{height:60px}:root{--hh:88px}@media (max-width:600px){.hdr .brand img{height:46px}}
+.ab-sub{top:var(--hh)}#story,#mission,#principles,#role,#achievements,#interview{scroll-margin-top:165px}
