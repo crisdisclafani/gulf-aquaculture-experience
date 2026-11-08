@@ -29,6 +29,7 @@ NAV = [
      "Healthy fish in sustainable, replicable systems — from broodstock to distribution.", [
          ("operations.html#overview", "How we operate", "Hatchery, live feed, biosecurity, labs, traceability", "or"),
          ("operations.html#cycle", "The production cycle", "Five phases under continuous lab oversight", "or"),
+         ("operations.html#infrastructure", "Infrastructure &amp; technology", "RAS, water intake, biosecurity, environment", "ogr"),
      ]),
     ("assets.html", "Assets", "Assets under management",
      "Two facilities, one model: compact, biosecure and replicable.", [

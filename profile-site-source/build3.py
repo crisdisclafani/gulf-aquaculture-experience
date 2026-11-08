@@ -80,8 +80,7 @@ def lang_switch():
         if c=="en": out+=f'<li><a class="on" href="#" lang="en" aria-current="true" title="{l}">{f}<span>EN</span></a></li>'
         else: out+=f'<li><button type="button" class="lang-soon" lang="{c}" title="{l} — coming soon" data-soon="النسخة العربية قريباً · Arabic version coming soon">{f}<span>{c.upper()}</span></button></li>'
     return out+'</ul>'
-TOPBAR=(f'<div class="topbar"><div class="wrap">{social_icons("soc-top")}'
-        f'<div class="tb-r"><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a>{lang_switch()}</div></div></div>')
+TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
 def page(fn,title,desc,body):
     from species_data import SPECIES as _SP
     _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
@@ -99,7 +98,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109y">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109z">
 </head>
 <body>
 {TOPBAR}
@@ -128,7 +127,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109y"></script>
+<script src="assets/js/site.js?v=20261109z"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -327,6 +326,13 @@ FEAT=[("Hatchery &amp; Nursery","Controlled environments for larvae and fry.",'<
       ("Biosecurity","Closed-loop systems, advanced filtration, and strict protocols.",'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'),
       ("Laboratories","Water quality and microbiology testing.",'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/>'),
       ("Traceability","SFS Trace system ensures full lifecycle transparency.",'<path d="M4 12h4l2-5 4 10 2-5h4"/>')]
+
+INFRA=[("Recirculating Aquaculture Systems (RAS)","Integrated RAS and flow-through systems keep temperature, salinity and oxygen stable for every life stage, while recirculating and treating water to cut water and energy use.","Balghailam · SKMRC",'<path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 3v4h-4M6 21v-4h4"/>'),
+ ("Water intake &amp; filtration","Seawater is drawn in, mechanically filtered and treated through biofilters and UV sterilisation before it reaches broodstock, larvae or nursery tanks.","Balghailam · SKMRC",'<path d="M3 5h18l-7 8v6l-4 2v-8z"/>'),
+ ("Water-quality monitoring","On-site laboratories track key parameters — such as temperature, dissolved oxygen, pH, salinity and nitrogen compounds — so every tank is checked, logged and adjusted daily.","14 labs at SKMRC",'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/><path d="M9 15a3 3 0 0 0 3 3"/>'),
+ ("Biosecurity &amp; fish health","Separated production zones, controlled access and early pathogen screening by our microbiology lab protect stock without unnecessary antibiotics.","All sites",'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>'),
+ ("Live-feed production","Dedicated algae and live-feed culture — grown alongside the larval rearing halls — provides the right nutrition at the right size for each larval stage.","Balghailam · SKMRC",'<path d="M7 17c-2-2-2-6 1-8s7-1 8 2-1 7-4 7-3 1-5-1Z"/><circle cx="17" cy="6" r="2"/><circle cx="5" cy="6" r="1.4"/>'),
+ ("Environmental management","Native species, low-impact sea cages with natural water exchange, treated discharge and energy-conscious systems keep our footprint on the Gulf as light as possible.","Hatcheries · sea cages",'<path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l8-8"/>')]
 ops=f'''<section class="opx paper" id="overview"><span class="arc opx-arc" aria-hidden="true"></span><div class="wrap opx-grid">
  <div class="opx-left">
   <h1 class="rv in">Where<br>Innovation<br>Meets Simplicity</h1>
@@ -347,6 +353,10 @@ ops=f'''<section class="opx paper" id="overview"><span class="arc opx-arc" aria-
  <div class="opb-cycle"><p class="opb-hint rv">Select a phase around the cage — from broodstock to distribution, under continuous lab oversight.</p>
   <div class="ops"><div class="ring rv" id="ring"></div>
    <div class="ph-card rv"><div id="phCard" aria-live="polite"></div><div class="ph-nav"><button type="button" id="phPrev" aria-label="Previous phase">←</button><button type="button" id="phNext" aria-label="Next phase">→</button></div></div></div></div>
+</div></section>
+<section class="sec infra" id="infrastructure"><div class="wrap">
+ <div class="infra-head rv"><span class="label">Infrastructure &amp; technology</span><h2 style="margin-top:12px">The systems behind healthy fish</h2><p>Compact, biosecure and replicable: the same technical backbone runs across our hatcheries and is designed to be repeated at future sites.</p></div>
+ <div class="infra-grid">{"".join(f'<article class="infra-card rv"><svg viewBox="0 0 24 24" aria-hidden="true">{i}</svg><h3>{t}</h3><p>{d}</p><span class="infra-where">{w}</span></article>' for t,d,w,i in INFRA)}</div>
 </div></section>
 <section class="opx-slogan"><div class="wrap"><p class="note rv"><span>From broodstock to the sea —</span><br><span>every step designed in harmony with the Gulf.</span></p></div></section>'''
 page("operations.html","Operations — Gulf Aquaculture","Where innovation meets simplicity: hatchery, nursery, live feed, biosecurity, laboratories and traceability.",ops)
