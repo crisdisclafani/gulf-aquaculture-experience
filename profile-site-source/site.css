@@ -1122,3 +1122,29 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .wa-btn svg{width:24px;height:24px}.wa-btn:hover{background:#1EBE5B}
 .hdr .btn{white-space:nowrap;flex:none}
 .nw-fish{max-width:620px;margin:30px auto 36px}
+.who input[type=radio]{border-radius:50%}
+.who input[type=radio]:checked::after{width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.fry-fields{border:1px solid var(--line);padding:18px 18px 4px;margin:-8px 0 22px;background:#FBF1E4}
+.fry-fields .legend{padding:0 6px;margin:0}
+.fld select{width:100%;padding:12px 10px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
+
+/* ---------- Top bar: social + languages ---------- */
+.topbar{background:var(--navy);color:#fff;font-size:12.5px;position:relative;z-index:51}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:40px;gap:20px}
+.tb-r{display:flex;align-items:center;gap:22px}
+.tb-r>a{color:rgba(255,255,255,.8);letter-spacing:.02em}.tb-r>a:hover{color:var(--amber)}
+.soc{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.soc a{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;transition:background .25s,color .25s}
+.soc svg{width:16px;height:16px;fill:currentColor}
+.soc-top a{color:rgba(255,255,255,.85)}.soc-top a:hover{background:rgba(255,255,255,.12);color:var(--amber)}
+.soc-ftr{margin-top:22px;gap:10px}.soc-ftr a{width:38px;height:38px;border:1px solid var(--line);color:var(--ink)}.soc-ftr a:hover{background:var(--grad);border-color:transparent;color:#fff}
+.soc-ftr svg{width:17px;height:17px}
+.lang{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.lang a,.lang button{display:flex;align-items:center;gap:7px;padding:5px 9px;border:1px solid transparent;border-radius:3px;background:none;color:rgba(255,255,255,.75);font:500 11.5px var(--sans);letter-spacing:.08em;cursor:pointer}
+.lang svg{width:22px;height:14px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.lang .on{border-color:rgba(255,255,255,.35);color:#fff}
+.lang button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.lang-toast{position:fixed;left:50%;top:60px;transform:translateX(-50%);z-index:1000;background:var(--navy);color:#fff;padding:12px 20px;font-size:14px;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);border-left:3px solid var(--amber)}
+.mn-extra{display:flex;flex-direction:column;gap:18px;padding:26px 0 10px;border-top:1px solid var(--line-d);margin-top:20px}
+.mn-extra .soc a{color:#fff;border:1px solid var(--line-d);width:38px;height:38px}
+@media(max-width:760px){.tb-r>a{display:none}.topbar .wrap{height:36px}.soc-top a{width:26px;height:26px}}

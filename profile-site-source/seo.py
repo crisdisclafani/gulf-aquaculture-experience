@@ -173,10 +173,10 @@ FAQS = {
   ("Can universities and researchers collaborate at SKMRC?", "Yes. The Marine Innovation Park and laboratories are open to research partnerships — <a href=\"contact.html?type=research#research\">get in touch</a> to discuss collaboration."),
  ],
  "contact.html": [
-  ("How do I order fry from Gulf Aquaculture?", "Use the form on this page and select “A partner or client”. Tell us the species, quantity, preferred size and delivery timing, and the location of your farm — our commercial team will reply with availability and specifications."),
+  ("How do I order fry from Gulf Aquaculture?", "Use the form on this page and select “Fry orders &amp; availability”. Tell us the species, quantity, preferred size and delivery timing, and the location of your farm — our commercial team will reply with availability and specifications."),
   ("Which species can I enquire about?", "Hamour (orange-spotted grouper), Hamra (Malabar red snapper), Shiqra (mangrove red snapper), Shaari (spangled emperor) and Sobaity seabream. See each <a href=\"species.html\">species page</a> for details."),
-  ("Who should investors and government bodies contact?", "Select “An investor” or “A policymaker” in the form: your enquiry is routed to the team handling strategic partnerships, Phase II growth and food-security programmes."),
-  ("How can researchers collaborate with us?", "Select “A researcher” in the form to discuss laboratory access, broodstock programmes or academic partnerships at the Sheikh Khalifa Marine Research Centre."),
+  ("Who should investors and government bodies contact?", "Select “Investment &amp; strategic partnership” or “Government &amp; institutional partnership” in the form: your enquiry is routed to the team handling strategic partnerships, Phase II growth and food-security programmes."),
+  ("How can researchers collaborate with us?", "Select “Research &amp; academic collaboration” in the form to discuss laboratory access, broodstock programmes or academic partnerships at the Sheikh Khalifa Marine Research Centre."),
   ("Where is Gulf Aquaculture based?", "Our head office is on the 7th Floor, East Tower, Abu Dhabi Mall, P.O. Box 55345, Abu Dhabi, United Arab Emirates. Email: <a href=\"mailto:info@gulfaquaculture.com\">info@gulfaquaculture.com</a>."),
  ],
 }
@@ -187,9 +187,9 @@ def faqs(fn, species=None):
         sp = species; L = sp["local"]
         out = [(f"What is {L}?", f"{L} is the local name for {sp['en']}" + (f" (<i>{sp['sci']}</i>)." if sp['sci'] else ".") + " " + sp["blurb"])]
         if sp["status"] == "Under evaluation":
-            out.append((f"Does Gulf Aquaculture produce {L} fry?", f"{L} is currently under evaluation within our broodstock development programme. <a href=\"contact.html?species={L.replace(' ','+')}#partner\">Contact us</a> to register your interest."))
+            out.append((f"Does Gulf Aquaculture produce {L} fry?", f"{L} is currently under evaluation within our broodstock development programme. <a href=\"contact.html?type=fry&species={L.replace(' ','+')}#fry\">Contact us</a> to register your interest."))
         else:
-            out.append((f"Does Gulf Aquaculture supply {L} fry?", f"Yes — {L} is part of our native species programme in Abu Dhabi. <a href=\"contact.html?species={L.replace(' ','+')}#partner\">Send an enquiry</a> with quantity, size and timing for availability and specifications."))
+            out.append((f"Does Gulf Aquaculture supply {L} fry?", f"Yes — {L} is part of our native species programme in Abu Dhabi. <a href=\"contact.html?type=fry&species={L.replace(' ','+')}#fry\">Send an enquiry</a> with quantity, size and timing for availability and specifications."))
         if sp.get("farm"): out.append((f"How is {L} farmed?", sp["farm"]))
         if sp.get("tol"): out.append((f"Is {L} suited to Gulf conditions?", sp["tol"]))
         out.append(("Can you deliver fry outside the UAE?", "We supply regional clients across the GCC and beyond (for example our fry supply agreement in Oman). Tell us your location in the enquiry and we will confirm logistics."))

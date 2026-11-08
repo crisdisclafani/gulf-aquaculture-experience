@@ -65,11 +65,12 @@ NAV = [
      ]),
     ("contact.html", "Contact", "We welcome conversations",
      "Tell us who you are — we route every enquiry to the right team.", [
-         ("contact.html?type=partner#partner", "Fry orders &amp; availability", "Hamour, Hamra, Shiqra, Shaari, Seabream", "o"),
+         ("contact.html?type=fry#fry", "Fry orders &amp; availability", "Hamour, Hamra, Shiqra, Shaari, Seabream", "o"),
          ("contact.html?type=partner#partner", "Commercial aquaculture enquiries", "Farms, operators, distributors", "o"),
          ("contact.html?type=policy#policy", "Government &amp; institutional partnerships", "Food security, concessions", "g"),
          ("contact.html?type=investor#investor", "Investment &amp; strategic partnerships", "Phase II and regional growth", "g"),
          ("contact.html?type=research#research", "Research &amp; academic collaboration", "SKMRC laboratories, visiting researchers", "r"),
+         ("contact.html?type=general#general", "General enquiries", "Press, suppliers, careers, visits", "ogr"),
      ]),
 ]
 

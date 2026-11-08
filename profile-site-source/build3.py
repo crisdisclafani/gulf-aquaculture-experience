@@ -60,6 +60,28 @@ WA_TEXT="Hello Gulf Aquaculture, I would like some information."
 import urllib.parse as _up
 WA_URL=f"https://wa.me/{WA_NUMBER}?text={_up.quote(WA_TEXT)}"
 WA_ICO='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.2-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.4 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3Z"/></svg>'
+
+# ---------- Social channels + languages ----------
+# TODO cliente: URL ufficiali dei profili social (gulfaquaculture.com non ne pubblica nessuno)
+SOCIAL=[("LinkedIn","#",'<path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/>'),
+        ("Instagram","#",'<path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 4.6c2.4 0 2.7 0 3.6.05 2.4.1 3.6 1.3 3.7 3.7.05 1 .05 1.2.05 3.6s0 2.7-.05 3.6c-.1 2.4-1.3 3.6-3.7 3.7-1 .05-1.2.05-3.6.05s-2.7 0-3.6-.05c-2.4-.1-3.6-1.3-3.7-3.7C4.6 14.7 4.6 14.4 4.6 12s0-2.7.05-3.6c.1-2.4 1.3-3.6 3.7-3.7.9-.05 1.2-.05 3.6-.05ZM12 3c-2.4 0-2.8 0-3.7.05-3.3.15-5.1 2-5.25 5.25C3 9.2 3 9.6 3 12s0 2.8.05 3.7c.15 3.3 2 5.1 5.25 5.25.9.05 1.3.05 3.7.05s2.8 0 3.7-.05c3.3-.15 5.1-2 5.25-5.25.05-.9.05-1.3.05-3.7s0-2.8-.05-3.7c-.15-3.3-2-5.1-5.25-5.25C14.8 3 14.4 3 12 3Z"/>'),
+        ("X","#",'<path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8Zm-1.1 16.2h1.7L7.3 4.7H5.5Z"/>'),
+        ("YouTube","#",'<path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3Z"/>'),
+        ("Facebook","#",'<path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.25-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21Z"/>')]
+def social_icons(cls=""):
+    return f'<ul class="soc {cls}" aria-label="Gulf Aquaculture on social media">'+"".join(f'<li><a href="{u}" aria-label="{n}" title="{n}"{"" if u=="#" else " target=\"_blank\" rel=\"noopener\""}><svg viewBox="0 0 24 24" aria-hidden="true">{d}</svg></a></li>' for n,u,d in SOCIAL)+'</ul>'
+FLAG_GB='<svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="fgb"><path d="M0 0v30h60V0z"/></clipPath><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6" clip-path="url(#fgb)"/><path d="M0 0l60 30m0-30L0 30" stroke="#C8102E" stroke-width="4" clip-path="url(#fgb)"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></svg>'
+FLAG_AE='<svg viewBox="0 0 12 6" aria-hidden="true"><path fill="#00732F" d="M0 0h12v2H0z"/><path fill="#fff" d="M0 2h12v2H0z"/><path fill="#000" d="M0 4h12v2H0z"/><path fill="#FF0000" d="M0 0h3v6H0z"/></svg>'
+# Languages: add more here later (code, label, flag svg, href). English is the default.
+LANGS=[("en","English",FLAG_GB,None),("ar","العربية",FLAG_AE,"soon")]
+def lang_switch():
+    out='<ul class="lang" aria-label="Language">'
+    for c,l,f,h in LANGS:
+        if c=="en": out+=f'<li><a class="on" href="#" lang="en" aria-current="true" title="{l}">{f}<span>EN</span></a></li>'
+        else: out+=f'<li><button type="button" class="lang-soon" lang="{c}" title="{l} — coming soon" data-soon="النسخة العربية قريباً · Arabic version coming soon">{f}<span>{c.upper()}</span></button></li>'
+    return out+'</ul>'
+TOPBAR=(f'<div class="topbar"><div class="wrap">{social_icons("soc-top")}'
+        f'<div class="tb-r"><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a>{lang_switch()}</div></div></div>')
 def page(fn,title,desc,body):
     from species_data import SPECIES as _SP
     _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
@@ -69,7 +91,7 @@ def page(fn,title,desc,body):
         body=body.replace('<section class="sp-cta">',_fq+'<section class="sp-cta">',1) if '<section class="sp-cta">' in body else body+_fq
     menu=mega_menu(fn)
     mnav=mobile_nav(fn)
-    foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES)
+    foot_nav="".join(f'<a href="{h}">{t}</a>' for h,t,_ in PAGES[:-1])+'<a href="news.html">News</a><a href="contact.html">Contact</a>'
     out=f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,16 +99,17 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109v">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109x">
 </head>
 <body>
+{TOPBAR}
 <header class="hdr"><div class="wrap">{BRAND}
   <ul class="menu" aria-label="Main">{menu}</ul>
   <a href="contact.html" class="btn btn-or"{" aria-current=\"page\"" if fn=="contact.html" else ""}>Let's talk</a>
   <button class="burger" type="button" aria-label="Open menu"><span></span></button>
 </div>{aud_ribbon()}</header>
 {access_bar()}
-<nav class="mnav" aria-label="Menu"><button class="x" type="button" aria-label="Close menu">×</button>{mnav}</nav>
+<nav class="mnav" aria-label="Menu"><button class="x" type="button" aria-label="Close menu">×</button>{mnav}<div class="mn-extra">{lang_switch()}{social_icons("soc-mn")}</div></nav>
 <main>
 {body}
 </main>
@@ -97,6 +120,7 @@ def page(fn,title,desc,body):
       <p class="ftr-claim">Let’s build something lasting, together.</p>
       <p class="ftr-links"><a href="https://gulfaquaculture.com">gulfaquaculture.com</a><br><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a><br><a class="wa-link" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}WhatsApp</a></p>
       <p class="ftr-addr">7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</p>
+      {social_icons("soc-ftr")}
     </div>
     <nav class="ftr-nav" aria-label="Footer"><h5>The company</h5>{foot_nav}</nav>
     <div class="ftr-logo">{BRAND}</div>
@@ -104,7 +128,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109v"></script>
+<script src="assets/js/site.js?v=20261109x"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -125,7 +149,7 @@ def fishwin(html_, img, alt, note):
     rep=(f'<div class="media rv in fishwin"><svg class="fw-svg" viewBox="0 0 1000 560" role="img" aria-label="{alt}"><defs><clipPath id="fwc"><path d="{FISH_D}"/></clipPath>'
          f'<linearGradient id="fwg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C0451F"/><stop offset=".55" stop-color="#E3A43E"/><stop offset="1" stop-color="#FBE27A"/></linearGradient></defs>'
          f'<g class="fw-swim"><g clip-path="url(#fwc)"><image class="fw-img" href="{img if img.startswith('http') else 'assets/img/'+img}" x="-60" y="-40" width="1120" height="640" preserveAspectRatio="xMidYMid slice"/></g>'
-         f'<path class="fw-path" d="{FISH_D}"/><circle class="fw-eye" cx="215" cy="250" r="16"/></g></svg>'
+         f'<path class="fw-path" d="{FISH_D}"/></g></svg>'
          + (f'<p class="note fw-note"><span>{note}</span></p>' if note else '') + '</div>')
     return _re.sub(r'<div class="media rv in">.*?</div>(?:<p class="note">.*?</p>)?</div>', lambda m: rep, html_, count=1, flags=_re.S)
 import species_data as _sd, facilities_data as _fd
@@ -460,10 +484,15 @@ contact=f'''<section class="sec paper"><span class="arc" style="width:760px;heig
     <a class="wa-btn" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}Chat with us on WhatsApp</a>
     <dl class="dl"><dt>Email</dt><dd>info@gulfaquaculture.com</dd><dt>Website</dt><dd>gulfaquaculture.com</dd><dt>Head office</dt><dd>7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</dd><dt>AUM</dt><dd>1. Balghailam Island<br>2. Sheikh Khalifa Marine Research Centre</dd></dl></div>
   <form class="form rv" id="form" novalidate><h3 style="font-size:1.5rem">Let's build something lasting, together.</h3>
-    <p class="legend" style="margin-top:22px">I am… (tick all that apply)</p>
+    <p class="legend" style="margin-top:22px">What is your enquiry about?</p>
     <div class="who">
-      <label><input type="checkbox" value="investor">An investor</label><label><input type="checkbox" value="research">A researcher</label>
-      <label><input type="checkbox" value="policy">A policymaker</label><label><input type="checkbox" value="partner">A partner or client</label></div>
+      <label><input type="radio" name="type" value="fry">Fry orders &amp; availability</label><label><input type="radio" name="type" value="partner">Commercial aquaculture enquiry</label>
+      <label><input type="radio" name="type" value="policy">Government &amp; institutional partnership</label><label><input type="radio" name="type" value="research">Research &amp; academic collaboration</label>
+      <label><input type="radio" name="type" value="investor">Investment &amp; strategic partnership</label><label><input type="radio" name="type" value="general">General enquiry</label></div>
+    <fieldset class="fry-fields" id="fryF" hidden><legend class="legend">Fry request</legend>
+      <div class="row2"><div class="fld"><label for="fs">Species</label><select id="fs"><option>Hamour (orange-spotted grouper)</option><option>Hamra (Malabar red snapper)</option><option>Shiqra (mangrove red snapper)</option><option>Shaari (spangled emperor)</option><option>Sobaity seabream</option><option>Other / not sure</option></select></div><div class="fld"><label for="fq">Quantity (pcs)</label><input id="fq" inputmode="numeric" placeholder="e.g. 50,000"></div></div>
+      <div class="row2"><div class="fld"><label for="fz">Preferred size</label><input id="fz" placeholder="e.g. 3–5 cm"></div><div class="fld"><label for="fd">Delivery date</label><input id="fd" type="month"></div></div>
+      <div class="fld"><label for="fl">Farm location</label><input id="fl" placeholder="City, country"></div></fieldset>
     <div class="row2"><div class="fld"><label for="n">Name *</label><input id="n" autocomplete="name"></div><div class="fld"><label for="o">Organisation</label><input id="o" autocomplete="organization"></div></div>
     <div class="row2"><div class="fld"><label for="e">Email *</label><input id="e" type="email" autocomplete="email"></div><div class="fld"><label for="p">Phone</label><input id="p" type="tel" autocomplete="tel"></div></div>
     <div class="fld"><label for="m">Message</label><textarea id="m"></textarea></div>

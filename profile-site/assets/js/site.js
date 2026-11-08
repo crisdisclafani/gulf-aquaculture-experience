@@ -79,7 +79,12 @@ if(bio){ $$(".person").forEach(p=>p.addEventListener("click",()=>{ $("#bioK").te
 
 /* contact form */
 const f=$("#form");
-if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#m")) $("#m").value=`Fry enquiry: ${sq}. `; const h=new URLSearchParams(location.search).get("type")||location.hash.slice(1); const pre=$(`.who input[value="${h}"]`); if(pre){ pre.checked=true; }
+if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF=$("#fryF");
+  const MAP={partner:sq?"fry":"partner"}; let h=qs.get("type")||location.hash.slice(1); h=MAP[h]||h; if(sq&&!h) h="fry";
+  const sync=()=>{ if(fryF) fryF.hidden=!$('.who input[value="fry"]').checked; };
+  const pre=$(`.who input[value="${h}"]`); if(pre){ pre.checked=true; }
+  if(sq&&$("#fs")){ const o=[...$("#fs").options].find(o=>o.text.toLowerCase().startsWith(sq.toLowerCase().split(" ")[0])); if(o) o.selected=true; }
+  $$(".who input").forEach(i=>i.addEventListener("change",sync)); sync();
   f.addEventListener("submit",e=>{ e.preventDefault(); const m=$("#msg");
     const errs=[]; if(!$$(".who input:checked").length) errs.push("tell us who you are"); if(!$("#n").value.trim()) errs.push("add your name"); if(!$("#e").value.includes("@")) errs.push("add a valid email"); if(!$("#c").checked) errs.push("accept the privacy note");
     m.style.display="block"; m.innerHTML = errs.length ? `Please ${errs.join(", ")}.` : "<b>Thank you.</b> This is a demo — the form is not connected yet. In the live site your message reaches info@gulfaquaculture.com."; }); }
@@ -282,3 +287,6 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
  fr.addEventListener('load',hook);hook();
  window.addEventListener('message',function(e){if(e.source!==fr.contentWindow)return;var d=e.data||{};if(d.type!=='aqua:cta')return;hook();go(d.id,d.item)});
 })();
+
+/* Languages: Arabic placeholder (RTL version to be built) */
+document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('click',function(){var t=document.querySelector('.lang-toast');if(t)t.remove();t=document.createElement('div');t.className='lang-toast';t.setAttribute('role','status');t.textContent=b.dataset.soon;document.body.appendChild(t);setTimeout(function(){t.remove()},2600)})});
