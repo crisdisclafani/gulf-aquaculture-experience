@@ -1121,3 +1121,4 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .wa-btn{display:inline-flex;align-items:center;gap:10px;margin:0 0 26px;padding:14px 24px;border-radius:40px;background:#25D366;color:#fff!important;font-weight:600;font-size:15px}
 .wa-btn svg{width:24px;height:24px}.wa-btn:hover{background:#1EBE5B}
 .hdr .btn{white-space:nowrap;flex:none}
+.nw-fish{max-width:620px;margin:30px auto 36px}

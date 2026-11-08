@@ -55,7 +55,7 @@ MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footpri
 
 from seo import head as seo_head, faq_html, write_extras, META as SEO_META
 from nav_data import mega_menu, mobile_nav, access_bar, aud_ribbon
-WA_NUMBER="971000000000"  # TODO: numero WhatsApp Business del cliente (formato internazionale, solo cifre)
+WA_NUMBER="971501518905"  # Kriswa (demo) — sostituire col numero WhatsApp Business di Gulf Aquaculture al lancio
 WA_TEXT="Hello Gulf Aquaculture, I would like some information."
 import urllib.parse as _up
 WA_URL=f"https://wa.me/{WA_NUMBER}?text={_up.quote(WA_TEXT)}"
@@ -77,7 +77,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109t">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109u">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109t"></script>
+<script src="assets/js/site.js?v=20261109u"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -120,10 +120,11 @@ def opener(no,label,title,lead,img,note,extra=""):
 
 import re as _re
 FISH_D="M30 290C140 70 470 20 690 230 760 150 860 60 975 30 930 150 915 230 920 290 915 350 930 430 975 550 860 520 760 430 690 350 470 560 140 510 30 290Z"
+GA_NEWS_IMG="https://gulfaquaculture.com/wp-content/uploads/2024/10/gallery-10-scaled.jpg"  # foto dal sito gulfaquaculture.com (gallery), hotlink per la demo
 def fishwin(html_, img, alt, note):
     rep=(f'<div class="media rv in fishwin"><svg class="fw-svg" viewBox="0 0 1000 560" role="img" aria-label="{alt}"><defs><clipPath id="fwc"><path d="{FISH_D}"/></clipPath>'
          f'<linearGradient id="fwg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C0451F"/><stop offset=".55" stop-color="#E3A43E"/><stop offset="1" stop-color="#FBE27A"/></linearGradient></defs>'
-         f'<g class="fw-swim"><g clip-path="url(#fwc)"><image class="fw-img" href="assets/img/{img}" x="-60" y="-40" width="1120" height="640" preserveAspectRatio="xMidYMid slice"/></g>'
+         f'<g class="fw-swim"><g clip-path="url(#fwc)"><image class="fw-img" href="{img if img.startswith('http') else 'assets/img/'+img}" x="-60" y="-40" width="1120" height="640" preserveAspectRatio="xMidYMid slice"/></g>'
          f'<path class="fw-path" d="{FISH_D}"/><circle class="fw-eye" cx="215" cy="250" r="16"/></g></svg>'
          + (f'<p class="note fw-note"><span>{note}</span></p>' if note else '') + '</div>')
     return _re.sub(r'<div class="media rv in">.*?</div>(?:<p class="note">.*?</p>)?</div>', lambda m: rep, html_, count=1, flags=_re.S)
@@ -506,14 +507,18 @@ news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
 </div></section>
 <section class="sec paper nw-gallery" id="media-gallery" data-cat="media-gallery"><div class="wrap"><div class="nw-head rv"><div><span class="label">Media gallery</span><h2 style="margin-top:12px">Photos from our sites</h2></div></div>
   <div class="nw-gal">{_gal}</div></div></section>'''
+news=fishwin(news,GA_NEWS_IMG,"Gulf Aquaculture technician checking fry in hatchery tanks","")
 page("news.html","News — Gulf Aquaculture","",news)
+def _fishfig(img,alt):
+    m=_re.search(r'<div class="media rv in fishwin">.*?</svg>',fishwin('<div class="media rv in"><div></div></div>',img,alt,""),_re.S).group(0)
+    return '<div class="nw-fish">'+m.replace('<div class="media rv in fishwin">','<div class="fishwin">')+'</div></div>'
 for i,n in enumerate(NEWS):
     rel=[m for m in NEWS if m is not n][:3]
     body=f'''<article class="sec paper nw-art"><div class="wrap" style="max-width:860px">
   <a class="nw-back rv in" href="news.html">← All news</a>
   <span class="nw-meta rv in"><b>{n["cat"].replace("&","&amp;")}</b> · <time datetime="{n["date"]}">{_ndate(n["date"])}</time></span>
   <h1 class="rv in">{n["title"]}</h1><p class="lead rv in">{n["excerpt"]}</p>
-  <img class="nw-hero rv in" src="assets/img/{n["img"]}" alt="{html.escape(n["title"])}" width="1200" height="700">
+  {_fishfig(n["img"],html.escape(n["title"]))}
   <div class="nw-body">{"".join(f"<p>{x}</p>" for x in n["body"])}</div>
 </div></article>
 <section class="sec nw-latest"><div class="wrap"><div class="nw-head rv"><div><span class="label">More news</span></div><a class="more" href="news.html">All news</a></div>
