@@ -2,7 +2,7 @@
 # cat must be one of CATS. Dates ISO (YYYY-MM-DD). Articles below are drafted from
 # facts in the Company Profile / gulfaquaculture.com — client to review wording and dates.
 CATS = ["Company News", "Industry Developments", "Research & Publications",
-        "Projects & Partnerships", "Events & Conferences", "People & Interviews", "Media Gallery"]
+        "Projects & Partnerships", "Events & Conferences", "People & Interviews"]
 
 NEWS = [
  # Interviews: "href" makes the card link to an existing page instead of generating an article page
@@ -61,13 +61,23 @@ NEWS = [
             "The company began with a simple idea: what if aquaculture were designed for this region — with native species, local knowledge and systems built for Gulf conditions?"]),
 ]
 
+# Media gallery (separate page gallery.html): (album, image, caption)
+GALBUMS = ["Sites & facilities", "Fish & species", "People & labs"]
 GALLERY = [
- ("gulf-aquaculture-aerial-sea-cages-work-vessel.webp", "Sea cages and work vessel, Abu Dhabi"),
- ("balghailam-island-hatchery-aerial-gulf-aquaculture.webp", "Balghailam Island hatchery from above"),
- ("sheikh-khalifa-marine-research-centre-phase01-02.webp", "SKMRC — Phase 01 and Phase 02"),
- ("gulf-aquaculture-grouper-juveniles.webp", "Grouper juveniles in the nursery"),
- ("gulf-aquaculture-lab-technician.webp", "Water-quality laboratory"),
- ("gulf-aquaculture-team-balghailam-island-hatchery.webp", "The team at Balghailam Island"),
- ("gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp", "Sea cages at sunset"),
- ("gulf-aquaculture-grouper-farmer.webp", "Hamour at harvest"),
+ ("Sites & facilities","gulf-aquaculture-aerial-sea-cages-work-vessel.webp","Sea cages and work vessel, Abu Dhabi"),
+ ("Sites & facilities","balghailam-island-hatchery-aerial-gulf-aquaculture.webp","Balghailam Island hatchery from above"),
+ ("Sites & facilities","sheikh-khalifa-marine-research-centre-phase01-02.webp","Sheikh Khalifa Marine Research Centre — Phase 01 and Phase 02"),
+ ("Sites & facilities","sheikh-khalifa-marine-research-centre-rendering-gulf-aquaculture.webp","Sheikh Khalifa Marine Research Centre, Umm Al Quwain"),
+ ("Sites & facilities","gulf-aquaculture-offshore-sea-cages-uae.webp","Offshore sea cages, UAE"),
+ ("Sites & facilities","gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp","Sea cages at sunset in the Arabian Gulf"),
+ ("Sites & facilities","gulf-aquaculture-sea-cage-top-view.jpg","A sea cage from above"),
+ ("Sites & facilities","gulf-aquaculture-work-vessel-sea-cages.jpg","Work vessel alongside the cages"),
+ ("Fish & species","gulf-aquaculture-grouper-juveniles.webp","Grouper juveniles in the nursery"),
+ ("Fish & species","gulf-aquaculture-grouper-farmer.webp","Hamour at harvest"),
+ ("Fish & species","hamour-grouper-coral-reef-video-poster.webp","Hamour on a Gulf reef"),
+ ("People & labs","gulf-aquaculture-lab-technician.webp","Water-quality and microbiology laboratory"),
+ ("People & labs","gulf-aquaculture-research-team-member-abu-dhabi.webp","Research team member, Abu Dhabi"),
+ ("People & labs","gulf-aquaculture-team-balghailam-island-hatchery.webp","The team at Balghailam Island"),
+ ("People & labs","gulf-aquaculture-team-sea-cages.webp","Our team at the sea cages"),
+ ("People & labs","mohamed-razali-gulf-aquaculture-founder-with-fish.webp","Mohamed Razali, General Manager, with a Hamour"),
 ]

@@ -64,7 +64,7 @@ NAV = [
          ("news.html#cat=research-and-publications", "Research &amp; publications", "Scientific work and papers", "r"),
          ("news.html#cat=events-and-conferences", "Events &amp; awards", "Conferences and recognition", "g"),
          ("news.html#cat=people-and-interviews", "People &amp; interviews", "Conversations with our team", "ogr"),
-         ("news.html#media-gallery", "Media gallery", "Photos from our sites", "ogr"),
+         ("gallery.html", "Media gallery", "Photos from our sites", "ogr"),
      ]),
     ("contact.html", "Contact", "We welcome conversations",
      "Tell us who you are — we route every enquiry to the right team.", [

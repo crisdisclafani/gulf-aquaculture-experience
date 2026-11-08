@@ -103,7 +103,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110c">
 </head>
 <body>
 {TOPBAR}
@@ -132,7 +132,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261110b"></script>
+<script src="assets/js/site.js?v=20261110c"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -163,7 +163,7 @@ def dia(items): return '<ul class="diamonds">'+"".join(f"<li>{i}</li>" for i in 
 # ========================================================= HOME
 
 # ---------- News & Insights ----------
-from news_data import NEWS, CATS, GALLERY
+from news_data import NEWS, CATS, GALLERY, GALBUMS
 import datetime as _dt
 NEWS=sorted(NEWS,key=lambda n:n["date"],reverse=True)
 def _ndate(d): return _dt.date.fromisoformat(d).strftime("%B %Y")
@@ -574,17 +574,26 @@ legal_page("cookies.html","Cookie Policy","How this website uses cookies and sim
 
 # News index + article pages
 _chips='<button class="on" data-f="all">All</button>'+"".join(f'<button data-f="{_cslug(c)}">{c.replace("&","&amp;")}</button>' for c in CATS)
-_gal="".join(f'<figure class="rv"><img src="assets/img/{i}" alt="{html.escape(c)}" loading="lazy" width="600" height="420"><figcaption>{html.escape(c)}</figcaption></figure>' for i,c in GALLERY)
+_gal="".join(f'<figure class="gl-item rv" data-al="{_cslug(al)}"><a href="assets/img/{i}" data-lb="gal" data-cap="{html.escape(c)}"><img src="assets/img/{i}" alt="{html.escape(c)}" loading="lazy" width="600" height="450"><span class="gl-zoom" aria-hidden="true">+</span></a><figcaption>{html.escape(c)}</figcaption></figure>' for al,i,c in GALLERY)
+_galchips='<button class="on" data-f="all">All photos</button>'+"".join(f'<button data-f="{_cslug(a)}">{a.replace("&","&amp;")}</button>' for a in GALBUMS)
 news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
 news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
   <div class="nw-chips rv" role="toolbar" aria-label="Filter news by category">{_chips}</div>
   <div class="nw-grid" id="nwGrid">{"".join(ncard(n) for n in NEWS)}</div>
   <p class="nw-empty" id="nwEmpty" hidden>No posts in this category yet — new articles will appear here as they are published.</p>
-</div></section>
-<section class="sec paper nw-gallery" id="media-gallery" data-cat="media-gallery"><div class="wrap"><div class="nw-head rv"><div><span class="label">Media gallery</span><h2 style="margin-top:12px">Photos from our sites</h2></div></div>
-  <div class="nw-gal">{_gal}</div></div></section>'''
+</div></section>'''
 news=fishwin(news,GA_NEWS_IMG,"Gulf Aquaculture technician checking fry in hatchery tanks","")
 page("news.html","News — Gulf Aquaculture","",news)
+# Media gallery page
+gallery=opener(None,"Media gallery","Media gallery","Photos from our hatcheries, sea cages, laboratories and team across the UAE.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
+gallery=fishwin(gallery,"gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp","Sea cages at sunset in the Arabian Gulf","")
+gallery+=f'''<section class="sec gl" id="photos"><div class="wrap">
+  <div class="gl-chips rv" role="toolbar" aria-label="Filter photos by album">{_galchips}</div>
+  <div class="gl-grid">{_gal}</div>
+  <p class="gl-note rv">Click any photo to open it full screen; use the arrows, your keyboard or swipe to browse.</p>
+</div></section>'''
+page("gallery.html","Media gallery — Gulf Aquaculture","",gallery)
+
 def _fishfig(img,alt):
     m=_re.search(r'<div class="media rv in fishwin">.*?</svg>',fishwin('<div class="media rv in"><div></div></div>',img,alt,""),_re.S).group(0)
     return '<div class="nw-fish">'+m.replace('<div class="media rv in fishwin">','<div class="fishwin">')+'</div></div>'

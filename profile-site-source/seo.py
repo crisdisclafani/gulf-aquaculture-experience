@@ -75,6 +75,9 @@ from news_data import NEWS as _NEWS
 META["news.html"] = ("News & Insights | Gulf Aquaculture — Aquaculture in the UAE and the Gulf",
     "Company news, projects and partnerships, research, events and media from Gulf Aquaculture, native-species hatchery operator in Abu Dhabi.",
     "gulf-aquaculture-aerial-sea-cages-work-vessel.webp", "News")
+META["gallery.html"] = ("Media Gallery | Gulf Aquaculture — Hatcheries, Sea Cages & Native Fish in the UAE",
+    "Photos of Gulf Aquaculture's hatcheries, sea cages, laboratories, native Gulf fish and team in Abu Dhabi and Umm Al Quwain.",
+    "gulf-aquaculture-sea-cages-sunset-arabian-gulf.webp", "Media gallery")
 for _n in [x for x in _NEWS if not x.get('href')]:
     META[f"news-{_n['slug']}.html"] = (f"{_n['title']} | Gulf Aquaculture News", _n["excerpt"], _n["img"], _n["title"])
 def head(fn, species=None):
@@ -87,7 +90,7 @@ def head(fn, species=None):
         items = [{"@type": "ListItem", "position": 1, "name": "Home", "item": BASE}]
         if fn.startswith("species-"):
             items.append({"@type": "ListItem", "position": 2, "name": "Species", "item": BASE + "species.html"})
-        if fn.startswith("news-"):
+        if fn.startswith("news-") or fn == "gallery.html":
             items.append({"@type": "ListItem", "position": 2, "name": "News", "item": BASE + "news.html"})
         if fn.startswith("asset-"):
             items.append({"@type": "ListItem", "position": 2, "name": "Assets", "item": BASE + "assets.html"})
@@ -150,7 +153,8 @@ Key facts:
 - [Growth]({BASE}growth.html): sustainability, legal structure, Phase II, regional footprint
 - [People]({BASE}people.html): team
 - [Contact]({BASE}contact.html): fry orders, partnerships, research collaboration
-- [News & insights]({BASE}news.html): company news, projects & partnerships, events, media gallery
+- [News & insights]({BASE}news.html): company news, projects & partnerships, research, events, interviews
+- [Media gallery]({BASE}gallery.html): photos of hatcheries, sea cages, laboratories, fish and team
 
 ## News
 """ + "".join(f"- [{n['title']}]({BASE}news-{n['slug']}.html) ({n['date'][:7]}): {n['excerpt']}\n" for n in sorted([x for x in _NEWS if not x.get('href')], key=lambda n: n['date'], reverse=True)))
