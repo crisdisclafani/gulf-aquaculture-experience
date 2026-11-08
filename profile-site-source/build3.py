@@ -632,7 +632,7 @@ for i,n in enumerate([x for x in NEWS if not x.get('href')]):
     page(f"news-{n['slug']}.html",n["title"],n["excerpt"],body)
 
 import sitemap_page as _smp
-page("site-map.html","Site map — Gulf Aquaculture","",_smp.body(opener))
+page("site-map.html","Site map — Gulf Aquaculture","",fishwin(_smp.body(opener),"gulf-aquaculture-aerial-cages-video.webp","Aerial view of Gulf Aquaculture sea cages in the Arabian Gulf",""))
 
 write_extras(OUT,[f for f in sorted(os.listdir(OUT)) if f.endswith(".html")])
 import slugs as _slugs
