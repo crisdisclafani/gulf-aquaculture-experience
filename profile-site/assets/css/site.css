@@ -1271,3 +1271,18 @@ html.lb-open{overflow:hidden}
 .snd-hint.in{opacity:1;transform:none}
 .snd-hint::before{content:"";position:absolute;top:-6px;left:var(--ax,50%);margin-left:-6px;border:6px solid transparent;border-top:0;border-bottom-color:var(--navy)}
 .snd-hint b{display:block;font-weight:600;font-size:13.5px;color:var(--amber)}.snd-hint span{display:block;font-size:12.5px;line-height:1.4;opacity:.85}
+/* interview: title and kicker never run under the portrait */
+@media (min-width:601px){
+  .iv-photo{width:clamp(140px,12vw,190px)}
+  .iv-title{font-size:clamp(2rem,3.3vw,3rem)}
+  .iv-title{padding-right:calc(clamp(140px,12vw,190px) + 28px)}
+  .iv-kicker{max-width:calc(100% - clamp(140px,12vw,190px) - 28px)}
+}
+/* desktop widths 1151–1430: everything fits on one line (logo, menu, Let's talk) */
+@media (min-width:1151px) and (max-width:1430px){
+  .hdr .brand img{height:66px}
+  .hdr>.wrap{gap:14px}
+  .menu{gap:0}
+  .menu a{padding:8px 7px;font-size:.82rem}
+  .hdr>.wrap>.btn{padding-left:16px;padding-right:16px}
+}
