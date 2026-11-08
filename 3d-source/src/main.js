@@ -1100,7 +1100,7 @@ function deselect() {
 }
 function emit(type, detail) {
   root.dispatchEvent(new CustomEvent(type, { detail, bubbles: true }));
-  if (window.parent !== window) window.parent.postMessage({ type, id: detail.id || null }, '*');
+  if (window.parent !== window) window.parent.postMessage({ type, id: detail.id || null, item: detail.item || null }, '*');
 }
 window.addEventListener('message', (e) => {
   const d = e.data || {};

@@ -77,7 +77,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109u">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109v">
 </head>
 <body>
 <header class="hdr"><div class="wrap">{BRAND}
@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109u"></script>
+<script src="assets/js/site.js?v=20261109v"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
