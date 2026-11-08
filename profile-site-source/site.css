@@ -1218,3 +1218,13 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
   .ab-sub{top:calc(var(--hh) - var(--tbh))}
 }
 @media (min-width:1151px){.hdr .brand img{transition:transform .35s var(--ease)}.hdr.scrolled .brand img{transform-origin:left center;transform:translateY(15px) scale(.9)}}
+
+/* ---------- Responsive fixes ---------- */
+.contact-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.contact-grid>*{min-width:0}
+@media (max-width:1100px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
+.who label{min-width:0}
+.wa-btn{max-width:100%;white-space:normal}
+.rm-map svg.rm-small .rm-site text{font-size:24px;stroke-width:5px}
+.rm-map svg.rm-small .rm-site circle{r:9}
+@media(max-width:900px){.rm-site text{font-size:13px}}

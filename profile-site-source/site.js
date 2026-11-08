@@ -300,3 +300,9 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
   m.querySelector('#rmLink').href='species-'+b.dataset.k+'.html'}
  chips.forEach(function(b){b.setAttribute('role','tab');b.addEventListener('click',function(){set(b)})});
  var q=new URLSearchParams(location.search).get('sp'),st=chips.filter(function(c){return c.dataset.k===q})[0]||chips[0];set(st);})();
+/* distribution map: zoom on Gulf → South-East Asia on small screens so labels stay readable */
+(function(){var svg=document.querySelector('#distribution .rm-map svg');if(!svg)return;var full=svg.getAttribute('viewBox');
+ var vb=full.split(' ').map(Number),txt=[].slice.call(svg.querySelectorAll('.rm-site text'));txt.forEach(function(t){t.dataset.full=t.textContent});
+ function fit(){var s=window.innerWidth<700,w=650,h=Math.round(w*vb[3]/vb[2]);svg.setAttribute('viewBox',s?('150 50 '+w+' '+h):full);svg.classList.toggle('rm-small',s);
+  txt.forEach(function(t){t.textContent=s?t.dataset.short:t.dataset.full})}
+ fit();window.addEventListener('resize',fit);})();

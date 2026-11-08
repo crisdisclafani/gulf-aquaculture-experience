@@ -413,8 +413,8 @@ def range_map():
     chips="".join(f'<button type="button" data-k="{d["k"]}" data-r="{_RKEY[d["k"]]}" data-t="{html.escape(_RTXT[d["k"]])}" data-sci="{html.escape(d["sci"] or "")}" data-en="{html.escape(d["en"])}"{" class=on" if i==0 else ""}>{d["local"]}</button>' for i,d in enumerate(_S))
     ranges="".join(f'<path class="rm-range" data-r="{k}" d="{v}"/>' for k,v in _RM["ranges"].items())
     S=_RM["sites"]; uae=S[0]
-    marks=(f'<g class="rm-site" tabindex="0"><circle cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><circle class="rm-pulse" cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><text x="{uae["x"]-10}" y="{uae["y"]-16}" text-anchor="middle">UAE · HQ, Balghailam, SKMRC</text></g>'
-           +"".join(f'<g class="rm-site" tabindex="0"><circle cx="{t["x"]}" cy="{t["y"]}" r="6"/><circle class="rm-pulse" cx="{t["x"]}" cy="{t["y"]}" r="6"/><text x="{t["x"]+12}" y="{t["y"]+(18 if t["c"]=="Oman" else 4)}">{t["c"]} · {t["n"]}</text></g>' for t in S[3:]))
+    marks=(f'<g class="rm-site" tabindex="0"><circle cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><circle class="rm-pulse" cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><text x="{uae["x"]-10}" y="{uae["y"]-16}" text-anchor="middle" data-short="UAE">UAE · HQ, Balghailam, SKMRC</text></g>'
+           +"".join(f'<g class="rm-site" tabindex="0"><circle cx="{t["x"]}" cy="{t["y"]}" r="6"/><circle class="rm-pulse" cx="{t["x"]}" cy="{t["y"]}" r="6"/><text x="{t["x"]+12}" y="{t["y"]+(18 if t["c"]=="Oman" else 4)}" data-short="{t["c"]}">{t["c"]} · {t["n"]}</text></g>' for t in S[3:]))
     d0=_S[0]
     return f'''<section class="sec rmap" id="distribution"><div class="wrap">
   <div class="rm-head rv"><span class="label">Interactive map</span><h2 style="margin-top:12px">Where our species live</h2><p>Select a species to see its natural range across the region, alongside the sites where Gulf Aquaculture and its partners operate.</p></div>
@@ -423,7 +423,7 @@ def range_map():
       <div class="rm-info" aria-live="polite"><p class="rm-en">{d0["en"]}</p><p class="rm-sci"><i>{d0["sci"] or ""}</i></p><p class="rm-txt">{_RTXT[d0["k"]]}</p>
       <a class="more" id="rmLink" href="species-{d0["k"]}.html">Species profile</a></div>
       <ul class="rm-legend"><li><i class="lg-r"></i>Natural range (indicative)</li><li><i class="lg-s"></i>Gulf Aquaculture &amp; partner sites</li></ul></div>
-    <div class="rm-map rv"><svg viewBox="0 0 {_RM["W"]} {_RM["H"]}" role="img" aria-label="Map of the Indo-West Pacific showing the natural range of the selected species"><rect width="100%" height="100%" class="rm-sea"/>{ranges}<path class="rm-land" d="{_RM["land"]}"/>{marks}</svg></div>
+    <div class="rm-map rv"><svg viewBox="0 0 {_RM["W"]} {_RM["H"]}" role="img" aria-label="Map of the Indo-West Pacific showing the natural range of the selected species"><rect x="-500" y="-500" width="2000" height="2000" class="rm-sea"/>{ranges}<path class="rm-land" d="{_RM["land"]}"/>{marks}</svg></div>
   </div></div></section>'''
 sp=species_index(opener,dia)
 sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Aerial view of sea cages and a work vessel">
