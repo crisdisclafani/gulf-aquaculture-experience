@@ -85,10 +85,14 @@ def lang_switch():
     return out+'</ul>'
 SND_BTN='<button type="button" class="snd-btn" aria-pressed="false" title="Immersive sound — click to turn on"><span class="snd-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="snd-l">Sound</span></button>'
 TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{SND_BTN}<span class="tb-sep" aria-hidden="true"></span>{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
+def thumb(i):
+    if i.startswith("http"): return i
+    t=os.path.splitext(i)[0]+"-640w.webp"
+    return t if os.path.exists(f"{HERE}/img/{t}") else i
 def news_band(fn):
     if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html","site-map.html"): return ""
     items=NEWS[:3]
-    cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><div class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><h3 class="nb-h">{n["title"]}</h3></div></a>' for n in items)
+    cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{thumb(n["img"])}" alt="" loading="lazy" width="160" height="110"></span><div class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><h3 class="nb-h">{n["title"]}</h3></div></a>' for n in items)
     return f'<section class="nband"><div class="wrap"><div class="nb-head"><h2 class="hx label">Latest news &amp; interviews</h2><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
 def page(fn,title,desc,body):
     SECTION=("about" if fn.startswith(("about","people")) else "operations" if fn.startswith("operations") else "assets" if fn.startswith("asset") else "species" if fn.startswith("species") else "growth" if fn.startswith("growth") else "home" if fn=="index.html" else "other")
@@ -158,6 +162,15 @@ def page(fn,title,desc,body):
 {"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110m" defer></script>'}
 </body>
 </html>'''
+    def _dims(m):
+        tag=m.group(0)
+        if " width=" in tag or "sph-fish" in tag or "logo-white" in tag: return tag
+        mm=_re.search(r'src="assets/img/([^"]+)"',tag)
+        if not mm or not os.path.exists(f"{HERE}/img/{mm.group(1)}"): return tag
+        from PIL import Image as _I
+        w,h=_I.open(f"{HERE}/img/{mm.group(1)}").size
+        return tag[:-1]+f' width="{w}" height="{h}">'
+    out=_re.sub(r'<img [^>]*>',_dims,out)
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
 
 IMG_ALT={"gulf-aquaculture-aerial-view-abu-dhabi.jpg":"Aerial view of Gulf Aquaculture's sea cages off Abu Dhabi",
@@ -193,7 +206,7 @@ def _ndate(d): return _dt.date.fromisoformat(d).strftime("%B %Y")
 def _cslug(c): return _re.sub(r"[^a-z]+","-",c.lower().replace("&","and")).strip("-")
 def ncard(n):
     return (f'<a class="nw-card rv" href="{n.get("href") or "news-"+n["slug"]+".html"}" data-cat="{_cslug(n["cat"])}">'
-            f'<span class="nw-img"><img src="assets/img/{n["img"]}" alt="{html.escape(n["title"])}" loading="lazy" width="640" height="400"></span>'
+            f'<span class="nw-img"><img src="assets/img/{thumb(n["img"])}" alt="{html.escape(n["title"])}" loading="lazy" width="640" height="400"></span>'
             f'<span class="nw-meta"><b>{n["cat"].replace("&","&amp;")}</b> · <time datetime="{n["date"]}">{_ndate(n["date"])}</time></span>'
             f'<h3>{n["title"]}</h3><p>{n["excerpt"]}</p><span class="more">Read more</span></a>')
 home=f'''<section class="xp3d" aria-label="Interactive 3D experience" style="position:relative;height:calc(100svh - var(--hh));min-height:520px;background:#0b1a24 url(3d/assets/poster.webp) center/cover no-repeat"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block" src="3d/" title="Gulf Aquaculture — interactive 3D experience" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen loading="eager"></iframe></section>
@@ -598,7 +611,7 @@ legal_page("cookies.html","Cookie Policy","How this website uses cookies and sim
 # News index + article pages
 _chips='<button class="on" data-f="all">All</button>'+"".join(f'<button data-f="{_cslug(c)}">{c.replace("&","&amp;")}</button>' for c in CATS)
 _gsrc=lambda i: i if i.startswith("http") else "assets/img/"+i
-_gal="".join(f'<figure class="gl-item rv" data-al="{_cslug(al)}"><a href="{_gsrc(i)}" data-lb="gal" data-cap="{html.escape(c)}"><img src="{_gsrc(i)}" alt="{html.escape(c)}" loading="lazy" width="600" height="450"><span class="gl-zoom" aria-hidden="true">+</span></a><figcaption>{html.escape(c)}</figcaption></figure>' for al,i,c in GALLERY)
+_gal="".join(f'<figure class="gl-item rv" data-al="{_cslug(al)}"><a href="{_gsrc(i)}" data-lb="gal" data-cap="{html.escape(c)}"><img src="{_gsrc(thumb(i))}" alt="{html.escape(c)}" loading="lazy" width="600" height="450"><span class="gl-zoom" aria-hidden="true">+</span></a><figcaption>{html.escape(c)}</figcaption></figure>' for al,i,c in GALLERY)
 _galchips='<button class="on" data-f="all">All photos</button>'+"".join(f'<button data-f="{_cslug(a)}">{a.replace("&","&amp;")}</button>' for a in GALBUMS)
 news=opener(None,"News &amp; insights","News &amp; insights","Company news, projects and partnerships, research, events and media from Gulf Aquaculture.","gulf-aquaculture-aerial-view-abu-dhabi.jpg",None)
 news+=f'''<section class="sec nw-list" id="articles"><div class="wrap">
