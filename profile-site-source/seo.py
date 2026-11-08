@@ -75,7 +75,7 @@ from news_data import NEWS as _NEWS
 META["news.html"] = ("News & Insights | Gulf Aquaculture — Aquaculture in the UAE and the Gulf",
     "Company news, projects and partnerships, research, events and media from Gulf Aquaculture, native-species hatchery operator in Abu Dhabi.",
     "gulf-aquaculture-aerial-sea-cages-work-vessel.webp", "News")
-for _n in _NEWS:
+for _n in [x for x in _NEWS if not x.get('href')]:
     META[f"news-{_n['slug']}.html"] = (f"{_n['title']} | Gulf Aquaculture News", _n["excerpt"], _n["img"], _n["title"])
 def head(fn, species=None):
     t, d, img, crumb = META.get(fn, (ORG, ORG, DEFAULT_IMG, None))
@@ -96,7 +96,7 @@ def head(fn, species=None):
     if fn in PLACES:
         p = dict(PLACES[fn]); p["url"] = url; p["image"] = BASE + "assets/img/" + img; p["containedInPlace"] = {"@type": "Country", "name": "United Arab Emirates"}
         graph.append(p)
-    _art = next((n for n in _NEWS if f"news-{n['slug']}.html" == fn), None)
+    _art = next((n for n in _NEWS if not n.get('href') and f"news-{n['slug']}.html" == fn), None)
     if _art:
         graph.append({"@type": "NewsArticle", "headline": _art["title"], "description": _art["excerpt"], "datePublished": _art["date"],
                       "image": BASE + "assets/img/" + _art["img"], "articleSection": _art["cat"], "url": url, "inLanguage": "en",
@@ -153,7 +153,7 @@ Key facts:
 - [News & insights]({BASE}news.html): company news, projects & partnerships, events, media gallery
 
 ## News
-""" + "".join(f"- [{n['title']}]({BASE}news-{n['slug']}.html) ({n['date'][:7]}): {n['excerpt']}\n" for n in sorted(_NEWS, key=lambda n: n['date'], reverse=True)))
+""" + "".join(f"- [{n['title']}]({BASE}news-{n['slug']}.html) ({n['date'][:7]}): {n['excerpt']}\n" for n in sorted([x for x in _NEWS if not x.get('href')], key=lambda n: n['date'], reverse=True)))
 
 
 import re as _re

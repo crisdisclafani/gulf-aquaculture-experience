@@ -1075,7 +1075,7 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .hs-map:hover .hs-hit,.hs-map:focus-visible .hs-hit{fill:rgba(226,161,60,.35)}
 .hs-map .hs-ping{stroke:#fff;stroke-width:3}
 .map-hint{position:absolute;left:clamp(16px,4vw,60px);top:clamp(12px,2vw,24px);background:rgba(255,255,255,.9);padding:4px 14px 4px 6px;height:auto;margin:0}
-.hdr .brand img{height:72px;width:auto}:root{--hh:100px}@media (max-width:600px){.hdr .brand img{height:52px}:root{--hh:80px}}
+.hdr .brand img{height:84px;width:auto;transform:translateY(3px)}:root{--hh:112px}@media (max-width:600px){.hdr .brand img{height:56px;transform:translateY(2px)}:root{--hh:82px}}
 .ab-sub{top:var(--hh)}#story,#mission,#principles,#role,#achievements,#interview{scroll-margin-top:165px}
 
 /* ---------- News & insights ---------- */
@@ -1189,3 +1189,16 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .infra-card p{font-size:15px;margin-bottom:18px}
 .infra-where{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
 @media(max-width:980px){.infra-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.infra-grid{grid-template-columns:1fr}}
+
+/* ---------- Latest news band (before footer) ---------- */
+.nband{padding:46px 0 50px;border-top:1px solid var(--line);background:#fff}
+.nb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.nb-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.nb-card{display:flex;gap:16px;align-items:center;padding:10px;border:1px solid var(--line);transition:border-color .25s,box-shadow .25s}
+.nb-card:hover{border-color:var(--orange);box-shadow:0 12px 26px -18px rgba(11,42,63,.5)}
+.nb-img{flex:none;width:96px;height:70px;overflow:hidden;background:var(--navy)}
+.nb-img img{width:100%;height:100%;object-fit:cover}
+.nb-t small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
+.nb-t b{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.25;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nw-soon{border-style:dashed;background:transparent;justify-content:center}.nw-soon:hover{transform:none;box-shadow:none}
+@media(max-width:980px){.nb-row{grid-template-columns:1fr}}

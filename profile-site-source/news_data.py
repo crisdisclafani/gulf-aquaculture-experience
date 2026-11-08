@@ -2,9 +2,15 @@
 # cat must be one of CATS. Dates ISO (YYYY-MM-DD). Articles below are drafted from
 # facts in the Company Profile / gulfaquaculture.com — client to review wording and dates.
 CATS = ["Company News", "Industry Developments", "Research & Publications",
-        "Projects & Partnerships", "Events & Conferences", "Media Gallery"]
+        "Projects & Partnerships", "Events & Conferences", "People & Interviews", "Media Gallery"]
 
 NEWS = [
+ # Interviews: "href" makes the card link to an existing page instead of generating an article page
+ dict(slug="interview-mohamed-razali", date="2026-03-15", cat="People & Interviews",
+      title="A thoughtful approach to growth — a conversation with Mohamed Razali",
+      img="mohamed-razali-general-manager-gulf-aquaculture-portrait.webp", href="about.html#interview",
+      excerpt="Our General Manager on native species, testing every phase before scaling it, and building trust with nature and with investors.",
+      body=[]),
  dict(slug="bap-certification-2026", date="2026-03-01", cat="Company News",
       title="Gulf Aquaculture receives BAP certification for both its assets",
       img="gulf-aquaculture-lab-technician.webp",

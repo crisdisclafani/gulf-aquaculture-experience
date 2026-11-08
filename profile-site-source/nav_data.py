@@ -53,7 +53,8 @@ NAV = [
      ]),
     ("people.html", "People", "The people behind the progress",
      "Scientists, technicians, strategists and aquaculture practitioners.", [
-         ("people.html", "Our team", "Leadership, hatchery &amp; advisors", "gr"),
+         ("people.html#team", "Our team", "Leadership, hatchery &amp; advisors", "gr"),
+         ("people.html#interviews", "Interviews", "Conversations with our team", "ogr"),
          ("about.html#interview", "Leadership interview", "A conversation with our GM", "gr"),
      ]),
     ("news.html", "News", "News &amp; insights",
@@ -62,6 +63,7 @@ NAV = [
          ("news.html#cat=projects-and-partnerships", "Projects &amp; partnerships", "Concessions, supply agreements", "og"),
          ("news.html#cat=research-and-publications", "Research &amp; publications", "Scientific work and papers", "r"),
          ("news.html#cat=events-and-conferences", "Events &amp; awards", "Conferences and recognition", "g"),
+         ("news.html#cat=people-and-interviews", "People &amp; interviews", "Conversations with our team", "ogr"),
          ("news.html#media-gallery", "Media gallery", "Photos from our sites", "ogr"),
      ]),
     ("contact.html", "Contact", "We welcome conversations",

@@ -81,6 +81,11 @@ def lang_switch():
         else: out+=f'<li><button type="button" class="lang-soon" lang="{c}" title="{l} — coming soon" data-soon="النسخة العربية قريباً · Arabic version coming soon">{f}<span>{c.upper()}</span></button></li>'
     return out+'</ul>'
 TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
+def news_band(fn):
+    if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html"): return ""
+    items=NEWS[:3]
+    cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><span class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><b>{n["title"]}</b></span></a>' for n in items)
+    return f'<section class="nband"><div class="wrap"><div class="nb-head"><span class="label">Latest news &amp; interviews</span><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
 def page(fn,title,desc,body):
     from species_data import SPECIES as _SP
     _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
@@ -98,7 +103,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109z">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110a">
 </head>
 <body>
 {TOPBAR}
@@ -112,7 +117,7 @@ def page(fn,title,desc,body):
 <main>
 {body}
 </main>
-{FG_BAND if fn=="growth.html" else ""}{WC_BAND if fn=="growth.html" else ""}{MAP_BAND if fn=="growth.html" else ""}
+{news_band(fn)}{FG_BAND if fn=="growth.html" else ""}{WC_BAND if fn=="growth.html" else ""}{MAP_BAND if fn=="growth.html" else ""}
 <footer class="ftr"><div class="ftr-rule" aria-hidden="true"><i class="d s"></i><i class="d b"></i><i class="d s"></i></div><div class="wrap">
   <div class="top">
     <div class="ftr-main">
@@ -127,7 +132,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109z"></script>
+<script src="assets/js/site.js?v=20261110a"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -164,7 +169,7 @@ NEWS=sorted(NEWS,key=lambda n:n["date"],reverse=True)
 def _ndate(d): return _dt.date.fromisoformat(d).strftime("%B %Y")
 def _cslug(c): return _re.sub(r"[^a-z]+","-",c.lower().replace("&","and")).strip("-")
 def ncard(n):
-    return (f'<a class="nw-card rv" href="news-{n["slug"]}.html" data-cat="{_cslug(n["cat"])}">'
+    return (f'<a class="nw-card rv" href="{n.get("href") or "news-"+n["slug"]+".html"}" data-cat="{_cslug(n["cat"])}">'
             f'<span class="nw-img"><img src="assets/img/{n["img"]}" alt="{html.escape(n["title"])}" loading="lazy" width="640" height="400"></span>'
             f'<span class="nw-meta"><b>{n["cat"].replace("&","&amp;")}</b> · <time datetime="{n["date"]}">{_ndate(n["date"])}</time></span>'
             f'<h3>{n["title"]}</h3><p>{n["excerpt"]}</p><span class="more">Read more</span></a>')
@@ -511,8 +516,11 @@ TEAM=[("gulf-aquaculture-team-razali.webp","Mohamed Razali Mohamed","General Man
  ("gulf-aquaculture-team-andrew.jpg","Andrew Leingang","Aquaculture Consultant","Andrew is a veteran advisor with 50 years of experience. Formerly GM at GFB Fisheries in Australia, he supports Gulf Aquaculture with technical oversight and operational planning.")]
 people=opener("06","Our team","The People Behind<br>the Progress","Our team is a diverse group of scientists, technicians, strategists, and aquaculture practitioners — each united by a shared belief: that a better future is grown, not guessed.","gulf-aquaculture-aerial-view-abu-dhabi.jpg","A better future is grown, not guessed.")
 people=fishwin(people,"gulf-aquaculture-offshore-sea-cages-uae.webp","Gulf Aquaculture sea cages offshore in the UAE","A better future is grown, not guessed.")
-people+='<section class="sec"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="{html.escape(n)}, {html.escape(r)} at Gulf Aquaculture" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
+people+='<section class="sec" id="team"><div class="wrap"><div class="people">'+"".join(f'<button type="button" class="person rv" aria-haspopup="dialog" data-img="assets/img/{k}" data-name="{html.escape(n)}" data-role="{html.escape(r)}" data-bio="{html.escape(b)}"><span class="ph" aria-hidden="true"><img src="assets/img/{k}" width="227" height="246" alt="{html.escape(n)}, {html.escape(r)} at Gulf Aquaculture" loading="lazy"><span class="ph-plus">+</span></span><span class="p-name">{n}</span><span class="p-role">{r}</span><span class="p-ex">{html.escape(b)}</span><span class="p-more">Read profile <span aria-hidden="true">→</span></span></button>' for k,n,r,b in TEAM)+'</div></div></section>'
 people+='<div class="bio" id="bio" role="dialog" aria-modal="true" aria-labelledby="bioN"><div class="bio-card"><button class="x" type="button" aria-label="Close">×</button><div class="bio-head"><span class="ph bio-ph" aria-hidden="true"><img id="bioI" src="" alt=""></span><div><h3 id="bioN"></h3><span class="bio-role" id="bioK"></span></div></div><p id="bioT"></p></div></div>'
+_IV=[n for n in NEWS if n["cat"]=="People & Interviews"]
+people+=('<section class="sec paper ivrow" id="interviews"><div class="wrap"><div class="nw-head rv"><div><span class="label">Interviews</span><h2 style="margin-top:12px">Conversations with our team</h2></div><a class="more" href="news.html#cat=people-and-interviews">All interviews</a></div>'
+  '<div class="nw-grid">'+"".join(ncard(n) for n in _IV)+'<div class="nw-card nw-soon rv"><span class="nw-meta"><b>Coming soon</b></span><h3>Meet the people in our hatcheries and labs</h3><p>Short interviews with our scientists, technicians and hatchery team — their work, their species, their Gulf.</p></div></div></div></section>')
 page("people.html","People — Gulf Aquaculture","The team behind Gulf Aquaculture.",people)
 
 # ========================================================= CONTACT
@@ -580,7 +588,7 @@ page("news.html","News — Gulf Aquaculture","",news)
 def _fishfig(img,alt):
     m=_re.search(r'<div class="media rv in fishwin">.*?</svg>',fishwin('<div class="media rv in"><div></div></div>',img,alt,""),_re.S).group(0)
     return '<div class="nw-fish">'+m.replace('<div class="media rv in fishwin">','<div class="fishwin">')+'</div></div>'
-for i,n in enumerate(NEWS):
+for i,n in enumerate([x for x in NEWS if not x.get('href')]):
     rel=[m for m in NEWS if m is not n][:3]
     body=f'''<article class="sec paper nw-art"><div class="wrap" style="max-width:860px">
   <a class="nw-back rv in" href="news.html">← All news</a>
