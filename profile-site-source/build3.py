@@ -83,7 +83,7 @@ def lang_switch():
 SND_BTN='<button type="button" class="snd-btn" aria-pressed="false" title="Immersive sound — click to turn on"><span class="snd-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="snd-l">Sound</span></button>'
 TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{SND_BTN}<span class="tb-sep" aria-hidden="true"></span>{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div></div></div>'
 def news_band(fn):
-    if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html"): return ""
+    if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html","site-map.html"): return ""
     items=NEWS[:3]
     cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><div class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><h3 class="nb-h">{n["title"]}</h3></div></a>' for n in items)
     return f'<section class="nband"><div class="wrap"><div class="nb-head"><h2 class="hx label">Latest news &amp; interviews</h2><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
@@ -105,7 +105,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110k">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110l">
 </head>
 <body data-sec="{SECTION}">
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -131,7 +131,7 @@ def page(fn,title,desc,body):
     <nav class="ftr-nav" aria-label="Footer"><h2 class="hx ftr-h">The company</h2>{foot_nav}</nav>
     <div class="ftr-logo">{BRAND}</div>
   </div>
-  <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
+  <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a> · <a href="site-map.html">Site map</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <div class="hub" id="hub">
   <div class="hub-menu" id="hubMenu" role="menu" aria-label="Contact options" hidden>
@@ -150,9 +150,9 @@ def page(fn,title,desc,body):
   </section>
   <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
 </div>
-<script src="assets/js/site.js?v=20261110k"></script>
-<script src="assets/js/tour.js?v=20261110k" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110k" defer></script>'}
+<script src="assets/js/site.js?v=20261110l"></script>
+<script src="assets/js/tour.js?v=20261110l" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110l" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -630,6 +630,9 @@ for i,n in enumerate([x for x in NEWS if not x.get('href')]):
 <section class="sec nw-latest"><div class="wrap"><div class="nw-head rv"><div><h2 class="hx label">More news</h2></div><a class="more" href="news.html">All news</a></div>
   <div class="nw-grid">{"".join(ncard(m) for m in rel)}</div></div></section>'''
     page(f"news-{n['slug']}.html",n["title"],n["excerpt"],body)
+
+import sitemap_page as _smp
+page("site-map.html","Site map — Gulf Aquaculture","",_smp.body(opener))
 
 write_extras(OUT,[f for f in sorted(os.listdir(OUT)) if f.endswith(".html")])
 import slugs as _slugs

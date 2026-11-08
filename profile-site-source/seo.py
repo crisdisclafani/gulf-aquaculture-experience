@@ -42,6 +42,8 @@ META = {
    "Contact Gulf Aquaculture in Abu Dhabi for fry orders, commercial aquaculture, government and investment partnerships, or research collaboration at SKMRC.", DEFAULT_IMG, "Contact"),
  "privacy.html": ("Privacy Policy | Gulf Aquaculture",
    "How Gulf Aquaculture LLC collects, uses and protects personal data submitted through this website, in line with UAE PDPL and GDPR.", DEFAULT_IMG, "Privacy policy"),
+ "site-map.html": ("Site Map | Gulf Aquaculture — All Pages: Hatcheries, Native Gulf Fish Species, News & Contact",
+   "Visual site map of Gulf Aquaculture: about the company, hatchery operations, facilities in Abu Dhabi and Umm Al Quwain, native Gulf fish species, growth, people, news and contact.", DEFAULT_IMG, "Site map"),
  "cookies.html": ("Cookie Policy | Gulf Aquaculture",
    "Which cookies and local storage this website uses, how YouTube videos are embedded, and how to manage your preferences.", DEFAULT_IMG, "Cookie policy"),
 }

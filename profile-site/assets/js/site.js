@@ -348,3 +348,10 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
    var t=document.createElement('div');t.className='hc-typing';t.innerHTML='<i></i><i></i><i></i>';body.appendChild(t);body.scrollTop=body.scrollHeight;
    setTimeout(function(){t.remove();var r=document.createElement('div');r.className='hc-msg bot';r.innerHTML=a[1];body.appendChild(r);body.scrollTop=body.scrollHeight},900)});
 })();
+/* Site map: highlight pages by visitor profile */
+(function(){var m=document.querySelector('.smap'),ch=document.querySelector('.sm-chips');if(!m||!ch)return;
+ ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  [].forEach.call(ch.children,function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});
+  var a=b.dataset.a;if(a==='all')m.removeAttribute('data-f');else m.setAttribute('data-f',a)});
+ try{var p=localStorage.getItem('ga-aud');if(p&&/^[ogr]$/.test(p)){var b=ch.querySelector('[data-a="'+p+'"]');if(b)b.click()}}catch(e){}
+})();
