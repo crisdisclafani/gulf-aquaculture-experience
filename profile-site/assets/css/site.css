@@ -1511,3 +1511,15 @@ h2.fx-h3{line-height:1.06}
 .ftr nav a.ftr-sm{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:6px 14px 6px 10px;border:1px solid rgba(106,169,166,.45);border-radius:30px;font-size:.85rem}
 .ftr nav a.ftr-sm::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Crect x='9' y='2' width='6' height='5' rx='1'/%3E%3Crect x='2' y='17' width='6' height='5' rx='1'/%3E%3Crect x='16' y='17' width='6' height='5' rx='1'/%3E%3Cpath d='M12 7v5M5 17v-3h14v3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Crect x='9' y='2' width='6' height='5' rx='1'/%3E%3Crect x='2' y='17' width='6' height='5' rx='1'/%3E%3Crect x='16' y='17' width='6' height='5' rx='1'/%3E%3Cpath d='M12 7v5M5 17v-3h14v3'/%3E%3C/svg%3E") center/contain no-repeat}
 .ftr nav a.ftr-sm:hover{border-color:#3F8784;background:rgba(106,169,166,.08)}
+.maplan .map-svg.rmap{position:relative;display:block;width:100%;height:auto;aspect-ratio:1600/1686}
+.rmap .rm-mk{cursor:pointer}.rmap .rm-d{transition:fill .25s}
+.rmap .rm-mk:hover .rm-d,.rmap .rm-mk:focus-visible .rm-d{fill:#E9B13C}
+.rm-list{display:none}
+@media (max-width:860px){
+  .rmap .rm-txt{display:none}
+  .rm-list{display:grid;gap:14px;list-style:none;margin:22px auto 0;padding:0 20px;max-width:640px}
+  .rm-list li{position:relative;padding:12px 14px 12px 40px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:.88rem;line-height:1.5;color:var(--text)}
+  .rm-list li::before{content:"";position:absolute;left:15px;top:18px;width:11px;height:11px;background:#4FA7A2;border:2px solid #fff;box-shadow:0 0 0 1px #4FA7A2;transform:rotate(45deg)}
+  .rm-list b{display:block;color:var(--navy);font-weight:600;font-size:.95rem}
+  .rm-list b span{font-weight:400;color:var(--muted);font-size:.8rem;margin-left:4px}
+}

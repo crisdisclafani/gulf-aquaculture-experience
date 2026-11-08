@@ -1,0 +1,33 @@
+import fs from 'fs';
+import {feature, merge, mesh} from 'topojson-client';
+import {presimplify, simplify, quantile} from 'topojson-simplify';
+import {geoMercator, geoPath} from 'd3-geo';
+const topo0 = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-10m.json'));
+let topo = presimplify(topo0); topo = simplify(topo, quantile(topo, 0.2));
+const G = topo.objects.countries.geometries, by = ids => G.filter(g => ids.includes(g.id));
+const out = {};
+// ---- main map: Gulf / UAE / Oman, same framing as the original artwork (1600 x 1686 canvas)
+const deg = 252, k = deg * 180 / Math.PI;
+const pm = geoMercator().scale(k).translate([0, 0]);
+const [ax, ay] = pm([54.37, 24.47]); pm.translate([515 - ax, 975 - ay]);
+pm.clipExtent([[12, 15], [1560, 1340]]);
+const P = geoPath(pm).digits(1);
+out.arabia = P(merge(topo, by(['784', '512', '682', '634'])));
+out.iran = P(merge(topo, by(['364'])));
+out.border = P(mesh(topo, topo.objects.countries, (a, b) => (a.id === '784' && b.id === '512') || (a.id === '512' && b.id === '784')));
+const S = {balghailam: [54.62, 24.56], abudhabi: [54.37, 24.47], skmrc: [55.6, 25.55], juvenile: [56.34, 25.12], oman: [56.25, 26.18]};
+out.m = Object.fromEntries(Object.entries(S).map(([n, c]) => [n, pm(c).map(v => +v.toFixed(1))]));
+// ---- inset: South-East Asia inside a circle
+const cx = 1222, cy = 1365, r = 330, kd = 17.5 * 180 / Math.PI;
+const pi = geoMercator().scale(kd).translate([0, 0]);
+const [bx, by2] = pi([110.5, 4.5]); pi.translate([cx - bx, cy - by2]);
+pi.clipExtent([[cx - r - 5, cy - r - 5], [cx + r + 5, cy + r + 5]]);
+let t2 = presimplify(topo0); t2 = simplify(t2, quantile(t2, 0.04)); const G2 = t2.objects.countries.geometries;
+const Q = geoPath(pi).digits(0);
+out.sea_land = Q(merge(t2, G2.filter(g => !['458', '360'].includes(g.id))));
+out.my = Q(merge(t2, G2.filter(g => g.id === '458')));
+out.id = Q(merge(t2, G2.filter(g => g.id === '360')));
+out.m.malaysia = pi([101.5, 3.0]).map(v => +v.toFixed(1));
+out.m.indonesia = pi([112.7, -7.3]).map(v => +v.toFixed(1));
+fs.writeFileSync('/home/claude/ga3/regionmap.json', JSON.stringify(out));
+console.log(Object.fromEntries(Object.entries(out).map(([a, b]) => [a, typeof b === 'string' ? b.length : b])));

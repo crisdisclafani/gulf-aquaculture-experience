@@ -49,8 +49,9 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
   </div>
 </section>
 '''
+import regionmap as _rmap
 MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint"><h2 class="sr-only">Our regional footprint: UAE, Oman, Malaysia and Indonesia</h2>
-  <div class="mapband-img hsplan maplan"><img src="assets/img/gulf-aquaculture-regional-footprint-map-uae-oman-malaysia-indonesia.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"><svg class="map-svg" viewBox="0 0 1600 1686" preserveAspectRatio="xMidYMid meet"><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Oman — Seabream &amp; Red Snapper" aria-label="Oman — Seabream &amp; Red Snapper — watch video"><circle class="hs-hit" cx="994" cy="504" r="34"/><circle class="hs-ping" cx="994" cy="504" r="16"/><circle class="hs-ring" cx="994" cy="504" r="22"/><title>Oman — Seabream &amp; Red Snapper</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Sheikh Khalifa Marine Research Centre (SKMRC)" aria-label="Sheikh Khalifa Marine Research Centre (SKMRC) — watch video"><circle class="hs-hit" cx="744" cy="772" r="34"/><circle class="hs-ping" cx="744" cy="772" r="16"/><circle class="hs-ring" cx="744" cy="772" r="22"/><title>Sheikh Khalifa Marine Research Centre (SKMRC)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Juvenile Supply (UAE)" aria-label="Juvenile Supply (UAE) — watch video"><circle class="hs-hit" cx="1010" cy="824" r="34"/><circle class="hs-ping" cx="1010" cy="824" r="16"/><circle class="hs-ring" cx="1010" cy="824" r="22"/><title>Juvenile Supply (UAE)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Abu Dhabi HQ" aria-label="Abu Dhabi HQ — watch video"><circle class="hs-hit" cx="516" cy="976" r="34"/><circle class="hs-ping" cx="516" cy="976" r="16"/><circle class="hs-ring" cx="516" cy="976" r="22"/><title>Abu Dhabi HQ</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Balghailam Island" aria-label="Balghailam Island — watch video"><circle class="hs-hit" cx="568" cy="962" r="34"/><circle class="hs-ping" cx="568" cy="962" r="16"/><circle class="hs-ring" cx="568" cy="962" r="22"/><title>Balghailam Island</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Malaysia — Red Snapper hatchery" aria-label="Malaysia — Red Snapper hatchery — watch video"><circle class="hs-hit" cx="1018" cy="1322" r="34"/><circle class="hs-ping" cx="1018" cy="1322" r="16"/><circle class="hs-ring" cx="1018" cy="1322" r="22"/><title>Malaysia — Red Snapper hatchery</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Indonesia — Grouper hatchery" aria-label="Indonesia — Grouper hatchery — watch video"><circle class="hs-hit" cx="1220" cy="1502" r="34"/><circle class="hs-ping" cx="1220" cy="1502" r="16"/><circle class="hs-ring" cx="1220" cy="1502" r="22"/><title>Indonesia — Grouper hatchery</title></a></svg>
+  <div class="mapband-img hsplan maplan">'''+_rmap.svg()+_rmap.html_list()+'''
    <p class="hs-hint map-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Click a location to watch it in action</p></div>
   <div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
   <div class="wrap"><p class="mapband-note"><span>Committed to proving that aquaculture</span><br><span>can work - for our waters, for our communities,</span><br><span>and for future generations.</span></p></div>
@@ -112,7 +113,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110m">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110n">
 </head>
 <body data-sec="{SECTION}">
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -157,9 +158,9 @@ def page(fn,title,desc,body):
   </section>
   <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
 </div>
-<script src="assets/js/site.js?v=20261110m"></script>
-<script src="assets/js/tour.js?v=20261110m" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110m" defer></script>'}
+<script src="assets/js/site.js?v=20261110n"></script>
+<script src="assets/js/tour.js?v=20261110n" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110n" defer></script>'}
 </body>
 </html>'''
     def _dims(m):
