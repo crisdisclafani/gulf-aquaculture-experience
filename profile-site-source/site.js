@@ -247,3 +247,8 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
   m.addEventListener("click",e=>{ if(e.target===m) close(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape"&&m.classList.contains("open")) close(); });
 })();
+/* Home link and logo reset to neutral browsing (clear profile) */
+(function(){
+  const reset=()=>{ try{localStorage.removeItem("ga-aud")}catch(e){} delete document.body.dataset.aud; };
+  document.querySelectorAll('a.brand, .menu>li>a[href="index.html"], .mnav a.mn-top[href="index.html"]').forEach(a=>a.addEventListener("click",reset));
+})();
