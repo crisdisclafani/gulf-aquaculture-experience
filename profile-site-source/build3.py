@@ -103,11 +103,11 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110a">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110b">
 </head>
 <body>
 {TOPBAR}
-<header class="hdr"><div class="wrap">{BRAND}
+<header class="hdr"><div class="wrap">{BRAND}<div class="tb-in">{social_icons("soc-top")}<span class="tb-sep" aria-hidden="true"></span>{lang_switch()}</div>
   <ul class="menu" aria-label="Main">{menu}</ul>
   <a href="contact.html" class="btn btn-or"{" aria-current=\"page\"" if fn=="contact.html" else ""}>Let's talk</a>
   <button class="burger" type="button" aria-label="Open menu"><span></span></button>
@@ -132,7 +132,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261110a"></script>
+<script src="assets/js/site.js?v=20261110b"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)

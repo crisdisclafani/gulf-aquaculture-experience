@@ -1202,3 +1202,19 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .nb-t b{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.25;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .nw-soon{border-style:dashed;background:transparent;justify-content:center}.nw-soon:hover{transform:none;box-shadow:none}
 @media(max-width:980px){.nb-row{grid-template-columns:1fr}}
+
+/* ---------- Desktop header: social/lang row inside the header, logo centred on the full height ---------- */
+.tb-in{display:none}
+@media (min-width:1151px){
+  :root{--hh:142px;--tbh:30px}
+  .topbar{display:none}
+  .hdr{top:calc(var(--tbh) * -1)}
+  .hdr>.wrap{position:relative}
+  .tb-in{display:flex;align-items:center;gap:12px;position:absolute;top:0;right:0;height:var(--tbh);z-index:2}
+  .hdr .menu{padding-top:var(--tbh)}
+  .hdr>.wrap>.btn{margin-top:var(--tbh)}
+  .hdr .brand img{height:84px;transform:translateY(3px)}
+  html{scroll-padding-top:calc(var(--hh) - var(--tbh) + 30px)}
+  .ab-sub{top:calc(var(--hh) - var(--tbh))}
+}
+@media (min-width:1151px){.hdr .brand img{transition:transform .35s var(--ease)}.hdr.scrolled .brand img{transform-origin:left center;transform:translateY(15px) scale(.9)}}
