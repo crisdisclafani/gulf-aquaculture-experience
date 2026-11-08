@@ -83,5 +83,13 @@
   var fr=document.querySelector('.xp3d iframe');
   if(fr)setInterval(function(){try{var sb=fr.contentDocument&&fr.contentDocument.querySelector('[data-act="sound"]');var on3d=sb&&/Sound on/.test(sb.title||'');
     var d=on3d?0:1;if(d!==duck){duck=d;if(playing)level(.9*duck,1.2)}}catch(err){}},1000);
+  // first visit: a discreet invitation next to the toggle (once per visitor)
+  try{if(localStorage.getItem(KEY)===null&&!localStorage.getItem('ga-sound-hint')){setTimeout(function(){
+    var b=[].slice.call(document.querySelectorAll('.snd-btn')).filter(function(x){return x.offsetParent})[0];if(!b||pref())return;
+    localStorage.setItem('ga-sound-hint','1');var r=b.getBoundingClientRect(),t=document.createElement('div');t.className='snd-hint';t.setAttribute('role','status');
+    t.innerHTML='<b>Turn on immersive sound</b><span>The sounds of the Gulf, for each section</span>';t.style.top=(r.bottom+10)+'px';var L=Math.max(12,Math.min(innerWidth-252,r.left+r.width/2-120));t.style.left=L+'px';t.style.setProperty('--ax',(r.left+r.width/2-L)+'px');
+    document.body.appendChild(t);requestAnimationFrame(function(){t.classList.add('in')});
+    t.addEventListener('click',function(){setPref(true);start();t.remove()});
+    var bye=function(){t.classList.remove('in');setTimeout(function(){t.remove()},400)};setTimeout(bye,7000);window.addEventListener('scroll',bye,{once:true,passive:true})},2500)}}catch(e){}
   document.addEventListener('visibilitychange',function(){if(!ctx)return;if(document.hidden)ctx.suspend();else if(playing)ctx.resume()});
 })();
