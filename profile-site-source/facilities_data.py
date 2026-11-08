@@ -77,8 +77,8 @@ def facilities_index(opener, dia):
     a = FISHWIN(a, 'gulf-aquaculture-aerial-cages-video.webp', 'Aerial view of Gulf Aquaculture sea cages and work vessel', 'Systems that support people.')
     cards = "".join(
         f'<a class="fa-card rv" href="asset-{f["k"]}.html"><span class="fa-img"><img src="assets/img/{f["photo"]}" alt="{f["photo_alt"]}" loading="lazy"></span>'
-        f'<span class="fa-body"><span class="fa-n">{i+1:02d}</span><span class="fa-name">{f["name"]}</span><span class="fa-short">{f["short"]}</span>'
-        f'<span class="sp-go">Explore the facility <span aria-hidden="true">→</span></span></span></a>'
+        f'<div class="fa-body"><span class="fa-n">{i+1:02d}</span><h3 class="fa-name">{f["name"]}</h3><span class="fa-short">{f["short"]}</span>'
+        f'<span class="sp-go">Explore the facility <span aria-hidden="true">→</span></span></div></a>'
         for i, f in enumerate(FACILITIES))
     a += (f'<section class="sec"><div class="wrap"><h2 class="hx spx-kicker rv">Our facilities:</h2>'
           f'<p class="spx-hint rv">Select a facility to see its infrastructure, feed systems, laboratories and site layout.</p>'

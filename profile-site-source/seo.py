@@ -203,6 +203,6 @@ def faqs(fn, species=None):
 def faq_html(fn, species=None):
     qa = faqs(fn, species)
     if not qa: return ""
-    items = "".join(f'<details{" open" if i==0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i,(q,a) in enumerate(qa))
+    items = "".join(f'<details{" open" if i==0 else ""}><summary><h3 class="faq-q">{q}</h3></summary><p>{a}</p></details>' for i,(q,a) in enumerate(qa))
     return (f'<section class="sec faq-sec"><div class="wrap faq-grid"><div class="rv"><span class="label">FAQ</span><h2 style="margin-top:12px">Frequently asked questions</h2></div>'
             f'<div class="qa rv">{items}</div></div></section>')

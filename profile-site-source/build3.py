@@ -46,7 +46,7 @@ WC_BAND='''<section class="welcome" aria-labelledby="wcT">
   </div>
 </section>
 '''
-MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint">
+MAP_BAND='''<section class="mapband" id="footprint" aria-label="Regional footprint"><h2 class="sr-only">Our regional footprint: UAE, Oman, Malaysia and Indonesia</h2>
   <div class="mapband-img hsplan maplan"><img src="assets/img/gulf-aquaculture-regional-footprint-map-uae-oman-malaysia-indonesia.jpg" width="1600" height="1686" loading="lazy" alt="Map of Gulf Aquaculture's regional footprint: Abu Dhabi HQ, Balghailam Island and SKMRC in the UAE, juvenile supply in the UAE, Oman, Malaysia and Indonesia"><svg class="map-svg" viewBox="0 0 1600 1686" preserveAspectRatio="xMidYMid meet"><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Oman — Seabream &amp; Red Snapper" aria-label="Oman — Seabream &amp; Red Snapper — watch video"><circle class="hs-hit" cx="994" cy="504" r="34"/><circle class="hs-ping" cx="994" cy="504" r="16"/><circle class="hs-ring" cx="994" cy="504" r="22"/><title>Oman — Seabream &amp; Red Snapper</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Sheikh Khalifa Marine Research Centre (SKMRC)" aria-label="Sheikh Khalifa Marine Research Centre (SKMRC) — watch video"><circle class="hs-hit" cx="744" cy="772" r="34"/><circle class="hs-ping" cx="744" cy="772" r="16"/><circle class="hs-ring" cx="744" cy="772" r="22"/><title>Sheikh Khalifa Marine Research Centre (SKMRC)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Juvenile Supply (UAE)" aria-label="Juvenile Supply (UAE) — watch video"><circle class="hs-hit" cx="1010" cy="824" r="34"/><circle class="hs-ping" cx="1010" cy="824" r="16"/><circle class="hs-ring" cx="1010" cy="824" r="22"/><title>Juvenile Supply (UAE)</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Abu Dhabi HQ" aria-label="Abu Dhabi HQ — watch video"><circle class="hs-hit" cx="516" cy="976" r="34"/><circle class="hs-ping" cx="516" cy="976" r="16"/><circle class="hs-ring" cx="516" cy="976" r="22"/><title>Abu Dhabi HQ</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Balghailam Island" aria-label="Balghailam Island — watch video"><circle class="hs-hit" cx="568" cy="962" r="34"/><circle class="hs-ping" cx="568" cy="962" r="16"/><circle class="hs-ring" cx="568" cy="962" r="22"/><title>Balghailam Island</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Malaysia — Red Snapper hatchery" aria-label="Malaysia — Red Snapper hatchery — watch video"><circle class="hs-hit" cx="1018" cy="1322" r="34"/><circle class="hs-ping" cx="1018" cy="1322" r="16"/><circle class="hs-ring" cx="1018" cy="1322" r="22"/><title>Malaysia — Red Snapper hatchery</title></a><a class="hs hs-map" href="#" role="button" data-yt="QwZ2BvfbzRg" data-start="13" data-title="Indonesia — Grouper hatchery" aria-label="Indonesia — Grouper hatchery — watch video"><circle class="hs-hit" cx="1220" cy="1502" r="34"/><circle class="hs-ping" cx="1220" cy="1502" r="16"/><circle class="hs-ring" cx="1220" cy="1502" r="22"/><title>Indonesia — Grouper hatchery</title></a></svg>
    <p class="hs-hint map-hint"><span class="hs-hint-ico" aria-hidden="true">▶</span> Click a location to watch it in action</p></div>
   <div class="yt-modal" id="hsm" role="dialog" aria-modal="true" aria-labelledby="hsmT"><div class="hsm-box"><p class="hsm-t" id="hsmT"></p><div class="yt-frame"></div></div><button type="button" class="yt-x" aria-label="Close video">×</button></div>
@@ -85,8 +85,8 @@ TOPBAR=f'<div class="topbar"><div class="wrap"><div class="tb-r">{SND_BTN}<span 
 def news_band(fn):
     if fn in ("index.html","news.html") or fn.startswith("news-") or fn in ("privacy.html","cookies.html"): return ""
     items=NEWS[:3]
-    cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><span class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><b>{n["title"]}</b></span></a>' for n in items)
-    return f'<section class="nband"><div class="wrap"><div class="nb-head"><span class="label">Latest news &amp; interviews</span><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
+    cards="".join(f'<a class="nb-card" href="{n.get("href") or "news-"+n["slug"]+".html"}"><span class="nb-img"><img src="assets/img/{n["img"]}" alt="" loading="lazy" width="160" height="110"></span><div class="nb-t"><small>{n["cat"].replace("&","&amp;")} · {_ndate(n["date"])}</small><h3 class="nb-h">{n["title"]}</h3></div></a>' for n in items)
+    return f'<section class="nband"><div class="wrap"><div class="nb-head"><h2 class="hx label">Latest news &amp; interviews</h2><a class="more" href="news.html#articles">All news</a></div><div class="nb-row">{cards}</div></div></section>'
 def page(fn,title,desc,body):
     from species_data import SPECIES as _SP
     _sp=next((d for d in _SP if f"species-{d['k']}.html"==fn),None)
@@ -122,12 +122,12 @@ def page(fn,title,desc,body):
 <footer class="ftr"><div class="ftr-rule" aria-hidden="true"><i class="d s"></i><i class="d b"></i><i class="d s"></i></div><div class="wrap">
   <div class="top">
     <div class="ftr-main">
-      <p class="ftr-claim">Let’s build something lasting, together.</p>
+      <h2 class="hx ftr-claim">Let’s build something lasting, together.</h2>
       <p class="ftr-links"><a href="https://gulfaquaculture.com">gulfaquaculture.com</a><br><a href="mailto:info@gulfaquaculture.com">info@gulfaquaculture.com</a><br><a class="wa-link" href="{WA_URL}" target="_blank" rel="noopener">{WA_ICO}WhatsApp</a></p>
       <p class="ftr-addr">7th Floor, East Tower, Abu Dhabi Mall<br>P.O. Box 55345, Abu Dhabi, UAE</p>
       {social_icons("soc-ftr")}
     </div>
-    <nav class="ftr-nav" aria-label="Footer"><p class="ftr-h">The company</p>{foot_nav}</nav>
+    <nav class="ftr-nav" aria-label="Footer"><h2 class="hx ftr-h">The company</h2>{foot_nav}</nav>
     <div class="ftr-logo">{BRAND}</div>
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
@@ -290,14 +290,14 @@ about=f'''<nav class="ab-sub" aria-label="About sections"><div class="wrap"><a h
  </div>
  <div class="ab-card rv" id="principles">
   <h2>What We<br>Stand For</h2>
-  <p class="ab-kicker">Our principles</p>
+  <h3 class="hx ab-kicker">Our principles</h3>
   <ol class="ab-pr"><li>Grow responsibly, not rapidly</li><li>Invest only what we need to learn</li><li>Focus on animal welfare and ecosystem integrity</li><li>Build trust through transparency</li><li>Share knowledge and invite collaboration</li></ol>
   <h3 class="hx ab-kicker" style="margin-top:28px">Our vision</h3>
   <p class="ab-vision">To nurture a sustainable future by cultivating what thrives naturally, with humility, care, and scientific rigour.</p>
  </div>
 </div></section>
 <section class="ab-band" id="role"><div class="wrap">
- <div class="ab-awards" id="achievements">
+ <div class="ab-awards" id="achievements"><h2 class="sr-only">Achievements and awards</h2>
   <div class="rv">{AW}<p><b>Feb 2025</b>Awarded 1st place at the Sheikh Mansour Agriculture Award</p></div>
   <div class="rv">{AW}<p><b>Mar 2026</b>GA received BAP certification for its two assets.</p></div>
  </div>

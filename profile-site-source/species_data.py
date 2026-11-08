@@ -57,7 +57,7 @@ def species_index(opener, dia):
     sp = FISHWIN(sp, "hamour-grouper-coral-reef-video-poster.webp", "Grouper swimming over a Gulf coral reef", "We don’t adapt species to our systems. We build systems around our species.")
     cards = "".join(
         f'<a class="sp-card rv" href="species-{d["k"]}.html"><span class="sp-stage">{fishimg(d)}<span class="sp-wave" aria-hidden="true"></span></span>'
-        f'<span class="sp-status">{d["status"]}</span><span class="sp-local">{d["local"]}</span><span class="sp-en">{d["en"]}</span>'
+        f'<span class="sp-status">{d["status"]}</span><h3 class="sp-local">{d["local"]}</h3><span class="sp-en">{d["en"]}</span>'
         f'<span class="sp-sci">{d["sci"] or "Scientific name TBC"}</span><span class="sp-blurb">{d["blurb"]}</span>'
         f'<span class="sp-go">Explore species <span aria-hidden="true">→</span></span></a>' for d in SPECIES)
     sp += ('<section class="sec spx"><div class="wrap"><h2 class="hx spx-kicker rv">Our core species:</h2>'

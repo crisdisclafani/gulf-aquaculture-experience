@@ -1203,7 +1203,7 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .nb-img{flex:none;width:96px;height:70px;overflow:hidden;background:var(--navy)}
 .nb-img img{width:100%;height:100%;object-fit:cover}
 .nb-t small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
-.nb-t b{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.25;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nb-t b,.nb-t .nb-h{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.25;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .nw-soon{border-style:dashed;background:transparent;justify-content:center}.nw-soon:hover{transform:none;box-shadow:none}
 @media(max-width:980px){.nb-row{grid-template-columns:1fr}}
 
@@ -1293,3 +1293,4 @@ html.lb-open{overflow:hidden}
 
 .sph h1 .sph-local{display:block}
 h2.fx-h3{line-height:1.06}
+.qa summary .faq-q{display:inline;font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit;margin:0}
