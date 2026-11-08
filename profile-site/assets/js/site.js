@@ -262,3 +262,16 @@ if(f){ const sq=new URLSearchParams(location.search).get("species"); if(sq&&$("#
  ch.addEventListener('click',function(e){var b=e.target.closest('button');if(b){f(b.dataset.f);if(b.dataset.f!=='media-gallery')history.replaceState(null,'',b.dataset.f==='all'?'news.html':'#cat='+b.dataset.f)}});
  function fromHash(){var m=location.hash.match(/cat=([a-z-]+)/);if(m)f(m[1])}
  fromHash();window.addEventListener('hashchange',fromHash);})();
+
+/* 3D experience → site pages: "Discover more" / "More details" open the matching page.
+   Listens to the 3D app's own events (same origin) without touching the 3d/ files. */
+(function(){var fr=document.querySelector('.xp3d iframe');if(!fr)return;
+ var ITEM={'fish-hamour':'species-hamour.html','fish-hamrah':'species-hamra.html','fish-shaari':'species-shaari.html','fish-ummdrais':'species-umm-drais.html','stock':'species.html','aq':'species.html'};
+ var BLD={broodstock:'operations.html#cycle',hatchery:'operations.html#cycle',nursery:'operations.html#cycle',livefeed:'operations.html#overview',
+  research:'asset-skmrc.html',plantroom:'asset-skmrc.html',genroom:'asset-skmrc.html',visitor:'asset-skmrc.html',seacages:'species.html'};
+ var hooked=false;
+ function go(id,item){var u=(item&&ITEM[item])||BLD[id];if(u)window.location.href=u}
+ function hook(){try{var d=fr.contentDocument;if(!d||hooked||!d.body)return;d.addEventListener('aqua:cta',function(e){var x=e.detail||{};go(x.id,x.item)});hooked=true}catch(err){}}
+ fr.addEventListener('load',hook);hook();
+ window.addEventListener('message',function(e){var d=e.data||{};if(hooked||d.type!=='aqua:cta')return;go(d.id,null)});
+})();
