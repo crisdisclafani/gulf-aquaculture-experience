@@ -99,7 +99,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261109x">
+<link rel="stylesheet" href="assets/css/site.css?v=20261109y">
 </head>
 <body>
 {TOPBAR}
@@ -128,7 +128,7 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261109x"></script>
+<script src="assets/js/site.js?v=20261109y"></script>
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
@@ -382,6 +382,34 @@ facility_pages(page,dia)
 # ========================================================= SPECIES
 FISH='<svg class="fish" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M14 45C44 10 110 6 152 45 110 84 44 80 14 45Z" stroke="#E2A13C" stroke-width="1.2"/><path d="M152 45l40-28v56l-40-28Z" stroke="#E2A13C" stroke-width="1.2"/><circle cx="42" cy="40" r="3" fill="#E2A13C"/></svg>'
 from species_data import SPECIES, species_index, species_pages
+
+# ---------- Interactive regional distribution map (species) ----------
+import json as _json
+_RM=_json.load(open(os.path.join(HERE,"rangemap.json")))
+_RKEY={"hamour":"iwp","shiqra":"iwp","shaari":"iwp","hamra":"iwpE","seabream":"gulfAS","umm-drais":"gulf"}
+_RTXT={"hamour":"Indo-West Pacific: from East Africa and the Red Sea, through the Arabian Gulf, to the western Pacific.",
+       "shiqra":"Indo-West Pacific: East Africa and the Red Sea to Samoa, southern Japan and Australia; juveniles in mangrove estuaries.",
+       "shaari":"From East Africa and the Red Sea, through the Arabian Gulf, to southern Japan and around Australia.",
+       "hamra":"Indo-West Pacific: from the Arabian Gulf and the Arabian Sea to South-East Asia, northern Australia and the western Pacific.",
+       "seabream":"Sobaity (Sparidentex hasta) is native to the Arabian Gulf and the northern Arabian Sea.",
+       "umm-drais":"Regional red snapper of the Arabian Gulf and Gulf of Oman — under evaluation in our broodstock programme."}
+def range_map():
+    from species_data import SPECIES as _S
+    chips="".join(f'<button type="button" data-k="{d["k"]}" data-r="{_RKEY[d["k"]]}" data-t="{html.escape(_RTXT[d["k"]])}" data-sci="{html.escape(d["sci"] or "")}" data-en="{html.escape(d["en"])}"{" class=on" if i==0 else ""}>{d["local"]}</button>' for i,d in enumerate(_S))
+    ranges="".join(f'<path class="rm-range" data-r="{k}" d="{v}"/>' for k,v in _RM["ranges"].items())
+    S=_RM["sites"]; uae=S[0]
+    marks=(f'<g class="rm-site" tabindex="0"><circle cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><circle class="rm-pulse" cx="{uae["x"]}" cy="{uae["y"]}" r="7"/><text x="{uae["x"]-10}" y="{uae["y"]-16}" text-anchor="middle">UAE · HQ, Balghailam, SKMRC</text></g>'
+           +"".join(f'<g class="rm-site" tabindex="0"><circle cx="{t["x"]}" cy="{t["y"]}" r="6"/><circle class="rm-pulse" cx="{t["x"]}" cy="{t["y"]}" r="6"/><text x="{t["x"]+12}" y="{t["y"]+(18 if t["c"]=="Oman" else 4)}">{t["c"]} · {t["n"]}</text></g>' for t in S[3:]))
+    d0=_S[0]
+    return f'''<section class="sec rmap" id="distribution"><div class="wrap">
+  <div class="rm-head rv"><span class="label">Interactive map</span><h2 style="margin-top:12px">Where our species live</h2><p>Select a species to see its natural range across the region, alongside the sites where Gulf Aquaculture and its partners operate.</p></div>
+  <div class="rm-grid">
+    <div class="rm-side rv"><div class="rm-chips" role="tablist" aria-label="Species">{chips}</div>
+      <div class="rm-info" aria-live="polite"><p class="rm-en">{d0["en"]}</p><p class="rm-sci"><i>{d0["sci"] or ""}</i></p><p class="rm-txt">{_RTXT[d0["k"]]}</p>
+      <a class="more" id="rmLink" href="species-{d0["k"]}.html">Species profile</a></div>
+      <ul class="rm-legend"><li><i class="lg-r"></i>Natural range (indicative)</li><li><i class="lg-s"></i>Gulf Aquaculture &amp; partner sites</li></ul></div>
+    <div class="rm-map rv"><svg viewBox="0 0 {_RM["W"]} {_RM["H"]}" role="img" aria-label="Map of the Indo-West Pacific showing the natural range of the selected species"><rect width="100%" height="100%" class="rm-sea"/>{ranges}<path class="rm-land" d="{_RM["land"]}"/>{marks}</svg></div>
+  </div></div></section>'''
 sp=species_index(opener,dia)
 sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Aerial view of sea cages and a work vessel">
   <p class="spk-belief">At Gulf Aquaculture, we believe meaningful sustainability starts with knowing what thrives here — not just what sells. Our approach is rooted in science, shaped by local conditions, and designed to benefit both ecosystems and economies.</p>
@@ -394,6 +422,7 @@ sp+=f'''<section class="spk"><div class="spk-media rv" role="img" aria-label="Ae
    <p>Rather than replicate global models, we’ve designed our hatchery and nursery systems to reflect what’s needed — and nothing more. This minimalist approach results in:</p>{dia(["Lower energy use","Higher survival rates","No antibiotic use","Meaningful reductions in environmental impact"])}
    <a class="btn btn-or" href="contact.html#partner" style="margin-top:30px">Fry orders &amp; availability <span aria-hidden="true">→</span></a></div>
  </div></section>'''
+sp+=range_map()
 page("species.html","Species — Gulf Aquaculture","Native Gulf species: Hamour, Hamra, Shiqra, Shaari, Seabream and Umm Drais.",sp)
 species_pages(page)
 

@@ -290,3 +290,13 @@ if(f){ const qs=new URLSearchParams(location.search), sq=qs.get("species"), fryF
 
 /* Languages: Arabic placeholder (RTL version to be built) */
 document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('click',function(){var t=document.querySelector('.lang-toast');if(t)t.remove();t=document.createElement('div');t.className='lang-toast';t.setAttribute('role','status');t.textContent=b.dataset.soon;document.body.appendChild(t);setTimeout(function(){t.remove()},2600)})});
+
+/* Species distribution map */
+(function(){var m=document.getElementById('distribution');if(!m)return;
+ var chips=[].slice.call(m.querySelectorAll('.rm-chips button')),rs=[].slice.call(m.querySelectorAll('.rm-range'));
+ function set(b){chips.forEach(function(c){c.classList.toggle('on',c===b);c.setAttribute('aria-selected',c===b)});
+  rs.forEach(function(r){r.classList.toggle('on',r.dataset.r===b.dataset.r)});
+  m.querySelector('.rm-en').textContent=b.dataset.en;m.querySelector('.rm-sci i').textContent=b.dataset.sci;m.querySelector('.rm-txt').textContent=b.dataset.t;
+  m.querySelector('#rmLink').href='species-'+b.dataset.k+'.html'}
+ chips.forEach(function(b){b.setAttribute('role','tab');b.addEventListener('click',function(){set(b)})});
+ var q=new URLSearchParams(location.search).get('sp'),st=chips.filter(function(c){return c.dataset.k===q})[0]||chips[0];set(st);})();

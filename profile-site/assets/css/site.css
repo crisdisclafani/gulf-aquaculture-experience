@@ -1148,3 +1148,29 @@ body[data-aud] .mn-g li.hl a{color:#fff;font-weight:500}
 .mn-extra{display:flex;flex-direction:column;gap:18px;padding:26px 0 10px;border-top:1px solid var(--line-d);margin-top:20px}
 .mn-extra .soc a{color:#fff;border:1px solid var(--line-d);width:38px;height:38px}
 @media(max-width:760px){.tb-r>a{display:none}.topbar .wrap{height:36px}.soc-top a{width:26px;height:26px}}
+
+/* ---------- Species distribution map ---------- */
+.rm-head{max-width:720px;margin-bottom:36px}
+.rm-grid{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start}
+.rm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.rm-chips button{font:500 13px var(--sans);padding:9px 16px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:30px;cursor:pointer;transition:all .25s}
+.rm-chips button:hover{border-color:var(--orange)}
+.rm-chips button.on{background:var(--grad);border-color:transparent;color:#fff}
+.rm-en{font-family:var(--serif);font-size:28px;color:var(--ink);line-height:1.1}
+.rm-sci{color:var(--muted);margin:4px 0 14px}
+.rm-txt{margin-bottom:18px}
+.rm-legend{list-style:none;margin:30px 0 0;padding:18px 0 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.rm-legend li{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.rm-legend i{width:18px;height:12px;display:inline-block}
+.lg-r{background:rgba(227,164,62,.55);border:1px solid #C8742A}.lg-s{width:12px!important;border-radius:50%;background:var(--teal)}
+.rm-map svg{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 24px 50px -30px rgba(11,42,63,.5)}
+.rm-sea{fill:#0E3553}
+.rm-land{fill:#E9E1D3;stroke:#C9BBA4;stroke-width:.6}
+.rm-range{fill:rgba(240,190,90,.72);stroke:#FBE27A;stroke-width:1.5;opacity:0;transition:opacity .6s var(--ease)}
+.rm-range.on{opacity:1}
+.rm-site circle{fill:var(--teal);stroke:#fff;stroke-width:2}
+.rm-site .rm-pulse{fill:none;stroke:var(--teal);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:rmPulse 2.2s ease-out infinite}
+.rm-site text{font:600 13px var(--sans);fill:#fff;paint-order:stroke;stroke:#0E3553;stroke-width:4px;stroke-linejoin:round}
+@keyframes rmPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(3);opacity:0}}
+@media (prefers-reduced-motion:reduce){.rm-site .rm-pulse{animation:none}}
+@media(max-width:900px){.rm-grid{grid-template-columns:1fr}.rm-site text{font-size:16px}}

@@ -101,7 +101,7 @@ def species_pages(page):
 <section class="sec"><div class="wrap"><div class="spec-grid">
  {spec("Scientific &amp; common names", names)}
  {spec("Biological characteristics", d["bio"])}
- {spec("Natural habitat &amp; distribution", d["hab"])}
+ {spec("Natural habitat &amp; distribution", (d["hab"] or "") + f' <a class="more" href="species.html?sp={d["k"]}#distribution">See it on the distribution map</a>')}
  {spec("Environmental tolerances", d["tol"])}
  {spec("Commercial farming characteristics", d["farm"])}
  {spec("Production methodology", d["prod"])}
