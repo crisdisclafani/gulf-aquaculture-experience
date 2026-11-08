@@ -126,11 +126,11 @@ def access_bar():
                 if k in a:
                     picks.append(f'<li><a href="{h}"><span class="acc-sec">{label}</span><b>{t}</b><small>{d}</small></a></li>')
         panels += (f'<div class="acc-pane" data-for="{k}" hidden><div class="acc-pane-head"><p><b>{v["name"]}</b> — {v["intro"]}</p>'
-                   f'<button type="button" class="acc-clear">Clear profile ×</button></div><ul class="acc-list">{"".join(picks)}</ul></div>')
+                   f'<div class="acc-acts"><button type="button" class="tour-start" data-tour="{k}"><span aria-hidden="true">☝</span> <span class="tl">Start guided tour</span></button><button type="button" class="acc-clear">Clear profile ×</button></div></div><ul class="acc-list">{"".join(picks)}</ul></div>')
     return (f'<nav class="access" aria-label="Access by profile"><div class="wrap"><span class="access-lbl">Access by profile</span>{btns}</div></nav>'
             f'<div class="acc-panel" id="accPanel" hidden><div class="wrap">{panels}</div></div>')
 
 
 def aud_ribbon():
-    return '<div class="aud-ribbon" aria-live="polite"><div class="wrap"><span class="ar-dot"></span><span class="ar-txt"></span><button type="button" class="acc-clear">Clear ×</button></div></div>'
+    return '<div class="aud-ribbon" aria-live="polite"><div class="wrap"><span class="ar-dot"></span><span class="ar-txt"></span><button type="button" class="tour-start tour-mini" data-tour=""><span aria-hidden="true">☝</span> <span class="tl">Start guided tour</span></button><button type="button" class="acc-clear">Clear ×</button></div></div>'
 

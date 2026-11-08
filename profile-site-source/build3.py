@@ -2,7 +2,7 @@
 import os, sys, shutil, html
 OUT=sys.argv[1]; HERE=os.path.dirname(os.path.abspath(__file__))
 for d in ("assets/css","assets/js","assets/img"): os.makedirs(f"{OUT}/{d}",exist_ok=True)
-shutil.copy(f"{HERE}/site.css",f"{OUT}/assets/css/site.css"); shutil.copy(f"{HERE}/site.js",f"{OUT}/assets/js/site.js"); shutil.copy(f"{HERE}/ambience.js",f"{OUT}/assets/js/ambience.js")
+shutil.copy(f"{HERE}/site.css",f"{OUT}/assets/css/site.css"); shutil.copy(f"{HERE}/site.js",f"{OUT}/assets/js/site.js"); shutil.copy(f"{HERE}/ambience.js",f"{OUT}/assets/js/ambience.js"); shutil.copy(f"{HERE}/tour.js",f"{OUT}/assets/js/tour.js")
 for f in os.listdir(f"{HERE}/img"): shutil.copy(f"{HERE}/img/{f}",f"{OUT}/assets/img/{f}")
 os.makedirs(f"{OUT}/assets/video",exist_ok=True)
 for f in os.listdir(f"{HERE}/video"): shutil.copy(f"{HERE}/video/{f}",f"{OUT}/assets/video/{f}")
@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110f">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110g">
 </head>
 <body>
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -133,8 +133,9 @@ def page(fn,title,desc,body):
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
 <a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261110f"></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110f" defer></script>'}
+<script src="assets/js/site.js?v=20261110g"></script>
+<script src="assets/js/tour.js?v=20261110g" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110g" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)
