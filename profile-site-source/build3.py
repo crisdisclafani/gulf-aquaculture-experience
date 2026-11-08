@@ -104,7 +104,7 @@ def page(fn,title,desc,body):
 <meta name="robots" content="noindex, nofollow">
 {SEO_HEAD}
 {FONTS}
-<link rel="stylesheet" href="assets/css/site.css?v=20261110g">
+<link rel="stylesheet" href="assets/css/site.css?v=20261110h">
 </head>
 <body>
 {TOPBAR if fn!="index.html" else TOPBAR.replace(SND_BTN+'<span class="tb-sep" aria-hidden="true"></span>',"")}
@@ -132,10 +132,26 @@ def page(fn,title,desc,body):
   </div>
   <div class="bot"><span>© 2026 Gulf Aquaculture · <a href="privacy.html">Privacy policy</a> · <a href="cookies.html">Cookie policy</a></span><span>Concept website built from the GA Company Profile · demo by Kriswa International — not the official site</span></div>
 </div></footer>
-<a class="wa-fab" href="{WA_URL}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">{WA_ICO}<span>Chat on WhatsApp</span></a>
-<script src="assets/js/site.js?v=20261110g"></script>
-<script src="assets/js/tour.js?v=20261110g" defer></script>
-{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110g" defer></script>'}
+<div class="hub" id="hub">
+  <div class="hub-menu" id="hubMenu" role="menu" aria-label="Contact options" hidden>
+    <button type="button" class="hub-it hub-ai" role="menuitem" data-hub="ai"><span class="hub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.5L12 15l-1.8-4.5L5.5 9l4.7-1.4z"/><path d="M18.5 15l.8 2 2 .7-2 .8-.8 2-.7-2-2-.8 2-.7z"/></svg></span><span class="hub-tx"><b>Ask our assistant</b><small>Instant answers about species, fry and our sites</small></span></button>
+    <a class="hub-it hub-wa" role="menuitem" href="{WA_URL}" target="_blank" rel="noopener"><span class="hub-ic">{WA_ICO}</span><span class="hub-tx"><b>WhatsApp</b><small>Chat with our team</small></span></a>
+    <a class="hub-it hub-mail" role="menuitem" href="contact.html#form"><span class="hub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="hub-tx"><b>Write to us</b><small>Send an enquiry to the right team</small></span></a>
+  </div>
+  <section class="hub-chat" id="hubChat" role="dialog" aria-label="Gulf Aquaculture assistant" hidden>
+    <header class="hc-top"><span class="hc-av"><img src="assets/img/gulf-aquaculture-logo-white.png" alt=""></span><span class="hc-who"><b>Gulf Aquaculture Assistant</b><small><i></i>Demo preview</small></span><button type="button" class="hc-x" aria-label="Close assistant">×</button></header>
+    <div class="hc-body" id="hcBody" aria-live="polite">
+      <div class="hc-msg bot">Hello! 👋 I’m the Gulf Aquaculture assistant. How can I help you today?</div>
+      <div class="hc-chips"><button type="button" data-q="fry">Fry availability</button><button type="button" data-q="species">Our species</button><button type="button" data-q="visit">Visit a facility</button><button type="button" data-q="invest">Partnerships</button></div>
+    </div>
+    <form class="hc-in" onsubmit="return false"><input type="text" placeholder="Type your question…" aria-label="Your question" disabled><button type="submit" disabled aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>
+    <p class="hc-note">Preview — the live assistant will be connected soon.</p>
+  </section>
+  <button type="button" class="hub-fab" id="hubFab" aria-expanded="false" aria-controls="hubMenu" aria-label="Contact us"><span class="hub-o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><circle cx="9" cy="10.5" r="1"/><circle cx="12" cy="10.5" r="1"/><circle cx="15" cy="10.5" r="1"/></svg></span><span class="hub-c" aria-hidden="true">×</span><span class="hub-l">Talk to us</span></button>
+</div>
+<script src="assets/js/site.js?v=20261110h"></script>
+<script src="assets/js/tour.js?v=20261110h" defer></script>
+{"" if fn=="index.html" else '<script src="assets/js/ambience.js?v=20261110h" defer></script>'}
 </body>
 </html>'''
     open(f"{OUT}/{fn}","w",encoding="utf-8").write(out)

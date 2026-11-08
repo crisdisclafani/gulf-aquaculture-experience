@@ -327,3 +327,23 @@ document.querySelectorAll('.lang-soon').forEach(function(b){b.addEventListener('
  var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
  lb.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(cur+(dx<0?1:-1));x0=null});
 })();
+
+/* Contact hub: one bubble → assistant (demo) · WhatsApp · enquiry form */
+(function(){var hub=document.getElementById('hub');if(!hub)return;
+ var fab=document.getElementById('hubFab'),menu=document.getElementById('hubMenu'),chat=document.getElementById('hubChat'),body=document.getElementById('hcBody');
+ function close(){hub.classList.remove('open');menu.hidden=true;chat.hidden=true;fab.setAttribute('aria-expanded','false')}
+ fab.addEventListener('click',function(){var open=!hub.classList.contains('open');if(!open){close();return}
+   hub.classList.add('open');menu.hidden=false;chat.hidden=true;fab.setAttribute('aria-expanded','true');[].forEach.call(menu.children,function(c){c.style.animation='none';c.offsetHeight;c.style.animation=''})});
+ hub.querySelector('[data-hub="ai"]').addEventListener('click',function(){menu.hidden=true;chat.hidden=false;var x=chat.querySelector('.hc-x');x&&x.focus()});
+ chat.querySelector('.hc-x').addEventListener('click',close);
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&hub.classList.contains('open'))close()});
+ document.addEventListener('click',function(e){if(hub.classList.contains('open')&&!hub.contains(e.target))close()});
+ var A={fry:['Fry availability','We supply Hamour, Hamra, Shiqra, Shaari and Seabream fry to regional farms. Tell us species, quantity, size and delivery date and our team will confirm availability. <a href="contact.html?type=fry#fry">Request fry →</a>'],
+  species:['Our species','We focus on native Gulf species — resilient and adapted to local heat and salinity. <a href="species.html">Explore our species →</a>'],
+  visit:['Visit a facility','Government, research and commercial partners can request a visit to Balghailam Island or the Sheikh Khalifa Marine Research Centre. <a href="contact.html?type=general#general">Ask for a visit →</a>'],
+  invest:['Partnerships','We work with investors, government bodies and universities on food security, Phase II growth and research. <a href="contact.html?type=investor#investor">Start a conversation →</a>']};
+ body.addEventListener('click',function(e){var b=e.target.closest('[data-q]');if(!b)return;var a=A[b.dataset.q];
+   var me=document.createElement('div');me.className='hc-msg me';me.textContent=a[0];body.appendChild(me);
+   var t=document.createElement('div');t.className='hc-typing';t.innerHTML='<i></i><i></i><i></i>';body.appendChild(t);body.scrollTop=body.scrollHeight;
+   setTimeout(function(){t.remove();var r=document.createElement('div');r.className='hc-msg bot';r.innerHTML=a[1];body.appendChild(r);body.scrollTop=body.scrollHeight},900)});
+})();
